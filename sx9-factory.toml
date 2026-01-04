@@ -1,0 +1,33 @@
+# SX9 Factory Manifest
+# Laser Light Communications satellite constellation platform
+
+[factory]
+name = "sx9-orbital"
+description = "Laser Light Communications satellite constellation platform"
+registered = "2026-01-04T00:00:00Z"
+owner = "charles"
+
+[phase]
+current = "plan"
+entered = "2026-01-04T00:00:00Z"
+
+[zone]
+classification = "B"        # Ground control is latency-sensitive
+latency_target_ms = 50
+
+[gates]
+complexity_max = 12
+coverage_min = 85
+sbom_required = true
+cato_required = true        # DoD deployment requires cATO
+security_scan = true
+
+[integrations]
+slack_channel = "#sx9-orbital"
+github_repo = "synaptix/sx9-orbital"
+
+[compliance]
+itar = true                 # International Traffic in Arms
+ear = true                  # Export Administration Regulations
+cmmc_level = 2              # CMMC Level 2 for CUI
+fips_validated = true       # FIPS 140-3 for crypto

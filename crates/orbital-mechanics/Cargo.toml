@@ -1,0 +1,23 @@
+[package]
+name = "orbital-mechanics"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "SGP4 propagation, coordinate transforms, Walker Delta constellation"
+
+[package.metadata.sx9]
+crate_type = "library"
+mission = "Orbital"
+rfc_ref = "RFC-9000A"
+bernoulli_zone = "C"
+llm_allowed = false
+phases = ["BUILD", "OPERATE"]
+security_level = "critical"
+ssdf_practices = ["PW.8.1", "RV.1.2"]
+
+[dependencies]
+sgp4.workspace = true
+chrono.workspace = true
+serde.workspace = true
+thiserror.workspace = true

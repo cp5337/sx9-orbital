@@ -1,0 +1,45 @@
+[package]
+name = "orbital-gateway"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Gateway API for SX9 Orbital constellation control"
+
+[package.metadata.sx9]
+crate_type = "service"
+mission = "Orbital"
+rfc_ref = "RFC-9000A"
+bernoulli_zone = "B"
+llm_allowed = false
+phases = ["DEPLOY", "OPERATE", "MONITOR"]
+security_level = "critical"
+ssdf_practices = ["PW.8.1", "RV.1.2", "PS.3.1"]
+port_range_start = 21600
+port_range_end = 21610
+nats_subjects = ["sx9.orbital.cmd.*", "sx9.orbital.telemetry.*"]
+
+[dependencies]
+# Workspace deps
+tokio.workspace = true
+axum.workspace = true
+tower.workspace = true
+tower-http.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+anyhow.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+chrono.workspace = true
+uuid.workspace = true
+
+# Local crates
+orbital-mechanics = { path = "../crates/orbital-mechanics" }
+beam-routing = { path = "../crates/beam-routing" }
+ground-stations = { path = "../crates/ground-stations" }
+collision-avoidance = { path = "../crates/collision-avoidance" }
+
+[[bin]]
+name = "orbital-gateway"
+path = "src/main.rs"
