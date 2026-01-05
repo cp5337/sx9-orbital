@@ -1,0 +1,18 @@
+# ctas_optical instance
+name: ctas_optical
+databases:
+  - name: default
+services:
+  - class: org.yamcs.tctm.TcUplink
+    name: dummy-uplink
+  - class: org.yamcs.tctm.TcpTmDataLink
+    name: sim-tm
+    args:
+      host: 127.0.0.1
+      port: 10015
+mdb:
+  - type: xtce
+    args:
+      file: /opt/yamcs/etc/mops/ctas_optical.xtce.xml
+web:
+  enabled: true

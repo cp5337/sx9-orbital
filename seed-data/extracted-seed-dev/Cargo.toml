@@ -1,0 +1,8 @@
+[workspace]
+members = [
+    "indi-fine-tracking-rust",
+    "ccsds142-harness"
+]
+
+[workspace.package]
+edition = "2021"

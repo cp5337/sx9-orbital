@@ -1,0 +1,17 @@
+[package]
+name = "indi-fine-tracking"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+anyhow = "1"
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+opencv = { version = "0.92", optional = true }
+# NOTE: There is no official INDI crate; you'll likely roll your own protocol over TCP 7624.
+# For now, we keep it minimal.
+
+[features]
+default = []
+vision = ["opencv"]

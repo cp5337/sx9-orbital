@@ -1,0 +1,28 @@
+version: '3.9'
+services:
+  postgres:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: yamcs
+      POSTGRES_PASSWORD: yamcs
+      POSTGRES_DB: yamcs
+    ports: ["5432:5432"]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U yamcs"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  yamcs:
+    image: yamcs/yamcs:latest
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      YAMCS_YAMCSDB_URL: jdbc:postgresql://postgres:5432/yamcs
+      YAMCS_YAMCSDB_USERNAME: yamcs
+      YAMCS_YAMCSDB_PASSWORD: yamcs
+    volumes:
+      - ./yamcs/etc:/opt/yamcs/etc
+    ports:
+      - "8090:8090"
+    command: ["sh","-lc","/opt/yamcs/bin/yamcs-start && tail -f /dev/null"]

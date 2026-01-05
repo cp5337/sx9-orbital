@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MissionDatabase xmlns="http://www.omg.org/space/xtce" name="ctas_optical">
+  <TelemetryMetaData>
+    <ParameterTypeSet>
+      <IntegerParameterType name="u32" sizeInBits="32" encoding="unsigned"/>
+    </ParameterTypeSet>
+    <ParameterSet>
+      <Parameter name="link.ber" parameterTypeRef="u32"/>
+    </ParameterSet>
+    <StreamSet>
+      <Stream name="tm" type="tm"/>
+    </StreamSet>
+  </TelemetryMetaData>
+  <CommandMetaData/>
+</MissionDatabase>

@@ -1,0 +1,80 @@
+{
+  "folders": [
+    {
+      "path": "."
+    },
+    {
+      "path": "yamcs-seed"
+    },
+    {
+      "path": "orekit-service"
+    },
+    {
+      "path": "indi-fine-tracking-rust"
+    },
+    {
+      "path": "ccsds142-harness"
+    }
+  ],
+  "settings": {
+    "editor.formatOnSave": true,
+    "files.trimTrailingWhitespace": true,
+    "editor.rulers": [
+      100
+    ],
+    "peacock.color": "#0b3d91",
+    "rust-analyzer.check.command": "clippy",
+    "rust-analyzer.cargo.allFeatures": true,
+    "xml.format.splitAttributes": true,
+    "workbench.colorCustomizations": {
+      "titleBar.activeBackground": "#0b3d91",
+      "statusBar.background": "#0b3d91"
+    },
+    "terminal.integrated.defaultProfile.osx": "zsh"
+  },
+  "extensions": {
+    "recommendations": [
+      "rust-lang.rust-analyzer",
+      "vadimcn.vscode-lldb",
+      "serayuzgur.crates",
+      "ms-azuretools.vscode-docker",
+      "redhat.vscode-xml",
+      "batisteo.vscode-django",
+      "esbenp.prettier-vscode",
+      "streetsidesoftware.code-spell-checker",
+      "ms-vscode.makefile-tools",
+      "twxs.cmake",
+      "johnpapa.vscode-peacock"
+    ]
+  },
+  "launch": {
+    "configurations": [
+      {
+        "name": "Run INDI fine-tracking (cargo)",
+        "type": "lldb",
+        "request": "launch",
+        "cargo": {
+          "args": [
+            "run",
+            "--package",
+            "indi-fine-tracking"
+          ]
+        },
+        "cwd": "${workspaceFolder}"
+      },
+      {
+        "name": "Run CCSDS-142 harness (cargo)",
+        "type": "lldb",
+        "request": "launch",
+        "cargo": {
+          "args": [
+            "run",
+            "--package",
+            "ccsds142-harness"
+          ]
+        },
+        "cwd": "${workspaceFolder}"
+      }
+    ]
+  }
+}

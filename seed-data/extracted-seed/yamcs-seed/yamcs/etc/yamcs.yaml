@@ -1,0 +1,5 @@
+# yamcs.yaml - global server configuration
+httpServer:
+  port: 8090
+  webDir: web
+instancesDir: /opt/yamcs/etc/mission/instances
