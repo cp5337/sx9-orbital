@@ -136,6 +136,18 @@ impl MockWeatherProvider {
         Self
     }
 
+    /// Get current unix timestamp (platform-agnostic)
+    #[cfg(feature = "std")]
+    fn current_timestamp() -> i64 {
+        chrono::Utc::now().timestamp()
+    }
+
+    #[cfg(not(feature = "std"))]
+    fn current_timestamp() -> i64 {
+        // In WASM, we'd use js_sys::Date, but for now return 0
+        0
+    }
+
     /// Generate realistic weather based on latitude
     pub fn generate_for_location(&self, station_id: &str, lat: f64, lon: f64) -> WeatherConditions {
         let abs_lat = lat.abs();
@@ -163,7 +175,7 @@ impl MockWeatherProvider {
             wind_speed_ms: 5.0 + hour_factor * 10.0,
             temperature_c: 20.0 - abs_lat * 0.5,
             humidity_pct: 40.0 + cloud_base * 0.5,
-            timestamp: chrono::Utc::now().timestamp(),
+            timestamp: Self::current_timestamp(),
         }
     }
 }

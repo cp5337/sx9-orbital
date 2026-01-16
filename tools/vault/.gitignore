@@ -1,0 +1,8 @@
+# Vault files - NEVER commit
+*.json
+*.log
+*.pem
+*.key
+.env
+.env.*
+!.gitignore

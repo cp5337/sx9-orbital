@@ -87,7 +87,9 @@ async fn main() -> Result<()> {
         api_routes
     };
 
-    let port = std::env::var("PORT").unwrap_or_else(|_| "21600".to_string());
+    let port = std::env::var("ORBITAL_GATEWAY_PORT")
+        .or_else(|_| std::env::var("PORT"))
+        .unwrap_or_else(|_| "18601".to_string());
     let addr = format!("0.0.0.0:{}", port);
 
     tracing::info!("🛰️  Orbital Gateway starting on {}", addr);
