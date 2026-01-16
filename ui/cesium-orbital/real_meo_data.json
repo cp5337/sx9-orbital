@@ -1,0 +1,26 @@
+{
+  "ground_nodes": [
+    { "name": "CTAS-LAGOS-001", "latitude": 6.5244, "longitude": 3.3792, "tier": 1, "demand_gbps": 100.0, "weather_score": 0.80, "status": "active" },
+    { "name": "CTAS-LONDON-001", "latitude": 51.5074, "longitude": -0.1278, "tier": 1, "demand_gbps": 100.0, "weather_score": 0.85, "status": "active" },
+    { "name": "CTAS-SINGAPORE-001", "latitude": 1.3521, "longitude": 103.8198, "tier": 1, "demand_gbps": 100.0, "weather_score": 0.90, "status": "active" },
+    { "name": "CTAS-SYDNEY-001", "latitude": -33.8688, "longitude": 151.2093, "tier": 1, "demand_gbps": 100.0, "weather_score": 0.88, "status": "active" },
+    { "name": "STARLINK-HAWTHORNE", "latitude": 33.9206, "longitude": -118.3276, "tier": 2, "demand_gbps": 50.0, "weather_score": 0.92, "status": "active" },
+    { "name": "STARLINK-REDMOND", "latitude": 47.6740, "longitude": -122.1215, "tier": 2, "demand_gbps": 50.0, "weather_score": 0.78, "status": "active" },
+    { "name": "STARLINK-BROWNSVILLE", "latitude": 25.9018, "longitude": -97.4970, "tier": 2, "demand_gbps": 50.0, "weather_score": 0.94, "status": "active" }
+  ],
+  "satellites": [
+    { "name": "MEO-001", "latitude": 0.0, "longitude": 0.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.5, "status": "active" },
+    { "name": "MEO-002", "latitude": 30.0, "longitude": 45.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.8, "status": "active" },
+    { "name": "MEO-003", "latitude": -30.0, "longitude": 90.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.6, "status": "active" },
+    { "name": "MEO-004", "latitude": 45.0, "longitude": 135.0, "altitude": 15000.0, "inclination": 55.0, "qber": 3.0, "status": "active" },
+    { "name": "MEO-005", "latitude": 0.0, "longitude": 180.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.4, "status": "active" },
+    { "name": "MEO-006", "latitude": -45.0, "longitude": -135.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.9, "status": "active" },
+    { "name": "MEO-007", "latitude": 30.0, "longitude": -90.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.7, "status": "active" },
+    { "name": "MEO-008", "latitude": -30.0, "longitude": -45.0, "altitude": 15000.0, "inclination": 55.0, "qber": 2.5, "status": "active" },
+    { "name": "MEO-009", "latitude": 60.0, "longitude": 0.0, "altitude": 12000.0, "inclination": 70.0, "qber": 3.8, "status": "active" },
+    { "name": "MEO-010", "latitude": -60.0, "longitude": 0.0, "altitude": 12000.0, "inclination": 70.0, "qber": 3.9, "status": "active" },
+    { "name": "MEO-011", "latitude": 15.0, "longitude": 60.0, "altitude": 18000.0, "inclination": 47.0, "qber": 2.2, "status": "active" },
+    { "name": "MEO-012", "latitude": -15.0, "longitude": 120.0, "altitude": 18000.0, "inclination": 47.0, "qber": 2.3, "status": "active" }
+  ]
+}
+

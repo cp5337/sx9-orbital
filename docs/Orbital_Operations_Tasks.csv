@@ -1,0 +1,61 @@
+parent_id,parent_name,task_name
+OP-01,Define Orbital Geometry,Select Orbital Regime
+OP-01,Define Orbital Geometry,Define Orbital Parameters
+OP-01,Define Orbital Geometry,Generate Initial TLE Set
+OP-01,Define Orbital Geometry,Choose Propagation Model
+OP-01,Define Orbital Geometry,Define Delta-V Constraints
+OP-01,Define Orbital Geometry,Compute Ephemeris Package
+OP-02,Plan Launch Parameters,Select Launch Provider
+OP-02,Plan Launch Parameters,Reserve Launch Window
+OP-02,Plan Launch Parameters,Match Launch Site to Orbit
+OP-02,Plan Launch Parameters,Simulate Launch Trajectory
+OP-02,Plan Launch Parameters,Verify Orbital Injection
+OP-03,Perform Payload Integration Testing,Certify Satellite Readiness
+OP-03,Perform Payload Integration Testing,Run Environmental Test Campaign
+OP-03,Perform Payload Integration Testing,Validate Telemetry Channel
+OP-03,Perform Payload Integration Testing,Complete Payload Mating Procedure
+OP-03,Perform Payload Integration Testing,Approve Final Integration Certificate
+OP-04,Track Post-Launch Ephemeris,Monitor Separation Telemetry
+OP-04,Track Post-Launch Ephemeris,Acquire Beacon Signal
+OP-04,Track Post-Launch Ephemeris,Record Initial Orbital State
+OP-04,Track Post-Launch Ephemeris,Compare Orbit to Plan
+OP-04,Track Post-Launch Ephemeris,Broadcast Updated TLE Set
+OP-05,Select Ground Station Network,Define Coverage Requirements
+OP-05,Select Ground Station Network,Set Latency and Bandwidth Targets
+OP-05,Select Ground Station Network,Choose Build or Lease Strategy
+OP-05,Select Ground Station Network,Negotiate Access Agreements
+OP-05,Select Ground Station Network,Generate Ground Coverage Map
+OP-06,Schedule Passes and Link Budgets,Generate Access Windows
+OP-06,Schedule Passes and Link Budgets,Rank Satellite Passes
+OP-06,Schedule Passes and Link Budgets,Resolve Scheduling Conflicts
+OP-06,Schedule Passes and Link Budgets,Ingest Weather Data
+OP-06,Schedule Passes and Link Budgets,Distribute Ops Schedule
+OP-06,Schedule Passes and Link Budgets,Compute Link Budgets
+OP-07,Establish Command and Control,Establish Uplink Connection
+OP-07,Establish Command and Control,Transmit Command Package
+OP-07,Establish Command and Control,Perform QEK Handshake
+OP-07,Establish Command and Control,Log Configuration State
+OP-08,Monitor Satellite Telemetry,Decode Telemetry Stream
+OP-08,Monitor Satellite Telemetry,Parse Subsystem Metrics
+OP-08,Monitor Satellite Telemetry,Detect Anomalous Events
+OP-08,Monitor Satellite Telemetry,Display Performance Trends
+OP-08,Monitor Satellite Telemetry,Archive Telemetry Data
+OP-09,Maintain Orbital Position,Monitor Orbital Drift
+OP-09,Maintain Orbital Position,Simulate Stationkeeping Maneuvers
+OP-09,Maintain Orbital Position,Execute Delta-V Burn
+OP-09,Maintain Orbital Position,Validate New Ephemeris
+OP-09,Maintain Orbital Position,Update Propellant Budget
+OP-10,Monitor Space Weather,Track Solar Activity
+OP-10,Monitor Space Weather,Ingest Atmospheric Profiles
+OP-10,Monitor Space Weather,Compute Signal Margins
+OP-10,Monitor Space Weather,Generate Weather Forecast
+OP-11,Execute Collision Avoidance,Subscribe to Conjunction Alerts
+OP-11,Execute Collision Avoidance,Evaluate Collision Risk
+OP-11,Execute Collision Avoidance,Simulate Avoidance Maneuvers
+OP-11,Execute Collision Avoidance,Approve Maneuver Decision
+OP-11,Execute Collision Avoidance,Broadcast Updated Ephemeris
+OP-12,Conduct End-of-Life Disposal,Calculate End-of-Life Date
+OP-12,Conduct End-of-Life Disposal,Secure Deorbit Slot
+OP-12,Conduct End-of-Life Disposal,Execute Disposal Maneuver
+OP-12,Conduct End-of-Life Disposal,Track Orbit Decay
+OP-12,Conduct End-of-Life Disposal,Archive Mission Logs

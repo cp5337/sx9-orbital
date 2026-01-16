@@ -1,0 +1,110 @@
+# Ground Station WASM Mesh
+# Spins up N ground stations as individual containers
+# Each has unique GIS coordinates and connects via NATS
+
+version: '3.8'
+
+services:
+  # NATS message bus for inter-station communication
+  nats:
+    image: nats:2.10-alpine
+    ports:
+      - "4222:4222"
+      - "8222:8222"  # HTTP monitoring
+    command: ["--jetstream", "--http_port", "8222"]
+    networks:
+      - orbital-mesh
+
+  # Arbitrage Engine (ANN routing optimizer)
+  arbitrage-engine:
+    build:
+      context: ../..
+      dockerfile: docker/ground-station-wasm/Dockerfile.arbitrage
+    environment:
+      NATS_URL: nats://nats:4222
+      ANN_MODEL_PATH: /models/route_optimizer.onnx
+    depends_on:
+      - nats
+    networks:
+      - orbital-mesh
+
+  # Sample ground stations (expand to 257 via script)
+  gs-vandenberg:
+    build:
+      context: ../..
+      dockerfile: docker/ground-station-wasm/Dockerfile
+    environment:
+      GS_ID: GS-001
+      GS_NAME: Vandenberg
+      GS_LAT: "34.7420"
+      GS_LON: "-120.5724"
+      GS_ALT_M: "150"
+      NATS_URL: nats://nats:4222
+    ports:
+      - "18001:8080"
+      - "18101:8081"
+    depends_on:
+      - nats
+    networks:
+      - orbital-mesh
+
+  gs-cape-canaveral:
+    build:
+      context: ../..
+      dockerfile: docker/ground-station-wasm/Dockerfile
+    environment:
+      GS_ID: GS-002
+      GS_NAME: Cape Canaveral
+      GS_LAT: "28.3922"
+      GS_LON: "-80.6077"
+      GS_ALT_M: "5"
+      NATS_URL: nats://nats:4222
+    ports:
+      - "18002:8080"
+      - "18102:8081"
+    depends_on:
+      - nats
+    networks:
+      - orbital-mesh
+
+  gs-kourou:
+    build:
+      context: ../..
+      dockerfile: docker/ground-station-wasm/Dockerfile
+    environment:
+      GS_ID: GS-003
+      GS_NAME: Kourou
+      GS_LAT: "5.2378"
+      GS_LON: "-52.7683"
+      GS_ALT_M: "10"
+      NATS_URL: nats://nats:4222
+    ports:
+      - "18003:8080"
+      - "18103:8081"
+    depends_on:
+      - nats
+    networks:
+      - orbital-mesh
+
+  gs-singapore:
+    build:
+      context: ../..
+      dockerfile: docker/ground-station-wasm/Dockerfile
+    environment:
+      GS_ID: GS-004
+      GS_NAME: Singapore
+      GS_LAT: "1.3521"
+      GS_LON: "103.8198"
+      GS_ALT_M: "15"
+      NATS_URL: nats://nats:4222
+    ports:
+      - "18004:8080"
+      - "18104:8081"
+    depends_on:
+      - nats
+    networks:
+      - orbital-mesh
+
+networks:
+  orbital-mesh:
+    driver: bridge

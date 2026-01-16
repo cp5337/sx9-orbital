@@ -6,20 +6,44 @@ use axum::{
 };
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
-use tower_http::cors::CorsLayer;
+use tower_http::{
+    cors::CorsLayer,
+    services::ServeDir,
+};
 use tracing_subscriber::{layer::SubscriberExt, util::SubscriberInitExt};
+
+// Import ground station WASM types for API
+use ground_station_wasm::{
+    stations::{load_strategic_stations, NetworkStation, StationStats},
+    downselect::{Downselect, ScoringWeights, DownselectSummary},
+};
 
 mod routes;
 
 #[derive(Clone)]
 pub struct AppState {
     pub constellation: Arc<ConstellationState>,
+    pub strategic_stations: Arc<Vec<NetworkStation>>,
 }
 
 #[derive(Default)]
 pub struct ConstellationState {
     pub satellites: Vec<orbital_mechanics::Satellite>,
     pub ground_stations: Vec<ground_stations::GroundStation>,
+}
+
+// Strategic stations response
+#[derive(Serialize)]
+pub struct StrategicStationsResponse {
+    pub stations: Vec<NetworkStation>,
+    pub stats: StationStats,
+}
+
+// Downselect request
+#[derive(Deserialize)]
+pub struct DownselectRequest {
+    pub weights: Option<ScoringWeights>,
+    pub top_n: Option<usize>,
 }
 
 #[tokio::main]
@@ -31,19 +55,37 @@ async fn main() -> Result<()> {
         .with(tracing_subscriber::fmt::layer())
         .init();
 
+    // Load strategic stations (Equinix, HALO Centres, etc.)
+    let strategic_stations = load_strategic_stations();
+    tracing::info!("   Loaded {} strategic stations", strategic_stations.len());
+
     let state = AppState {
         constellation: Arc::new(ConstellationState::default()),
+        strategic_stations: Arc::new(strategic_stations),
     };
 
-    let app = Router::new()
+    // API routes
+    let api_routes = Router::new()
         .route("/health", get(health))
         .route("/api/v1/satellites", get(routes::list_satellites))
         .route("/api/v1/satellites/:id/position", get(routes::get_position))
         .route("/api/v1/ground-stations", get(routes::list_ground_stations))
+        .route("/api/v1/strategic-stations", get(list_strategic_stations))
+        .route("/api/v1/strategic-stations/downselect", post(run_downselect))
         .route("/api/v1/routing/optimal", post(routes::calculate_route))
         .route("/api/v1/collision/check", post(routes::check_collision))
         .layer(CorsLayer::permissive())
         .with_state(state);
+
+    // Static file serving for UI (if dist exists)
+    let ui_path = std::path::Path::new("ui/cesium-orbital/dist");
+    let app = if ui_path.exists() {
+        tracing::info!("   Serving UI from {}", ui_path.display());
+        api_routes.nest_service("/", ServeDir::new(ui_path))
+    } else {
+        tracing::warn!("   UI not built - run 'npm run build' in ui/cesium-orbital");
+        api_routes
+    };
 
     let port = std::env::var("PORT").unwrap_or_else(|_| "21600".to_string());
     let addr = format!("0.0.0.0:{}", port);
@@ -65,4 +107,28 @@ async fn health() -> Json<serde_json::Value> {
         "constellation": "HALO",
         "version": env!("CARGO_PKG_VERSION")
     }))
+}
+
+/// List all strategic stations (Equinix, HALO, Africa, etc.)
+async fn list_strategic_stations(
+    State(state): State<AppState>,
+) -> Json<StrategicStationsResponse> {
+    let stations = state.strategic_stations.as_ref().clone();
+    let stats = StationStats::from_stations(&stations);
+
+    Json(StrategicStationsResponse { stations, stats })
+}
+
+/// Run downselect analysis on strategic stations
+async fn run_downselect(
+    State(state): State<AppState>,
+    Json(req): Json<DownselectRequest>,
+) -> Json<DownselectSummary> {
+    let stations = state.strategic_stations.as_ref();
+
+    let weights = req.weights.unwrap_or_default();
+    let mut ds = Downselect::new().with_weights(weights);
+    ds.evaluate(stations);
+
+    Json(ds.summary())
 }

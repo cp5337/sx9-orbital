@@ -1,0 +1,61 @@
+Phase,Parent Task,Subtask
+Plan,Define Orbital Geometry,Choose Altitude Regime
+Plan,Define Orbital Geometry,Define Inclination and Eccentricity
+Plan,Define Orbital Geometry,Generate Baseline TLE
+Plan,Define Orbital Geometry,Choose Propagation Engine
+Plan,Define Orbital Geometry,Encode DeltaV Margin
+Plan,Define Orbital Geometry,Compute Position Dataset
+Plan,Plan Launch Parameters,Choose Launch Vehicle
+Plan,Plan Launch Parameters,Reserve Launch Calendar Slot
+Plan,Plan Launch Parameters,Match Launch Site to Orbit Plane
+Plan,Plan Launch Parameters,Simulate Injection Trajectory
+Plan,Plan Launch Parameters,Verify Orbital Alignment Constraints
+Plan,Select Ground Station Network,Define Geographic Coverage
+Plan,Select Ground Station Network,Set Bandwidth and Latency Thresholds
+Plan,Select Ground Station Network,Choose Build or Lease Strategy
+Plan,Select Ground Station Network,Negotiate Ground Access Terms
+Plan,Select Ground Station Network,Generate Coverage Map Overlay
+Build,Perform Payload Integration Testing,Declare Satellite Readiness
+Build,Perform Payload Integration Testing,Execute Environmental Test Campaign
+Build,Perform Payload Integration Testing,Confirm Telemetry Channel Link
+Build,Perform Payload Integration Testing,Complete Payload Fairing Mating
+Build,Perform Payload Integration Testing,Approve Integration Certificate
+Insert,Insert Satellite into Orbit,Monitor Separation Telemetry
+Insert,Insert Satellite into Orbit,Acquire Beacon Signal Lock
+Insert,Insert Satellite into Orbit,Record Initial Position State
+Insert,Insert Satellite into Orbit,Compare Actual vs Planned Orbit
+Insert,Insert Satellite into Orbit,Broadcast Updated TLE Ephemeris
+Operate,Establish Command and Control,Establish Uplink Connection
+Operate,Establish Command and Control,Transmit Secure Command Package
+Operate,Establish Command and Control,Execute Quantum Key Handshake
+Operate,Establish Command and Control,Record Configuration State
+Operate,Schedule Satellite Passes and Links,Generate Access Time Windows
+Operate,Schedule Satellite Passes and Links,Rank Pass Priority Value
+Operate,Schedule Satellite Passes and Links,Resolve Station Overlap Conflicts
+Operate,Schedule Satellite Passes and Links,Ingest Weather Data for Availability
+Operate,Schedule Satellite Passes and Links,Distribute Schedule to Ops Team
+Operate,Schedule Satellite Passes and Links,Compute FSO Link Budget
+Operate,Process Telemetry and Monitor Health,Decode Raw Telemetry Stream
+Operate,Process Telemetry and Monitor Health,Extract Subsystem Health Metrics
+Operate,Process Telemetry and Monitor Health,Flag Signature Anomalies
+Operate,Process Telemetry and Monitor Health,Visualize Performance Trends
+Operate,Process Telemetry and Monitor Health,Store Historical Telemetry Archive
+Maintain,Perform Stationkeeping,Track Orbital Drift and Decay
+Maintain,Perform Stationkeeping,Simulate Stationkeeping Maneuvers
+Maintain,Perform Stationkeeping,Execute DeltaV Correction Burns
+Maintain,Perform Stationkeeping,Confirm Post-Burn Ephemeris
+Maintain,Perform Stationkeeping,Log Fuel Budget Updates
+Maintain,Avoid Conjunction and Collisions,Subscribe to Conjunction Alerts
+Maintain,Avoid Conjunction and Collisions,Evaluate Collision Probability
+Maintain,Avoid Conjunction and Collisions,Simulate Avoidance Maneuvers
+Maintain,Avoid Conjunction and Collisions,Approve Collision Mitigation Plan
+Maintain,Avoid Conjunction and Collisions,Publish Updated Ephemeris
+Maintain,Monitor Space Weather Impact,Track Solar Radiation Belt Activity
+Maintain,Monitor Space Weather Impact,Process Atmospheric Weather Profile
+Maintain,Monitor Space Weather Impact,Calculate Signal Margin Variability
+Maintain,Monitor Space Weather Impact,Generate Link Viability Forecast
+Retire,Execute End-of-Life Procedures,Predict Mission End-of-Life Date
+Retire,Execute End-of-Life Procedures,Secure Deorbit Slot
+Retire,Execute End-of-Life Procedures,Execute Disposal Maneuver Plan
+Retire,Execute End-of-Life Procedures,Track Final Orbit Decay
+Retire,Execute End-of-Life Procedures,Store Final Mission Archive

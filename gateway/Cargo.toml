@@ -39,6 +39,7 @@ orbital-mechanics = { path = "../crates/orbital-mechanics" }
 beam-routing = { path = "../crates/beam-routing" }
 ground-stations = { path = "../crates/ground-stations" }
 collision-avoidance = { path = "../crates/collision-avoidance" }
+ground-station-wasm = { path = "../crates/ground-station-wasm", default-features = false }
 
 [[bin]]
 name = "orbital-gateway"
