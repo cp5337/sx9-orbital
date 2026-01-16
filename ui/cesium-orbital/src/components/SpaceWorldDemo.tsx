@@ -30,6 +30,7 @@ import { addRadiationBeltsToViewer } from '@/utils/radiationBeltRenderer';
 import { OrbitalAnimationManager } from '@/services/orbitalAnimation';
 import { DiagnosticPanel } from '@/components/DiagnosticPanel';
 import { addOrbitalZonesToViewer, createOrbitPath } from '@/utils/orbitalZones';
+import { FsoBeamManager, createWalkerDeltaLinks } from '@/utils/fsoBeamRenderer';
 import * as Cesium from 'cesium';
 
 function useHourglassSeries() {
@@ -83,6 +84,7 @@ export default function SpaceWorldDemo() {
   const orbitPathsRef = useRef<Map<string, Cesium.Entity>>(new Map());
   const viewerRef = useRef<Cesium.Viewer | null>(null);
   const animationManagerRef = useRef<OrbitalAnimationManager | null>(null);
+  const fsoBeamManagerRef = useRef<FsoBeamManager | null>(null);
 
   const [layers, setLayers] = useState<LayerConfig[]>([
     {
@@ -119,6 +121,20 @@ export default function SpaceWorldDemo() {
       visible: true,
       color: '#8b5cf6',
       opacity: 0.2,
+    },
+    {
+      id: 'fsoSatSat',
+      label: 'ISL Beams',
+      visible: true,
+      color: '#22c55e',
+      opacity: 0.8,
+    },
+    {
+      id: 'fsoSatGround',
+      label: 'Ground Links',
+      visible: true,
+      color: '#06b6d4',
+      opacity: 0.8,
     },
   ]);
 
@@ -305,6 +321,47 @@ export default function SpaceWorldDemo() {
     addRadiationBeltsToViewer(viewer);
     addOrbitalZonesToViewer(viewer);
 
+    // Initialize FSO Beam Manager
+    const fsoManager = new FsoBeamManager(viewer);
+    fsoBeamManagerRef.current = fsoManager;
+
+    // Register ground station positions
+    groundNodes.forEach((node) => {
+      fsoManager.setGroundStationPosition(node.id, node.latitude, node.longitude, 0);
+    });
+
+    // Register satellite positions
+    satellites.forEach((sat) => {
+      fsoManager.setSatellitePosition(sat.id, sat.latitude, sat.longitude, sat.altitude);
+    });
+
+    // Create inter-satellite links (Walker Delta constellation pattern)
+    createWalkerDeltaLinks(fsoManager, satellites.map((s, i) => ({
+      id: s.id,
+      planeIndex: Math.floor(i / 4), // 4 satellites per plane for Walker 53:12/3/1
+    })));
+
+    // Create satellite-to-ground links (each sat connects to nearest visible ground stations)
+    satellites.forEach((sat) => {
+      // Find nearest ground stations and create links (limit to 2 per satellite for clarity)
+      const sortedGs = [...groundNodes]
+        .map((gs) => ({
+          gs,
+          dist: Math.sqrt(
+            Math.pow(sat.latitude - gs.latitude, 2) +
+            Math.pow(sat.longitude - gs.longitude, 2)
+          ),
+        }))
+        .sort((a, b) => a.dist - b.dist)
+        .slice(0, 2);
+
+      sortedGs.forEach((item) => {
+        const linkId = `${sat.id}-${item.gs.id}`;
+        const margin = 4 + Math.random() * 6; // 4-10 dB margin varies by weather/distance
+        fsoManager.addSatToGroundLink(linkId, sat.id, item.gs.id, margin);
+      });
+    });
+
     if (orbitPathsVisible) {
       satellites.forEach((sat) => {
         const orbitPath = createOrbitPath(
@@ -332,6 +389,9 @@ export default function SpaceWorldDemo() {
         });
         orbitPathsRef.current.clear();
 
+        if (fsoManager) {
+          fsoManager.destroy();
+        }
         if (animationManager) {
           animationManager.destroy();
         }
@@ -340,6 +400,7 @@ export default function SpaceWorldDemo() {
         }
         viewerRef.current = null;
         animationManagerRef.current = null;
+        fsoBeamManagerRef.current = null;
       };
     } catch (error) {
       const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -358,6 +419,14 @@ export default function SpaceWorldDemo() {
       orbitPathsRef.current.forEach((path) => {
         path.show = visible;
       });
+    }
+
+    // Handle FSO layer toggles
+    if (layerId === 'fsoSatSat' && fsoBeamManagerRef.current) {
+      fsoBeamManagerRef.current.setSatSatLinksVisible(visible);
+    }
+    if (layerId === 'fsoSatGround' && fsoBeamManagerRef.current) {
+      fsoBeamManagerRef.current.setSatGroundLinksVisible(visible);
     }
   };
 
