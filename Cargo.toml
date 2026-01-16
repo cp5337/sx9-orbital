@@ -6,6 +6,7 @@ members = [
     "crates/ground-stations",
     "crates/collision-avoidance",
     "crates/ground-station-wasm",
+    "crates/orbital-glaf",
 ]
 resolver = "2"
 
