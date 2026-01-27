@@ -21,5 +21,10 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
+  },
+  server: {
+    // Port 18800 per sx9/config/ports.toml (UI dev servers range)
+    port: 18800,
+    strictPort: false, // Allow fallback if port in use
   }
 })
