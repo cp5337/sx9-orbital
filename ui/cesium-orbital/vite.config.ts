@@ -1,14 +1,19 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import cesium from 'vite-plugin-cesium'
 import wasm from 'vite-plugin-wasm'
 import topLevelAwait from 'vite-plugin-top-level-await'
 import path from 'path'
 
+// @ts-ignore - vite-plugin-cesium-build has TypeScript export issues
+import cesiumPlugin from 'vite-plugin-cesium-build'
+
 export default defineConfig({
   plugins: [
     react(),
-    cesium(),
+    cesiumPlugin({
+      // Use IIFE mode to externalize Cesium and avoid ESM compatibility issues
+      iife: true,
+    }),
     wasm(),
     topLevelAwait()
   ],
@@ -16,11 +21,5 @@ export default defineConfig({
     alias: {
       '@': path.resolve(__dirname, './src')
     }
-  },
-  optimizeDeps: {
-    exclude: ['cesium']
-  },
-  define: {
-    CESIUM_BASE_URL: JSON.stringify('/cesium/')
   }
 })
