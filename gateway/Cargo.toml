@@ -41,6 +41,10 @@ ground-stations = { path = "../crates/ground-stations" }
 collision-avoidance = { path = "../crates/collision-avoidance" }
 ground-station-wasm = { path = "../crates/ground-station-wasm", default-features = false }
 
+# Memory system from sx9 main (local path for dev, git for CI)
+sx9-tcache = { path = "../../sx9/crates/sx9-tcache" }
+hex = "0.4"
+
 [[bin]]
 name = "orbital-gateway"
 path = "src/main.rs"

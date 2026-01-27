@@ -19,6 +19,7 @@ use ground_station_wasm::{
 };
 
 mod routes;
+mod memory;
 
 #[derive(Clone)]
 pub struct AppState {
@@ -59,23 +60,38 @@ async fn main() -> Result<()> {
     let strategic_stations = load_strategic_stations();
     tracing::info!("   Loaded {} strategic stations", strategic_stations.len());
 
+    // Initialize memory system (sx9-tcache)
+    let memory_db_path = std::env::var("ORBITAL_MEMORY_PATH")
+        .unwrap_or_else(|_| ".orbital-memory".to_string());
+    let memory_state = memory::MemoryState::new(&memory_db_path)
+        .expect("Failed to initialize memory system");
+    tracing::info!("   Memory system initialized at {}", memory_db_path);
+
     let state = AppState {
         constellation: Arc::new(ConstellationState::default()),
         strategic_stations: Arc::new(strategic_stations),
     };
 
-    // API routes
+    // Memory routes (sx9-tcache) - separate router with its own state
+    let memory_router = memory::memory_routes(memory_state);
+
+    // API routes for constellation operations
+    let constellation_routes = Router::new()
+        .route("/satellites", get(routes::list_satellites))
+        .route("/satellites/:id/position", get(routes::get_position))
+        .route("/ground-stations", get(routes::list_ground_stations))
+        .route("/strategic-stations", get(list_strategic_stations))
+        .route("/strategic-stations/downselect", post(run_downselect))
+        .route("/routing/optimal", post(routes::calculate_route))
+        .route("/collision/check", post(routes::check_collision))
+        .with_state(state);
+
+    // Combine all routes
     let api_routes = Router::new()
         .route("/health", get(health))
-        .route("/api/v1/satellites", get(routes::list_satellites))
-        .route("/api/v1/satellites/:id/position", get(routes::get_position))
-        .route("/api/v1/ground-stations", get(routes::list_ground_stations))
-        .route("/api/v1/strategic-stations", get(list_strategic_stations))
-        .route("/api/v1/strategic-stations/downselect", post(run_downselect))
-        .route("/api/v1/routing/optimal", post(routes::calculate_route))
-        .route("/api/v1/collision/check", post(routes::check_collision))
-        .layer(CorsLayer::permissive())
-        .with_state(state);
+        .nest("/api/v1", constellation_routes)
+        .nest("/api/v1/memory", memory_router)
+        .layer(CorsLayer::permissive());
 
     // Static file serving for UI (if dist exists)
     let ui_path = std::path::Path::new("ui/cesium-orbital/dist");

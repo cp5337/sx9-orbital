@@ -51,6 +51,7 @@ pub struct RouteResponse {
 }
 
 #[derive(Deserialize)]
+#[allow(dead_code)] // Fields will be used when collision-avoidance integration is complete
 pub struct CollisionCheckRequest {
     pub satellite_id: String,
     pub time_horizon_hours: Option<f64>,
