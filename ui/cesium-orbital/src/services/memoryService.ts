@@ -100,8 +100,11 @@ class MemoryService {
   private baseUrl: string;
 
   constructor(baseUrl?: string) {
-    // Default to current origin for dev, or explicit gateway URL
-    this.baseUrl = baseUrl || `${window.location.protocol}//${window.location.hostname}:18601`;
+    // Default to orbital gateway port 18700 (per sx9/config/ports.toml)
+    // Can be overridden via VITE_ORBITAL_GATEWAY_URL env var
+    this.baseUrl = baseUrl ||
+      import.meta.env.VITE_ORBITAL_GATEWAY_URL ||
+      `${window.location.protocol}//${window.location.hostname}:18700`;
   }
 
   private async request<T>(

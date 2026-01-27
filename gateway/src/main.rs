@@ -103,9 +103,10 @@ async fn main() -> Result<()> {
         api_routes
     };
 
+    // Port 18700 per sx9/config/ports.toml (orbital services range)
     let port = std::env::var("ORBITAL_GATEWAY_PORT")
         .or_else(|_| std::env::var("PORT"))
-        .unwrap_or_else(|_| "18601".to_string());
+        .unwrap_or_else(|_| "18700".to_string());
     let addr = format!("0.0.0.0:{}", port);
 
     tracing::info!("🛰️  Orbital Gateway starting on {}", addr);

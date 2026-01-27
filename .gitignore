@@ -34,3 +34,4 @@ logs/
 *.a
 *.so
 *.dylib
+.orbital-memory
