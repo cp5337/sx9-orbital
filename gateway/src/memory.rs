@@ -84,6 +84,28 @@ pub struct ProbeResult {
     pub phase: String,
 }
 
+// ========== Hash Endpoint Types ==========
+
+#[derive(Deserialize)]
+pub struct HashRequest {
+    pub data: String,
+    pub algorithm: Option<String>, // murmur3, blake3 (simulated via murmur)
+    pub format: Option<String>,    // hex (default), base64
+    pub compress: Option<bool>,    // Compress to satellite Unicode range
+    pub metadata: Option<serde_json::Value>,
+}
+
+#[derive(Serialize)]
+pub struct HashResponse {
+    pub hash: String,
+    pub algorithm: String,
+    pub format: String,
+    pub compressed: bool,
+    pub satellite_unicode: Option<String>, // U+E600-E6FF char if compressed
+    pub processing_time_us: u64,
+    pub status: String,
+}
+
 #[derive(Serialize)]
 pub struct ProbeResponse {
     pub results: Vec<ProbeResult>,
@@ -338,6 +360,77 @@ pub async fn health(
     }))
 }
 
+/// Hash data and optionally compress to satellite Unicode range
+/// This endpoint replaces the separate HashingEngine service for orbital UI
+pub async fn hash_data(
+    Json(req): Json<HashRequest>,
+) -> Json<HashResponse> {
+    let start = std::time::Instant::now();
+
+    // Use murmur3 for fast hashing (matches tcache internals)
+    let hash_bytes = murmur3_128(req.data.as_bytes(), 0);
+    let algorithm = req.algorithm.unwrap_or_else(|| "murmur3".to_string());
+    let format = req.format.unwrap_or_else(|| "hex".to_string());
+
+    // Format hash output
+    let hash = match format.as_str() {
+        "base64" => base64_encode(&hash_bytes),
+        _ => hex::encode(hash_bytes),
+    };
+
+    // Compress to satellite Unicode range U+E600-E6FF (256 chars)
+    let compress = req.compress.unwrap_or(false);
+    let satellite_unicode = if compress {
+        let hash_sum: u32 = hash_bytes.iter().map(|b| *b as u32).sum();
+        let unicode_offset = (hash_sum % 256) as u32;
+        let satellite_char = char::from_u32(0xE600 + unicode_offset).unwrap_or('?');
+        Some(satellite_char.to_string())
+    } else {
+        None
+    };
+
+    let elapsed = start.elapsed();
+
+    Json(HashResponse {
+        hash,
+        algorithm,
+        format,
+        compressed: compress,
+        satellite_unicode,
+        processing_time_us: elapsed.as_micros() as u64,
+        status: "success".to_string(),
+    })
+}
+
+/// Simple base64 encoding without extra dependencies
+fn base64_encode(bytes: &[u8]) -> String {
+    const ALPHABET: &[u8] = b"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/";
+    let mut result = String::new();
+
+    for chunk in bytes.chunks(3) {
+        let b0 = chunk[0] as usize;
+        let b1 = *chunk.get(1).unwrap_or(&0) as usize;
+        let b2 = *chunk.get(2).unwrap_or(&0) as usize;
+
+        result.push(ALPHABET[b0 >> 2] as char);
+        result.push(ALPHABET[((b0 & 0x03) << 4) | (b1 >> 4)] as char);
+
+        if chunk.len() > 1 {
+            result.push(ALPHABET[((b1 & 0x0F) << 2) | (b2 >> 6)] as char);
+        } else {
+            result.push('=');
+        }
+
+        if chunk.len() > 2 {
+            result.push(ALPHABET[b2 & 0x3F] as char);
+        } else {
+            result.push('=');
+        }
+    }
+
+    result
+}
+
 // ========== Router ==========
 
 pub fn memory_routes(state: MemoryState) -> Router {
@@ -346,6 +439,7 @@ pub fn memory_routes(state: MemoryState) -> Router {
         .route("/store", post(store))
         .route("/recall", post(recall))
         .route("/probe", post(probe))
+        .route("/hash", post(hash_data))
         .route("/context", post(context_store))
         .route("/context/list", get(context_list))
         .with_state(state)

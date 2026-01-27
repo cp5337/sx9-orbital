@@ -13,7 +13,55 @@ import {
   ChevronDown,
   Hash
 } from 'lucide-react';
-import { HashingEngineConnector } from '../services/HashingEngineConnector';
+
+// Hash response from orbital gateway /api/v1/memory/hash endpoint
+interface GatewayHashResponse {
+  hash: string;
+  algorithm: string;
+  format: string;
+  compressed: boolean;
+  satellite_unicode: string | null;
+  processing_time_us: number;
+  status: string;
+}
+
+// Service to hash data via orbital gateway (replaces HashingEngineConnector)
+class OrbitalHashService {
+  private baseUrl: string;
+
+  constructor() {
+    this.baseUrl = import.meta.env.VITE_ORBITAL_GATEWAY_URL ||
+      `${window.location.protocol}//${window.location.hostname}:18700`;
+  }
+
+  async hash(data: string, compress: boolean = true): Promise<GatewayHashResponse> {
+    const response = await fetch(`${this.baseUrl}/api/v1/memory/hash`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        data,
+        algorithm: 'murmur3',
+        format: 'hex',
+        compress
+      })
+    });
+
+    if (!response.ok) {
+      throw new Error(`Hash request failed: ${response.statusText}`);
+    }
+
+    return response.json();
+  }
+
+  async checkConnection(): Promise<boolean> {
+    try {
+      const response = await fetch(`${this.baseUrl}/api/v1/memory/health`);
+      return response.ok;
+    } catch {
+      return false;
+    }
+  }
+}
 
 export interface SatelliteControlState {
   id: string;
@@ -79,7 +127,7 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
   const cleanedSatellites = satellites; // No manual cleaning needed anymore!
   console.log('📡 SatelliteControlPanel received satellites:', satellites.length, satellites);
   const [expandedSatellites, setExpandedSatellites] = useState<Set<string>>(new Set());
-  const [hashEngine, setHashEngine] = useState<HashingEngineConnector | null>(null);
+  const [hashService, setHashService] = useState<OrbitalHashService | null>(null);
   const [satelliteHashes, setSatelliteHashes] = useState<Map<string, string>>(new Map());
 
   // Function to convert satellite name to clean slot format
@@ -148,28 +196,28 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
     setExpandedSatellites(new Set());
   };
 
-  // Initialize hash engine and generate satellite hashes
+  // Initialize orbital gateway hash service and generate satellite hashes
   useEffect(() => {
-    const initializeHashEngine = async () => {
-      console.log('🔐 Initializing CTAS-7 v7.2 Trivariate Hash Engine...');
-      const engine = new HashingEngineConnector();
-      const connected = await engine.initialize();
+    const initializeHashService = async () => {
+      console.log('🔐 Initializing Orbital Gateway Hash Service (murmur3)...');
+      const service = new OrbitalHashService();
+      const connected = await service.checkConnection();
 
       if (connected) {
-        setHashEngine(engine);
-        console.log('✅ Hash engine connected, generating satellite hashes...');
-        await generateSatelliteHashes(engine);
+        setHashService(service);
+        console.log('✅ Orbital gateway connected, generating satellite hashes...');
+        await generateSatelliteHashes(service);
       } else {
-        console.warn('⚠️ Hash engine not available, using fallback Unicode generation');
+        console.warn('⚠️ Orbital gateway not available, using fallback Unicode generation');
         generateFallbackHashes();
       }
     };
 
-    initializeHashEngine();
+    initializeHashService();
   }, [cleanedSatellites]);
 
   // Generate trivariate hashes for satellites with LISP operators
-  const generateSatelliteHashes = async (engine: HashingEngineConnector) => {
+  const generateSatelliteHashes = async (service: OrbitalHashService) => {
     const hashes = new Map<string, string>();
 
     for (const satellite of cleanedSatellites) {
@@ -182,24 +230,18 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
       const satelliteData = `${lispOperator}|id:${satellite.id}|name:${satellite.name}|status:${satellite.status}`;
 
       try {
-        // Generate hash using existing engine
-        const hashResult = await engine.hashData({
-          data: satelliteData,
-          algorithm: 'blake3',
-          format: 'hex',
-          compress: true,
-          metadata: {
-            type: 'satellite_trivariate',
-            orbital_slot: orbitalSlot,
-            lisp_operator: lispOperator
-          }
-        });
+        // Generate hash using orbital gateway
+        const hashResult = await service.hash(satelliteData, true);
 
-        if (hashResult.status === 'success') {
-          // Compress to U+E600-E6FF satellite assembly language range
+        if (hashResult.status === 'success' && hashResult.satellite_unicode) {
+          // Use the pre-computed satellite unicode from gateway
+          hashes.set(satellite.id, hashResult.satellite_unicode);
+          console.log(`🛰️ Generated hash for ${satellite.name}: ${hashResult.satellite_unicode} (${hashResult.hash.substring(0, 16)}...)`);
+        } else {
+          // Fallback to local compression if gateway didn't return unicode
           const unicodeChar = compressToSatelliteUnicode(hashResult.hash);
           hashes.set(satellite.id, unicodeChar);
-          console.log(`🛰️ Generated hash for ${satellite.name}: ${unicodeChar} (${hashResult.hash.substring(0, 16)}...)`);
+          console.log(`🛰️ Generated hash for ${satellite.name}: ${unicodeChar} (local compression)`);
         }
       } catch (error) {
         console.error(`Failed to generate hash for ${satellite.name}:`, error);
@@ -364,16 +406,16 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
             <div className="text-xs text-gray-400">Auto-Clean</div>
           </div>
           <div className="text-center">
-            <div className={`text-xl font-bold ${hashEngine ? 'text-blue-400' : 'text-yellow-400'}`}>
+            <div className={`text-xl font-bold ${hashService ? 'text-blue-400' : 'text-yellow-400'}`}>
               {satelliteHashes.size}
             </div>
             <div className="text-xs text-gray-400">Hashed</div>
           </div>
           <div className="text-center">
-            <div className={`text-xs font-mono ${hashEngine ? 'text-green-400' : 'text-red-400'}`}>
-              {hashEngine ? '⚡v7.2' : '❌OFF'}
+            <div className={`text-xs font-mono ${hashService ? 'text-green-400' : 'text-red-400'}`}>
+              {hashService ? '⚡GW' : '❌OFF'}
             </div>
-            <div className="text-xs text-gray-400">Hash Engine</div>
+            <div className="text-xs text-gray-400">Hash Svc</div>
           </div>
         </div>
         <div className="grid grid-cols-2 gap-2 mb-3">
