@@ -8,7 +8,7 @@
  * - Sortable, filterable, editable (future)
  */
 
-import { useState, useMemo } from 'react';
+import { useState } from 'react';
 import {
   useReactTable,
   getCoreRowModel,
@@ -17,35 +17,13 @@ import {
   flexRender,
   ColumnDef,
   SortingState,
-  ColumnFiltersState,
 } from '@tanstack/react-table';
 import { ArrowUpDown, ArrowUp, ArrowDown, Search, Database, Satellite, Radio, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import type { GroundNode, Satellite as SatelliteType } from '@/types';
 
-// Data types
-interface GroundStation {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  tier: number;
-  weather_score: number;
-  status: 'active' | 'degraded' | 'offline';
-  fso_capable: boolean;
-}
-
-interface SatelliteData {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  altitude: number;
-  inclination: number;
-  plane_index: number;
-  status: 'operational' | 'degraded' | 'offline';
-}
-
-interface FsoLink {
+// FSO Link type for internal use
+export interface FsoLink {
   id: string;
   source_id: string;
   target_id: string;
@@ -59,10 +37,11 @@ interface FsoLink {
 type DataType = 'ground-stations' | 'satellites' | 'fso-links';
 
 interface DataTableViewProps {
-  groundStations: GroundStation[];
-  satellites: SatelliteData[];
+  groundStations: GroundNode[];
+  satellites: SatelliteType[];
   fsoLinks: FsoLink[];
   onRowSelect?: (type: DataType, id: string) => void;
+  initialTab?: DataType;
 }
 
 // Status badge component
@@ -118,8 +97,8 @@ function SortableHeader({ column, children }: { column: any; children: React.Rea
   );
 }
 
-// Ground stations columns
-const groundStationColumns: ColumnDef<GroundStation>[] = [
+// Ground stations columns (using GroundNode type)
+const groundStationColumns: ColumnDef<GroundNode>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => <SortableHeader column={column}>ID</SortableHeader>,
@@ -149,6 +128,11 @@ const groundStationColumns: ColumnDef<GroundStation>[] = [
     },
   },
   {
+    accessorKey: 'demand_gbps',
+    header: ({ column }) => <SortableHeader column={column}>Demand</SortableHeader>,
+    cell: ({ row }) => <span className="font-mono">{(row.getValue('demand_gbps') as number).toFixed(1)} Gbps</span>,
+  },
+  {
     accessorKey: 'weather_score',
     header: ({ column }) => <SortableHeader column={column}>Weather</SortableHeader>,
     cell: ({ row }) => <QualityBar value={(row.getValue('weather_score') as number) * 10} max={10} />,
@@ -158,19 +142,10 @@ const groundStationColumns: ColumnDef<GroundStation>[] = [
     header: 'Status',
     cell: ({ row }) => <StatusBadge status={row.getValue('status')} />,
   },
-  {
-    accessorKey: 'fso_capable',
-    header: 'FSO',
-    cell: ({ row }) => row.getValue('fso_capable') ? (
-      <span className="text-green-400">Yes</span>
-    ) : (
-      <span className="text-slate-500">No</span>
-    ),
-  },
 ];
 
-// Satellites columns
-const satelliteColumns: ColumnDef<SatelliteData>[] = [
+// Satellites columns (using Satellite type)
+const satelliteColumns: ColumnDef<SatelliteType>[] = [
   {
     accessorKey: 'id',
     header: ({ column }) => <SortableHeader column={column}>ID</SortableHeader>,
@@ -191,11 +166,6 @@ const satelliteColumns: ColumnDef<SatelliteData>[] = [
     cell: ({ row }) => <span className="font-mono">{(row.getValue('inclination') as number).toFixed(1)}°</span>,
   },
   {
-    accessorKey: 'plane_index',
-    header: ({ column }) => <SortableHeader column={column}>Plane</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono">P{row.getValue('plane_index')}</span>,
-  },
-  {
     accessorKey: 'latitude',
     header: ({ column }) => <SortableHeader column={column}>Lat</SortableHeader>,
     cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('latitude') as number).toFixed(4)}</span>,
@@ -204,6 +174,24 @@ const satelliteColumns: ColumnDef<SatelliteData>[] = [
     accessorKey: 'longitude',
     header: ({ column }) => <SortableHeader column={column}>Lon</SortableHeader>,
     cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('longitude') as number).toFixed(4)}</span>,
+  },
+  {
+    accessorKey: 'qber',
+    header: ({ column }) => <SortableHeader column={column}>QBER</SortableHeader>,
+    cell: ({ row }) => {
+      const qber = row.getValue('qber') as number;
+      const color = qber < 3 ? 'text-green-400' : qber < 5 ? 'text-yellow-400' : 'text-red-400';
+      return <span className={cn('font-mono', color)}>{qber.toFixed(2)}%</span>;
+    },
+  },
+  {
+    accessorKey: 'jammed',
+    header: 'Jammed',
+    cell: ({ row }) => row.getValue('jammed') ? (
+      <span className="text-red-400">⚠ Yes</span>
+    ) : (
+      <span className="text-green-400">No</span>
+    ),
   },
   {
     accessorKey: 'status',
@@ -336,9 +324,10 @@ export function DataTableView({
   groundStations,
   satellites,
   fsoLinks,
-  onRowSelect,
+  onRowSelect: _onRowSelect, // TODO: Wire row click handlers to navigate/highlight
+  initialTab = 'ground-stations',
 }: DataTableViewProps) {
-  const [activeTab, setActiveTab] = useState<DataType>('ground-stations');
+  const [activeTab, setActiveTab] = useState<DataType>(initialTab);
   const [globalFilter, setGlobalFilter] = useState('');
 
   const tabs = [

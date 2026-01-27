@@ -20,7 +20,6 @@ export function useSystemDiagnostics() {
       const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
       const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
       const cesiumToken = import.meta.env.VITE_CESIUM_TOKEN;
-      const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
       diagnosticChecks.push({
         name: 'Supabase URL',
@@ -48,14 +47,6 @@ export function useSystemDiagnostics() {
         details: cesiumToken && cesiumToken !== 'PASTE_YOUR_TOKEN_HERE'
           ? 'Token is set and will be used for 3D globe rendering'
           : 'Without a Cesium token, the 3D globe will show a black screen',
-      });
-
-      diagnosticChecks.push({
-        name: 'Mapbox Token',
-        status: mapboxToken && mapboxToken !== 'PASTE_YOUR_TOKEN_HERE' ? 'success' : 'warning',
-        message: mapboxToken && mapboxToken !== 'PASTE_YOUR_TOKEN_HERE'
-          ? 'Mapbox token is configured'
-          : 'Mapbox token is missing (flat map view may not work)',
       });
 
       try {

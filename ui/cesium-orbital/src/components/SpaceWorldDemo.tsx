@@ -151,7 +151,6 @@ export default function SpaceWorldDemo() {
     const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
     const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
     const cesiumToken = import.meta.env.VITE_CESIUM_TOKEN;
-    const mapboxToken = import.meta.env.VITE_MAPBOX_TOKEN;
 
     checks.push({
       name: 'Supabase URL',
@@ -175,14 +174,6 @@ export default function SpaceWorldDemo() {
       message: cesiumToken && cesiumToken !== 'PASTE_YOUR_TOKEN_HERE'
         ? 'Cesium token is configured'
         : 'Cesium token is missing',
-    });
-
-    checks.push({
-      name: 'Mapbox Token',
-      status: mapboxToken && mapboxToken !== 'PASTE_YOUR_TOKEN_HERE' ? 'success' : 'warning',
-      message: mapboxToken && mapboxToken !== 'PASTE_YOUR_TOKEN_HERE'
-        ? 'Mapbox token is configured'
-        : 'Mapbox token is missing',
     });
 
     checks.push({
@@ -572,8 +563,8 @@ export default function SpaceWorldDemo() {
 
   return (
     <TooltipProvider>
-      <div className="w-full h-screen bg-background text-foreground p-3">
-        <div className="w-full h-full relative rounded-2xl overflow-hidden shadow-2xl">
+      <div className="w-full h-full bg-background text-foreground">
+        <div className="w-full h-full relative overflow-hidden">
           <div ref={globeRef} className="absolute inset-0" />
 
           {showLoadingOverlay && (
@@ -585,17 +576,6 @@ export default function SpaceWorldDemo() {
               </div>
             </div>
           )}
-          <motion.div
-            className="absolute bottom-6 right-6 w-40 h-40 rounded-full border border-primary/40"
-            animate={{
-              boxShadow: [
-                '0 0 0 0 rgba(0, 240, 255, 0.0)',
-                '0 0 0 40px rgba(0, 240, 255, 0.15)',
-                '0 0 0 0 rgba(0, 240, 255, 0.0)',
-              ],
-            }}
-            transition={{ duration: 3.6, repeat: Infinity }}
-          />
         </div>
 
         <Dialog

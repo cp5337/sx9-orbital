@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import {
   Globe, Map, Layout, Bug, Settings, Satellite, Radio, Zap, Eye,
-  ChevronRight, BarChart3, Cpu
+  ChevronRight, BarChart3, Cpu, Network, Table2
 } from 'lucide-react';
+import type { ViewType } from '@/store/beamSelectionStore';
 
 interface CollapsibleNavProps {
-  currentView: string;
-  onViewChange: (view: '3d' | 'map' | 'dashboard') => void;
+  currentView: ViewType;
+  onViewChange: (view: ViewType) => void;
   onDiagnosticsOpen?: () => void;
 }
 
 export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen }: CollapsibleNavProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const viewIds: ViewType[] = ['3d', 'map', 'dashboard', 'graph', 'data'];
 
   const renderMenuItem = (item: { id: string; icon: any; label: string; action?: () => void }) => {
     const Icon = item.icon;
@@ -19,8 +22,8 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen }:
     const handleClick = () => {
       if (item.action) {
         item.action();
-      } else if (['3d', 'map', 'dashboard'].includes(item.id)) {
-        onViewChange(item.id as '3d' | 'map' | 'dashboard');
+      } else if (viewIds.includes(item.id as ViewType)) {
+        onViewChange(item.id as ViewType);
       }
     };
 
@@ -48,13 +51,15 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen }:
     { id: 'dashboard', icon: Layout, label: 'Dashboard' },
     { id: '3d', icon: Globe, label: '3D Globe' },
     { id: 'map', icon: Map, label: 'Flat Map' },
+    { id: 'graph', icon: Network, label: 'Network Graph' },
+    { id: 'data', icon: Table2, label: 'Data Tables' },
   ];
 
-  // Constellation Section
+  // Constellation Section (quick filters - these navigate to data view with filter)
   const constellationSection = [
-    { id: 'satellites', icon: Satellite, label: 'Satellites' },
-    { id: 'ground-stations', icon: Radio, label: 'Ground Stations' },
-    { id: 'fso-links', icon: Zap, label: 'FSO Links' },
+    { id: 'satellites', icon: Satellite, label: 'Satellites', action: () => onViewChange('data') },
+    { id: 'ground-stations', icon: Radio, label: 'Ground Stations', action: () => onViewChange('data') },
+    { id: 'fso-links', icon: Zap, label: 'FSO Links', action: () => onViewChange('data') },
     { id: 'coverage', icon: Eye, label: 'Coverage' },
   ];
 

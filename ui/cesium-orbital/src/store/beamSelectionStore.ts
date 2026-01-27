@@ -2,10 +2,13 @@ import { useState, useEffect } from 'react';
 
 type BeamSelectionListener = (state: BeamSelectionState) => void;
 
+// All available views in the application
+export type ViewType = 'map' | 'dashboard' | '3d' | 'graph' | 'data';
+
 interface BeamSelectionState {
   selectedBeamId: string | null;
   highlightedBeamId: string | null;
-  currentView: 'map' | 'dashboard' | '3d';
+  currentView: ViewType;
 }
 
 class BeamSelectionStore {
@@ -43,11 +46,11 @@ class BeamSelectionStore {
     this.setState({ highlightedBeamId: beamId });
   }
 
-  setCurrentView(view: 'map' | 'dashboard' | '3d') {
+  setCurrentView(view: ViewType) {
     this.setState({ currentView: view });
   }
 
-  selectBeamAndNavigate(beamId: string, targetView: 'map' | 'dashboard') {
+  selectBeamAndNavigate(beamId: string, targetView: ViewType) {
     this.setState({
       selectedBeamId: beamId,
       currentView: targetView
@@ -60,8 +63,8 @@ export const beamSelectionStore = new BeamSelectionStore();
 export function useBeamSelectionStore(): BeamSelectionState & {
   setSelectedBeam: (beamId: string | null) => void;
   setHighlightedBeam: (beamId: string | null) => void;
-  setCurrentView: (view: 'map' | 'dashboard' | '3d') => void;
-  selectBeamAndNavigate: (beamId: string, targetView: 'map' | 'dashboard') => void;
+  setCurrentView: (view: ViewType) => void;
+  selectBeamAndNavigate: (beamId: string, targetView: ViewType) => void;
 } {
   const [state, setState] = useState(beamSelectionStore.getState());
 
