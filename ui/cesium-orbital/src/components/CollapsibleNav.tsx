@@ -9,9 +9,10 @@ interface CollapsibleNavProps {
   currentView: ViewType;
   onViewChange: (view: ViewType) => void;
   onDiagnosticsOpen?: () => void;
+  onSatelliteControlOpen?: () => void;
 }
 
-export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen }: CollapsibleNavProps) {
+export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, onSatelliteControlOpen }: CollapsibleNavProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
 
   const viewIds: ViewType[] = ['3d', 'map', 'dashboard', 'graph', 'data'];
@@ -57,7 +58,7 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen }:
 
   // Constellation Section (quick filters - these navigate to data view with filter)
   const constellationSection = [
-    { id: 'satellites', icon: Satellite, label: 'Satellites', action: () => onViewChange('data') },
+    { id: 'satellites', icon: Satellite, label: 'Satellites', action: onSatelliteControlOpen },
     { id: 'ground-stations', icon: Radio, label: 'Ground Stations', action: () => onViewChange('data') },
     { id: 'fso-links', icon: Zap, label: 'FSO Links', action: () => onViewChange('data') },
     { id: 'coverage', icon: Eye, label: 'Coverage' },
