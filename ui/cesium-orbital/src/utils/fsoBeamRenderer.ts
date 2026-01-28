@@ -43,6 +43,11 @@ export class FsoBeamManager {
   private satGroundLinks: Map<string, Cesium.Entity> = new Map();
   private satPositions: Map<string, Cesium.Cartesian3> = new Map();
   private groundPositions: Map<string, Cesium.Cartesian3> = new Map();
+  private scratchNormal = new Cesium.Cartesian3();
+  private scratchVector = new Cesium.Cartesian3();
+  private scratchVector2 = new Cesium.Cartesian3();
+  private scratchVector3 = new Cesium.Cartesian3();
+  private earthRadius = Cesium.Ellipsoid.WGS84.maximumRadius;
 
   constructor(viewer: Cesium.Viewer) {
     this.viewer = viewer;
@@ -68,27 +73,41 @@ export class FsoBeamManager {
    * Add a satellite-to-satellite FSO link
    */
   addSatToSatLink(linkId: string, sat1Id: string, sat2Id: string, marginDb: number = 6): Cesium.Entity | null {
-    const pos1 = this.satPositions.get(sat1Id);
-    const pos2 = this.satPositions.get(sat2Id);
-
-    if (!pos1 || !pos2) {
-      console.warn(`Cannot create sat-sat link: missing position for ${sat1Id} or ${sat2Id}`);
-      return null;
-    }
-
     const color = getLinkColor(marginDb);
+    const material = createLaserMaterial(color);
     const entity = this.viewer.entities.add({
       id: `fso-sat-sat-${linkId}`,
       polyline: {
-        positions: [pos1, pos2],
+        positions: new Cesium.CallbackProperty(() => {
+          const pos1 = this.satPositions.get(sat1Id);
+          const pos2 = this.satPositions.get(sat2Id);
+          if (!pos1 || !pos2) return [];
+          return [pos1, pos2];
+        }, false),
         width: 2,
-        material: createLaserMaterial(color),
+        material,
+        depthFailMaterial: material,
         arcType: Cesium.ArcType.NONE, // Straight line in 3D space
+        show: new Cesium.CallbackProperty(() => {
+          const pos1 = this.satPositions.get(sat1Id);
+          const pos2 = this.satPositions.get(sat2Id);
+          if (!pos1 || !pos2) return false;
+          return this.hasLineOfSight(pos1, pos2);
+        }, false),
       },
       description: `<strong>Inter-Satellite Link</strong><br/>
         ${sat1Id} ↔ ${sat2Id}<br/>
         Margin: ${marginDb.toFixed(1)} dB<br/>
         Wavelength: 1550 nm`,
+      properties: new Cesium.PropertyBag({
+        layerId: 'fsoSatSat',
+        entityType: 'link',
+        linkType: 'sat-sat',
+        linkId,
+        sourceId: sat1Id,
+        targetId: sat2Id,
+        marginDb,
+      }),
     });
 
     this.satSatLinks.set(linkId, entity);
@@ -99,27 +118,43 @@ export class FsoBeamManager {
    * Add a satellite-to-ground FSO link
    */
   addSatToGroundLink(linkId: string, satId: string, gsId: string, marginDb: number = 6): Cesium.Entity | null {
-    const satPos = this.satPositions.get(satId);
-    const gsPos = this.groundPositions.get(gsId);
-
-    if (!satPos || !gsPos) {
-      console.warn(`Cannot create sat-ground link: missing position for ${satId} or ${gsId}`);
-      return null;
-    }
-
     const color = getLinkColor(marginDb);
+    const material = createLaserMaterial(color, 0.35);
     const entity = this.viewer.entities.add({
       id: `fso-sat-ground-${linkId}`,
       polyline: {
-        positions: [satPos, gsPos],
+        positions: new Cesium.CallbackProperty(() => {
+          const satPos = this.satPositions.get(satId);
+          const gsPos = this.groundPositions.get(gsId);
+          if (!satPos || !gsPos) return [];
+          return [satPos, gsPos];
+        }, false),
         width: 3,
-        material: createLaserMaterial(color, 0.35),
+        material,
+        depthFailMaterial: material,
         arcType: Cesium.ArcType.NONE,
+        show: new Cesium.CallbackProperty(() => {
+          const satPos = this.satPositions.get(satId);
+          const gsPos = this.groundPositions.get(gsId);
+          if (!satPos || !gsPos) return false;
+          const normal = Cesium.Ellipsoid.WGS84.geodeticSurfaceNormal(gsPos, this.scratchNormal);
+          const toSat = Cesium.Cartesian3.subtract(satPos, gsPos, this.scratchVector);
+          return Cesium.Cartesian3.dot(normal, toSat) > 0;
+        }, false),
       },
       description: `<strong>Ground Link</strong><br/>
         Satellite: ${satId}<br/>
         Ground Station: ${gsId}<br/>
         Margin: ${marginDb.toFixed(1)} dB`,
+      properties: new Cesium.PropertyBag({
+        layerId: 'fsoSatGround',
+        entityType: 'link',
+        linkType: 'sat-ground',
+        linkId,
+        sourceId: satId,
+        targetId: gsId,
+        marginDb,
+      }),
     });
 
     this.satGroundLinks.set(linkId, entity);
@@ -139,6 +174,44 @@ export class FsoBeamManager {
     this.satGroundLinks.forEach((entity) => {
       entity.show = visible;
     });
+  }
+
+  setLinkVisibility(linkId: string, type: 'sat-sat' | 'sat-ground', visible: boolean) {
+    const links = type === 'sat-sat' ? this.satSatLinks : this.satGroundLinks;
+    const entity = links.get(linkId);
+    if (entity) {
+      entity.show = visible;
+    }
+  }
+
+  private hasLineOfSight(pos1: Cesium.Cartesian3, pos2: Cesium.Cartesian3): boolean {
+    const ab = Cesium.Cartesian3.subtract(pos2, pos1, this.scratchVector2);
+    const abLenSq = Cesium.Cartesian3.magnitudeSquared(ab);
+    if (abLenSq === 0) return false;
+    const t = -Cesium.Cartesian3.dot(pos1, ab) / abLenSq;
+    const clampedT = Math.min(1, Math.max(0, t));
+    const closest = Cesium.Cartesian3.add(
+      pos1,
+      Cesium.Cartesian3.multiplyByScalar(ab, clampedT, this.scratchVector3),
+      this.scratchVector3
+    );
+    return Cesium.Cartesian3.magnitude(closest) > this.earthRadius;
+  }
+
+  upsertLink(config: FsoLinkConfig) {
+    const links = config.type === 'sat-sat' ? this.satSatLinks : this.satGroundLinks;
+    if (!links.has(config.id)) {
+      if (config.type === 'sat-sat') {
+        this.addSatToSatLink(config.id, config.sourceId, config.targetId, config.linkMargin);
+      } else {
+        this.addSatToGroundLink(config.id, config.sourceId, config.targetId, config.linkMargin);
+      }
+    } else {
+      this.updateLinkQuality(config.id, config.linkMargin, config.type);
+    }
+    if (typeof config.active === 'boolean') {
+      this.setLinkVisibility(config.id, config.type, config.active);
+    }
   }
 
   /**

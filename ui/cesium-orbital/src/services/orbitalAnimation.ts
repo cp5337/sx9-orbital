@@ -38,9 +38,14 @@ export class OrbitalAnimationManager {
   private laserLinks: Map<string, LaserLink> = new Map();
   private animationFrameId: number | null = null;
   private viewer: Cesium.Viewer;
+  private onSatellitePositionUpdate?: (id: string, lat: number, lon: number, altKm: number) => void;
 
-  constructor(viewer: Cesium.Viewer) {
+  constructor(
+    viewer: Cesium.Viewer,
+    onSatellitePositionUpdate?: (id: string, lat: number, lon: number, altKm: number) => void
+  ) {
     this.viewer = viewer;
+    this.onSatellitePositionUpdate = onSatellitePositionUpdate;
   }
 
   addSatellite(
@@ -77,6 +82,12 @@ export class OrbitalAnimationManager {
         showBackground: true,
         backgroundColor: Cesium.Color.fromCssColorString('#14171c99'),
       },
+      properties: new Cesium.PropertyBag({
+        layerId: 'satellites',
+        entityType: 'satellite',
+        satId: id,
+        name,
+      }),
     });
 
     const spotBeam = this.viewer.entities.add({
@@ -89,6 +100,11 @@ export class OrbitalAnimationManager {
         outlineColor: Cesium.Color.fromCssColorString('#00f0ff'),
         outlineWidth: 1,
       },
+      properties: new Cesium.PropertyBag({
+        layerId: 'satellites',
+        entityType: 'satellite_beam',
+        satId: id,
+      }),
     });
 
     const entity = this.viewer.entities.add({
@@ -97,6 +113,12 @@ export class OrbitalAnimationManager {
         if (!sat) return Cesium.Cartesian3.ZERO;
         return sat.billboard.position?.getValue(Cesium.JulianDate.now()) || Cesium.Cartesian3.ZERO;
       }, false),
+      properties: new Cesium.PropertyBag({
+        layerId: 'satellites',
+        entityType: 'satellite',
+        satId: id,
+        name,
+      }),
     });
 
     this.satellites.set(id, {
@@ -119,6 +141,7 @@ export class OrbitalAnimationManager {
   ): void {
     const entity = this.viewer.entities.add({
       position: Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude),
+      properties: new Cesium.PropertyBag({ layerId: 'groundStations' }),
     });
 
     this.groundStations.set(id, {
@@ -199,6 +222,7 @@ export class OrbitalAnimationManager {
       );
 
       sat.billboard.position = new Cesium.ConstantPositionProperty(position);
+      this.onSatellitePositionUpdate?.(sat.id, geodetic.latitude, geodetic.longitude, geodetic.altitude);
 
       sat.rotationAngle += 0.02;
       if (sat.rotationAngle > Math.PI * 2) {

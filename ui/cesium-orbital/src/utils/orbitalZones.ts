@@ -42,14 +42,14 @@ export const ORBITAL_ZONES: OrbitalZoneConfig[] = [
 
 const EARTH_RADIUS_KM = 6371;
 
-export function addOrbitalZonesToViewer(viewer: Cesium.Viewer): void {
+export function addOrbitalZonesToViewer(viewer: Cesium.Viewer, layerId: string = 'orbitalZones'): void {
   ORBITAL_ZONES.forEach((zone) => {
-    addOrbitalZone(viewer, zone);
-    addZoneLabels(viewer, zone);
+    addOrbitalZone(viewer, zone, layerId);
+    addZoneLabels(viewer, zone, layerId);
   });
 }
 
-function addOrbitalZone(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void {
+function addOrbitalZone(viewer: Cesium.Viewer, config: OrbitalZoneConfig, layerId: string): void {
   const earthRadiusMeters = EARTH_RADIUS_KM * 1000;
   const minRadius = earthRadiusMeters + config.altitudeRangeKm.min * 1000;
   const maxRadius = earthRadiusMeters + config.altitudeRangeKm.max * 1000;
@@ -66,6 +66,7 @@ function addOrbitalZone(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void 
         outlineColor: Cesium.Color.fromCssColorString(config.color).withAlpha(0.4),
         outlineWidth: 2,
       },
+      properties: new Cesium.PropertyBag({ layerId }),
     });
   } else {
     const midRadius = (minRadius + maxRadius) / 2;
@@ -85,11 +86,12 @@ function addOrbitalZone(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void 
         outlineColor: Cesium.Color.fromCssColorString(config.color).withAlpha(0.3),
         outlineWidth: 1,
       },
+      properties: new Cesium.PropertyBag({ layerId }),
     });
   }
 }
 
-function addZoneLabels(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void {
+function addZoneLabels(viewer: Cesium.Viewer, config: OrbitalZoneConfig, layerId: string): void {
   const avgAltitude = (config.altitudeRangeKm.min + config.altitudeRangeKm.max) / 2;
 
   const labelPositions = [
@@ -133,15 +135,16 @@ function addZoneLabels(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void {
         outlineColor: Cesium.Color.WHITE,
         outlineWidth: 2,
       } : undefined,
+      properties: new Cesium.PropertyBag({ layerId }),
     });
   });
 
   if (config.shortName !== 'GEO') {
-    addBoundaryMarkers(viewer, config);
+    addBoundaryMarkers(viewer, config, layerId);
   }
 }
 
-function addBoundaryMarkers(viewer: Cesium.Viewer, config: OrbitalZoneConfig): void {
+function addBoundaryMarkers(viewer: Cesium.Viewer, config: OrbitalZoneConfig, layerId: string): void {
   const boundaries = [
     { altitude: config.altitudeRangeKm.min, label: `${config.shortName} Lower` },
     { altitude: config.altitudeRangeKm.max, label: `${config.shortName} Upper` },
@@ -179,6 +182,7 @@ function addBoundaryMarkers(viewer: Cesium.Viewer, config: OrbitalZoneConfig): v
           scale: 0.9,
           scaleByDistance: new Cesium.NearFarScalar(1.5e6, 1.0, 3e7, 0.0),
         },
+        properties: new Cesium.PropertyBag({ layerId }),
       });
     });
   });
@@ -198,7 +202,8 @@ export function createOrbitPath(
   satelliteId: string,
   altitudeKm: number,
   inclinationDeg: number,
-  color: string = '#00f0ff'
+  color: string = '#00f0ff',
+  layerId: string = 'orbits'
 ): Cesium.Entity {
   const earthRadiusMeters = EARTH_RADIUS_KM * 1000;
   const orbitRadius = earthRadiusMeters + altitudeKm * 1000;
@@ -227,5 +232,6 @@ export function createOrbitPath(
         dashLength: 16,
       }),
     },
+    properties: new Cesium.PropertyBag({ layerId }),
   });
 }

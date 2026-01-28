@@ -1,0 +1,3080 @@
+{
+  "metadata": {
+    "created": "2026-01-28T00:56:26.247122",
+    "description": "Foundation candidates built from cable landings + POPs",
+    "sources": [
+      "cable_landing_complete.json",
+      "reference_pop_locations.json"
+    ],
+    "total_candidates": 169
+  },
+  "zone_counts": {
+    "Americas": 41,
+    "EMEA": 71,
+    "APAC": 57
+  },
+  "priority_counts": {
+    "critical": 21,
+    "high": 62,
+    "medium": 86
+  },
+  "candidates": [
+    {
+      "id": "XAI-MEMPHIS",
+      "name": "xAI Colossus",
+      "city": "Memphis",
+      "latitude": 35.1495,
+      "longitude": -90.049,
+      "tier": 0,
+      "source": "xAI",
+      "notes": "Primary xAI training cluster - highest priority connectivity",
+      "zone": "Americas",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-RESTON-HQ",
+      "name": "Laser Light HQ - Reston",
+      "city": "Reston",
+      "latitude": 38.9586,
+      "longitude": -77.357,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 1.2,
+      "zone": "Americas",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-DOVER-NOC",
+      "name": "HALO Centre Dover",
+      "city": "Dover",
+      "latitude": 51.1279,
+      "longitude": 1.3134,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 1.2,
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-LONDON-HQ",
+      "name": "Laser Light Global Ltd",
+      "city": "London",
+      "latitude": 51.5074,
+      "longitude": -0.1278,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 0,
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-SYDNEY-BETA",
+      "name": "Australia Beta",
+      "city": "Sydney",
+      "latitude": -33.8688,
+      "longitude": 151.2093,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 0,
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-JOHANNESBURG",
+      "name": "Laser Light Africa",
+      "city": "Johannesburg",
+      "latitude": -26.2041,
+      "longitude": 28.0473,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 0,
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-SANTIAGO-BETA",
+      "name": "Chile Beta",
+      "city": "Santiago",
+      "latitude": -33.4489,
+      "longitude": -70.6693,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 0,
+      "zone": "Americas",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "LL-MADRID-BETA",
+      "name": "Spain Beta",
+      "city": "Madrid",
+      "latitude": 40.4168,
+      "longitude": -3.7038,
+      "tier": 0,
+      "source": "LaserLight",
+      "capacity_tbps": 0,
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 0
+    },
+    {
+      "id": "batam-indonesia",
+      "name": "Batam, Indonesia",
+      "latitude": 1.066796188550793,
+      "longitude": 104.01664054897991,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 20,
+      "cables": [
+        "Apricot",
+        "Asia Connect Cable-1 (ACC-1)",
+        "Asia United Gateway East (AUG East)",
+        "Barat Timur Indonesia-2 (BTI-2)",
+        "Batam Dumai Melaka (BDM)",
+        "Batam Sarawak Internet Cable System (BaSICS)",
+        "Batam Singapore Cable System (BSCS)",
+        "Candle",
+        "Hawaiki Nui 1",
+        "Indonesia Global Gateway (IGG) System",
+        "Jakarta-Bangka-Batam-Singapore (B2JS)",
+        "Jakarta-Bangka-Bintan-Batam-Singapore (B3JS)",
+        "JaSuKa",
+        "Matrix Cable System",
+        "Moratelindo International Cable System-1 (MIC-1)",
+        "Palapa Ring West",
+        "PGASCOM",
+        "SEAX-1",
+        "Thailand-Indonesia-Singapore (TIS)",
+        "Trans Global Cable System (TGCS)"
+      ]
+    },
+    {
+      "id": "tuas-singapore",
+      "name": "Tuas, Singapore",
+      "latitude": 1.338192522185158,
+      "longitude": 103.64707112328632,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 16,
+      "cables": [
+        "Apricot",
+        "Asia Direct Cable (ADC)",
+        "Bifrost",
+        "i2i Cable Network (i2icn)",
+        "India Asia Xpress (IAX)",
+        "INDIGO-West",
+        "Indonesia Global Gateway (IGG) System",
+        "INSICA",
+        "MIST",
+        "PEACE Cable",
+        "SEA-H2X",
+        "SeaMeWe-4",
+        "SeaMeWe-5",
+        "SeaMeWe-6",
+        "Southeast Asia-Japan Cable (SJC)",
+        "UMO"
+      ]
+    },
+    {
+      "id": "marseille-france",
+      "name": "Marseille, France",
+      "latitude": 43.29316463678684,
+      "longitude": 5.372629023073098,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 16,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Asia Africa Europe-1 (AAE-1)",
+        "Atlas Offshore",
+        "Blue",
+        "EMC West-2",
+        "Hawk",
+        "IMEWE",
+        "India Europe Xpress (IEX)",
+        "Med Cable Network",
+        "Medloop",
+        "Medusa Submarine Cable System",
+        "PEACE Cable",
+        "SeaMeWe-4",
+        "SeaMeWe-6",
+        "TE North/TGN-Eurasia/SEACOM/Alexandros/Medex"
+      ]
+    },
+    {
+      "id": "mumbai-india",
+      "name": "Mumbai, India",
+      "latitude": 19.07579693373203,
+      "longitude": 72.87590151562159,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 16,
+      "cables": [
+        "2Africa",
+        "Asia Africa Europe-1 (AAE-1)",
+        "Bay of Bengal Gateway (BBG)",
+        "Europe India Gateway (EIG)",
+        "FALCON",
+        "FLAG Europe-Asia (FEA)",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)",
+        "IMEWE",
+        "India Asia Xpress (IAX)",
+        "India Europe Xpress (IEX)",
+        "MIST",
+        "Project Waterworth",
+        "Raman",
+        "SEACOM/Tata TGN-Eurasia",
+        "SeaMeWe-4",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "jeddah-saudi-arabia",
+      "name": "Jeddah, Saudi Arabia",
+      "latitude": 21.481258967424996,
+      "longitude": 39.18276132165815,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 14,
+      "cables": [
+        "2Africa",
+        "Asia Africa Europe-1 (AAE-1)",
+        "Europe India Gateway (EIG)",
+        "FALCON",
+        "FLAG Europe-Asia (FEA)",
+        "IMEWE",
+        "India Europe Xpress (IEX)",
+        "Middle East North Africa (MENA) Cable System/Gulf Bridge International",
+        "PEACE Cable",
+        "Saudi Arabia-Sudan-1 (SAS-1)",
+        "Saudi Arabia-Sudan-2 (SAS-2)",
+        "Saudi Vision",
+        "SEACOM/Tata TGN-Eurasia",
+        "SeaMeWe-4"
+      ]
+    },
+    {
+      "id": "fujairah-united-arab-emirates",
+      "name": "Fujairah, United Arab Emirates",
+      "latitude": 25.12169311729696,
+      "longitude": 56.33372573425405,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 13,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Bay of Bengal Gateway (BBG)",
+        "Europe India Gateway (EIG)",
+        "FLAG Europe-Asia (FEA)",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)",
+        "ICE IV",
+        "IMEWE",
+        "SeaMeWe-4",
+        "SeaMeWe-5",
+        "Tata TGN-Gulf",
+        "The East African Marine System (TEAMS)",
+        "Transworld (TW1)",
+        "UAE-Iran"
+      ]
+    },
+    {
+      "id": "shima-japan",
+      "name": "Shima, Japan",
+      "latitude": 34.33683057441225,
+      "longitude": 136.87439133474103,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 11,
+      "cables": [
+        "Asia Pacific Gateway (APG)",
+        "Australia-Japan Cable (AJC)",
+        "EAC-C2C",
+        "FASTER",
+        "Japan Information Highway (JIH)",
+        "JUNO",
+        "JUPITER",
+        "Pacific Crossing-1 (PC-1)",
+        "Proa",
+        "Southeast Asia-Japan Cable 2 (SJC2)",
+        "Topaz"
+      ]
+    },
+    {
+      "id": "changi-north-singapore",
+      "name": "Changi North, Singapore",
+      "latitude": 1.389044778364265,
+      "longitude": 103.9870122887188,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 11,
+      "cables": [
+        "Asia-America Gateway (AAG) Cable System",
+        "Batam Singapore Cable System (BSCS)",
+        "Candle",
+        "EAC-C2C",
+        "Echo",
+        "JAKABARE",
+        "Moratelindo International Cable System-1 (MIC-1)",
+        "RISING 8",
+        "Tata TGN-Intra Asia (TGN-IA)",
+        "Tata TGN-Tata Indicom",
+        "Thailand-Indonesia-Singapore (TIS)"
+      ]
+    },
+    {
+      "id": "jakarta-indonesia",
+      "name": "Jakarta, Indonesia",
+      "latitude": -6.171598654655946,
+      "longitude": 106.82785500280222,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 10,
+      "cables": [
+        "Asia Connect Cable-1 (ACC-1)",
+        "Bifrost",
+        "Hawaiki Nui 1",
+        "ICE IV",
+        "INDIGO-West",
+        "Indonesia Global Gateway (IGG) System",
+        "Jakarta-Bangka-Batam-Singapore (B2JS)",
+        "Jakarta-Bangka-Bintan-Batam-Singapore (B3JS)",
+        "JaSuKa",
+        "Matrix Cable System"
+      ]
+    },
+    {
+      "id": "helsinki-finland",
+      "name": "Helsinki, Finland",
+      "latitude": 60.17107541825205,
+      "longitude": 24.932478447942366,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 10,
+      "cables": [
+        "Baltic Sea Submarine Cable",
+        "BCS North - Phase 1",
+        "BCS North - Phase 2",
+        "C-Lion1",
+        "Eastern Light Sweden-Finland I",
+        "Finland-Estonia 2 (EESF-2)",
+        "Finland-Estonia 3 (EESF-3)",
+        "Finland Estonia Connection 1 (FEC-1)",
+        "Finland Estonia Connection 2 (FEC-2)",
+        "Mjolner East"
+      ]
+    },
+    {
+      "id": "zafarana-egypt",
+      "name": "Zafarana, Egypt",
+      "latitude": 29.116686929125173,
+      "longitude": 32.649855793379736,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "critical",
+      "cable_count": 10,
+      "cables": [
+        "2Africa",
+        "Asia Africa Europe-1 (AAE-1)",
+        "Europe India Gateway (EIG)",
+        "ICE IV",
+        "India Europe Xpress (IEX)",
+        "Middle East North Africa (MENA) Cable System/Gulf Bridge International",
+        "PEACE Cable",
+        "Red2Med",
+        "SEACOM/Tata TGN-Eurasia",
+        "SeaMeWe-5"
+      ]
+    },
+    {
+      "id": "fortaleza-brazil",
+      "name": "Fortaleza, Brazil",
+      "latitude": -3.718537,
+      "longitude": -38.54297900000012,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "critical",
+      "cable_count": 10,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "BRUSA",
+        "EllaLink",
+        "GlobeNet",
+        "Monet",
+        "Project Waterworth",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)",
+        "South Atlantic Cable System (SACS)",
+        "South Atlantic Inter Link (SAIL)"
+      ]
+    },
+    {
+      "id": "chennai-india",
+      "name": "Chennai, India",
+      "latitude": 13.06348539106232,
+      "longitude": 80.24308379664043,
+      "tier": 0,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "critical",
+      "cable_count": 10,
+      "cables": [
+        "Bay of Bengal Gateway (BBG)",
+        "Chennai-Andaman & Nicobar Islands Cable (CANI)",
+        "i2i Cable Network (i2icn)",
+        "ICE IV",
+        "India Asia Xpress (IAX)",
+        "MIST",
+        "Project Waterworth",
+        "SeaMeWe-4",
+        "SeaMeWe-6",
+        "Tata TGN-Tata Indicom"
+      ]
+    },
+    {
+      "id": "karachi-pakistan",
+      "name": "Karachi, Pakistan",
+      "latitude": 24.88937409747322,
+      "longitude": 67.02854237669561,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Asia Africa Europe-1 (AAE-1)",
+        "IMEWE",
+        "PEACE Cable",
+        "SeaMeWe-4",
+        "SeaMeWe-5",
+        "SeaMeWe-6",
+        "Transworld (TW1)"
+      ]
+    },
+    {
+      "id": "songkhla-thailand",
+      "name": "Songkhla, Thailand",
+      "latitude": 7.198819999999446,
+      "longitude": 100.5951000000003,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Asia Pacific Gateway (APG)",
+        "CAT Submarine Network (CSN)",
+        "FLAG Europe-Asia (FEA)",
+        "SEA-H2X",
+        "Southeast Asia-Japan Cable 2 (SJC2)",
+        "Thailand Domestic Submarine Cable Network (TDSCN)",
+        "Thailand-Indonesia-Singapore (TIS)",
+        "Vietnam-Singapore Cable System (VTS)"
+      ]
+    },
+    {
+      "id": "bude-united-kingdom",
+      "name": "Bude, United Kingdom",
+      "latitude": 50.82811048000128,
+      "longitude": -4.544404967232005,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "2Africa",
+        "Amitie",
+        "Apollo",
+        "Beaufort",
+        "Europe India Gateway (EIG)",
+        "Glo-1",
+        "Grace Hopper",
+        "Pan European Crossing (UK-Ireland)",
+        "Yellow"
+      ]
+    },
+    {
+      "id": "maruyama-japan",
+      "name": "Maruyama, Japan",
+      "latitude": 35.005432999999265,
+      "longitude": 139.97546699999984,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "Asia Direct Cable (ADC)",
+        "Asia Pacific Gateway (APG)",
+        "Asia Submarine-cable Express (ASE)/Cahaya Malaysia",
+        "Australia-Japan Cable (AJC)",
+        "Candle",
+        "E2A",
+        "JUPITER",
+        "New Cross Pacific (NCP) Cable System",
+        "Trans-Pacific Express (TPE) Cable System"
+      ]
+    },
+    {
+      "id": "djibouti-city-djibouti",
+      "name": "Djibouti City, Djibouti",
+      "latitude": 11.594678044710776,
+      "longitude": 43.14799288765091,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "2Africa",
+        "Aden-Djibouti",
+        "Africa-1",
+        "Asia Africa Europe-1 (AAE-1)",
+        "Djibouti Africa Regional Express 1 (DARE 1)",
+        "India Europe Xpress (IEX)",
+        "Raman",
+        "SEACOM/Tata TGN-Eurasia",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "sydney-nsw-australia",
+      "name": "Sydney, NSW, Australia",
+      "latitude": -33.86969726258813,
+      "longitude": 151.20704719697792,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "Coral Sea Cable System (CS\u00b2)",
+        "Gondwana-1",
+        "Hawaiki",
+        "Hawaiki Nui 1",
+        "Honomoana",
+        "PIPE Pacific Cable-1 (PPC-1)",
+        "Sydney-Melbourne-Adelaide-Perth (SMAP)",
+        "Tabua",
+        "Tasman Ring Network"
+      ]
+    },
+    {
+      "id": "piti-guam",
+      "name": "Piti, Guam",
+      "latitude": 13.464655237903562,
+      "longitude": 144.69474214461212,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "Atisa",
+        "Bulikula",
+        "Echo",
+        "HANTRU1 Cable System",
+        "Japan-Guam-Australia North (JGA-N)",
+        "Japan-Guam-Australia South (JGA-S)",
+        "PIPE Pacific Cable-1 (PPC-1)",
+        "SEA-US",
+        "Tata TGN-Pacific"
+      ]
+    },
+    {
+      "id": "tanjung-pakis-indonesia",
+      "name": "Tanjung Pakis, Indonesia",
+      "latitude": -5.981255891395774,
+      "longitude": 107.12089678739565,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "Apricot",
+        "Barat Timur Indonesia-1 (BTI-1)",
+        "Echo",
+        "JAKABARE",
+        "Jakarta Surabaya Cable System (JAYABAYA)",
+        "JaSuKa",
+        "Link 3 Phase-2",
+        "RISING 8",
+        "Trans Global Cable System (TGCS)"
+      ]
+    },
+    {
+      "id": "busan-south-korea",
+      "name": "Busan, South Korea",
+      "latitude": 35.17014221411413,
+      "longitude": 128.99929925728011,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 9,
+      "cables": [
+        "APCN-2",
+        "Asia Pacific Gateway (APG)",
+        "E2A",
+        "EAC-C2C",
+        "FLAG North Asia Loop/REACH North Asia Loop",
+        "JAKO",
+        "Korea-Japan Cable Network (KJCN)",
+        "New Cross Pacific (NCP) Cable System",
+        "Southeast Asia-Japan Cable 2 (SJC2)"
+      ]
+    },
+    {
+      "id": "boca-raton-fl-united-states",
+      "name": "Boca Raton, FL, United States",
+      "latitude": 26.350323169523403,
+      "longitude": -80.08894373592818,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "Bahamas Internet Cable System (BICS)",
+        "CELIA",
+        "Colombia-Florida Express (CFX-1)",
+        "Confluence-1",
+        "GlobeNet",
+        "Monet",
+        "South America-1 (SAm-1)",
+        "TIKAL-AMX3"
+      ]
+    },
+    {
+      "id": "toucheng-taiwan",
+      "name": "Toucheng, Taiwan",
+      "latitude": 24.863592858849902,
+      "longitude": 121.80145279380189,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "Apricot",
+        "Asia Pacific Gateway (APG)",
+        "Candle",
+        "E2A",
+        "FLAG North Asia Loop/REACH North Asia Loop",
+        "New Cross Pacific (NCP) Cable System",
+        "ORCA",
+        "Pacific Light Cable Network (PLCN)"
+      ]
+    },
+    {
+      "id": "mazara-del-vallo-italy",
+      "name": "Mazara del Vallo, Italy",
+      "latitude": 37.650130188288585,
+      "longitude": 12.591276253065702,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "Didon",
+        "GO-1 Mediterranean Cable System",
+        "HANNIBAL System",
+        "Italy-Libya",
+        "Janna",
+        "Medusa Submarine Cable System",
+        "Middle East North Africa (MENA) Cable System/Gulf Bridge International",
+        "Unitirreno"
+      ]
+    },
+    {
+      "id": "san-juan-pr-united-states",
+      "name": "San Juan, PR, United States",
+      "latitude": 18.465839112933374,
+      "longitude": -66.10666604344867,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "BRUSA",
+        "CELIA",
+        "Global Caribbean Network (GCN)",
+        "Pacific Caribbean Cable System (PCCS)",
+        "South America-1 (SAm-1)",
+        "Southern Caribbean Fiber",
+        "TAM-1"
+      ]
+    },
+    {
+      "id": "rio-de-janeiro-brazil",
+      "name": "Rio de Janeiro, Brazil",
+      "latitude": -22.90339400756494,
+      "longitude": -43.209563123346165,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "Brazilian Festoon",
+        "BRUSA",
+        "GlobeNet",
+        "Junior",
+        "Malbec",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)"
+      ]
+    },
+    {
+      "id": "suva-fiji",
+      "name": "Suva, Fiji",
+      "latitude": -18.123812280017187,
+      "longitude": 178.43744782858172,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "Bulikula",
+        "Gondwana-2/Picot-2",
+        "Interchange Cable Network 1 (ICN1)",
+        "Southern Cross Cable Network (SCCN)",
+        "Southern Cross NEXT",
+        "Tabua",
+        "Tonga Cable",
+        "Tui-Samoa"
+      ]
+    },
+    {
+      "id": "dumai-indonesia",
+      "name": "Dumai, Indonesia",
+      "latitude": 1.665606179943663,
+      "longitude": 101.44763420482612,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "Barat Timur Indonesia-2 (BTI-2)",
+        "Batam Dumai Melaka (BDM)",
+        "DAMAI Cable System",
+        "Dumai-Melaka Cable System (DMCS)",
+        "Indonesia Global Gateway (IGG) System",
+        "JaSuKa",
+        "Palapa Ring West",
+        "SeaMeWe-5"
+      ]
+    },
+    {
+      "id": "carcavelos-portugal",
+      "name": "Carcavelos, Portugal",
+      "latitude": 38.69016282606887,
+      "longitude": -9.331559779091531,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "BUGIO",
+        "Columbus-III Azores-Portugal",
+        "Continente-Madeira",
+        "Medusa Submarine Cable System",
+        "New CAM Ring",
+        "Olisipo"
+      ]
+    },
+    {
+      "id": "barka-oman",
+      "name": "Barka, Oman",
+      "latitude": 23.678719999999707,
+      "longitude": 57.88605,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "2Africa",
+        "Bay of Bengal Gateway (BBG)",
+        "Europe India Gateway (EIG)",
+        "Fibre in Gulf (FIG)",
+        "Oman Australia Cable (OAC)",
+        "OMRAN/EPEG",
+        "Pishgaman Oman Iran (POI) Network",
+        "Raman"
+      ]
+    },
+    {
+      "id": "tanshui-taiwan",
+      "name": "Tanshui, Taiwan",
+      "latitude": 25.18136115573805,
+      "longitude": 121.46258584635854,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "APCN-2",
+        "EAC-C2C",
+        "FASTER",
+        "Southeast Asia-Japan Cable 2 (SJC2)",
+        "Taiwan-Matsu No.4",
+        "Taiwan Penghu Kinmen Matsu No.2 (TPKM2)",
+        "Taiwan Strait Express-1 (TSE-1)",
+        "Trans-Pacific Express (TPE) Cable System"
+      ]
+    },
+    {
+      "id": "lagos-nigeria",
+      "name": "Lagos, Nigeria",
+      "latitude": 6.438874849613729,
+      "longitude": 3.423216341555379,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 8,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "Equiano",
+        "Glo-1",
+        "MainOne",
+        "Nigeria Cameroon Submarine Cable System (NCSCS)",
+        "SAT-3/WASC",
+        "West Africa Cable System (WACS)"
+      ]
+    },
+    {
+      "id": "hulhumale-maldives",
+      "name": "Hulhumale, Maldives",
+      "latitude": 4.211942635751779,
+      "longitude": 73.54015885755544,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "Dhiraagu Cable Network",
+        "Domestic Submarine Cable of Maldives (DSCoM)",
+        "India Asia Xpress (IAX)",
+        "Ithaafushi-Maafushi-Hulhumale",
+        "Maldives Sri Lanka Cable (MSC)",
+        "Nationwide Submarine Cable Ooredoo Maldives (NaSCOM)",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "las-toninas-argentina",
+      "name": "Las Toninas, Argentina",
+      "latitude": -36.47252952471871,
+      "longitude": -56.695491069788275,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "Bicentenario",
+        "Firmina",
+        "Malbec",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)",
+        "Tannat",
+        "Unisur"
+      ]
+    },
+    {
+      "id": "tallinn-estonia",
+      "name": "Tallinn, Estonia",
+      "latitude": 59.436369,
+      "longitude": 24.752468999999603,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "Baltic Sea Submarine Cable",
+        "E-FINEST",
+        "Finland-Estonia 2 (EESF-2)",
+        "Finland Estonia Connection 1 (FEC-1)",
+        "Finland Estonia Connection 2 (FEC-2)",
+        "Mjolner East",
+        "Sweden-Estonia (EE-S 1)"
+      ]
+    },
+    {
+      "id": "manado-indonesia",
+      "name": "Manado, Indonesia",
+      "latitude": 1.490831387793467,
+      "longitude": 124.83960982123124,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "Asia Connect Cable-1 (ACC-1)",
+        "Barat Timur Indonesia-1 (BTI-1)",
+        "Barat Timur Indonesia-2 (BTI-2)",
+        "Bifrost",
+        "Indonesia Global Gateway (IGG) System",
+        "Palapa Ring Middle",
+        "SMPCS Packet-1"
+      ]
+    },
+    {
+      "id": "satun-thailand",
+      "name": "Satun, Thailand",
+      "latitude": 6.613467,
+      "longitude": 100.06611799999914,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "FLAG Europe-Asia (FEA)",
+        "India Asia Xpress (IAX)",
+        "MIST",
+        "Project Waterworth",
+        "SeaMeWe-4",
+        "TalayLink"
+      ]
+    },
+    {
+      "id": "mombasa-kenya",
+      "name": "Mombasa, Kenya",
+      "latitude": -4.053206761989876,
+      "longitude": 39.67280003701128,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Djibouti Africa Regional Express 1 (DARE 1)",
+        "Eastern Africa Submarine System (EASSy)",
+        "PEACE Cable",
+        "SEACOM/Tata TGN-Eurasia",
+        "The East African Marine System (TEAMS)"
+      ]
+    },
+    {
+      "id": "chikura-japan",
+      "name": "Chikura, Japan",
+      "latitude": 34.976657744880164,
+      "longitude": 139.95466259014782,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 7,
+      "cables": [
+        "APCN-2",
+        "EAC-C2C",
+        "FASTER",
+        "Japan Information Highway (JIH)",
+        "Southeast Asia-Japan Cable 2 (SJC2)",
+        "Southeast Asia-Japan Cable (SJC)",
+        "Unity/EAC-Pacific"
+      ]
+    },
+    {
+      "id": "kristiansand-norway",
+      "name": "Kristiansand, Norway",
+      "latitude": 58.15095596477219,
+      "longitude": 7.996259976968266,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Havfrue/AEC-2",
+        "Havsil",
+        "IOEMA",
+        "N0r5ke Viking 2",
+        "Norfest",
+        "Skagerrak 4"
+      ]
+    },
+    {
+      "id": "yeroskipos-cyprus",
+      "name": "Yeroskipos, Cyprus",
+      "latitude": 34.76641137968897,
+      "longitude": 32.46655514198169,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Blue",
+        "Exelera North",
+        "Hawk",
+        "Medusa Submarine Cable System",
+        "PEACE Cable",
+        "POSEIDON"
+      ]
+    },
+    {
+      "id": "suez-egypt",
+      "name": "Suez, Egypt",
+      "latitude": 29.9722883988634,
+      "longitude": 32.53012931569517,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "FALCON",
+        "FLAG Europe-Asia (FEA)",
+        "IMEWE",
+        "Red2Med",
+        "SeaMeWe-4"
+      ]
+    },
+    {
+      "id": "valparaso-chile",
+      "name": "Valpara\u00edso, Chile",
+      "latitude": -33.045765558769304,
+      "longitude": -71.62048049678572,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Curie",
+        "Halaihai",
+        "Prat",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)",
+        "South Pacific Cable System (SPCS)/Mistral"
+      ]
+    },
+    {
+      "id": "salalah-oman",
+      "name": "Salalah, Oman",
+      "latitude": 17.095825991958318,
+      "longitude": 54.14808275133401,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "Daraja",
+        "Gulf2Africa (G2A)",
+        "India Europe Xpress (IEX)",
+        "Oman Australia Cable (OAC)",
+        "Raman"
+      ]
+    },
+    {
+      "id": "chung-hom-kok-china",
+      "name": "Chung Hom Kok, China",
+      "latitude": 22.222049985803473,
+      "longitude": 114.2030206766037,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Asia Direct Cable (ADC)",
+        "Asia Link Cable (ALC)",
+        "EAC-C2C",
+        "Hainan to Hong Kong Express (H2HE)",
+        "Southeast Asia-Japan Cable 2 (SJC2)",
+        "Southeast Asia-Japan Cable (SJC)"
+      ]
+    },
+    {
+      "id": "tseung-kwan-o-china",
+      "name": "Tseung Kwan O, China",
+      "latitude": 22.31829585896108,
+      "longitude": 114.25868469966966,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Asia Pacific Gateway (APG)",
+        "Asia Submarine-cable Express (ASE)/Cahaya Malaysia",
+        "EAC-C2C",
+        "SEA-H2X",
+        "Sihanoukville-Hong Kong (SHV-HK)",
+        "TKO Connect"
+      ]
+    },
+    {
+      "id": "accra-ghana",
+      "name": "Accra, Ghana",
+      "latitude": 5.558283401661053,
+      "longitude": -0.201097497196668,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "Glo-1",
+        "MainOne",
+        "SAT-3/WASC",
+        "West Africa Cable System (WACS)"
+      ]
+    },
+    {
+      "id": "tanguisson-point-guam",
+      "name": "Tanguisson Point, Guam",
+      "latitude": 13.549098008782185,
+      "longitude": 144.80934665104422,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Asia-America Gateway (AAG) Cable System",
+        "Australia-Japan Cable (AJC)",
+        "Halaihai",
+        "Mariana-Guam Cable",
+        "Proa",
+        "TPU"
+      ]
+    },
+    {
+      "id": "abu-talat-egypt",
+      "name": "Abu Talat, Egypt",
+      "latitude": 31.071848731738037,
+      "longitude": 29.702494600068096,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Europe India Gateway (EIG)",
+        "Middle East North Africa (MENA) Cable System/Gulf Bridge International",
+        "PEACE Cable",
+        "SeaMeWe-5",
+        "TE North/TGN-Eurasia/SEACOM/Alexandros/Medex"
+      ]
+    },
+    {
+      "id": "willemstad-curaao",
+      "name": "Willemstad, Cura\u00e7ao",
+      "latitude": 12.095587,
+      "longitude": -68.89646699999949,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "Alonso de Ojeda",
+        "Amerigo Vespucci",
+        "ARCOS",
+        "CELIA",
+        "EC Link",
+        "Jerry Newton"
+      ]
+    },
+    {
+      "id": "cancn-mexico",
+      "name": "Canc\u00fan, Mexico",
+      "latitude": 21.095660000000468,
+      "longitude": -86.767566,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "ARCOS",
+        "Carnival Submarine Network-1 (CSN-1)",
+        "MANTA",
+        "TAM-1",
+        "TIKAL-AMX3"
+      ]
+    },
+    {
+      "id": "abidjan-cte-divoire",
+      "name": "Abidjan, C\u00f4te d'Ivoire",
+      "latitude": 5.323518612555771,
+      "longitude": -4.026241271803983,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "MainOne",
+        "Maroc Telecom West Africa",
+        "SAT-3/WASC",
+        "West Africa Cable System (WACS)"
+      ]
+    },
+    {
+      "id": "pentaskhinos-cyprus",
+      "name": "Pentaskhinos, Cyprus",
+      "latitude": 34.82848058540633,
+      "longitude": 33.603566055263556,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "CADMOS",
+        "CADMOS-2",
+        "MedNautilus Submarine System",
+        "POSEIDON",
+        "TE North/TGN-Eurasia/SEACOM/Alexandros/Medex",
+        "UGARIT"
+      ]
+    },
+    {
+      "id": "cartagena-colombia",
+      "name": "Cartagena, Colombia",
+      "latitude": 10.386695392812182,
+      "longitude": -75.50568282259698,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "ARCOS",
+        "Colombia-Florida Express (CFX-1)",
+        "Colombian Festoon",
+        "MANTA",
+        "Pacific Caribbean Cable System (PCCS)"
+      ]
+    },
+    {
+      "id": "doha-qatar",
+      "name": "Doha, Qatar",
+      "latitude": 25.294340911551398,
+      "longitude": 51.51937367603625,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "Asia Africa Europe-1 (AAE-1)",
+        "FALCON",
+        "Fiber Optic Gulf (FOG)",
+        "Qatar-U.A.E. Submarine Cable System",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "port-said-egypt",
+      "name": "Port Said, Egypt",
+      "latitude": 31.259279,
+      "longitude": 32.28445799999981,
+      "tier": 1,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 6,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "FLAG Europe-Asia (FEA)",
+        "Medusa Submarine Cable System",
+        "Red2Med",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "tinian-northern-mariana-islands",
+      "name": "Tinian, Northern Mariana Islands",
+      "latitude": 15.011127130087093,
+      "longitude": 145.63747106439294,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Bulikula",
+        "Halaihai",
+        "Mariana-Guam Cable",
+        "Proa",
+        "TPU"
+      ]
+    },
+    {
+      "id": "mersing-malaysia",
+      "name": "Mersing, Malaysia",
+      "latitude": 2.295511672819276,
+      "longitude": 103.84990301084824,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Asia-America Gateway (AAG) Cable System",
+        "Asia Submarine-cable Express (ASE)/Cahaya Malaysia",
+        "East-West Submarine Cable System",
+        "SEAX-1",
+        "Sistem Kabel Rakyat 1Malaysia (SKR1M)"
+      ]
+    },
+    {
+      "id": "hermosa-beach-ca-united-states",
+      "name": "Hermosa Beach, CA, United States",
+      "latitude": 33.862232632157735,
+      "longitude": -118.39954892055475,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Asia Connect Cable-1 (ACC-1)",
+        "JUPITER",
+        "ORCA",
+        "SEA-US",
+        "Southern Cross NEXT"
+      ]
+    },
+    {
+      "id": "darwin-nt-australia",
+      "name": "Darwin, NT, Australia",
+      "latitude": -12.467490679762426,
+      "longitude": 130.8431456073319,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Asia Connect Cable-1 (ACC-1)",
+        "Bosun",
+        "Hawaiki Nui 1",
+        "North-West Cable System",
+        "Project Waterworth"
+      ]
+    },
+    {
+      "id": "yanbu-saudi-arabia",
+      "name": "Yanbu, Saudi Arabia",
+      "latitude": 24.070555564820936,
+      "longitude": 38.10698083375123,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "India Europe Xpress (IEX)",
+        "Saudi Vision",
+        "SeaMeWe-5",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "kupang-indonesia",
+      "name": "Kupang, Indonesia",
+      "latitude": -10.183308656195656,
+      "longitude": 123.5833851252144,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Barat Timur Indonesia-2 (BTI-2)",
+        "Kupang-Alor Cable Systems",
+        "Mataram Kupang Cable System (MKCS)",
+        "Palapa Ring East",
+        "Sape-Labuan Bajo-Ende-Kupang"
+      ]
+    },
+    {
+      "id": "sesimbra-portugal",
+      "name": "Sesimbra, Portugal",
+      "latitude": 38.44269349871853,
+      "longitude": -9.1027513474316,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "BUGIO",
+        "Equiano",
+        "Europe India Gateway (EIG)",
+        "Sagres",
+        "SAT-3/WASC"
+      ]
+    },
+    {
+      "id": "alexandria-egypt",
+      "name": "Alexandria, Egypt",
+      "latitude": 31.191886381300385,
+      "longitude": 29.889799154879793,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Aletar",
+        "FLAG Europe-Asia (FEA)",
+        "Hawk",
+        "IMEWE",
+        "SeaMeWe-4"
+      ]
+    },
+    {
+      "id": "santos-brazil",
+      "name": "Santos, Brazil",
+      "latitude": -23.961845467703107,
+      "longitude": -46.32806677354495,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Junior",
+        "Monet",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)",
+        "Tannat"
+      ]
+    },
+    {
+      "id": "puerto-barrios-guatemala",
+      "name": "Puerto Barrios, Guatemala",
+      "latitude": 15.727143540875408,
+      "longitude": -88.59723848982233,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "ARCOS",
+        "South America-1 (SAm-1)",
+        "TAM-1",
+        "TIKAL-AMX3"
+      ]
+    },
+    {
+      "id": "dakar-senegal",
+      "name": "Dakar, Senegal",
+      "latitude": 14.686597713745336,
+      "longitude": -17.451915354680473,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "MainOne",
+        "SAT-3/WASC",
+        "Senegal Horn of Africa Regional Express (SHARE) Cable"
+      ]
+    },
+    {
+      "id": "perth-wa-australia",
+      "name": "Perth, WA, Australia",
+      "latitude": -31.95343894398052,
+      "longitude": 115.85721872350325,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Australia-Singapore Cable (ASC)",
+        "INDIGO-Central",
+        "INDIGO-West",
+        "Oman Australia Cable (OAC)",
+        "Sydney-Melbourne-Adelaide-Perth (SMAP)"
+      ]
+    },
+    {
+      "id": "makassar-indonesia",
+      "name": "Makassar, Indonesia",
+      "latitude": -5.152184574655166,
+      "longitude": 119.41239198623502,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Asia Connect Cable-1 (ACC-1)",
+        "Barat Timur Indonesia-1 (BTI-1)",
+        "Indonesia Global Gateway (IGG) System",
+        "Indonesia Tengah Cable Systems",
+        "S-U-B Cable System"
+      ]
+    },
+    {
+      "id": "changi-south-singapore",
+      "name": "Changi South, Singapore",
+      "latitude": 1.389044778364265,
+      "longitude": 103.9870122887188,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Asia Pacific Gateway (APG)",
+        "Asia Submarine-cable Express (ASE)/Cahaya Malaysia",
+        "EAC-C2C",
+        "Matrix Cable System",
+        "Southeast Asia-Japan Cable 2 (SJC2)"
+      ]
+    },
+    {
+      "id": "chaguaramas-trinidad-and-tobago",
+      "name": "Chaguaramas, Trinidad and Tobago",
+      "latitude": 10.686160924629455,
+      "longitude": -61.65080982501897,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Deep Blue One",
+        "Eastern Caribbean Fiber System (ECFS)",
+        "EC Link",
+        "Southern Caribbean Fiber",
+        "Suriname-Guyana Submarine Cable System (SG-SCS)"
+      ]
+    },
+    {
+      "id": "catania-italy",
+      "name": "Catania, Italy",
+      "latitude": 37.51158912057901,
+      "longitude": 15.067446373923563,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Epic Malta-Sicily Cable System (EMSCS)",
+        "IMEWE",
+        "Italy-Malta",
+        "MedNautilus Submarine System",
+        "SeaMeWe-5"
+      ]
+    },
+    {
+      "id": "dar-es-salaam-tanzania",
+      "name": "Dar Es Salaam, Tanzania",
+      "latitude": -6.823229228025631,
+      "longitude": 39.26967532258757,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Djibouti Africa Regional Express 1 (DARE 1)",
+        "Eastern Africa Submarine System (EASSy)",
+        "SEACOM/Tata TGN-Eurasia",
+        "Seychelles to East Africa System (SEAS)"
+      ]
+    },
+    {
+      "id": "lowestoft-united-kingdom",
+      "name": "Lowestoft, United Kingdom",
+      "latitude": 52.47136138660393,
+      "longitude": 1.729174572880337,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Circe North",
+        "Scylla",
+        "Tampnet South",
+        "Ulysses 2",
+        "Zeus"
+      ]
+    },
+    {
+      "id": "aqaba-jordan",
+      "name": "Aqaba, Jordan",
+      "latitude": 29.581029499999897,
+      "longitude": 35.005095000000225,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Blue",
+        "Coral Bridge",
+        "FLAG Europe-Asia (FEA)",
+        "Raman",
+        "Taba-Aqaba"
+      ]
+    },
+    {
+      "id": "st-croix-virgin-islands-virgin-islands-u-s-",
+      "name": "St. Croix, Virgin Islands, Virgin Islands (U.S.)",
+      "latitude": 17.77186426252591,
+      "longitude": -64.8194110959771,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Americas-II West",
+        "Global Caribbean Network (GCN)",
+        "Mid-Atlantic Crossing (MAC)",
+        "South American Crossing (SAC)",
+        "Southern Caribbean Fiber"
+      ]
+    },
+    {
+      "id": "praia-cape-verde",
+      "name": "Praia, Cape Verde",
+      "latitude": 14.923010648471926,
+      "longitude": -23.521246992608987,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Cabo Verde Telecom Domestic Submarine Cable Phase 1",
+        "Cabo Verde Telecom Domestic Submarine Cable Phase 3",
+        "EllaLink",
+        "Senegal Horn of Africa Regional Express (SHARE) Cable",
+        "West Africa Cable System (WACS)"
+      ]
+    },
+    {
+      "id": "kuwait-city-kuwait",
+      "name": "Kuwait City, Kuwait",
+      "latitude": 29.37401624369425,
+      "longitude": 47.97474728083281,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Fiber Optic Gulf (FOG)",
+        "Fibre in Gulf (FIG)",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)",
+        "Kuwait-Iran"
+      ]
+    },
+    {
+      "id": "al-khobar-saudi-arabia",
+      "name": "Al Khobar, Saudi Arabia",
+      "latitude": 26.286171946143295,
+      "longitude": 50.214198819384315,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "FALCON",
+        "Fibre in Gulf (FIG)",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)",
+        "Tata TGN-Gulf"
+      ]
+    },
+    {
+      "id": "libreville-gabon",
+      "name": "Libreville, Gabon",
+      "latitude": 0.394268790397072,
+      "longitude": 9.454364412783434,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Africa Coast to Europe (ACE)",
+        "Libreville-Port Gentil Cable",
+        "Maroc Telecom West Africa",
+        "SAT-3/WASC"
+      ]
+    },
+    {
+      "id": "barranquilla-colombia",
+      "name": "Barranquilla, Colombia",
+      "latitude": 10.94046235659719,
+      "longitude": -74.77975560247559,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "Carnival Submarine Network-1 (CSN-1)",
+        "GlobeNet",
+        "South America-1 (SAm-1)",
+        "TAM-1"
+      ]
+    },
+    {
+      "id": "port-sudan-sudan",
+      "name": "Port Sudan, Sudan",
+      "latitude": 19.61556365090266,
+      "longitude": 37.219676774825814,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Eastern Africa Submarine System (EASSy)",
+        "FALCON",
+        "Saudi Arabia-Sudan-1 (SAS-1)",
+        "Saudi Arabia-Sudan-2 (SAS-2)"
+      ]
+    },
+    {
+      "id": "duba-saudi-arabia",
+      "name": "Duba, Saudi Arabia",
+      "latitude": 27.354018999999465,
+      "longitude": 35.69652899999984,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Mobily Red Sea Cable (MRSC)",
+        "Raman",
+        "Saudi Vision"
+      ]
+    },
+    {
+      "id": "myrtle-beach-sc-united-states",
+      "name": "Myrtle Beach, SC, United States",
+      "latitude": 33.69357,
+      "longitude": -78.8826750000001,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "Anjana",
+        "Confluence-1",
+        "Firmina",
+        "Nuvem",
+        "Project Waterworth"
+      ]
+    },
+    {
+      "id": "genoa-italy",
+      "name": "Genoa, Italy",
+      "latitude": 44.410338999999794,
+      "longitude": 8.938900000000473,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 5,
+      "cables": [
+        "2Africa",
+        "Blue",
+        "EMC West-1",
+        "Medloop",
+        "Unitirreno"
+      ]
+    },
+    {
+      "id": "funchal-portugal",
+      "name": "Funchal, Portugal",
+      "latitude": 32.64686582848514,
+      "longitude": -16.908946989325337,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "CAM Ring",
+        "Continente-Madeira",
+        "EllaLink",
+        "New CAM Ring"
+      ]
+    },
+    {
+      "id": "taytay-philippines",
+      "name": "Taytay, Philippines",
+      "latitude": 10.819603438863586,
+      "longitude": 119.50038020515338,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Boracay-Palawan Submarine Cable System (BPSCS)",
+        "Converge Domestic Submarine Cable Network (CDSCN)",
+        "Palawan-Iloilo Cable System",
+        "Submarine Cable in the Philippines (SCiP)"
+      ]
+    },
+    {
+      "id": "cagayan-de-oro-philippines",
+      "name": "Cagayan de Oro, Philippines",
+      "latitude": 8.454228346754538,
+      "longitude": 124.6319195386728,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Converge Domestic Submarine Cable Network (CDSCN)",
+        "Philippine Domestic Submarine Cable Network (PDSCN)",
+        "PLDT Domestic Fiber Optic Network (DFON)",
+        "Submarine Cable in the Philippines (SCiP)"
+      ]
+    },
+    {
+      "id": "naha-japan",
+      "name": "Naha, Japan",
+      "latitude": 26.21241384638718,
+      "longitude": 127.68055019149426,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Guam Okinawa Kyushu Incheon (GOKI)",
+        "Japan Information Highway (JIH)",
+        "Miyazaki-Okinawa Cable (MOC)",
+        "YUI"
+      ]
+    },
+    {
+      "id": "makaha-hi-united-states",
+      "name": "Makaha, HI, United States",
+      "latitude": 21.463431186887963,
+      "longitude": -158.2206478576183,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "CHI",
+        "Hawaii Island Fibre Network (HIFN)",
+        "Paniolo Cable Network",
+        "SEA-US"
+      ]
+    },
+    {
+      "id": "morro-bay-ca-united-states",
+      "name": "Morro Bay, CA, United States",
+      "latitude": 35.3666813511006,
+      "longitude": -120.84720343661348,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia-America Gateway (AAG) Cable System",
+        "CHI",
+        "E2A",
+        "Southern Cross Cable Network (SCCN)"
+      ]
+    },
+    {
+      "id": "penang-malaysia",
+      "name": "Penang, Malaysia",
+      "latitude": 5.368393581488473,
+      "longitude": 100.40982400223058,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Bay of Bengal Gateway (BBG)",
+        "FLAG Europe-Asia (FEA)",
+        "SAFE"
+      ]
+    },
+    {
+      "id": "lurin-peru",
+      "name": "Lurin, Peru",
+      "latitude": -12.278527239265857,
+      "longitude": -76.87428536869109,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Fibra Optica al Pac\u00edfico",
+        "South America-1 (SAm-1)",
+        "South American Crossing (SAC)",
+        "South Pacific Cable System (SPCS)/Mistral"
+      ]
+    },
+    {
+      "id": "batangas-philippines",
+      "name": "Batangas, Philippines",
+      "latitude": 13.765553306627538,
+      "longitude": 121.06492987806165,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "APCN-2",
+        "Asia Direct Cable (ADC)",
+        "EAC-C2C",
+        "Submarine Cable in the Philippines (SCiP)"
+      ]
+    },
+    {
+      "id": "hillsboro-or-united-states",
+      "name": "Hillsboro, OR, United States",
+      "latitude": 45.522898824562965,
+      "longitude": -122.98980067645105,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Hawaiki",
+        "NorthStar",
+        "Southern Cross Cable Network (SCCN)",
+        "Tata TGN-Pacific"
+      ]
+    },
+    {
+      "id": "tanah-merah-singapore",
+      "name": "Tanah Merah, Singapore",
+      "latitude": 1.327257988673153,
+      "longitude": 103.9465826298595,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Australia-Singapore Cable (ASC)",
+        "Jakarta-Bangka-Batam-Singapore (B2JS)",
+        "Jakarta-Bangka-Bintan-Batam-Singapore (B3JS)",
+        "SEAX-1"
+      ]
+    },
+    {
+      "id": "nanhui-china",
+      "name": "Nanhui, China",
+      "latitude": 30.864713861582327,
+      "longitude": 121.92506915087795,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Pacific Gateway (APG)",
+        "EAC-C2C",
+        "FLAG Europe-Asia (FEA)",
+        "New Cross Pacific (NCP) Cable System"
+      ]
+    },
+    {
+      "id": "kuala-tungkal-indonesia",
+      "name": "Kuala Tungkal, Indonesia",
+      "latitude": -0.816539442758962,
+      "longitude": 103.46670015731281,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Jambi-Batam Cable System (JIBA)",
+        "Link 5 Phase-2",
+        "Palapa Ring West",
+        "PGASCOM"
+      ]
+    },
+    {
+      "id": "grover-beach-ca-united-states",
+      "name": "Grover Beach, CA, United States",
+      "latitude": 35.1206334382351,
+      "longitude": -120.62142234655879,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Bifrost",
+        "JUNO",
+        "Pacific Crossing-1 (PC-1)",
+        "Pan-American Crossing (PAC)"
+      ]
+    },
+    {
+      "id": "flying-fish-cove-christmas-island",
+      "name": "Flying Fish Cove, Christmas Island",
+      "latitude": -10.437358645528692,
+      "longitude": 105.69706984367991,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Australia-Singapore Cable (ASC)",
+        "Bosun",
+        "Dhivaru",
+        "TalayLink"
+      ]
+    },
+    {
+      "id": "kendari-indonesia",
+      "name": "Kendari, Indonesia",
+      "latitude": -3.998447236539088,
+      "longitude": 122.51297572725252,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Barat Timur Indonesia-2 (BTI-2)",
+        "Indonesia Tengah Cable Systems",
+        "Palapa Ring Middle",
+        "SMPCS Packet-1"
+      ]
+    },
+    {
+      "id": "port-moresby-papua-new-guinea",
+      "name": "Port Moresby, Papua New Guinea",
+      "latitude": -9.47960554573348,
+      "longitude": 147.18851977030369,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Coral Sea Cable System (CS\u00b2)",
+        "Hawaiki Nui 1",
+        "Kumul Domestic Submarine Cable System",
+        "PNG LNG"
+      ]
+    },
+    {
+      "id": "kawaihae-hi-united-states",
+      "name": "Kawaihae, HI, United States",
+      "latitude": 20.040296565242308,
+      "longitude": -155.83123627078376,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Hawaii Inter-Island Cable System (HICS)",
+        "Hawaii Island Fibre Network (HIFN)",
+        "Honotua",
+        "Paniolo Cable Network"
+      ]
+    },
+    {
+      "id": "wall-township-nj-united-states",
+      "name": "Wall Township, NJ, United States",
+      "latitude": 40.15287376160566,
+      "longitude": -74.06287361347052,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Confluence-1",
+        "Havfrue/AEC-2",
+        "Seabras-1",
+        "Tata TGN-Atlantic South"
+      ]
+    },
+    {
+      "id": "blaabjerg-denmark",
+      "name": "Blaabjerg, Denmark",
+      "latitude": 55.75167411423394,
+      "longitude": 8.329194484059272,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "CANTAT-3",
+        "DANICE",
+        "Havfrue/AEC-2",
+        "IOEMA"
+      ]
+    },
+    {
+      "id": "kuching-malaysia",
+      "name": "Kuching, Malaysia",
+      "latitude": 1.520179142639674,
+      "longitude": 110.35370699724253,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Batam Sarawak Internet Cable System (BaSICS)",
+        "East-West Submarine Cable System",
+        "SEA-H2X",
+        "Sistem Kabel Rakyat 1Malaysia (SKR1M)"
+      ]
+    },
+    {
+      "id": "berbera-somalia",
+      "name": "Berbera, Somalia",
+      "latitude": 10.43511582934602,
+      "longitude": 45.01088219296272,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Gulf2Africa (G2A)",
+        "PEACE Cable"
+      ]
+    },
+    {
+      "id": "cherating-malaysia",
+      "name": "Cherating, Malaysia",
+      "latitude": 4.130238298773818,
+      "longitude": 103.39365333405976,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "APCN-2",
+        "Asia Pacific Gateway (APG)",
+        "Malaysia-Cambodia-Thailand (MCT) Cable",
+        "Sistem Kabel Rakyat 1Malaysia (SKR1M)"
+      ]
+    },
+    {
+      "id": "davao-philippines",
+      "name": "Davao, Philippines",
+      "latitude": 7.079988883160643,
+      "longitude": 125.61277821882337,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Apricot",
+        "Asia Connect Cable-1 (ACC-1)",
+        "Bifrost",
+        "SEA-US"
+      ]
+    },
+    {
+      "id": "virginia-beach-va-united-states",
+      "name": "Virginia Beach, VA, United States",
+      "latitude": 36.755008440641625,
+      "longitude": -76.05919805548162,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "BRUSA",
+        "Confluence-1",
+        "Dunant",
+        "MAREA"
+      ]
+    },
+    {
+      "id": "hanko-finland",
+      "name": "Hanko, Finland",
+      "latitude": 59.82321000411124,
+      "longitude": 22.968222026939856,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "BCS North - Phase 1",
+        "C-Lion1",
+        "Eastern Light Sweden-Finland I",
+        "Eastern Light Sweden-Finland II"
+      ]
+    },
+    {
+      "id": "al-seeb-oman",
+      "name": "Al Seeb, Oman",
+      "latitude": 23.684699958424957,
+      "longitude": 58.176107241594856,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "FALCON",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)",
+        "Middle East North Africa (MENA) Cable System/Gulf Bridge International",
+        "Transworld (TW1)"
+      ]
+    },
+    {
+      "id": "moroni-comoros",
+      "name": "Moroni, Comoros",
+      "latitude": -11.700694108521688,
+      "longitude": 43.24340297631166,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Avassa",
+        "Eastern Africa Submarine System (EASSy)",
+        "FLY-LION3"
+      ]
+    },
+    {
+      "id": "mtunzini-south-africa",
+      "name": "Mtunzini, South Africa",
+      "latitude": -28.950640880887153,
+      "longitude": 31.75786423777489,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Djibouti Africa Regional Express 1 (DARE 1)",
+        "Eastern Africa Submarine System (EASSy)",
+        "SAFE",
+        "SEACOM/Tata TGN-Eurasia"
+      ]
+    },
+    {
+      "id": "maputo-mozambique",
+      "name": "Maputo, Mozambique",
+      "latitude": -25.968533089796413,
+      "longitude": 32.58061756117876,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Djibouti Africa Regional Express 1 (DARE 1)",
+        "Eastern Africa Submarine System (EASSy)",
+        "SEACOM/Tata TGN-Eurasia"
+      ]
+    },
+    {
+      "id": "homer-ak-united-states",
+      "name": "Homer, AK, United States",
+      "latitude": 59.6463664840008,
+      "longitude": -151.54430693463783,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "ACS Alaska-Oregon Network (AKORN)",
+        "Kodiak Kenai Fiber Link (KKFL)",
+        "Nome to Homer Express (NTHE)",
+        "TERRA SW"
+      ]
+    },
+    {
+      "id": "maria-chiquita-panama",
+      "name": "Maria Chiquita, Panama",
+      "latitude": 9.437336030723529,
+      "longitude": -79.75354358290546,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "ARCOS",
+        "MANTA",
+        "Pacific Caribbean Cable System (PCCS)",
+        "TAM-1"
+      ]
+    },
+    {
+      "id": "al-faw-iraq",
+      "name": "Al Faw, Iraq",
+      "latitude": 29.923295047889447,
+      "longitude": 48.531778136227075,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "FALCON",
+        "Fibre in Gulf (FIG)",
+        "Gulf Bridge International Cable System/Middle East North Africa Cable System (GBICS/MENA)"
+      ]
+    },
+    {
+      "id": "hollywood-fl-united-states",
+      "name": "Hollywood, FL, United States",
+      "latitude": 26.010495,
+      "longitude": -80.160161,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "America Movil Submarine Cable System-1 (AMX-1)",
+        "Maya-1.2",
+        "Mid-Atlantic Crossing (MAC)",
+        "TAM-1"
+      ]
+    },
+    {
+      "id": "isla-verde-pr-united-states",
+      "name": "Isla Verde, PR, United States",
+      "latitude": 18.442036999999676,
+      "longitude": -66.01687299999985,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Antillas 1",
+        "ARCOS",
+        "Sint Maarten Puerto Rico Network One (SMPR-1)",
+        "Taino-Carib"
+      ]
+    },
+    {
+      "id": "sines-portugal",
+      "name": "Sines, Portugal",
+      "latitude": 37.957190000000196,
+      "longitude": -8.869599,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "EllaLink",
+        "New CAM Ring",
+        "Nuvem",
+        "Olisipo"
+      ]
+    },
+    {
+      "id": "tympaki-greece",
+      "name": "Tympaki, Greece",
+      "latitude": 35.07140756999981,
+      "longitude": 24.768278120000296,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "EMC West-1",
+        "EMC West-2",
+        "India Europe Xpress (IEX)"
+      ]
+    },
+    {
+      "id": "chania-greece",
+      "name": "Chania, Greece",
+      "latitude": 35.51180510130388,
+      "longitude": 24.01216659989987,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Blue",
+        "MedNautilus Submarine System",
+        "Silphium"
+      ]
+    },
+    {
+      "id": "tel-aviv-israel",
+      "name": "Tel Aviv, Israel",
+      "latitude": 32.044596253282435,
+      "longitude": 34.76967851042755,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Blue",
+        "Israel Coasting 1 (IC-1)",
+        "Jonah",
+        "MedNautilus Submarine System"
+      ]
+    },
+    {
+      "id": "bari-italy",
+      "name": "Bari, Italy",
+      "latitude": 41.12549190517644,
+      "longitude": 16.866663849341016,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Italy-Albania",
+        "Jonah",
+        "OTEGLOBE Kokkini-Bari"
+      ]
+    },
+    {
+      "id": "melaka-malaysia",
+      "name": "Melaka, Malaysia",
+      "latitude": 2.273178376445331,
+      "longitude": 102.22090025859913,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Batam Dumai Melaka (BDM)",
+        "Dumai-Melaka Cable System (DMCS)",
+        "SeaMeWe-4",
+        "SeaMeWe-5"
+      ]
+    },
+    {
+      "id": "los-angeles-ca-united-states",
+      "name": "Los Angeles, CA, United States",
+      "latitude": 34.05339441974166,
+      "longitude": -118.24534981104084,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Project Waterworth",
+        "Tabua",
+        "Tata TGN-Pacific",
+        "Zayo Festoon"
+      ]
+    },
+    {
+      "id": "gedser-denmark",
+      "name": "Gedser, Denmark",
+      "latitude": 54.57634945132528,
+      "longitude": 11.928972034748147,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Baltica",
+        "Elektra-GlobalConnect 1 (GC1)",
+        "Germany-Denmark 3",
+        "GlobalConnect-KPN"
+      ]
+    },
+    {
+      "id": "chongming-china",
+      "name": "Chongming, China",
+      "latitude": 31.619883221433906,
+      "longitude": 121.39520308159317,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "APCN-2",
+        "Asia Pacific Gateway (APG)",
+        "New Cross Pacific (NCP) Cable System",
+        "Trans-Pacific Express (TPE) Cable System"
+      ]
+    },
+    {
+      "id": "manama-bahrain",
+      "name": "Manama, Bahrain",
+      "latitude": 26.228971616238493,
+      "longitude": 50.57581965695888,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "FALCON",
+        "Fiber Optic Gulf (FOG)",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "blackpool-united-kingdom",
+      "name": "Blackpool, United Kingdom",
+      "latitude": 53.80866015617716,
+      "longitude": -3.05075368159855,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "E-LLAN",
+        "Havhingsten/CeltixConnect-2 (CC-2)",
+        "Lanis-1",
+        "Sirius South"
+      ]
+    },
+    {
+      "id": "sriracha-thailand",
+      "name": "Sriracha, Thailand",
+      "latitude": 13.174368777461584,
+      "longitude": 100.93056914143179,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia-America Gateway (AAG) Cable System",
+        "Asia Direct Cable (ADC)",
+        "CAT Submarine Network (CSN)",
+        "Thailand Domestic Submarine Cable Network (TDSCN)"
+      ]
+    },
+    {
+      "id": "vung-tau-vietnam",
+      "name": "Vung Tau, Vietnam",
+      "latitude": 10.341846070577743,
+      "longitude": 107.07919759818566,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Africa Europe-1 (AAE-1)",
+        "Asia-America Gateway (AAG) Cable System",
+        "Tata TGN-Intra Asia (TGN-IA)",
+        "Vietnam-Singapore Cable System (VTS)"
+      ]
+    },
+    {
+      "id": "tartous-syria",
+      "name": "Tartous, Syria",
+      "latitude": 34.891704567154335,
+      "longitude": 35.89780271125367,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Aletar",
+        "BERYTAR",
+        "Medusa Submarine Cable System",
+        "UGARIT"
+      ]
+    },
+    {
+      "id": "abu-dhabi-united-arab-emirates",
+      "name": "Abu Dhabi, United Arab Emirates",
+      "latitude": 24.44378591321795,
+      "longitude": 54.41888334074638,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Fibre in Gulf (FIG)",
+        "Qatar-U.A.E. Submarine Cable System",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "changi-singapore",
+      "name": "Changi, Singapore",
+      "latitude": 1.373499297382436,
+      "longitude": 104.00411406347581,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Asia Link Cable (ALC)",
+        "Asia United Gateway East (AUG East)",
+        "Nongsa-Changi",
+        "Vietnam-Singapore Cable System (VTS)"
+      ]
+    },
+    {
+      "id": "kapolei-hi-united-states",
+      "name": "Kapolei, HI, United States",
+      "latitude": 21.335390999999692,
+      "longitude": -158.056896,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Bulikula",
+        "Hawaiki",
+        "Tabua",
+        "Taihei"
+      ]
+    },
+    {
+      "id": "hachijo-japan",
+      "name": "Hachijo, Japan",
+      "latitude": 33.11229519278616,
+      "longitude": 139.79680232984748,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "APAC",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "5 Villages 6 Islands",
+        "Hachijojima-Mainland",
+        "Izu Islands Cable System",
+        "Ogasawara Cable Network"
+      ]
+    },
+    {
+      "id": "stavanger-norway",
+      "name": "Stavanger, Norway",
+      "latitude": 58.970833,
+      "longitude": 5.730793999999772,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Eviny Digital",
+        "N0r5ke Viking 2",
+        "NO-UK",
+        "Norfest"
+      ]
+    },
+    {
+      "id": "ras-ghareb-egypt",
+      "name": "Ras Ghareb, Egypt",
+      "latitude": 28.36590799999975,
+      "longitude": 33.082788999999806,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Africa-1",
+        "Red2Med",
+        "SeaMeWe-6"
+      ]
+    },
+    {
+      "id": "ketchikan-ak-united-states",
+      "name": "Ketchikan, AK, United States",
+      "latitude": 55.342096,
+      "longitude": -131.64781899999988,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "Americas",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "Alaska United Southeast (AU-SE)",
+        "Alaska United West (AU-West)",
+        "KetchCan1 Submarine Fiber Cable System",
+        "SEALink South"
+      ]
+    },
+    {
+      "id": "amanzimtoti-south-africa",
+      "name": "Amanzimtoti, South Africa",
+      "latitude": -30.057720000000288,
+      "longitude": 30.88039000000108,
+      "tier": 2,
+      "source": "CableLanding",
+      "zone": "EMEA",
+      "priority": "medium",
+      "cable_count": 4,
+      "cables": [
+        "2Africa",
+        "Project Waterworth",
+        "T3",
+        "Umoja"
+      ]
+    },
+    {
+      "id": "EQ-SV5",
+      "name": "Equinix SV5 Silicon Valley",
+      "city": "San Jose",
+      "latitude": 37.3874,
+      "longitude": -121.9636,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "Silicon Valley campus",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-NY5",
+      "name": "Equinix NY5 New York",
+      "city": "Secaucus",
+      "latitude": 40.7895,
+      "longitude": -74.0565,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "NYSE/NASDAQ proximity",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-CH1",
+      "name": "Equinix CH1 Chicago",
+      "city": "Chicago",
+      "latitude": 41.8781,
+      "longitude": -87.6298,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "CME/CBOT proximity",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-DA1",
+      "name": "Equinix DA1 Dallas",
+      "city": "Dallas",
+      "latitude": 32.9245,
+      "longitude": -96.8206,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-SE2",
+      "name": "Equinix SE2 Seattle",
+      "city": "Seattle",
+      "latitude": 47.4502,
+      "longitude": -122.2074,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-SP1",
+      "name": "Equinix SP1 Sao Paulo",
+      "city": "Sao Paulo",
+      "latitude": -23.5505,
+      "longitude": -46.6333,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "LATAM hub",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-TR1",
+      "name": "Equinix TR1 Toronto",
+      "city": "Toronto",
+      "latitude": 43.6532,
+      "longitude": -79.3832,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "Americas",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-FR5",
+      "name": "Equinix FR5 Frankfurt",
+      "city": "Frankfurt",
+      "latitude": 50.1109,
+      "longitude": 8.6821,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "DE-CIX peering",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-AM3",
+      "name": "Equinix AM3 Amsterdam",
+      "city": "Amsterdam",
+      "latitude": 52.3676,
+      "longitude": 4.9041,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "AMS-IX peering",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-PA3",
+      "name": "Equinix PA3 Paris",
+      "city": "Paris",
+      "latitude": 48.8566,
+      "longitude": 2.3522,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-ML2",
+      "name": "Equinix ML2 Milan",
+      "city": "Milan",
+      "latitude": 45.4642,
+      "longitude": 9.19,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-ZH1",
+      "name": "Equinix ZH1 Zurich",
+      "city": "Zurich",
+      "latitude": 47.3769,
+      "longitude": 8.5417,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-WA1",
+      "name": "Equinix WA1 Warsaw",
+      "city": "Warsaw",
+      "latitude": 52.2297,
+      "longitude": 21.0122,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-DX1",
+      "name": "Equinix DX1 Dubai",
+      "city": "Dubai",
+      "latitude": 25.2048,
+      "longitude": 55.2708,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "Middle East hub",
+      "zone": "EMEA",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-TY2",
+      "name": "Equinix TY2 Tokyo",
+      "city": "Tokyo",
+      "latitude": 35.6762,
+      "longitude": 139.6503,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-ME1",
+      "name": "Equinix ME1 Melbourne",
+      "city": "Melbourne",
+      "latitude": -37.8136,
+      "longitude": 144.9631,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-SL1",
+      "name": "Equinix SL1 Seoul",
+      "city": "Seoul",
+      "latitude": 37.5665,
+      "longitude": 126.978,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 0
+    },
+    {
+      "id": "EQ-OS1",
+      "name": "Equinix OS1 Osaka",
+      "city": "Osaka",
+      "latitude": 34.6937,
+      "longitude": 135.5023,
+      "tier": 1,
+      "source": "Equinix",
+      "notes": "",
+      "zone": "APAC",
+      "priority": "high",
+      "cable_count": 0
+    }
+  ]
+}

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { TriangleAlert as AlertTriangle, Bug } from 'lucide-react';
-import { RightPanel, LayerConfig } from './RightPanel';
+import { RightPanel, LayerConfig, type BeamTuning } from './RightPanel';
 import {
   Dialog,
   DialogContent,
@@ -31,6 +31,7 @@ import { OrbitalAnimationManager } from '@/services/orbitalAnimation';
 import { DiagnosticPanel } from '@/components/DiagnosticPanel';
 import { addOrbitalZonesToViewer, createOrbitPath } from '@/utils/orbitalZones';
 import { FsoBeamManager, createWalkerDeltaLinks } from '@/utils/fsoBeamRenderer';
+import { WebSocketService, type LinkStatePayload } from '@/services/websocketService';
 import * as Cesium from 'cesium';
 
 function useHourglassSeries() {
@@ -81,6 +82,24 @@ export default function SpaceWorldDemo() {
   const [diagnosticChecks, setDiagnosticChecks] = useState<any[]>([]);
   const [diagnosticsRunning, setDiagnosticsRunning] = useState(false);
   const [orbitPathsVisible, setOrbitPathsVisible] = useState(true);
+  const [pinnedCards, setPinnedCards] = useState<Array<{
+    id: string;
+    title: string;
+    subtitle?: string;
+    rows: Array<{ label: string; value: string }>;
+    type: 'satellite' | 'ground' | 'link';
+  }>>([]);
+  const [cardPositions, setCardPositions] = useState<Record<string, { x: number; y: number }>>({});
+  const wsServiceRef = useRef<WebSocketService | null>(null);
+  const pickHandlerRef = useRef<Cesium.ScreenSpaceEventHandler | null>(null);
+  const dragStateRef = useRef<{
+    id: string;
+    startX: number;
+    startY: number;
+    originX: number;
+    originY: number;
+  } | null>(null);
+  const doubleClickLockUntilRef = useRef<number>(0);
   const orbitPathsRef = useRef<Map<string, Cesium.Entity>>(new Map());
   const viewerRef = useRef<Cesium.Viewer | null>(null);
   const animationManagerRef = useRef<OrbitalAnimationManager | null>(null);
@@ -142,6 +161,97 @@ export default function SpaceWorldDemo() {
     isPlaying: true,
     speed: 1,
   });
+  const applyLayerVisibility = (viewer: Cesium.Viewer) => {
+    const layerVisibility = new Map(layers.map((layer) => [layer.id, layer.visible]));
+    viewer.entities.values.forEach((entity) => {
+      const layerId = entity.properties?.layerId?.getValue?.(Cesium.JulianDate.now());
+      if (layerId && layerVisibility.has(layerId)) {
+        entity.show = layerVisibility.get(layerId)!;
+      }
+    });
+  };
+
+  useEffect(() => {
+    if (pinnedCards.length === 0) return;
+    setCardPositions((prev) => {
+      const next = { ...prev };
+      const baseX = Math.max(16, window.innerWidth - 360);
+      const baseY = 16;
+      pinnedCards.forEach((card, index) => {
+        if (!next[card.id]) {
+          const col = index % 2;
+          const row = Math.floor(index / 2);
+          next[card.id] = {
+            x: baseX - col * 180,
+            y: baseY + row * 120,
+          };
+        }
+      });
+      return next;
+    });
+  }, [pinnedCards]);
+
+  useEffect(() => {
+    const handleMove = (event: MouseEvent) => {
+      const drag = dragStateRef.current;
+      if (!drag) return;
+      const deltaX = event.clientX - drag.startX;
+      const deltaY = event.clientY - drag.startY;
+      setCardPositions((prev) => ({
+        ...prev,
+        [drag.id]: {
+          x: drag.originX + deltaX,
+          y: drag.originY + deltaY,
+        },
+      }));
+    };
+
+    const handleUp = () => {
+      dragStateRef.current = null;
+    };
+
+    window.addEventListener('mousemove', handleMove);
+    window.addEventListener('mouseup', handleUp);
+    return () => {
+      window.removeEventListener('mousemove', handleMove);
+      window.removeEventListener('mouseup', handleUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    const wsUrl = import.meta.env.VITE_ORBITAL_WS_URL || 'ws://localhost:18400/stream';
+    const wsService = new WebSocketService(wsUrl);
+    wsServiceRef.current = wsService;
+
+    const handleMessage = (message: { type: string; data: any }) => {
+      if (message.type !== 'link_state') return;
+      const payload = message.data as LinkStatePayload;
+      if (!payload?.link_id || !payload?.source_id || !payload?.target_id) return;
+      fsoBeamManagerRef.current?.upsertLink({
+        id: payload.link_id,
+        type: payload.link_type,
+        sourceId: payload.source_id,
+        targetId: payload.target_id,
+        linkMargin: payload.margin_db ?? 0,
+        wavelength: 1550,
+        active: payload.active ?? true,
+      });
+    };
+
+    wsService.onMessage(handleMessage);
+    wsService.connect().catch((error) => {
+      console.warn('WebSocket connection failed:', error);
+    });
+
+    return () => {
+      wsService.offMessage(handleMessage);
+      wsService.disconnect();
+      wsServiceRef.current = null;
+    };
+  }, []);
+
+
+  const [, setBeamTuning] = useState<Record<string, BeamTuning>>({});
 
 
   const runDiagnostics = async () => {
@@ -267,7 +377,9 @@ export default function SpaceWorldDemo() {
       setInitializationStatus('ready');
       setCesiumError(null);
 
-      const animationManager = new OrbitalAnimationManager(viewer);
+      const animationManager = new OrbitalAnimationManager(viewer, (satId, lat, lon, altKm) => {
+        fsoBeamManagerRef.current?.setSatellitePosition(satId, lat, lon, altKm);
+      });
       animationManagerRef.current = animationManager;
 
     groundNodes.forEach((node, index) => {
@@ -293,6 +405,15 @@ export default function SpaceWorldDemo() {
         description: `<strong>${node.name}</strong><br/>${displayLabel}<br/>Tier ${node.tier}<br/>Demand: ${node.demand_gbps.toFixed(
           1
         )} Gbps<br/>Weather: ${(weatherScore * 100).toFixed(0)}%`,
+        properties: new Cesium.PropertyBag({
+          layerId: 'groundStations',
+          entityType: 'ground',
+          stationId: node.id,
+          name: node.name,
+          tier: node.tier,
+          weatherScore,
+          status: node.status,
+        }),
       });
 
       animationManager.addGroundStation(node.id, node.latitude, node.longitude);
@@ -309,8 +430,8 @@ export default function SpaceWorldDemo() {
       );
     });
 
-    addRadiationBeltsToViewer(viewer);
-    addOrbitalZonesToViewer(viewer);
+    addRadiationBeltsToViewer(viewer, 'radiationBelts');
+    addOrbitalZonesToViewer(viewer, 'orbitalZones');
 
     // Initialize FSO Beam Manager
     const fsoManager = new FsoBeamManager(viewer);
@@ -360,11 +481,91 @@ export default function SpaceWorldDemo() {
           sat.id,
           sat.altitude,
           sat.inclination,
-          '#00f0ff'
+          '#00f0ff',
+          'orbits'
         );
         orbitPathsRef.current.set(sat.id, orbitPath);
       });
     }
+
+    applyLayerVisibility(viewer);
+
+    const handler = new Cesium.ScreenSpaceEventHandler(viewer.canvas);
+    pickHandlerRef.current = handler;
+    handler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.PositionedEvent) => {
+      if (Date.now() < doubleClickLockUntilRef.current) return;
+      const picked = viewer.scene.pick(movement.position);
+      if (!Cesium.defined(picked) || !picked.id) return;
+      const entity = picked.id as Cesium.Entity;
+      const props = entity.properties;
+      const entityType = props?.entityType?.getValue?.(Cesium.JulianDate.now());
+      if (!entityType) return;
+
+      const now = Cesium.JulianDate.now();
+      const getProp = (key: string) => props?.[key]?.getValue?.(now);
+
+      let card:
+        | {
+            id: string;
+            title: string;
+            subtitle?: string;
+            rows: Array<{ label: string; value: string }>;
+            type: 'satellite' | 'ground' | 'link';
+          }
+        | undefined;
+
+      if (entityType === 'satellite') {
+        const satId = getProp('satId') ?? entity.id ?? 'sat';
+        card = {
+          id: `sat-${satId}`,
+          title: getProp('name') ?? String(satId),
+          subtitle: 'Satellite',
+          type: 'satellite',
+          rows: [
+            { label: 'ID', value: String(satId) },
+            { label: 'Status', value: 'active' },
+            { label: 'Layer', value: 'satellites' },
+            { label: 'Mode', value: 'tracking' },
+          ],
+        };
+      } else if (entityType === 'link') {
+        const linkId = getProp('linkId') ?? entity.id ?? 'link';
+        card = {
+          id: `link-${linkId}`,
+          title: String(linkId),
+          subtitle: 'Link',
+          type: 'link',
+          rows: [
+            { label: 'Type', value: String(getProp('linkType') ?? 'link') },
+            { label: 'Source', value: String(getProp('sourceId') ?? '') },
+            { label: 'Target', value: String(getProp('targetId') ?? '') },
+            { label: 'Margin', value: `${Number(getProp('marginDb') ?? 0).toFixed(1)} dB` },
+          ],
+        };
+      } else if (entityType === 'ground') {
+        const stationId = getProp('stationId') ?? entity.id ?? 'station';
+        card = {
+          id: `gs-${stationId}`,
+          title: String(getProp('name') ?? stationId),
+          subtitle: 'Ground Station',
+          type: 'ground',
+          rows: [
+            { label: 'ID', value: String(stationId) },
+            { label: 'Tier', value: String(getProp('tier') ?? '1') },
+            { label: 'Weather', value: `${Math.round(Number(getProp('weatherScore') ?? 1) * 100)}%` },
+            { label: 'Status', value: String(getProp('status') ?? 'active') },
+          ],
+        };
+      }
+
+      if (!card) return;
+
+      setPinnedCards((prev) => {
+        const without = prev.filter((item) => item.id !== card.id);
+        return [card, ...without].slice(0, 4);
+      });
+      doubleClickLockUntilRef.current = Date.now() + 350;
+    }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
     animationManager.startAnimation();
 
@@ -373,6 +574,10 @@ export default function SpaceWorldDemo() {
     }
 
       return () => {
+        if (pickHandlerRef.current) {
+          pickHandlerRef.current.destroy();
+          pickHandlerRef.current = null;
+        }
         orbitPathsRef.current.forEach((path) => {
           if (viewer && !viewer.isDestroyed()) {
             viewer.entities.remove(path);
@@ -404,6 +609,16 @@ export default function SpaceWorldDemo() {
     setLayers((prev) =>
       prev.map((layer) => (layer.id === layerId ? { ...layer, visible } : layer))
     );
+
+    const viewer = viewerRef.current;
+    if (viewer) {
+      viewer.entities.values.forEach((entity) => {
+        const layerValue = entity.properties?.layerId?.getValue?.(Cesium.JulianDate.now());
+        if (layerValue === layerId) {
+          entity.show = visible;
+        }
+      });
+    }
 
     if (layerId === 'orbits') {
       setOrbitPathsVisible(visible);
@@ -566,6 +781,67 @@ export default function SpaceWorldDemo() {
       <div className="w-full h-full bg-background text-foreground">
         <div className="w-full h-full relative overflow-hidden">
           <div ref={globeRef} className="absolute inset-0" />
+
+          {pinnedCards.length > 0 && (
+            <div className="absolute inset-0 z-20 pointer-events-none">
+              {pinnedCards.map((card) => {
+                const position = cardPositions[card.id];
+                if (!position) return null;
+                return (
+                  <div
+                    key={card.id}
+                    className="bg-slate-900/95 border border-slate-700 rounded-sm px-2 py-2 text-[10px] text-slate-200 shadow-lg pointer-events-auto select-none"
+                    style={{ position: 'absolute', left: position.x, top: position.y, width: 170 }}
+                    onMouseDown={(event) => {
+                      dragStateRef.current = {
+                        id: card.id,
+                        startX: event.clientX,
+                        startY: event.clientY,
+                        originX: position.x,
+                        originY: position.y,
+                      };
+                    }}
+                  >
+                    <div className="flex items-center justify-between mb-1">
+                      <span className="font-semibold tracking-wide">
+                        {card.type === 'satellite' ? 'SAT' : card.type === 'ground' ? 'GND' : 'LNK'} · {card.title}
+                      </span>
+                      <div className="flex items-center gap-2">
+                        {card.subtitle && (
+                          <span className="text-[9px] text-slate-400">{card.subtitle}</span>
+                        )}
+                        <button
+                          className="text-[10px] text-slate-400 hover:text-slate-100"
+                          onMouseDown={(event) => {
+                            event.stopPropagation();
+                          }}
+                          onClick={(event) => {
+                            event.stopPropagation();
+                            setPinnedCards((prev) => prev.filter((item) => item.id !== card.id));
+                            setCardPositions((prev) => {
+                              const next = { ...prev };
+                              delete next[card.id];
+                              return next;
+                            });
+                          }}
+                        >
+                          ×
+                        </button>
+                      </div>
+                    </div>
+                    <div className="grid grid-cols-2 gap-x-2 gap-y-1 font-mono">
+                      {card.rows.map((row) => (
+                        <div key={`${card.id}-${row.label}`} className="flex justify-between gap-1">
+                          <span className="text-slate-400">{row.label}</span>
+                          <span className="text-slate-100">{row.value}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          )}
 
           {showLoadingOverlay && (
             <div className="absolute inset-0 bg-slate-950/90 flex items-center justify-center z-10">
@@ -788,6 +1064,14 @@ export default function SpaceWorldDemo() {
           layers={layers}
           onLayerToggle={handleLayerToggle}
           onLayerOpacityChange={handleLayerOpacityChange}
+          satellites={satellites.map((sat) => ({
+            id: sat.id,
+            name: sat.name,
+            status: sat.status,
+          }))}
+          onBeamTuningChange={(satelliteId, tuning) => {
+            setBeamTuning((prev) => ({ ...prev, [satelliteId]: tuning }));
+          }}
           timeControl={timeControl}
           onPlayPause={handlePlayPause}
           onSpeedChange={handleSpeedChange}

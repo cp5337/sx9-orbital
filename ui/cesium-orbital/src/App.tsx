@@ -5,7 +5,6 @@ import { BeamDashboard } from './components/BeamDashboard';
 import { CollapsibleNav } from './components/CollapsibleNav';
 import { ConstellationGraphView } from './components/ConstellationGraphView';
 import { DataTableView, type FsoLink } from './components/DataTableView';
-import { SatelliteControlPanel, type SatelliteControlState } from './components/SatelliteControlPanel';
 import { useBeamSelectionStore } from './store/beamSelectionStore';
 import { useSatellites, useGroundNodes } from './hooks/useSupabaseData';
 import { useMockSatellites, useMockGroundNodes } from './hooks/useMockData';
@@ -16,14 +15,10 @@ import './App.css';
 function App() {
   const { currentView, setCurrentView, selectBeamAndNavigate } = useBeamSelectionStore();
   const [diagnosticsOpen, setDiagnosticsOpen] = useState(false);
-  const [satelliteControlOpen, setSatelliteControlOpen] = useState(false);
+  const [navCollapsed, setNavCollapsed] = useState(false);
   const diagnosticChecks: any[] = [];
 
   // Satellite control state handler
-  const handleSatelliteControlChange = (satelliteId: string, controls: Partial<SatelliteControlState>) => {
-    console.log(`Satellite ${satelliteId} control change:`, controls);
-    // TODO: Apply control changes to visualization
-  };
 
   // Fetch data from Supabase (falls back to empty if not available)
   const { satellites: supabaseSats } = useSatellites();
@@ -94,10 +89,10 @@ function App() {
         currentView={currentView}
         onViewChange={setCurrentView}
         onDiagnosticsOpen={() => setDiagnosticsOpen(true)}
-        onSatelliteControlOpen={() => setSatelliteControlOpen(true)}
+        onCollapseChange={setNavCollapsed}
       />
 
-      <main className="ml-36 transition-all duration-300">
+      <main className={`${navCollapsed ? 'ml-12' : 'ml-48'} transition-all duration-300`}>
         {currentView === '3d' && (
           <div className="h-screen">
             <SpaceWorldDemo />
@@ -188,17 +183,6 @@ function App() {
         </DialogContent>
       </Dialog>
 
-      {/* Satellite Control Panel - Right Drawer */}
-      <SatelliteControlPanel
-        isOpen={satelliteControlOpen}
-        onClose={() => setSatelliteControlOpen(false)}
-        satellites={satellites.map(s => ({
-          id: s.id,
-          name: s.name,
-          status: s.status
-        }))}
-        onSatelliteControlChange={handleSatelliteControlChange}
-      />
     </div>
   );
 }

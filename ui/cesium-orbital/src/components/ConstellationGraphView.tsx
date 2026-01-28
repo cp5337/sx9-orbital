@@ -63,10 +63,10 @@ interface ConstellationGraphViewProps {
 // Ground station tier to color mapping
 function getTierColor(tier: number): string {
   switch (tier) {
-    case 1: return '#00f0ff';  // Cyan - Tier 1 (Primary)
-    case 2: return '#00ff9f';  // Green - Tier 2
-    case 3: return '#ffd700';  // Gold - Tier 3
-    default: return '#666666'; // Gray
+    case 1: return '#ffff00';  // ANSI Yellow
+    case 2: return '#0000ff';  // ANSI Blue
+    case 3: return '#ff0000';  // ANSI Red
+    default: return '#808080'; // ANSI Gray
   }
 }
 
@@ -81,6 +81,7 @@ export function ConstellationGraphView({
   const cyRef = useRef<Core | null>(null);
   const [currentLayout, setCurrentLayout] = useState<LayoutType>(initialLayout);
   const [isLayoutPanelOpen, setIsLayoutPanelOpen] = useState(false);
+  const [isolatedNodeId, setIsolatedNodeId] = useState<string | null>(null);
 
   // Determine if we should use high fidelity rendering
   const totalElements = satellites.length + groundStations.length + fsoLinks.length;
@@ -174,12 +175,36 @@ export function ConstellationGraphView({
   }, []);
 
   // Handle node click
+  const clearIsolation = useCallback(() => {
+    if (!cyRef.current) return;
+    const cy = cyRef.current;
+    cy.elements().removeClass('faded');
+    setIsolatedNodeId(null);
+  }, []);
+
+  const isolateNode = useCallback((nodeId: string) => {
+    if (!cyRef.current) return;
+    const cy = cyRef.current;
+    cy.elements().addClass('faded');
+    const node = cy.$id(nodeId);
+    node.removeClass('faded');
+    node.connectedEdges().removeClass('faded');
+    node.connectedEdges().connectedNodes().removeClass('faded');
+    setIsolatedNodeId(nodeId);
+  }, []);
+
   const handleNodeClick = useCallback((evt: any) => {
     const node = evt.target;
     const nodeId = node.id();
     const nodeType = node.data('nodeType') === 'Satellite' ? 'satellite' : 'ground-station';
     onNodeSelect?.(nodeId, nodeType);
-  }, [onNodeSelect]);
+
+    if (isolatedNodeId === nodeId) {
+      clearIsolation();
+    } else {
+      isolateNode(nodeId);
+    }
+  }, [onNodeSelect, isolatedNodeId, clearIsolation, isolateNode]);
 
   // Handle edge click
   const handleEdgeClick = useCallback((evt: any) => {
@@ -230,18 +255,18 @@ export function ConstellationGraphView({
   ];
 
   return (
-    <div className="relative w-full h-full bg-black rounded-lg overflow-hidden border border-slate-800">
-      {/* HUD Header */}
-      <div className="absolute top-0 left-0 right-0 z-10 p-3 bg-gradient-to-b from-black/90 to-transparent">
+    <div className="relative w-full h-full bg-slate-900/80 rounded-lg overflow-hidden border border-slate-800">
+      {/* Header */}
+      <div className="absolute top-0 left-0 right-0 z-10 p-3 bg-slate-900/80 backdrop-blur border-b border-slate-800">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-              <h3 className="text-xs font-mono font-bold text-slate-200 uppercase tracking-wider">
+              <div className="w-2 h-2 rounded-full bg-emerald-500" />
+              <h3 className="text-xs font-semibold text-slate-100 tracking-wide">
                 Constellation Topology
               </h3>
             </div>
-            <span className="text-[10px] font-mono text-slate-500">
+            <span className="text-[10px] text-slate-400">
               [{currentLayout.toUpperCase()}]
             </span>
           </div>
@@ -249,9 +274,9 @@ export function ConstellationGraphView({
           {/* Layout Toggle Button */}
           <button
             onClick={() => setIsLayoutPanelOpen(!isLayoutPanelOpen)}
-            className="px-3 py-1.5 text-[10px] font-mono font-semibold uppercase tracking-wider
-                       text-cyan-400 border border-cyan-400/50 rounded
-                       hover:bg-cyan-400/10 hover:border-cyan-400
+            className="px-3 py-1.5 text-[10px] font-semibold tracking-wide
+                       text-slate-200 border border-slate-600 rounded
+                       hover:bg-slate-800 hover:border-slate-500
                        transition-all duration-200"
           >
             Layout
@@ -259,30 +284,30 @@ export function ConstellationGraphView({
         </div>
 
         {/* Legend */}
-        <div className="flex items-center gap-6 mt-2 text-[10px] font-mono">
+        <div className="flex items-center gap-6 mt-2 text-[10px] text-slate-400">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rotate-45 border-2 border-purple-500 bg-black/80" />
-            <span className="text-purple-400">SAT</span>
+            <div className="w-3 h-3 rotate-45 border-2 border-slate-400 bg-slate-900/80" />
+            <span className="text-slate-300">SAT</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 bg-black/80 border-2 border-cyan-400" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }} />
-            <span className="text-cyan-400">GND</span>
+            <div className="w-3 h-3 bg-slate-900/80 border-2 border-sky-300" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }} />
+            <span className="text-slate-300">GND</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-0.5 bg-green-400" />
-            <span className="text-green-400">ISL</span>
+            <div className="w-5 h-0.5 bg-blue-400" />
+            <span className="text-slate-300">ISL</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-0.5 border-t-2 border-dashed border-cyan-400" />
-            <span className="text-cyan-400">DL</span>
+            <div className="w-5 h-0.5 border-t-2 border-dashed border-sky-300" />
+            <span className="text-slate-300">DL</span>
           </div>
         </div>
       </div>
 
       {/* Layout Options Panel */}
       {isLayoutPanelOpen && (
-        <div className="absolute top-20 right-3 z-20 p-3 bg-black/95 border border-slate-700 rounded-lg shadow-xl">
-          <div className="text-[10px] font-mono font-bold text-slate-400 uppercase tracking-wider mb-2">
+        <div className="absolute top-20 right-3 z-20 p-3 bg-slate-900/95 border border-slate-700 rounded-lg shadow-xl backdrop-blur">
+          <div className="text-[10px] font-semibold text-slate-300 tracking-wide mb-2">
             Select Layout
           </div>
           <div className="grid grid-cols-2 gap-2">
@@ -290,11 +315,11 @@ export function ConstellationGraphView({
               <button
                 key={option.key}
                 onClick={() => handleLayoutChange(option.key)}
-                className={`px-3 py-2 text-[10px] font-mono uppercase tracking-wider rounded
+                className={`px-3 py-2 text-[10px] rounded
                            border transition-all duration-200 flex items-center gap-2
                            ${currentLayout === option.key
-                             ? 'border-cyan-400 text-cyan-400 bg-cyan-400/10'
-                             : 'border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-300'
+                             ? 'border-slate-400 text-slate-100 bg-slate-800'
+                             : 'border-slate-700 text-slate-400 hover:border-slate-600 hover:text-slate-200'
                            }`}
               >
                 <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -318,6 +343,11 @@ export function ConstellationGraphView({
             cyRef.current = cy;
             cy.on('tap', 'node', handleNodeClick);
             cy.on('tap', 'edge', handleEdgeClick);
+          cy.on('tap', (evt) => {
+            if (evt.target === cy) {
+              clearIsolation();
+            }
+          });
 
             // Add hover effects
             cy.on('mouseover', 'node', (evt) => {
@@ -331,21 +361,21 @@ export function ConstellationGraphView({
         />
       </div>
 
-      {/* Stats Footer - HUD Style */}
-      <div className="absolute bottom-0 left-0 right-0 z-10 px-4 py-2 bg-gradient-to-t from-black/95 to-transparent">
-        <div className="flex items-center justify-between text-[10px] font-mono">
+      {/* Stats Footer */}
+      <div className="absolute bottom-0 left-0 right-0 z-10 px-4 py-2 bg-slate-900/80 border-t border-slate-800 backdrop-blur">
+        <div className="flex items-center justify-between text-[10px] text-slate-400">
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-2">
               <span className="text-slate-500">SAT:</span>
-              <span className="text-purple-400 font-bold">{satellites.length}</span>
+              <span className="text-slate-200 font-semibold">{satellites.length}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-slate-500">GND:</span>
-              <span className="text-cyan-400 font-bold">{groundStations.length}</span>
+              <span className="text-slate-200 font-semibold">{groundStations.length}</span>
             </div>
             <div className="flex items-center gap-2">
               <span className="text-slate-500">LINKS:</span>
-              <span className="text-green-400 font-bold">{fsoLinks.filter(l => l.active).length}</span>
+              <span className="text-slate-200 font-semibold">{fsoLinks.filter(l => l.active).length}</span>
             </div>
           </div>
 
@@ -366,12 +396,6 @@ export function ConstellationGraphView({
           </div>
         </div>
       </div>
-
-      {/* Corner Brackets - Tactical HUD Effect */}
-      <div className="absolute top-2 left-2 w-6 h-6 border-l-2 border-t-2 border-cyan-400/50 pointer-events-none" />
-      <div className="absolute top-2 right-2 w-6 h-6 border-r-2 border-t-2 border-cyan-400/50 pointer-events-none" />
-      <div className="absolute bottom-2 left-2 w-6 h-6 border-l-2 border-b-2 border-cyan-400/50 pointer-events-none" />
-      <div className="absolute bottom-2 right-2 w-6 h-6 border-r-2 border-b-2 border-cyan-400/50 pointer-events-none" />
     </div>
   );
 }

@@ -376,9 +376,9 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-y-0 right-0 w-96 bg-gray-900/95 backdrop-blur-sm border-l border-gray-700 z-50 overflow-y-auto">
+    <div className="fixed inset-y-0 right-0 w-48 bg-gray-900 border-l border-gray-800 z-50 overflow-y-auto">
       {/* Header */}
-      <div className="flex items-center justify-between p-4 border-b border-gray-700">
+      <div className="flex items-center justify-between p-4 border-b border-gray-800">
         <div className="flex items-center space-x-2">
           <Satellite className="w-5 h-5 text-blue-400" />
           <h2 className="text-lg font-semibold text-white">Satellite Control</h2>
@@ -392,7 +392,7 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
       </div>
 
       {/* Overall Diagnostics */}
-      <div className="p-4 border-b border-gray-700">
+      <div className="p-4 border-b border-gray-800">
         <h3 className="text-sm font-medium text-gray-300 mb-3">Network Status</h3>
         <div className="grid grid-cols-4 gap-3 mb-3">
           <div className="text-center">
@@ -485,7 +485,7 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
       </div>
 
       {/* Group Controls */}
-      <div className="p-4 border-b border-gray-700">
+      <div className="p-4 border-b border-gray-800">
         <h3 className="text-sm font-medium text-gray-300 mb-3">Satellite Selection & Operations</h3>
         <div className="space-y-3">
           <select
@@ -560,7 +560,7 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
               <div
                 key={satellite.id}
                 id={`satellite-${satellite.id}`}
-                className="bg-gray-800/50 rounded-lg border border-gray-700"
+                className="bg-gray-800/50 rounded-lg border border-gray-800"
               >
                 {/* Satellite Header - Always Visible */}
                 <div
@@ -605,7 +605,7 @@ export const SatelliteControlPanel: React.FC<SatelliteControlPanelProps> = ({
 
                 {/* Satellite Controls - Collapsible */}
                 {isExpanded && (
-                  <div className="px-3 pb-3 border-t border-gray-700/50">
+                  <div className="px-3 pb-3 border-t border-gray-800/50">
                     <div className="pt-3 space-y-3">
                       {/* Power Toggle */}
                       <div className="flex items-center justify-between">

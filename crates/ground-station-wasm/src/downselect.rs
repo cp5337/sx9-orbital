@@ -27,11 +27,11 @@ pub struct ScoringWeights {
 impl Default for ScoringWeights {
     fn default() -> Self {
         Self {
-            atmospheric: 0.25,
-            infrastructure: 0.25,
-            geographic: 0.20,
-            operational: 0.15,
-            strategic: 0.15,
+            atmospheric: 0.250000000,
+            infrastructure: 0.250000000,
+            geographic: 0.200000000,
+            operational: 0.150000000,
+            strategic: 0.150000000,
         }
     }
 }

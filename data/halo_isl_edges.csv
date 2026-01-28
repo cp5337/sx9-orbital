@@ -1,0 +1,28 @@
+# HALO Constellation ISL Edge List
+# Generated: 2026-01-27T22:41:39.761195
+# Format: source,target,type,latency_ms,capacity_gbps,failure_prob
+
+HALO-1-1,HALO-1-2,intra_plane,35.0,100.0,0.0001
+HALO-1-1,HALO-2-1,inter_plane,45.0,80.0,0.0005
+HALO-1-2,HALO-1-3,intra_plane,35.0,100.0,0.0001
+HALO-1-2,HALO-2-2,inter_plane,45.0,80.0,0.0005
+HALO-1-3,HALO-1-4,intra_plane,35.0,100.0,0.0001
+HALO-1-3,HALO-2-3,inter_plane,45.0,80.0,0.0005
+HALO-1-4,HALO-1-1,intra_plane,35.0,100.0,0.0001
+HALO-1-4,HALO-2-4,inter_plane,45.0,80.0,0.0005
+HALO-2-1,HALO-2-2,intra_plane,35.0,100.0,0.0001
+HALO-2-1,HALO-3-1,inter_plane,45.0,80.0,0.0005
+HALO-2-2,HALO-2-3,intra_plane,35.0,100.0,0.0001
+HALO-2-2,HALO-3-2,inter_plane,45.0,80.0,0.0005
+HALO-2-3,HALO-2-4,intra_plane,35.0,100.0,0.0001
+HALO-2-3,HALO-3-3,inter_plane,45.0,80.0,0.0005
+HALO-2-4,HALO-2-1,intra_plane,35.0,100.0,0.0001
+HALO-2-4,HALO-3-4,inter_plane,45.0,80.0,0.0005
+HALO-3-1,HALO-3-2,intra_plane,35.0,100.0,0.0001
+HALO-3-1,HALO-1-1,inter_plane,45.0,80.0,0.0005
+HALO-3-2,HALO-3-3,intra_plane,35.0,100.0,0.0001
+HALO-3-2,HALO-1-2,inter_plane,45.0,80.0,0.0005
+HALO-3-3,HALO-3-4,intra_plane,35.0,100.0,0.0001
+HALO-3-3,HALO-1-3,inter_plane,45.0,80.0,0.0005
+HALO-3-4,HALO-3-1,intra_plane,35.0,100.0,0.0001
+HALO-3-4,HALO-1-4,inter_plane,45.0,80.0,0.0005

@@ -1,25 +1,74 @@
 import { useState } from 'react';
-import {
-  Globe, Map, Layout, Bug, Settings, Satellite, Radio, Zap, Eye,
-  ChevronRight, BarChart3, Cpu, Network, Table2
-} from 'lucide-react';
 import type { ViewType } from '@/store/beamSelectionStore';
+import {
+  Activity,
+  AlertTriangle,
+  Bug,
+  ChevronLeft,
+  ChevronRight,
+  Database,
+  Globe,
+  Radio,
+  Satellite,
+  Settings,
+  Zap,
+} from 'lucide-react';
 
 interface CollapsibleNavProps {
   currentView: ViewType;
   onViewChange: (view: ViewType) => void;
   onDiagnosticsOpen?: () => void;
   onSatelliteControlOpen?: () => void;
+  onCollapseChange?: (isCollapsed: boolean) => void;
 }
 
-export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, onSatelliteControlOpen }: CollapsibleNavProps) {
+export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, onSatelliteControlOpen, onCollapseChange }: CollapsibleNavProps) {
   const [isCollapsed, setIsCollapsed] = useState(false);
+
+  const handleCollapse = () => {
+    const newState = !isCollapsed;
+    setIsCollapsed(newState);
+    onCollapseChange?.(newState);
+  };
 
   const viewIds: ViewType[] = ['3d', 'map', 'dashboard', 'graph', 'data'];
 
-  const renderMenuItem = (item: { id: string; icon: any; label: string; action?: () => void }) => {
-    const Icon = item.icon;
+  const iconMap: Record<string, React.ElementType> = {
+    dashboard: Activity,
+    '3d': Globe,
+    map: Radio,
+    graph: Activity,
+    data: Database,
+    satellites: Satellite,
+    'ground-stations': Radio,
+    'fso-links': Zap,
+    coverage: Activity,
+    wasm: Bug,
+    telemetry: Activity,
+    diagnostics: AlertTriangle,
+    settings: Settings,
+  };
+
+  const shortLabelMap: Record<string, string> = {
+    dashboard: 'DASH',
+    '3d': '3D',
+    map: 'MAP',
+    graph: 'NET',
+    data: 'DATA',
+    satellites: 'SAT',
+    'ground-stations': 'GND',
+    'fso-links': 'FSO',
+    coverage: 'COV',
+    wasm: 'WASM',
+    telemetry: 'TEL',
+    diagnostics: 'DIAG',
+    settings: 'SET',
+  };
+
+  const renderMenuItem = (item: { id: string; label: string; action?: () => void }) => {
     const isActive = currentView === item.id;
+    const Icon = iconMap[item.id] || Activity;
+    const shortLabel = shortLabelMap[item.id] || item.label;
     const handleClick = () => {
       if (item.action) {
         item.action();
@@ -29,88 +78,101 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     };
 
     return (
-      <button
+      <div
         key={item.id}
         onClick={handleClick}
-        className={`flex items-center w-full px-3 py-1.5 text-xs ${
-          isActive ? 'bg-gray-700 text-white' : 'hover:bg-gray-700'
-        }`}
-        title={isCollapsed ? item.label : undefined}
+        className={`px-3 py-2 text-xs cursor-pointer flex gap-1 ${
+          isActive ? 'text-white' : 'text-gray-400 hover:text-gray-200'
+        } ${isCollapsed ? 'flex-col items-center' : 'items-center gap-2'}`}
       >
-        <span className="w-4"><Icon size={14} /></span>
-        {!isCollapsed && <span className="ml-2">{item.label}</span>}
-      </button>
+        <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-white' : 'text-gray-400'}`} />
+        {!isCollapsed && <span>{item.label}</span>}
+        {isCollapsed && (
+          <span className={`text-[9px] mt-0.5 ${isActive ? 'text-white' : 'text-gray-500'}`}>
+            {shortLabel}
+          </span>
+        )}
+      </div>
     );
   };
 
-  const renderSeparator = () => (
-    <div className="border-t border-gray-600 my-2 mx-3"></div>
+  const renderSectionHeader = (title: string) => (
+    <div className="px-4 pt-3 pb-1 text-[10px] text-gray-500 uppercase tracking-wider">
+      {!isCollapsed && title}
+    </div>
   );
 
   // Views Section
   const viewsSection = [
-    { id: 'dashboard', icon: Layout, label: 'Dashboard' },
-    { id: '3d', icon: Globe, label: '3D Globe' },
-    { id: 'map', icon: Map, label: 'Flat Map' },
-    { id: 'graph', icon: Network, label: 'Network Graph' },
-    { id: 'data', icon: Table2, label: 'Data Tables' },
+    { id: 'dashboard', label: 'Dashboard' },
+    { id: '3d', label: '3D Globe' },
+    { id: 'map', label: 'Flat Map' },
+    { id: 'graph', label: 'Network Graph' },
+    { id: 'data', label: 'Data Tables' },
   ];
 
-  // Constellation Section (quick filters - these navigate to data view with filter)
+  // Constellation Section
   const constellationSection = [
-    { id: 'satellites', icon: Satellite, label: 'Satellites', action: onSatelliteControlOpen },
-    { id: 'ground-stations', icon: Radio, label: 'Ground Stations', action: () => onViewChange('data') },
-    { id: 'fso-links', icon: Zap, label: 'FSO Links', action: () => onViewChange('data') },
-    { id: 'coverage', icon: Eye, label: 'Coverage' },
+    { id: 'satellites', label: 'Satellites', action: onSatelliteControlOpen ?? (() => onViewChange('3d')) },
+    { id: 'ground-stations', label: 'Ground Stations', action: () => onViewChange('data') },
+    { id: 'fso-links', label: 'FSO Links', action: () => onViewChange('data') },
+    { id: 'coverage', label: 'Coverage' },
   ];
 
   // System Section
   const systemSection = [
-    { id: 'wasm', icon: Cpu, label: 'WASM Test' },
-    { id: 'telemetry', icon: BarChart3, label: 'Telemetry' },
-    { id: 'diagnostics', icon: Bug, label: 'Diagnostics', action: onDiagnosticsOpen },
-    { id: 'settings', icon: Settings, label: 'Settings' },
+    { id: 'wasm', label: 'WASM Test' },
+    { id: 'telemetry', label: 'Telemetry' },
+    { id: 'diagnostics', label: 'Diagnostics', action: onDiagnosticsOpen },
+    { id: 'settings', label: 'Settings' },
   ];
 
   return (
-    <div className={`${isCollapsed ? 'w-12' : 'w-36'} h-full bg-gray-800 text-gray-300 fixed left-0 top-0 overflow-y-auto transition-all duration-300 border-r border-gray-700`}>
-      {/* Collapse Toggle */}
-      <div className="absolute top-2 left-2 z-50">
+    <div className={`${isCollapsed ? 'w-12' : 'w-48'} h-full bg-gray-900 text-gray-300 fixed left-0 top-0 transition-all duration-300 border-r border-gray-800 flex flex-col`}>
+      {/* Header */}
+      <div className="px-4 pt-3 pb-2">
+        {!isCollapsed && (
+          <div>
+            <span className="text-sm font-medium text-white">Orbital</span>
+            <span className="text-[10px] text-gray-500 ml-1">v1.0</span>
+          </div>
+        )}
         <button
-          onClick={() => setIsCollapsed(!isCollapsed)}
-          className="text-gray-400 hover:text-white p-1 rounded hover:bg-gray-700"
+          onClick={handleCollapse}
+          className={`mt-2 p-1 rounded hover:bg-gray-800 ${isCollapsed ? 'mx-auto' : ''}`}
           title={isCollapsed ? 'Expand' : 'Collapse'}
         >
-          <ChevronRight
-            size={14}
-            className={`transition-transform duration-300 ${isCollapsed ? '' : 'rotate-180'}`}
-          />
+          {isCollapsed ? (
+            <ChevronRight className="w-4 h-4 text-gray-400" />
+          ) : (
+            <ChevronLeft className="w-4 h-4 text-gray-400" />
+          )}
         </button>
       </div>
 
-      <div className="p-4 pt-10">
-        {!isCollapsed && (
-          <div>
-            <h2 className="text-base font-bold">Orbital</h2>
-            <p className="text-xs text-gray-400">v1.0.0</p>
-          </div>
-        )}
-      </div>
-
-      <nav className="mt-2">
-        {/* Views */}
+      <nav className="flex-1">
+        {renderSectionHeader('Views')}
         {viewsSection.map(renderMenuItem)}
 
-        {renderSeparator()}
-
-        {/* Constellation */}
+        {renderSectionHeader('Constellation')}
         {constellationSection.map(renderMenuItem)}
 
-        {renderSeparator()}
-
-        {/* System */}
+        {renderSectionHeader('System')}
         {systemSection.map(renderMenuItem)}
       </nav>
+
+      <div className="border-t border-gray-800 p-2">
+        <button
+          onClick={onDiagnosticsOpen}
+          className={`w-full flex items-center gap-2 text-xs text-gray-400 hover:text-gray-200 ${
+            isCollapsed ? 'flex-col justify-center' : ''
+          }`}
+          title="Settings"
+        >
+          <Settings className="w-4 h-4" />
+          <span className={isCollapsed ? 'text-[9px]' : ''}>Settings</span>
+        </button>
+      </div>
     </div>
   );
 }

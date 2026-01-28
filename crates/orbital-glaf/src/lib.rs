@@ -18,6 +18,13 @@ use thiserror::Error;
 pub mod routing;
 pub mod export;
 
+#[cfg(feature = "neo4j")]
+pub mod neo4j_client;
+
+// Re-export neo4j module when feature is enabled
+#[cfg(feature = "neo4j")]
+pub use neo4j_client::{Neo4jClient, Neo4jConfig, Neo4jPath, Neo4jStats, DegradedLink};
+
 /// GLAF errors
 #[derive(Error, Debug)]
 pub enum GlafError {
@@ -29,6 +36,8 @@ pub enum GlafError {
     NoPath(String, String),
     #[error("Serialization error: {0}")]
     SerializationError(#[from] serde_json::Error),
+    #[error("Neo4j error: {0}")]
+    Neo4jError(String),
 }
 
 pub type Result<T> = std::result::Result<T, GlafError>;

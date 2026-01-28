@@ -42,10 +42,10 @@ pub struct RouteThresholds {
 impl Default for RouteThresholds {
     fn default() -> Self {
         Self {
-            buy_threshold: 0.80,
-            spread_threshold: 0.50,
+            buy_threshold: 0.800000000,
+            spread_threshold: 0.500000000,
             max_hops: 6,
-            min_margin_db: 3.0,
+            min_margin_db: 3.000000000,
         }
     }
 }
@@ -161,11 +161,11 @@ impl RouteOptimizer {
         let hop_count = link_count;
 
         // Calculate composite score (0-1)
-        // Weight factors for different metrics
-        let margin_weight = 0.35;
-        let latency_weight = 0.25;
-        let hops_weight = 0.20;
-        let weather_weight = 0.20;
+        // Weight factors for different metrics (9 decimal precision)
+        let margin_weight = 0.350000000;
+        let latency_weight = 0.250000000;
+        let hops_weight = 0.200000000;
+        let weather_weight = 0.200000000;
 
         // Normalize components
         let margin_score = (min_margin / 10.0).min(1.0).max(0.0);

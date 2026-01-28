@@ -1,0 +1,5945 @@
+{
+  "features": [
+    {
+      "geometry": {
+        "coordinates": [
+          -95.1448510674921,
+          37.5671196977545
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d74ea0f0-bd64-43ed-845d-a00459f356c6",
+        "name": "NorthAmerica-T1-005",
+        "network_score": 0.5720535775846535,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.721375857974471,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.904606158876707,
+        "xai_score": 0.7673978819224977,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -102.632944694285,
+          40.8984830868869
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "10a6dea7-3015-4e61-956d-331fa1f5a3cf",
+        "name": "NorthAmerica-T1-001",
+        "network_score": 0.6164207754658689,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6823835493624131,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.932532060518121,
+        "xai_score": 0.5293083136905403,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -100.058541285835,
+          43.2749826689716
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8896adc7-f3e3-401d-9dc1-3d2bb444d16f",
+        "name": "NorthAmerica-T1-001",
+        "network_score": 0.5747837064585085,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6750338745054955,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.902356729523932,
+        "xai_score": 0.536009972155274,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -82.4572,
+          27.9506
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5d70391e-f2cd-4aef-a213-a02d6f158a15",
+        "name": "CENTCOM Tampa FL",
+        "network_score": 0.625,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.674314134854213,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.8,
+        "xai_score": 0.5840706742710653,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -76.771,
+          39.1081
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "1ee298ff-35e8-4702-9f7d-9210e0e03028",
+        "name": "NSA Fort Meade HQ",
+        "network_score": 0.65,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.654771640745055,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.72,
+        "xai_score": 0.5338582037252748,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -90.0891397116286,
+          35.6242583831125
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d8beee15-5033-49e5-bcc1-1f4075fd70cf",
+        "name": "NorthAmerica-T2-025",
+        "network_score": 0.5295381982526856,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.6508939796024701,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.787749124229888,
+        "xai_score": 0.9738889557135916,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -75.7879637699594,
+          26.6470153069758
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "27e1072a-63f5-420d-a5f9-49c2d639836e",
+        "name": "NorthAmerica-T1-005",
+        "network_score": 0.5807085123405785,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6491250165660715,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.85721991124851,
+        "xai_score": 0.43735589322368523,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -73.413103967398,
+          45.1068443959403
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5fe494d0-f437-4f42-9963-376ab498db09",
+        "name": "NorthAmerica-T1-004",
+        "network_score": 0.6029258934763709,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6484347805450215,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.87618620935673,
+        "xai_score": 0.4085712989693739,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -117.6858,
+          35.6853
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "62ed05dd-4e10-45b8-af2a-0dddb626617b",
+        "name": "China Lake California Hub",
+        "network_score": 0.65,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6443921395191412,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.98,
+        "xai_score": 0.2869606975957064,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -110.288303753126,
+          40.088469068936
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "699bf812-f4f2-4510-8620-1a4172270083",
+        "name": "NorthAmerica-T1-002",
+        "network_score": 0.5988362276749755,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6428199711421504,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.860297820705406,
+        "xai_score": 0.3944583763442094,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -112.793175998441,
+          43.7198997323356
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "10530d92-f038-4e63-b12f-01ecae6e815b",
+        "name": "NorthAmerica-T1-003",
+        "network_score": 0.571582552865451,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.639200350462045,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.928324048021642,
+        "xai_score": 0.3389674398612683,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -38.5267,
+          -3.7319
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 10,
+        "id": "fbc6e2ef-678b-4818-b4d2-9c1bc9b23a0c",
+        "name": "Fortaleza Strategic Hub",
+        "network_score": 0.75,
+        "pop_proximity_score": 0.5,
+        "pop_score": 1.0,
+        "score": 0.6293847147173697,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.82,
+        "xai_score": 0.031923573586848886,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -88.0645710157902,
+          39.1539218271667
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "51471d1b-e5d8-4aac-bf98-cbee71d07d3f",
+        "name": "NorthAmerica-T2-019",
+        "network_score": 0.5113536526471425,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.6199280055506838,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.842436736329594,
+        "xai_score": 0.7871356491826524,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -128.11436789352,
+          39.5533981731519
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0ce57739-d991-4078-bf1f-464254165d64",
+        "name": "NorthAmerica-T1-003",
+        "network_score": 0.6137214689598395,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.618383880176838,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.966734890939369,
+        "xai_score": 0.18500749819974355,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -97.4258812529225,
+          32.7662881667744
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a0bb02a8-8933-4aad-9edb-e68f6f13d61e",
+        "name": "NorthAmerica-T2-029",
+        "network_score": 0.516136574974915,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.6064485579114836,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.873264397776857,
+        "xai_score": 0.6942262037373177,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -126.646998732761,
+          42.8978118296129
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7d38d140-37fa-418b-9717-465526d961cc",
+        "name": "NorthAmerica-T1-004",
+        "network_score": 0.5837674490863465,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6055859418668872,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.885360538368155,
+        "xai_score": 0.19702558101514633,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -91.4828305936266,
+          39.7998879756176
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a611581e-5549-445c-9765-69531b58cdcb",
+        "name": "NorthAmerica-T2-012",
+        "network_score": 0.49930640347057953,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.6033952846435222,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.768015106966621,
+        "xai_score": 0.7663118912573558,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -128.301383420531,
+          42.2275265605622
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "696ec6ea-1ca6-413d-96d8-d9827c5da813",
+        "name": "NorthAmerica-T1-002",
+        "network_score": 0.559512432620602,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.6030972737489613,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.901857491933208,
+        "xai_score": 0.18433703348459918,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -95.1003096479239,
+          30.5238320704383
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c0eae156-522f-4bf6-b855-663417c467d0",
+        "name": "NorthAmerica-T2-028",
+        "network_score": 0.4904709327813115,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5962676314301594,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.807532013127841,
+        "xai_score": 0.7054536809142603,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -99.1350984903108,
+          35.3173458536232
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c3c0da2a-1785-4780-ae49-654f1cc42868",
+        "name": "NorthAmerica-T2-021",
+        "network_score": 0.42705490171656146,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5857097761199541,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.837444520224109,
+        "xai_score": 0.6619380395734082,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -78.1720963772906,
+          -20.4027230218967
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a5f73ee4-1288-4818-8665-75ed803d35e8",
+        "name": "SouthAmerica-T1-002",
+        "network_score": 0.563477944406529,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5854706505998477,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.97043604975279,
+        "xai_score": 0.042787243481382076,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -100.241752634959,
+          39.2231324955503
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e5660582-4047-4265-a002-7112bff14e40",
+        "name": "NorthAmerica-T2-016",
+        "network_score": 0.4771491901695569,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5853557746053533,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.879329278398631,
+        "xai_score": 0.6037073191430147,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -70.4,
+          -24.8833
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a78aef4c-f787-484b-a1d3-4c85cdc7890a",
+        "name": "Antofagasta Chile - Atacama",
+        "network_score": 0.55,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5845737960808688,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.99,
+        "xai_score": 0.030368980404343972,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -95.7387650877108,
+          39.1025727103477
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "64d2acd8-72ea-473e-92f8-3db73d4112fd",
+        "name": "NorthAmerica-T2-001",
+        "network_score": 0.46169446262442404,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5843284870656931,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.73337974118676,
+        "xai_score": 0.7157603981261835,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -98.9746492525377,
+          41.0016930657229
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ca6b3de9-5195-4546-86fc-bc3f519d19fd",
+        "name": "NorthAmerica-T2-022",
+        "network_score": 0.44716518763298196,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5819281619817247,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.879073004526416,
+        "xai_score": 0.6017534626973209,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -79.5452477455083,
+          32.4602603568048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "9ea20bfc-545c-431a-85ab-7f83b45602d3",
+        "name": "NorthAmerica-T2-013",
+        "network_score": 0.484382046046576,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5803813189972435,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.843592666139485,
+        "xai_score": 0.6020210723583158,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -62.7264058442011,
+          -47.7481681866117
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "019ab569-1526-4551-acee-64a68f522237",
+        "name": "SouthAmerica-T1-002",
+        "network_score": 0.624660682126155,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5797260712092231,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.937483572656408,
+        "xai_score": 0.008187335490732662,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -76.0189580874871,
+          -32.9585988222592
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b9ddcd90-c694-4199-b09c-8f839e72c201",
+        "name": "SouthAmerica-T1-003",
+        "network_score": 0.649639184252454,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.578357066523976,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.89443453509714,
+        "xai_score": 0.02113983917079793,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -99.6410887954855,
+          36.2521460153702
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "487e6881-f919-4319-9f4f-72fc0a18c07f",
+        "name": "NorthAmerica-T2-006",
+        "network_score": 0.43915548960610196,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5743269602317321,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.774958267497094,
+        "xai_score": 0.645838355732789,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -100.629070965963,
+          42.3961792319965
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3fa988b4-3dc1-4d69-b88c-cbd17492af5c",
+        "name": "NorthAmerica-T2-030",
+        "network_score": 0.4829152392417325,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5735369524946796,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.876860596490971,
+        "xai_score": 0.5435816954843036,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -104.865488531116,
+          36.0370963057484
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4917e20c-fc18-4c82-bd5e-a16c02d95686",
+        "name": "NorthAmerica-T2-021",
+        "network_score": 0.5306921500623855,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.571447012265775,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.874269733869457,
+        "xai_score": 0.5111866858955898,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -59.1462134359362,
+          -23.7818750516228
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f28432c5-ef5b-44af-a3b3-6e40ba28f1e8",
+        "name": "SouthAmerica-T1-003",
+        "network_score": 0.6056560312050184,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5702905022197277,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.863807235447791,
+        "xai_score": 0.025769068910285464,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.9601317124437,
+          27.9694958084442
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "00a2d65c-3b62-422f-99af-3c81471cfb74",
+        "name": "NorthAmerica-T2-015",
+        "network_score": 0.47812829480313657,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5689570825793502,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.832692294513182,
+        "xai_score": 0.5562020446102963,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -75.8598278537913,
+          -16.589458329887
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "160eddf9-373f-47c5-9496-fb4b6a1d26c0",
+        "name": "SouthAmerica-T1-001",
+        "network_score": 0.558562837210261,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.568941343546737,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.852328021947177,
+        "xai_score": 0.05117928266817122,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -67.7466804079467,
+          -50.4330587223344
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0ef6c5c5-384e-43fa-b4fd-a1e9c9bb19c3",
+        "name": "SouthAmerica-T1-001",
+        "network_score": 0.5631523429368015,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5672171970261315,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.895908993688226,
+        "xai_score": 0.007578068396087699,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -102.488692353414,
+          39.8645735421825
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5408ac2e-e54c-4a09-84f4-b01acd349376",
+        "name": "NorthAmerica-T2-017",
+        "network_score": 0.48759947071144405,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5666204840507928,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.825981432351019,
+        "xai_score": 0.5448166106349778,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -83.0034238276405,
+          44.2037980953466
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "03c9e967-3077-4507-be5a-43737f3cd6ad",
+        "name": "NorthAmerica-T2-004",
+        "network_score": 0.427426197584984,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5654092263125764,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.84255550654584,
+        "xai_score": 0.5564164028610102,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -103.121168872057,
+          37.0248438040067
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "14213bc1-cd78-4bf8-85aa-19f6a9528c58",
+        "name": "NorthAmerica-T2-007",
+        "network_score": 0.48781989713397844,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5576179620235957,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.757562248304856,
+        "xai_score": 0.5510081753223471,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -100.97361357531,
+          31.4722472903757
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "cd590746-0090-4c89-900c-609ada9ac4cc",
+        "name": "NorthAmerica-T2-007",
+        "network_score": 0.48187944941264194,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5573007526637458,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.722364996073098,
+        "xai_score": 0.5787902915575843,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -81.6785512945411,
+          47.0486887762779
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "00a28f41-b13d-4012-871d-d67327aa59dd",
+        "name": "NorthAmerica-T2-016",
+        "network_score": 0.4629373598276565,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5566292535722738,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.870985472167011,
+        "xai_score": 0.47343848382228226,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -104.371686048611,
+          41.9623856266392
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d279558b-5a22-4166-8e91-0a6d2aab12e3",
+        "name": "NorthAmerica-T2-020",
+        "network_score": 0.47569421393152145,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5549533323300795,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.838348087424739,
+        "xai_score": 0.4831584891160824,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -106.345293156893,
+          29.8636681367798
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ab53e82a-e2cc-4bb4-a62b-54f6c3347f6e",
+        "name": "NorthAmerica-T2-004",
+        "network_score": 0.538954175451755,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5532175002963927,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.840037232167419,
+        "xai_score": 0.44158248963052227,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -76.0376099089804,
+          43.1825750461119
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "accb834c-aef4-430e-8da9-016f3bbc3828",
+        "name": "NorthAmerica-T2-015",
+        "network_score": 0.47107026290579856,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.550914342954812,
+        "source": "Merged",
+        "tier": 2,
+        "weather_score": 0.828571268924531,
+        "xai_score": 0.4726081316277626,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.784885355699,
+          25.9145047223197
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b11a7dd2-4e87-4baa-9501-0ad54b85f4b3",
+        "name": "NorthAmerica-T2-011",
+        "network_score": 0.41425157345028196,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5504980909968071,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.816866764074119,
+        "xai_score": 0.5077145952033054,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -99.940018764675,
+          47.0945900888898
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8fd06078-27d5-49c8-b397-8b63a9fc1d44",
+        "name": "NorthAmerica-T2-019",
+        "network_score": 0.41889285907977447,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5475944085099756,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.860952459134341,
+        "xai_score": 0.4578112686592354,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -75.559050342923,
+          46.1999540938117
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0c3ef8f7-dddb-4f34-a4e8-bcc83308c8bf",
+        "name": "NorthAmerica-T2-010",
+        "network_score": 0.5081687427432905,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5458748412304112,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.838322684342743,
+        "xai_score": 0.4215478215233534,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -72.376674549106,
+          42.877929601917
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a9358249-f5fb-4de4-be7c-2bb66c0af92b",
+        "name": "NorthAmerica-T2-003",
+        "network_score": 0.450222988576663,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.545349177277799,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.878854614917349,
+        "xai_score": 0.4174934309126518,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -109.928420952933,
+          35.8075963809908
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "6c28585b-6415-4683-be4c-39936e8bc679",
+        "name": "NorthAmerica-T2-023",
+        "network_score": 0.548799010108904,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5451094916357998,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.825690937852414,
+        "xai_score": 0.40687974973523683,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -74.4666582763441,
+          43.4347256941751
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "9564e782-2ab2-4866-89cd-53e13f78d878",
+        "name": "NorthAmerica-T2-028",
+        "network_score": 0.48103909988843396,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5444720567897248,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.816766308601101,
+        "xai_score": 0.4442660025535817,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -91.7692917192663,
+          47.7871889676252
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "62234ab7-1eb6-44ec-a7ca-4aff0e545f49",
+        "name": "NorthAmerica-T2-008",
+        "network_score": 0.5491193003168661,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5436520568216753,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.700259026625226,
+        "xai_score": 0.49350636398102404,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -74.1637627740958,
+          26.0498200900393
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a7afcb7e-2b28-4288-a3dd-3f216394696e",
+        "name": "NorthAmerica-T2-009",
+        "network_score": 0.5150582753563335,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5416347835429852,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.831500733103726,
+        "xai_score": 0.4020192302089648,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -109.41012404008,
+          32.8784117375402
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4c8c5248-8882-4396-b1a4-99b8587b411d",
+        "name": "NorthAmerica-T2-030",
+        "network_score": 0.4466873398649345,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5395900981881141,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.857210154952627,
+        "xai_score": 0.4066992047936334,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -75.3044225881083,
+          44.3676771013859
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "08a4ee1d-7864-4c59-ba4b-8173954adfc3",
+        "name": "NorthAmerica-T2-011",
+        "network_score": 0.47707977903819954,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5392700724113008,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.783995676163269,
+        "xai_score": 0.44481371541495246,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -100.121575064798,
+          47.7741506220795
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "56217ad8-b1d8-4967-803e-4a7493bcda0b",
+        "name": "NorthAmerica-T2-009",
+        "network_score": 0.536534067938954,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5371607050833938,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.73390905233993,
+        "xai_score": 0.44210470219254444,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -74.0591776999883,
+          31.2234973948292
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "77b13f81-2930-4fef-97cf-63649c45ba7c",
+        "name": "NorthAmerica-T2-001",
+        "network_score": 0.527889675694177,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5368609360167163,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.71246545865184,
+        "xai_score": 0.4610107482476125,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -106.43869682118,
+          47.3631895122597
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "676eb14e-b012-466c-a29f-3ba5612e0971",
+        "name": "NorthAmerica-T2-024",
+        "network_score": 0.5186942093249695,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5359083083035854,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.816795950701121,
+        "xai_score": 0.38259747382960146,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -108.373022624203,
+          48.2040078078116
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ec080054-7ecd-4e41-a959-e3507d8cd3ed",
+        "name": "NorthAmerica-T2-020",
+        "network_score": 0.4217346116520625,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5311098630811928,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.891345633355942,
+        "xai_score": 0.3511727845629761,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -71.6019616535606,
+          39.4531514434478
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0f9cd794-8996-47d3-b49b-6ea3ad8ff353",
+        "name": "NorthAmerica-T2-018",
+        "network_score": 0.434824127024232,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5279064756714843,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.758716786785566,
+        "xai_score": 0.42808272475613107,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -157.8581,
+          21.3099
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 4,
+        "id": "fdc9236b-7977-4ad4-a471-c487e0bd4fb9",
+        "name": "Hawaii Strategic Hub",
+        "network_score": 0.575,
+        "pop_proximity_score": 0.2,
+        "pop_score": 1.0,
+        "score": 0.5270370046924635,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.75,
+        "xai_score": 0.03518502346231805,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -103.376650632836,
+          25.5910960062238
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a1240e30-3d28-4b95-9986-8c5052ab9f16",
+        "name": "NorthAmerica-T2-014",
+        "network_score": 0.4442839724037685,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5259493563727344,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.728676536557255,
+        "xai_score": 0.43609739324384705,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -113.47460632944,
+          43.1989671914366
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b04e2fe6-afe5-4512-aed6-af9bae719e87",
+        "name": "NorthAmerica-T2-002",
+        "network_score": 0.507175105031732,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5259070741809424,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.823892959823822,
+        "xai_score": 0.33302809852097925,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -116.715617586557,
+          38.5112142290202
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4934cc13-ff06-41fa-929f-eabfab402ce3",
+        "name": "NorthAmerica-T2-027",
+        "network_score": 0.5427201316742795,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5258722372104306,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.841208398296376,
+        "xai_score": 0.30209482149273187,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -111.395266528988,
+          49.5773197209545
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "87476408-34e7-4a24-9c59-9af9df22b74d",
+        "name": "NorthAmerica-T2-023",
+        "network_score": 0.5117712266308719,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5216979285444702,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.827395327639651,
+        "xai_score": 0.3070575336771767,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -109.793567132375,
+          49.0186872748028
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8778ebff-b3e1-4aa9-9d50-212de5f869e9",
+        "name": "NorthAmerica-T2-027",
+        "network_score": 0.43333704363034353,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5213105113585492,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.849474139651428,
+        "xai_score": 0.32777843023900294,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -113.236873033413,
+          45.5443610220916
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2964791a-4437-4d1d-9600-2e604a997f20",
+        "name": "NorthAmerica-T2-017",
+        "network_score": 0.44903242186106396,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5198479364242861,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.83720528443382,
+        "xai_score": 0.32181950786553337,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -116.74822081262,
+          48.1849013681636
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "bfc1ee50-1503-4388-958d-ecf0d875f30e",
+        "name": "NorthAmerica-T2-006",
+        "network_score": 0.5493109614024115,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5152671636650809,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.810635716819504,
+        "xai_score": 0.2687035500095706,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -116.421680776056,
+          43.1390708717559
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0d7b85e1-a1c8-4c0e-a6c5-30c72d581ee9",
+        "name": "NorthAmerica-T2-012",
+        "network_score": 0.4667538871337955,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5121732644336243,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.807506221681827,
+        "xai_score": 0.29685971233985403,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -115.437685076289,
+          44.3618047484786
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "75f37cc9-8c38-4b49-86ce-3da5078c7798",
+        "name": "NorthAmerica-T2-029",
+        "network_score": 0.49658647827157654,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5103019453671225,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.766694135932153,
+        "xai_score": 0.30319588575070966,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -120.608214910111,
+          33.912699749359
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8407905b-2a1e-4732-a997-1f98ce69d9cb",
+        "name": "NorthAmerica-T2-013",
+        "network_score": 0.47984551752983695,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5061996783963126,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.824613934740209,
+        "xai_score": 0.24761518216148837,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -80.08894373592818,
+          26.350323169523403
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 8,
+        "id": "boca-raton-fl-united-states",
+        "name": "Boca Raton, FL, United States",
+        "network_score": 0.35,
+        "pop_proximity_score": 0.4,
+        "pop_score": 0.5,
+        "score": 0.5061494002299678,
+        "source": "Merged",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.5057470011498391,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -113.098521314466,
+          29.4879260232487
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "1be8ae72-1097-4d81-967f-a0d0d1f59eeb",
+        "name": "NorthAmerica-T2-024",
+        "network_score": 0.414386018928781,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5026775033373133,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.741982350235545,
+        "xai_score": 0.32470774454551743,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -121.669713569903,
+          25.7693734157722
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "dc395977-96f4-49c0-884d-a1bcfaa4bfc9",
+        "name": "NorthAmerica-T2-005",
+        "network_score": 0.4630354221906695,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.5010336162005671,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.860869873125761,
+        "xai_score": 0.20299796506318032,
+        "zone": "Americas"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -4.37905730775932,
+          39.1898952028439
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d8328ea1-dbd8-40c3-a3b2-c1703729a9ba",
+        "name": "Europe-T1-007",
+        "network_score": 0.636713669664886,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5903627989094896,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.976702011366448,
+        "xai_score": 0.02593065119016904,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          6.95080872905454,
+          66.3727073569873
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8479f8a7-d688-412f-a42d-e927b8debcae",
+        "name": "Europe-T1-008",
+        "network_score": 0.6314866839765351,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5880260566666301,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.953857781029708,
+        "xai_score": 0.03399360557260174,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          42.3660343419409,
+          56.8733732515175
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2a97cdc9-fd1b-4672-96e0-9226a9cdbe7f",
+        "name": "Europe-T1-001",
+        "network_score": 0.6401050168195535,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5849219775731447,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.956774705600738,
+        "xai_score": 0.011976350255393566,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          54.3666767204969,
+          17.7217975082793
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c2db9f58-a8ba-413a-8f23-a089b8105573",
+        "name": "MiddleEast-T1-002",
+        "network_score": 0.6173067340078621,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5834547937639228,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.976195605119072,
+        "xai_score": 0.0014738979763788784,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          46.5217401901149,
+          66.8899658349919
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f260e677-7d38-4fe5-9b74-6d8e34d56864",
+        "name": "Europe-T1-002",
+        "network_score": 0.5924368078258615,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.583134071452826,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.969257001947866,
+        "xai_score": 0.017509201890300082,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          49.597377779994,
+          60.5503421313236
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "19b1f840-e50d-45f9-8b3f-0172c0c86a53",
+        "name": "Europe-T1-001",
+        "network_score": 0.5994427708085165,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5828826608014017,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.969533579910156,
+        "xai_score": 0.012541733670133563,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          26.6547079657719,
+          61.4534099924218
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e0e7718d-a225-45a8-a429-b3a197bf0c38",
+        "name": "Europe-T1-006",
+        "network_score": 0.618973230455994,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5817460459719582,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.939519474458234,
+        "xai_score": 0.019604008788119246,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -7.52225019952555,
+          39.2367001704415
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5deaee9b-66fd-4815-a8fb-5e1f2808ca3b",
+        "name": "Europe-T1-004",
+        "network_score": 0.5840651305093515,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5802054804955652,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.939558594327881,
+        "xai_score": 0.029325891477239633,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          27.3571787707165,
+          69.6191931997753
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "88763ff8-1a20-45d6-b50c-e977ab5cec0e",
+        "name": "Europe-T1-003",
+        "network_score": 0.607361625905155,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5798712179899244,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.926690746375355,
+        "xai_score": 0.025657217215528,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          47.5190123977662,
+          35.2378471563957
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a8393804-8b72-45bd-a38d-6a60eafe3f28",
+        "name": "MiddleEast-T1-006",
+        "network_score": 0.574664063509405,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5788210189755797,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.970345824237681,
+        "xai_score": 0.004013694944935468,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          40.128977961993,
+          35.6567766093745
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7ef46be2-6f4b-4328-82c1-7504434b36f2",
+        "name": "MiddleEast-T1-005",
+        "network_score": 0.6440057281821344,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.577510637332338,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.914081815952392,
+        "xai_score": 0.004988960606328523,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          37.8836928989516,
+          -17.9670724960122
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ce967ca9-1c1e-4c56-885d-e4aaaeb9b2cf",
+        "name": "Africa-T1-003",
+        "network_score": 0.563962001819484,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5763818812675019,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.965653972961924,
+        "xai_score": 0.0006879257063246552,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.478601295829691,
+          -0.422061378136235
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d7fe795f-8c49-4495-8afd-dc8eb4de185f",
+        "name": "Africa-T1-002",
+        "network_score": 0.5890892218643274,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5761749517846119,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.939436051689762,
+        "xai_score": 0.006753109223574346,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          36.5198030095721,
+          20.0448739079365
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c538e931-b6bd-4024-bc9c-c52eb086b42e",
+        "name": "MiddleEast-T1-004",
+        "network_score": 0.588303498801237,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5760971578227315,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.944577193028126,
+        "xai_score": 0.0029011449419446894,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          59.2681641165585,
+          26.7220988733282
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8faca937-9b6c-4c52-ae01-e5fab305cf16",
+        "name": "MiddleEast-T1-003",
+        "network_score": 0.6172506702698964,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5741497660704848,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.913481352967813,
+        "xai_score": 0.002012480491616325,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          52.2884916166378,
+          20.3209575064591
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3c821b6e-2363-4751-9dfb-e9a17208a47a",
+        "name": "MiddleEast-T1-001",
+        "network_score": 0.6402062924153266,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5738767765960516,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.896686751082374,
+        "xai_score": 0.0017656734608145544,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          32.8998,
+          24.0889
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "91672f19-c1ed-42ec-8104-25830389cead",
+        "name": "Aswan Egypt - Desert",
+        "network_score": 0.525,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5737765597390745,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.97,
+        "xai_score": 0.0038827986953725757,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -18.1882801275061,
+          -10.0651420832613
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5fbed064-cbbb-4a4b-99bb-b153117f5f4d",
+        "name": "Africa-T1-004",
+        "network_score": 0.564583615533801,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5733231202396046,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.931305146992334,
+        "xai_score": 0.01084493318687241,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.18688269052938,
+          65.8081788679637
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "454574b0-4a0d-4bc3-a778-b254ac6e4bbb",
+        "name": "Europe-T1-005",
+        "network_score": 0.5639394977473935,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5733189531367993,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.886495838047651,
+        "xai_score": 0.044753138274561496,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -0.774532772556103,
+          38.3375919544779
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "cc4f2c66-0959-4587-9b2b-ebcf51563abc",
+        "name": "Europe-T1-007",
+        "network_score": 0.55175452508412,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5733018717965257,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.924726972507095,
+        "xai_score": 0.022086867060247112,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.7051434068162,
+          16.3981335849799
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "93ed5cbe-c382-4eb7-8df4-caaabac06668",
+        "name": "Africa-T1-001",
+        "network_score": 0.6464666542204345,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.572965810663884,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.875459458039931,
+        "xai_score": 0.01000113267925454,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          28.0473,
+          -26.2041
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d38006d4-cc3f-4944-a1a4-9e03c791976d",
+        "name": "Johannesburg Strategic Hub",
+        "network_score": 0.65,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5721730441818338,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.88,
+        "xai_score": 0.0008652209091685575,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          18.8268666031919,
+          -5.74923061286407
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "457f09af-ea34-41ac-adc5-84659a51c9e2",
+        "name": "Africa-T1-002",
+        "network_score": 0.618446248896285,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5716360234339937,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.895447534635256,
+        "xai_score": 0.0023713417453837464,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          17.4753116050084,
+          4.42669085134833
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b67d5b8c-18db-4445-aea4-b79f43165f73",
+        "name": "Africa-T1-001",
+        "network_score": 0.6154478736188355,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5716163349961036,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.895780198563187,
+        "xai_score": 0.0035225892487107152,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          27.5519377152909,
+          52.8804384530254
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f3491bac-297b-40e8-9737-33d79a66474c",
+        "name": "Europe-T1-003",
+        "network_score": 0.601561935295342,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5712319341675447,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.888398847936681,
+        "xai_score": 0.014079567237542024,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          19.2728402346229,
+          47.5603948514458
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f6ae62e2-68e4-42bb-82c6-29ba8281e2cd",
+        "name": "Europe-T1-006",
+        "network_score": 0.5918922340506695,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5708439324039196,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.891514342498976,
+        "xai_score": 0.014637788120031461,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          10.3592134107686,
+          -27.1464178158489
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4b1b86a5-5f83-4429-a741-4e2f2196d1cf",
+        "name": "Africa-T1-004",
+        "network_score": 0.5603416055207124,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5699408073135008,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.923581811861021,
+        "xai_score": 0.0018468749113823867,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          3.4701845314319,
+          60.7137530946221
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c8ffe42c-16fd-4088-b472-2351f06d7bdc",
+        "name": "Europe-T1-004",
+        "network_score": 0.5682279666775331,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5694105120623683,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.873535674716843,
+        "xai_score": 0.03278682093544301,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          25.5801544172755,
+          69.4098586236316
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4b31a08c-a936-4098-a28e-73019e631e0c",
+        "name": "Europe-T1-008",
+        "network_score": 0.5593888217773845,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5673681130426689,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.874598992747605,
+        "xai_score": 0.026196909763948246,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          0.275867781279025,
+          2.72751309299016
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d5664d00-3fa8-4067-9851-563a9f97d1f0",
+        "name": "Africa-T1-003",
+        "network_score": 0.5688216183899495,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5671064374665912,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.891871844073611,
+        "xai_score": 0.007217495082772689,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          47.6766748062502,
+          17.2128880599268
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f79d7853-8c45-42d5-bb58-1142be6d921b",
+        "name": "MiddleEast-T1-001",
+        "network_score": 0.5802472975066005,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5654337072962395,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.880376295267955,
+        "xai_score": 0.0017626662769307118,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          43.4783744733817,
+          18.8927365866367
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c8d7fe4b-643a-4147-bdf5-394f5f989c1a",
+        "name": "MiddleEast-T1-005",
+        "network_score": 0.613196597169266,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5651499398297402,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.855967786899545,
+        "xai_score": 0.0021755603894088706,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          59.6074427916037,
+          24.0506206089312
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4efae207-5b88-4db3-938b-2a0e7a666ad6",
+        "name": "MiddleEast-T1-004",
+        "network_score": 0.591641269987335,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5628666791885035,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.855684866849684,
+        "xai_score": 0.0017491108115869683,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          36.5076978696797,
+          21.5265774558397
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "664dc573-469d-4026-bfe4-e6ac53688282",
+        "name": "MiddleEast-T1-003",
+        "network_score": 0.5502237237338955,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5618439453909012,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.874699220769145,
+        "xai_score": 0.0030834495106995857,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          55.2708,
+          25.2048
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 3,
+        "id": "f15ae73c-87df-4425-8989-413765cf0143",
+        "name": "Dubai Strategic Hub",
+        "network_score": 0.575,
+        "pop_proximity_score": 0.15,
+        "pop_score": 1.0,
+        "score": 0.5379108562123985,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.95,
+        "xai_score": 0.002054281061992804,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          5.372629023073098,
+          43.29316463678684
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 16,
+        "id": "marseille-france",
+        "name": "Marseille, France",
+        "network_score": 0.55,
+        "pop_proximity_score": 0.8,
+        "pop_score": 0.5,
+        "score": 0.5290339666015307,
+        "source": "Merged",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.020169833007653445,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          9.29189970225839,
+          40.7834891468614
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 2,
+        "id": "415e9959-c554-4e35-9b09-7a1e9ae4f149",
+        "name": "Europe-T1-005",
+        "network_score": 0.5237146469166295,
+        "pop_proximity_score": 0.1,
+        "pop_score": 1.0,
+        "score": 0.5123421770947189,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.878024590089276,
+        "xai_score": 0.01633511944832246,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          8.02590071345701,
+          41.3542052019029
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 1,
+        "id": "9f1239b0-176f-4326-af5c-71287a08c2f3",
+        "name": "Europe-T1-002",
+        "network_score": 0.47820831437825706,
+        "pop_proximity_score": 0.05,
+        "pop_score": 1.0,
+        "score": 0.5045312123148117,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.938233853981788,
+        "xai_score": 0.017376513898588807,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          39.18276132165815,
+          21.481258967424996
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 14,
+        "id": "jeddah-saudi-arabia",
+        "name": "Jeddah, Saudi Arabia",
+        "network_score": 0.5,
+        "pop_proximity_score": 0.7,
+        "pop_score": 0.5,
+        "score": 0.49556122898523935,
+        "source": "CableLanding",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.002806144926197067,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          56.33372573425405,
+          25.12169311729696
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 13,
+        "id": "fujairah-united-arab-emirates",
+        "name": "Fujairah, United Arab Emirates",
+        "network_score": 0.475,
+        "pop_proximity_score": 0.65,
+        "pop_score": 0.5,
+        "score": 0.4803985473409255,
+        "source": "Merged",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.001992736704627558,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.56149786940353,
+          66.4552098945838
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c8c6d4d9-0a81-43ae-bf6a-ba9ea5cd6a4f",
+        "name": "Europe-T2-017",
+        "network_score": 0.5226827206264335,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4760073722492689,
+        "source": "Merged",
+        "tier": 2,
+        "weather_score": 0.875164390057687,
+        "xai_score": 0.03732220838986271,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          18.1775724067095,
+          52.4037927509728
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "807dc2c6-2209-4422-91e9-624363f634eb",
+        "name": "Europe-T2-001",
+        "network_score": 0.53754830829351,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.475663423605009,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.88908985560341,
+        "xai_score": 0.017725572175732802,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          13.760794918624,
+          -9.44671954556772
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0266f643-d34b-4e97-9db6-f3931f8e2730",
+        "name": "Africa-T2-001",
+        "network_score": 0.5448043656897714,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47476433801876883,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.898351969829671,
+        "xai_score": 0.002655529876705268,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          26.1672204783839,
+          -30.2884192169713
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f9db16fd-ea9d-489a-a0be-02a49e80e6fd",
+        "name": "Africa-T2-007",
+        "network_score": 0.540942468607157,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4734486048205555,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.894553728165592,
+        "xai_score": 0.0008564936750053204,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          39.5033509556514,
+          24.6638669037868
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0dd36534-2acb-4dee-9623-bb582ca9f545",
+        "name": "MiddleEast-T2-009",
+        "network_score": 0.5275741508088739,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4730001447956548,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.897385669075968,
+        "xai_score": 0.003174396766861142,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          25.3272178735393,
+          63.4770651358085
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "28a3508f-a8d7-41ca-a9ac-273e5e89e743",
+        "name": "Europe-T2-010",
+        "network_score": 0.49254361132636093,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47298773664155885,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.8960957035695,
+        "xai_score": 0.021595099867488685,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          48.2480439351038,
+          61.2166464152284
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "849fead0-8210-4d5d-8488-a3038721b12f",
+        "name": "Europe-T2-020",
+        "network_score": 0.5352552467191755,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4727058709228252,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.876938533425241,
+        "xai_score": 0.013197831185607472,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          31.2367096489031,
+          64.4090532890999
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0da313a3-50a4-4114-8cde-e7a168e45709",
+        "name": "Europe-T2-018",
+        "network_score": 0.4871710048187775,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4722149880358104,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.896673101236647,
+        "xai_score": 0.019984611842178094,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          15.6028561792295,
+          64.4965638444966
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5f9f8d8c-8871-4ff2-9489-9557295bf0c3",
+        "name": "Europe-T2-007",
+        "network_score": 0.47966669035066356,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47167335219795736,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.88852463024831,
+        "xai_score": 0.0271399431282226,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          31.7808357798091,
+          57.3008251788935
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "582c5fba-e0b0-4252-87fa-a56122037063",
+        "name": "Europe-T2-019",
+        "network_score": 0.527902277588828,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4701344539722985,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.862178174369985,
+        "xai_score": 0.01508750028958972,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          33.0467031599459,
+          41.9744200565399
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e3d1384a-733d-4d40-bbda-862d6c99f77a",
+        "name": "Europe-T2-015",
+        "network_score": 0.5343862065545115,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46988600681984494,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.865715134789161,
+        "xai_score": 0.007950579730098672,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -13.709130678635,
+          -30.8270196022087
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "80b04047-e376-4eb1-9791-6b37ac6ad9f7",
+        "name": "Africa-T2-002",
+        "network_score": 0.519840325780782,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4691063477681068,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.87489192574748,
+        "xai_score": 0.004442631639532891,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -1.13480804796087,
+          40.1484002868711
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4ce1e092-0bee-4b0d-bedc-f7451019772d",
+        "name": "Europe-T2-009",
+        "network_score": 0.443406908943087,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4676970867988586,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.891068544549675,
+        "xai_score": 0.023480571110493304,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          23.1828395156317,
+          58.5137833393059
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5177db20-4c20-42a8-bc42-c5aff8a26f09",
+        "name": "Europe-T2-024",
+        "network_score": 0.46115728565712855,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.466648532083231,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.878077769839888,
+        "xai_score": 0.019105690207674903,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          2.26443586356803,
+          13.9069039039724
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7c9f4881-0b01-430b-954a-b08aa6bb9ea2",
+        "name": "Africa-T2-008",
+        "network_score": 0.46256904915795494,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4664334571201262,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.888610619806265,
+        "xai_score": 0.009424796166955076,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          10.2229970910541,
+          -14.2830102916884
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "40f0fb43-908b-4841-aa14-e8a07882f0cb",
+        "name": "Africa-T2-011",
+        "network_score": 0.48011052739930393,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4663178783122619,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.88512782796676,
+        "xai_score": 0.0026882568865877867,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          3.81907508496945,
+          68.2112743650439
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5d497f37-8ac5-4668-af93-35f8bfc6ed74",
+        "name": "Europe-T2-013",
+        "network_score": 0.40933343972604797,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4662325136778979,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.885342284306224,
+        "xai_score": 0.037489135296797885,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          6.17364001680538,
+          44.7216164126909
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "254ba0cc-2f8f-4127-a309-d910690f9b3b",
+        "name": "Europe-T2-001",
+        "network_score": 0.44600723920989105,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4657165370363323,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.880217383537307,
+        "xai_score": 0.020416027923735928,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          59.8082394320391,
+          29.851676600256
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "09cf9545-e6e3-4242-b31e-d1b1287ea422",
+        "name": "MiddleEast-T2-001",
+        "network_score": 0.473848513538107,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46511534673328253,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.881769711250898,
+        "xai_score": 0.0023251934591858366,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          18.2432140926832,
+          60.8138162728814
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b2f79ff4-db3b-4418-b182-c7362d9e1243",
+        "name": "Europe-T2-004",
+        "network_score": 0.42455376258555155,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.465018106610301,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.886372512570255,
+        "xai_score": 0.023034267331038194,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          3.56588653234343,
+          50.5592126770591
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b346fb48-83b0-4583-9c12-a08580279697",
+        "name": "Europe-T2-025",
+        "network_score": 0.5456135455998565,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46494607515502817,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.801296669318463,
+        "xai_score": 0.025951100986365147,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          33.2960159458046,
+          48.8104107474831
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a3d7bccb-2907-4f54-81b8-8040a06fcff0",
+        "name": "Europe-T2-018",
+        "network_score": 0.542495343359291,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4640132646200751,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.817880436536796,
+        "xai_score": 0.010408324018132938,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          44.7101022793161,
+          66.3900860072737
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "21580299-b675-4c82-8fb9-6d31ecf57754",
+        "name": "Europe-T2-022",
+        "network_score": 0.404770058730316,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4639768103815505,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.899948361389926,
+        "xai_score": 0.017537751500149936,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          48.7989876907891,
+          61.9330609843798
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b5999d97-e72b-41b5-b8fa-4697d7aac605",
+        "name": "Europe-T2-014",
+        "network_score": 0.4343990806022735,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4624816504879126,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.875567486968261,
+        "xai_score": 0.01353309691223067,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          23.203255988231,
+          53.65206262967
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c4efc3d0-1b5f-485c-bba7-3a858153d852",
+        "name": "Europe-T2-003",
+        "network_score": 0.45212162191993455,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46188200830513293,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.856247546023905,
+        "xai_score": 0.016163571047768582,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          40.1121098877021,
+          31.4978285053766
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e39d76f4-6f47-4e7b-8fc6-302a670ce43d",
+        "name": "MiddleEast-T2-013",
+        "network_score": 0.45770895861133254,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4618277414741372,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.868151512634803,
+        "xai_score": 0.004170593588917835,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          22.627707323197,
+          48.4652448712239
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "469bafeb-b4f7-40e4-bc8a-62c0e7b72505",
+        "name": "Europe-T2-005",
+        "network_score": 0.521576848315173,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46178596306871855,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.812597985977365,
+        "xai_score": 0.013692901702982343,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          3.68922240191941,
+          69.7121747142162
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3827fe00-dd65-4991-8b66-6a2d1febccf2",
+        "name": "Europe-T2-021",
+        "network_score": 0.4095294129009215,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46178316868649577,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.854152178309253,
+        "xai_score": 0.03853700325007846,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          47.3504806949211,
+          36.5765458982206
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8a34f143-88ac-4a69-8f06-23f2a1b1b376",
+        "name": "MiddleEast-T2-006",
+        "network_score": 0.4412544301704465,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4612013963996777,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.874789880282854,
+        "xai_score": 0.004287356701024794,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          37.9116631429503,
+          69.967324027035
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3ab8577b-d3b3-4413-927e-e345510dbd8a",
+        "name": "Europe-T2-020",
+        "network_score": 0.472782319383683,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4611405826483871,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.829292585435002,
+        "xai_score": 0.02234231447384264,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          9.5003615887489,
+          68.7793218624469
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "845c69b0-9c0c-46b1-8295-c8d73e96f2a1",
+        "name": "Europe-T2-011",
+        "network_score": 0.52859673197491,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46100134250803526,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.775609586439042,
+        "xai_score": 0.034001156723439944,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          35.5153309760801,
+          38.7678268640803
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "9f240f69-a929-4eef-9e0d-80c803dafd89",
+        "name": "MiddleEast-T2-001",
+        "network_score": 0.518157391155068,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4609802933918528,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.819102438324302,
+        "xai_score": 0.0064959426385036755,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          40.1226303184395,
+          36.502512377403
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d58a4057-8e3d-4049-ac6c-3175df601d8a",
+        "name": "MiddleEast-T2-008",
+        "network_score": 0.48919822757366904,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46075987574048805,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.838699031064422,
+        "xai_score": 0.00517599161728954,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          16.3153699444485,
+          50.6798683840987
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7c626fa3-615c-4a68-aab1-481858a94369",
+        "name": "Europe-T2-004",
+        "network_score": 0.501276541002395,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4607130805505965,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.813658912283673,
+        "xai_score": 0.017682948039030182,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          36.5092796810358,
+          22.918990394936
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "25a9c7cc-36c1-4964-97bc-0f4f2c4f40a3",
+        "name": "MiddleEast-T2-014",
+        "network_score": 0.536410547040048,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4604334721119346,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.807596884443259,
+        "xai_score": 0.003264423707204662,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          32.5455913550764,
+          1.98660021596388
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ff5b4a65-a8f6-4638-ab61-c14044219e23",
+        "name": "Africa-T2-003",
+        "network_score": 0.42259754686576,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46033684350233184,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.884932498083079,
+        "xai_score": 0.0016860705164700636,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          23.8067325930704,
+          3.49809345587087
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "fbf463d9-82cb-4a46-95e6-319241400726",
+        "name": "Africa-T2-016",
+        "network_score": 0.5322117848661475,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.459958166290539,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.80813142816923,
+        "xai_score": 0.002586367892698628,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -7.59985482633845,
+          48.1356046407219
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e2ce4d9e-107d-4ed3-8e73-0e6633da15ca",
+        "name": "Europe-T2-006",
+        "network_score": 0.536323818740878,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4598435522346509,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.760549442384931,
+        "xai_score": 0.03564377001411745,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          54.4425621256784,
+          39.3941650810805
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7854bbc6-2b6b-4c41-84e8-8dd9b099299c",
+        "name": "MiddleEast-T2-012",
+        "network_score": 0.5045892881948465,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45938299836465035,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.820602263304258,
+        "xai_score": 0.004168650247635132,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          44.9919999865636,
+          22.26493421869
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "9fdab992-b189-4dd8-8158-a672007b9633",
+        "name": "MiddleEast-T2-004",
+        "network_score": 0.5159565065118145,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4592984816544323,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.814819073893276,
+        "xai_score": 0.0023998495962976986,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -6.93135871825215,
+          11.3458374314374
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ef511350-e3e5-4b53-9728-7868635f9c3c",
+        "name": "Africa-T2-001",
+        "network_score": 0.42378435942306203,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4591780047547029,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.861142082613875,
+        "xai_score": 0.013141282101577292,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -2.92817502807729,
+          -33.8735246562783
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0a75a697-2b33-4424-9daf-ba24b1bb67df",
+        "name": "Africa-T2-013",
+        "network_score": 0.49328232688291107,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4591565707749095,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.82864540697182,
+        "xai_score": 0.0026576352042270994,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -8.48327814087049,
+          -25.8401767439874
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "8d961b8e-b090-46c6-ba2c-cc15e1f32910",
+        "name": "Africa-T2-014",
+        "network_score": 0.441295850881135,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45899881678201326,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.860128253296652,
+        "xai_score": 0.004249968497009849,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          -13.0534816441105,
+          0.240512338977524
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "84dceb3e-f61f-4d75-ad0b-c30332334c2d",
+        "name": "Africa-T2-014",
+        "network_score": 0.447608689840021,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4589228683952141,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.84481580161915,
+        "xai_score": 0.012198145841697422,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          27.4154703314329,
+          38.9209071634595
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f95b1fec-f343-42a8-ac62-2d19d8df7f16",
+        "name": "Europe-T2-023",
+        "network_score": 0.49414412628167703,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45875620835022807,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.817817966058308,
+        "xai_score": 0.008345504066570992,
+        "zone": "Emea"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          113.633319820303,
+          26.4533707767948
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b0b34592-d14f-4e82-ab1e-621c4a8313db",
+        "name": "Asia-T1-009",
+        "network_score": 0.643603239940318,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5854924648254017,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.971915923534868,
+        "xai_score": 0.0017237615056985955,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          144.7937,
+          13.4443
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 9,
+        "id": "11b68bdc-4575-45b6-9168-4ac23784d8bc",
+        "name": "Guam Strategic Hub",
+        "network_score": 0.675,
+        "pop_proximity_score": 0.45,
+        "pop_score": 1.0,
+        "score": 0.5854691870566516,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.7,
+        "xai_score": 0.0023459352832582766,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          104.01664054897992,
+          1.066796188550793
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 20,
+        "id": "batam-indonesia",
+        "name": "Batam, Indonesia",
+        "network_score": 0.65,
+        "pop_proximity_score": 1.0,
+        "pop_score": 0.5,
+        "score": 0.5850767614004118,
+        "source": "Merged",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.0003838070020590343,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          151.058662109131,
+          -18.5256668713249
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "04ea6079-a9a9-41de-8ecb-de42c5c5f5d4",
+        "name": "Australia-T1-002",
+        "network_score": 0.629081522033589,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5841492887183916,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.973580464839936,
+        "xai_score": 0.0010203339452112816,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          150.836944410771,
+          -23.5892523196096
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2ae46bca-48fa-498f-bde5-78b334b80eef",
+        "name": "Pacific-T1-002",
+        "network_score": 0.6234434574544485,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5831885338807753,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.971119001163562,
+        "xai_score": 0.0008816898039806866,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          87.0864127009473,
+          8.61803573562139
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "66d99507-949d-40e1-b3bb-ed5dbdcac905",
+        "name": "Asia-T1-003",
+        "network_score": 0.5921640091667499,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5806544665164103,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.975565858200533,
+        "xai_score": 0.0005159343482765002,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          108.47730484444,
+          11.9628507559874
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "12daa9fb-a7cf-45c3-93f7-791f2463e08d",
+        "name": "Asia-T1-002",
+        "network_score": 0.615363733552195,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5805077152878282,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.958825776450974,
+        "xai_score": 0.0007373773248131466,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          99.2980351833636,
+          19.0100278171647
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a3f03950-cc54-44cb-82b6-bc9af8b8b6ef",
+        "name": "Asia-T1-008",
+        "network_score": 0.647095811301354,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5785973544349825,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.924648283961847,
+        "xai_score": 0.0009526535528502855,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          97.6454043779434,
+          -5.64709982531789
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "97f4f99c-6588-4149-ab29-4b76409b0c3d",
+        "name": "Asia-T1-005",
+        "network_score": 0.6344965064276145,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5773831680525318,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.925898817428373,
+        "xai_score": 0.00024347397757170297,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          60.859384876082,
+          37.5946462025899
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "849bb12e-1738-49cc-be91-7ef8cbd00a2c",
+        "name": "MiddleEast-T1-006",
+        "network_score": 0.5985222492257245,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5768747570420233,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.942327575780991,
+        "xai_score": 0.0033669787615108787,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          75.4586412401331,
+          41.2909578116528
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "40ba483f-4950-4c36-81c1-b7a65aca5b88",
+        "name": "Asia-T1-009",
+        "network_score": 0.58574988470166,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5763330298833255,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.94723098140235,
+        "xai_score": 0.00336697101403535,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          159.668087189822,
+          -4.43658654268532
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "690c6034-77f6-4d98-a034-c5cbc60086c1",
+        "name": "Pacific-T1-002",
+        "network_score": 0.64647457733034,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5720985201881423,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.879911264227486,
+        "xai_score": 0.0023218641049272655,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          65.4044879218924,
+          28.4830869977827
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "511c4810-f868-41bf-8a3b-42a69b8cfdfd",
+        "name": "Asia-T1-002",
+        "network_score": 0.6081260577644035,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5713068005707701,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.900701639289736,
+        "xai_score": 0.0019447445043468245,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          65.3710302425721,
+          -1.86178249306521
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4d819d91-2dbd-4667-8dcd-e5610efd47fa",
+        "name": "Asia-T1-006",
+        "network_score": 0.646260950247849,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5713028133171831,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.877277903214402,
+        "xai_score": 0.00042516405118995143,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          150.702192439614,
+          2.65009365619151
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "be25c265-5251-4b5c-a3e8-f989bde6f3ef",
+        "name": "Pacific-T1-001",
+        "network_score": 0.599692637412562,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5703280523277902,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.899738401898559,
+        "xai_score": 0.0019901415087502875,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          145.295223213608,
+          -20.7698604708951
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5242d7b7-943d-48de-b68b-23b36b6f7def",
+        "name": "Australia-T1-002",
+        "network_score": 0.597673416322685,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5692320207479565,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.895447140898218,
+        "xai_score": 0.0007380399047769444,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          92.0253999966349,
+          4.31242586511111
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "bbb0f799-85e2-477f-806b-99db2da9e9ef",
+        "name": "Asia-T1-001",
+        "network_score": 0.5912111544479111,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5686892394400082,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.896580427025058,
+        "xai_score": 0.00040529970729114565,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          128.218346762931,
+          -21.1562342101047
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f135c291-3122-4fc8-a8e6-d2a22430b18f",
+        "name": "Australia-T1-001",
+        "network_score": 0.5862806747264685,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5681335217100093,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.896252289880419,
+        "xai_score": 0.0003380537764980299,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          124.115991291398,
+          15.6322535917868
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b4212e0a-2c62-4306-b42a-670a1f371c06",
+        "name": "Asia-T1-010",
+        "network_score": 0.635846096076938,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5671855910840613,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.855628990557598,
+        "xai_score": 0.00128316446363913,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          130.002587660777,
+          15.7691338619825
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "cbe02129-478e-41a3-ad0f-2e7736ee7c6d",
+        "name": "Asia-T1-010",
+        "network_score": 0.623137798476644,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5664704777002949,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.85899126742577,
+        "xai_score": 0.001540038693825318,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          74.8409504373996,
+          26.2625131343866
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0070d761-9329-4cae-a92a-38e243ca3389",
+        "name": "Asia-T1-006",
+        "network_score": 0.5668247296867736,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5664521428845325,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.896463733705875,
+        "xai_score": 0.0015005492998697641,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          118.356005073692,
+          6.20737266066421
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "bffe9099-b5f0-40aa-8452-78b0790bd22c",
+        "name": "Asia-T1-004",
+        "network_score": 0.5963874761648129,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5655581264428963,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.871867069903848,
+        "xai_score": 0.0006965917041893196,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          133.832617330092,
+          -23.8572987530566
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e78d5112-2995-4959-9eb8-ab8e32f56f96",
+        "name": "Australia-T1-001",
+        "network_score": 0.55515427663957,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5648690639121225,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.895151390647028,
+        "xai_score": 0.00040463825555671736,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          85.7209429262541,
+          18.1410743128639
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "e2cddcf5-58f5-413c-831e-396a030966cc",
+        "name": "Asia-T1-001",
+        "network_score": 0.577210896460734,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5645503182454448,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.877689048880319,
+        "xai_score": 0.0008793563366180603,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          62.7691069823901,
+          16.758588265828
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7d4fffc3-1f40-42c5-87a1-fc112feb350e",
+        "name": "Asia-T1-008",
+        "network_score": 0.5720603854655025,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5642797380634081,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.878983730665674,
+        "xai_score": 0.0011306995850342246,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          68.5902327951268,
+          40.7418559316016
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b762fed9-ca65-4759-ad34-b1aeccc87516",
+        "name": "Asia-T1-007",
+        "network_score": 0.608101038250564,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.564148649891979,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.850896134628813,
+        "xai_score": 0.003520629363003219,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          64.417359171847,
+          15.8545132368548
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2b124d04-96f9-4e7a-9ce3-88b779fdd90d",
+        "name": "MiddleEast-T1-002",
+        "network_score": 0.595737427790527,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5637434041622842,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.859743987297095,
+        "xai_score": 0.0010403164433361463,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          96.6114363858703,
+          13.9046273365154
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b439d130-5776-43b8-b90a-3770c3f4390f",
+        "name": "Asia-T1-004",
+        "network_score": 0.5655080344246906,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5632091764630828,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.876782884821139,
+        "xai_score": 0.0007047014872139989,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          164.683288353804,
+          -19.0145503761708
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "316c8b45-44a8-4c7b-8010-487b16aeb903",
+        "name": "Pacific-T1-001",
+        "network_score": 0.5542657829172305,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5626106164567639,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.87873880733625,
+        "xai_score": 0.0018660853230170785,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          105.780649976453,
+          15.7622035729053
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d5e254a9-e712-47aa-9fea-f643c109218d",
+        "name": "Asia-T1-007",
+        "network_score": 0.5670406082665895,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5625956539914683,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.871461378928701,
+        "xai_score": 0.0008619316275207974,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          67.1695912414123,
+          30.2531560297978
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "fda49a23-2ee5-43d5-9aaf-63e1755343ec",
+        "name": "Asia-T1-005",
+        "network_score": 0.582615076666247,
+        "pop_proximity_score": 0.3,
+        "pop_score": 1.0,
+        "score": 0.5611963263711461,
+        "source": "GroundNode",
+        "tier": 1,
+        "weather_score": 0.850140377931374,
+        "xai_score": 0.0020688100740765547,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          72.87590151562159,
+          19.07579693373203
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 16,
+        "id": "mumbai-india",
+        "name": "Mumbai, India",
+        "network_score": 0.55,
+        "pop_proximity_score": 0.8,
+        "pop_score": 0.5,
+        "score": 0.5252095852360752,
+        "source": "CableLanding",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.0010479261803761574,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          103.64707112328632,
+          1.338192522185158
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 16,
+        "id": "tuas-singapore",
+        "name": "Tuas, Singapore",
+        "network_score": 0.55,
+        "pop_proximity_score": 0.8,
+        "pop_score": 0.5,
+        "score": 0.5250773674903759,
+        "source": "CableLanding",
+        "tier": null,
+        "weather_score": 0.8,
+        "xai_score": 0.0003868374518798411,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          121.223800211154,
+          12.6445591464358
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": 3,
+        "id": "258ff6dc-b65e-4f8e-8758-0c58917561fd",
+        "name": "Asia-T1-003",
+        "network_score": 0.519028113212242,
+        "pop_proximity_score": 0.15,
+        "pop_score": 1.0,
+        "score": 0.5181506846916348,
+        "source": "Merged",
+        "tier": 1,
+        "weather_score": 0.856950168248029,
+        "xai_score": 0.001026740666031584,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          108.301098002911,
+          -7.16285208812385
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "581296aa-eae2-4b0e-bc17-906870010e33",
+        "name": "Asia-T2-022",
+        "network_score": 0.5374971059247899,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4737141913922794,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.899393777666497,
+        "xai_score": 0.00027707074912922504,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          97.5494127423838,
+          27.032939820872
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2b5c8b75-07a9-4069-a59c-492b116c8249",
+        "name": "Asia-T2-021",
+        "network_score": 0.544412870358557,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.473413228875779,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.891195809365953,
+        "xai_score": 0.001462852175152065,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          122.570419827351,
+          34.5357219924833
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d8fb69f1-6e22-4310-baf3-0a0463ec8daa",
+        "name": "Asia-T2-023",
+        "network_score": 0.537659310326082,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4725515270052987,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.887781162800738,
+        "xai_score": 0.0030921077628993537,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          120.022514516654,
+          2.41948911533018
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "54e4d2bd-67f9-47bd-869d-a63d7ebea147",
+        "name": "Asia-T2-031",
+        "network_score": 0.531446821945401,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47143185944871663,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.887764020270373,
+        "xai_score": 0.0006128710681029162,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          68.6318640721644,
+          35.2671319403504
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "778f234c-918f-44b0-93f0-e79c06301b5e",
+        "name": "Asia-T2-003",
+        "network_score": 0.5485471931676745,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47044099998997413,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.867063551005199,
+        "xai_score": 0.0026337401121343503,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          139.977617332841,
+          -44.4206810888522
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "1a65c29b-ffc0-4cf2-bf53-036bb14f34cf",
+        "name": "Australia-T2-002",
+        "network_score": 0.501215285205587,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.47000819431889307,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.898721741923718,
+        "xai_score": 0.0003920225488830804,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          141.418124216866,
+          -33.2855528972618
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "32d64a49-d4f3-45a5-ad26-44c1bf690d22",
+        "name": "Australia-T2-008",
+        "network_score": 0.52397381434031,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4696525468916726,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.881076372313013,
+        "xai_score": 0.00046854805344838645,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          148.692119273924,
+          -16.8603157408311
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5679485d-d48c-4986-ba93-fbade5ee45ff",
+        "name": "Pacific-T2-006",
+        "network_score": 0.49689018616343505,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46828622713678436,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.889366731103345,
+        "xai_score": 0.0009609942746957755,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          118.167086387021,
+          13.062931719371
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "cd192855-7650-4ed9-9640-c03073ca1496",
+        "name": "Asia-T2-008",
+        "network_score": 0.546418412890463,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46732653522806195,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.84994347059839,
+        "xai_score": 0.0009658667462857733,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          102.840906887343,
+          42.6718089303418
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "6230d56d-ca5e-4c6b-8134-3a180d38e422",
+        "name": "Asia-T2-009",
+        "network_score": 0.516319674567074,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46713403547378196,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.865236606828351,
+        "xai_score": 0.0035828849641097583,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          143.981675803032,
+          -35.8697348881657
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d58668ed-300e-4d39-826e-961be638ec7e",
+        "name": "Australia-T2-005",
+        "network_score": 0.469158416261479,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4667273168373362,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.898072082816626,
+        "xai_score": 0.0005033139434721591,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          108.32510363574,
+          29.6996730681766
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4c892389-f061-43df-b7b5-b4b8a5be30a9",
+        "name": "Asia-T2-002",
+        "network_score": 0.4795898980515795,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46606189163136796,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.884844325663086,
+        "xai_score": 0.0018812648837358188,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          173.125971420418,
+          -25.8352418738705
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "1faa40b9-8564-4087-9bda-84e2bfe48ecc",
+        "name": "Pacific-T2-003",
+        "network_score": 0.471810309417253,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4657972363778792,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.887793955107903,
+        "xai_score": 0.002235560849841903,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          105.183115101498,
+          2.4745623381891
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f69488c3-afbd-4809-9265-ea77ce55faba",
+        "name": "Asia-T2-024",
+        "network_score": 0.4655482314371495,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46565441247795153,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.893434453831495,
+        "xai_score": 0.00042210629756182945,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          130.973602463768,
+          30.3304224453601
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "39700488-3c2f-4b56-afa5-f580bb4651eb",
+        "name": "Asia-T2-016",
+        "network_score": 0.49549250476759144,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46557555646432325,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.869396462404679,
+        "xai_score": 0.0030841831343110674,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          108.855893743112,
+          31.9792094682824
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b45b497e-475d-4816-950e-7116fa0ba1fa",
+        "name": "Asia-T2-013",
+        "network_score": 0.511523525122777,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46515921936106497,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.857192776651613,
+        "xai_score": 0.0021397517552268455,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          63.8700353070243,
+          8.30924620208217
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "839d2983-4031-40ba-90e4-2f323ba805b4",
+        "name": "Asia-T2-006",
+        "network_score": 0.45098621995225896,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4651486455425921,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.899368015335736,
+        "xai_score": 0.0007241062350291895,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          104.386567070895,
+          43.1756564839001
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5d28f89a-d9f3-41c1-b81f-f9915db1ee00",
+        "name": "Asia-T2-022",
+        "network_score": 0.5422421863883524,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4649711847972411,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.833341755855861,
+        "xai_score": 0.003728513900133564,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          140.132942443228,
+          -34.0859300214903
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "eb22b338-670c-4228-971a-2586f641ab60",
+        "name": "Australia-T2-001",
+        "network_score": 0.5306028943297845,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46457606098513465,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.842855876993497,
+        "xai_score": 0.00043695001565829684,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          131.283339378183,
+          45.4876200945656
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c8c9f702-92e9-4b29-a437-30859f259e1e",
+        "name": "Asia-T2-015",
+        "network_score": 0.5021238324417755,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4640246538049206,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.850347913255971,
+        "xai_score": 0.0063004178617369596,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          134.694640110078,
+          2.04267448676377
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2fa7c8d0-81d5-46f5-9b82-6fd7d5e41ea0",
+        "name": "Asia-T2-005",
+        "network_score": 0.441526310522951,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46292809220343695,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.890488179962893,
+        "xai_score": 0.001011170783539575,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          98.2724953696404,
+          5.91229111951751
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "6979c972-183b-41bc-b360-8de86d12f30b",
+        "name": "Asia-T2-006",
+        "network_score": 0.503521994398525,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4628357646258048,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.849276553632516,
+        "xai_score": 0.00046041070537482356,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          89.2716456920337,
+          33.6132564446677
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b7e25ec2-8747-47dd-92a4-23734dd4232b",
+        "name": "Asia-T2-003",
+        "network_score": 0.46519612434648505,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46236535575296833,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.869556353604973,
+        "xai_score": 0.0020614513878693817,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          173.665752885077,
+          8.49178817477906
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ebd70852-6c1b-49f6-b9b4-117918dfac3d",
+        "name": "Pacific-T2-005",
+        "network_score": 0.43686537422328553,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46231855392776355,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.882029795774976,
+        "xai_score": 0.006637735695942959,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          124.744346949056,
+          -20.9317942717029
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "414a541a-ac3d-41b6-9c89-30b956a4adda",
+        "name": "Australia-T2-007",
+        "network_score": 0.5356966021812085,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4618609333665397,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.821552567172967,
+        "xai_score": 0.00029194036236922255,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          112.562310392442,
+          -21.1944811253829
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "12776c9f-e50c-43de-bdc5-225c427cf38c",
+        "name": "Australia-T2-006",
+        "network_score": 0.4464692342861555,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4618480395001322,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.881109658447973,
+        "xai_score": 0.00017333652160353072,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          135.637343357083,
+          3.58600236764049
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "53f307e8-df14-496a-abd0-ac188f4bc34b",
+        "name": "Asia-T2-011",
+        "network_score": 0.47279639931533746,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4616004609052683,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.860651570892217,
+        "xai_score": 0.0011154266995102643,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          117.897654971713,
+          21.34196434288
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "4148a510-b962-4b81-842b-ac1fc5dad906",
+        "name": "Asia-T2-023",
+        "network_score": 0.508026013101707,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46116614174426424,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.833827273019436,
+        "xai_score": 0.001447247405890494,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          86.5354590690671,
+          42.2938275812635
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "dfe3d640-984d-424c-8961-af8ff8a39436",
+        "name": "Asia-T2-017",
+        "network_score": 0.43809305058938297,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.46080828272503904,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.875524686766274,
+        "xai_score": 0.00335137325579819,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          153.878231552082,
+          -16.0866536405386
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5feb075d-7b19-466e-abad-f3b7b7f09c9d",
+        "name": "Australia-T2-001",
+        "network_score": 0.51112578971736,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4607664080993253,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.829366919555114,
+        "xai_score": 0.001243955971611072,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          127.953719774427,
+          48.9504560326957
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "c6a80ab3-a304-49dd-ae23-67865792b309",
+        "name": "Asia-T2-034",
+        "network_score": 0.441738004642794,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4604482892951104,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.865892417181699,
+        "xai_score": 0.006953131267880871,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          108.87486742077,
+          33.2858808506881
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3c7bf6e8-b35f-4a46-811d-aa1155a951c9",
+        "name": "Asia-T2-029",
+        "network_score": 0.5118166196703575,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4603843458982355,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.82495817516519,
+        "xai_score": 0.0022947882821065077,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          61.2235212498233,
+          42.8762340814207
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "9b26ef28-1c57-4ab2-b593-8835f0a8ad98",
+        "name": "Asia-T2-004",
+        "network_score": 0.4682287380568665,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4602007308042519,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.850014203006601,
+        "xai_score": 0.0043786327378751875,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          178.693282581231,
+          18.449490733012
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "6bd8ce65-2163-463d-b8b4-708ef234bee0",
+        "name": "Pacific-T2-002",
+        "network_score": 0.4262565576977485,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4597873414159105,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.865893985257186,
+        "xai_score": 0.011387939287788884,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          150.040313219966,
+          -16.7926568952099
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "21e68423-3dbc-4d34-8f69-70162f5bc3cd",
+        "name": "Australia-T2-003",
+        "network_score": 0.5444943342600205,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4587333453893185,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.793861208619679,
+        "xai_score": 0.0010236533518228114,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          85.6997536517497,
+          -2.40394701604741
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "3ad43dcc-d6d5-4185-a15b-b76ba0ea063e",
+        "name": "Asia-T2-026",
+        "network_score": 0.480807375610127,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4584971342233892,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.835733377040393,
+        "xai_score": 0.0002819505315880314,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          64.40083280906,
+          35.4351853825555
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "5ad11821-faf9-4ceb-a63a-212a9637356b",
+        "name": "Asia-T2-021",
+        "network_score": 0.47771740486569203,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45843169146384666,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.833952644631686,
+        "xai_score": 0.002835271412622827,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          71.8061513949112,
+          0.324956462680419
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "204246b9-a39b-4a20-82e1-c992c0db4c2a",
+        "name": "Asia-T2-032",
+        "network_score": 0.458798445964405,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4583709322524396,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.849406123034604,
+        "xai_score": 0.00040084600404256685,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          64.769554467414,
+          48.0635496368814
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "bacb8325-5905-4624-9c1f-ac6eddd94d3c",
+        "name": "Asia-T2-027",
+        "network_score": 0.401266038057254,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4580694465546252,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.879039380723228,
+        "xai_score": 0.005434678202078162,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          168.415010910547,
+          -10.30972067002
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "6561ca86-0ed6-419e-9ae6-473a044291a4",
+        "name": "Pacific-T2-001",
+        "network_score": 0.48676295946796844,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4578609383270818,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.824075144445155,
+        "xai_score": 0.0028668535675589026,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          148.168996162142,
+          -13.4379919344155
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "f2448d66-e4cf-449c-9e32-447e7ca932cb",
+        "name": "Pacific-T2-006",
+        "network_score": 0.431367029662727,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4570159491238195,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.857808966212435,
+        "xai_score": 0.0010395061284076059,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          131.310955539728,
+          5.3640962844038
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "01f98a4e-c81f-4493-b505-6d4e3db44684",
+        "name": "Asia-T2-017",
+        "network_score": 0.5344114527699215,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45700079753278156,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.789035616874613,
+        "xai_score": 0.0010215486229872537,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          106.048906086505,
+          42.9418034287559
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "10eb66a5-a85b-43a7-a8d2-1969b81f28da",
+        "name": "Asia-T2-012",
+        "network_score": 0.48313254709448994,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45649536744588814,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.81623226501855,
+        "xai_score": 0.003736364918283364,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          62.8507897378905,
+          18.3702357067474
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "175e7384-0381-4138-a067-dc046b79d42b",
+        "name": "MiddleEast-T2-007",
+        "network_score": 0.42120776030520946,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.456263636331159,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.859321332207485,
+        "xai_score": 0.0012233023475764794,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          75.219950088946,
+          4.41206154752696
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "15c73f52-065c-4990-aea7-b1a668dca380",
+        "name": "Asia-T2-030",
+        "network_score": 0.514308681632908,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4561401532237896,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.797444213842726,
+        "xai_score": 0.0004632649204496101,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          121.359669882029,
+          43.0054360135619
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0268b546-999b-45a8-a5c1-a5fb00060428",
+        "name": "Asia-T2-019",
+        "network_score": 0.42310510285580605,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4559841451767509,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.851676896314207,
+        "xai_score": 0.00461050222019606,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          64.6591189273233,
+          28.8685817099502
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "a0ebc127-8432-42f0-9733-39cc4f1c9b4c",
+        "name": "MiddleEast-T2-005",
+        "network_score": 0.440424630970939,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45579197233866675,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.84231565145428,
+        "xai_score": 0.002010807617154338,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          83.2682320552982,
+          13.4713354224931
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "0322e6a4-76e2-404d-a09e-4bf291bd91a7",
+        "name": "Asia-T2-010",
+        "network_score": 0.5192690890651895,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4556665346983059,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.790679954543295,
+        "xai_score": 0.0006881630514637341,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          75.1050489534512,
+          25.1382668783498
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "ccdad18e-92ea-4a2c-9368-72392d84d915",
+        "name": "Asia-T2-004",
+        "network_score": 0.444257377334629,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4555826390675638,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.839169044232605,
+        "xai_score": 0.0014077234960508506,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          88.0989374389446,
+          32.1049444301767
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "7285299a-fe77-4e3c-96fa-eedbadb88196",
+        "name": "Asia-T2-034",
+        "network_score": 0.540659512922888,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4547219764048202,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.768509912335397,
+        "xai_score": 0.0018976913111092304,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          137.410162578802,
+          33.3369707027952
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "cce15437-7357-4047-922b-987088c34f9d",
+        "name": "Asia-T2-002",
+        "network_score": 0.5231106331541315,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45344984431557833,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.768636952570288,
+        "xai_score": 0.004216190573110008,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          84.5445322527609,
+          14.8947419905276
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "11b31f27-304f-4c00-aa2e-e23cc9e4d455",
+        "name": "Asia-T2-020",
+        "network_score": 0.488786709906731,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4526308726670141,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.790696422485934,
+        "xai_score": 0.0007386915172545216,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          111.939473694239,
+          -26.458796533787
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "be7d8bc3-c4dd-4fc5-be66-8f16575475a2",
+        "name": "Australia-T2-006",
+        "network_score": 0.422032391912762,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.4524756646880996,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.8349593045357,
+        "xai_score": 0.00014264908234200714,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          91.7081969448346,
+          7.17732283941231
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "2b55c14e-2795-444b-82ee-36f9570ab904",
+        "name": "Asia-T2-005",
+        "network_score": 0.4072125874771485,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45217578865977043,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.842397043061279,
+        "xai_score": 0.0004748672643187603,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          62.5824212140341,
+          38.1140040187295
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "d5cbd2ed-1f7a-4c9e-b122-e4720557c1f1",
+        "name": "Asia-T2-012",
+        "network_score": 0.4617539228240355,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.45192662012343754,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.800534317040028,
+        "xai_score": 0.003355401425149043,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    },
+    {
+      "geometry": {
+        "coordinates": [
+          134.383019343252,
+          -15.8475280606017
+        ],
+        "type": "Point"
+      },
+      "properties": {
+        "cable_count": null,
+        "id": "b5fe8dbf-2fde-4e13-893e-7c7510cf89b2",
+        "name": "Australia-T2-005",
+        "network_score": 0.5005505434301595,
+        "pop_proximity_score": 0.3,
+        "pop_score": 0.7,
+        "score": 0.451906562269623,
+        "source": "GroundNode",
+        "tier": 2,
+        "weather_score": 0.778315002198806,
+        "xai_score": 0.000521287983931141,
+        "zone": "Apac"
+      },
+      "type": "Feature"
+    }
+  ],
+  "metadata": {
+    "dedup_threshold_km": 50.0,
+    "generated_at": "2026-01-28T02:20:30.874695+00:00",
+    "min_spacing_km": 50.0,
+    "total_candidates": 1654,
+    "total_selected": 247,
+    "zone_distribution": {
+      "Americas": 72,
+      "Apac": 90,
+      "Emea": 85
+    }
+  },
+  "type": "FeatureCollection"
+}

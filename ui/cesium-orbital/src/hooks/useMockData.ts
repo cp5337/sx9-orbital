@@ -15,18 +15,18 @@ const MOCK_GROUND_NODES: Omit<GroundNode, 'id' | 'created_at' | 'last_updated'>[
 ];
 
 const MOCK_SATELLITES: Omit<Satellite, 'id' | 'created_at' | 'last_updated'>[] = [
-  { name: 'MEO-C1', latitude: 0.0, longitude: 0.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.5, status: 'active' },
-  { name: 'MEO-C2', latitude: 30.0, longitude: 45.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.8, status: 'active' },
-  { name: 'MEO-C3', latitude: -30.0, longitude: 90.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.6, status: 'active' },
-  { name: 'MEO-C4', latitude: 45.0, longitude: 135.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 3.0, status: 'active' },
-  { name: 'MEO-C5', latitude: 0.0, longitude: 180.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.4, status: 'active' },
-  { name: 'MEO-C6', latitude: -45.0, longitude: -135.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.9, status: 'active' },
-  { name: 'MEO-C7', latitude: 30.0, longitude: -90.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.7, status: 'active' },
-  { name: 'MEO-C8', latitude: -30.0, longitude: -45.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.5, status: 'active' },
-  { name: 'MEO-C9', latitude: 60.0, longitude: 0.0, altitude: 12000.0, inclination: 70.0, jammed: false, qber: 3.8, status: 'active' },
-  { name: 'MEO-C10', latitude: -60.0, longitude: 0.0, altitude: 12000.0, inclination: 70.0, jammed: false, qber: 3.9, status: 'active' },
-  { name: 'MEO-C11', latitude: 15.0, longitude: 60.0, altitude: 18000.0, inclination: 47.0, jammed: false, qber: 2.2, status: 'active' },
-  { name: 'MEO-C12', latitude: -15.0, longitude: 120.0, altitude: 18000.0, inclination: 47.0, jammed: false, qber: 2.3, status: 'active' },
+  { name: 'ALPHA', latitude: 0.0, longitude: 0.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.5, status: 'active' },
+  { name: 'BETA', latitude: 30.0, longitude: 45.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.8, status: 'active' },
+  { name: 'GAMMA', latitude: -30.0, longitude: 90.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.6, status: 'active' },
+  { name: 'DELTA', latitude: 45.0, longitude: 135.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 3.0, status: 'active' },
+  { name: 'EPSILON', latitude: 0.0, longitude: 180.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.4, status: 'active' },
+  { name: 'ZETA', latitude: -45.0, longitude: -135.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.9, status: 'active' },
+  { name: 'ETA', latitude: 30.0, longitude: -90.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.7, status: 'active' },
+  { name: 'THETA', latitude: -30.0, longitude: -45.0, altitude: 15000.0, inclination: 55.0, jammed: false, qber: 2.5, status: 'active' },
+  { name: 'IOTA', latitude: 60.0, longitude: 0.0, altitude: 12000.0, inclination: 70.0, jammed: false, qber: 3.8, status: 'active' },
+  { name: 'KAPPA', latitude: -60.0, longitude: 0.0, altitude: 12000.0, inclination: 70.0, jammed: false, qber: 3.9, status: 'active' },
+  { name: 'LAMBDA', latitude: 15.0, longitude: 60.0, altitude: 18000.0, inclination: 47.0, jammed: false, qber: 2.2, status: 'active' },
+  { name: 'MU', latitude: -15.0, longitude: 120.0, altitude: 18000.0, inclination: 47.0, jammed: false, qber: 2.3, status: 'active' },
 ];
 
 export function useMockGroundNodes() {

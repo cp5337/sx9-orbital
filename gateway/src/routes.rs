@@ -5,6 +5,7 @@ use axum::{
 use serde::{Deserialize, Serialize};
 
 use crate::AppState;
+use ground_stations::StationStatus;
 
 #[derive(Serialize)]
 pub struct SatelliteInfo {
@@ -100,35 +101,36 @@ pub async fn get_position(
 }
 
 pub async fn list_ground_stations(
-    State(_state): State<AppState>,
+    State(state): State<AppState>,
 ) -> Json<Vec<GroundStationInfo>> {
-    // Sample of 257 Airbus FSO ground stations
-    let stations = vec![
-        GroundStationInfo {
-            id: "GS-001".to_string(),
-            name: "Vandenberg".to_string(),
-            latitude: 34.7420,
-            longitude: -120.5724,
-            status: "operational".to_string(),
-            weather_score: 0.92,
-        },
-        GroundStationInfo {
-            id: "GS-002".to_string(),
-            name: "Cape Canaveral".to_string(),
-            latitude: 28.3922,
-            longitude: -80.6077,
-            status: "operational".to_string(),
-            weather_score: 0.85,
-        },
-        GroundStationInfo {
-            id: "GS-003".to_string(),
-            name: "Kourou".to_string(),
-            latitude: 5.2378,
-            longitude: -52.7683,
-            status: "operational".to_string(),
-            weather_score: 0.78,
-        },
-    ];
+    let stations = state
+        .station_registry
+        .operational()
+        .map(|station| {
+            let weather_score = station
+                .weather
+                .as_ref()
+                .map(|w| w.beam_quality_score)
+                .unwrap_or(1.0);
+
+            let status = match station.status {
+                StationStatus::Operational => "operational",
+                StationStatus::Degraded => "degraded",
+                StationStatus::WeatherHold => "weather_hold",
+                StationStatus::Maintenance => "maintenance",
+                StationStatus::Offline => "offline",
+            };
+
+            GroundStationInfo {
+                id: station.id.clone(),
+                name: station.name.clone(),
+                latitude: station.location.latitude,
+                longitude: station.location.longitude,
+                status: status.to_string(),
+                weather_score,
+            }
+        })
+        .collect();
 
     Json(stations)
 }

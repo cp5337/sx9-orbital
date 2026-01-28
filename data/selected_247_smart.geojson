@@ -1,0 +1,4451 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.1549,
+          41.0814
+        ]
+      },
+      "properties": {
+        "name": "NYSE Euronext Data Center - Mahwah",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -87.6185,
+          41.8528
+        ]
+      },
+      "properties": {
+        "name": "NYSE Disaster Recovery - Chicago",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          0.4885,
+          51.5762
+        ]
+      },
+      "properties": {
+        "name": "NYSE Euronext - Basildon UK",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -84.3908,
+          33.7552
+        ]
+      },
+      "properties": {
+        "name": "ICE Data Center - Atlanta",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.3517,
+          50.8503
+        ]
+      },
+      "properties": {
+        "name": "Euroclear - Brussels",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.1319,
+          49.6117
+        ]
+      },
+      "properties": {
+        "name": "Clearstream - Luxembourg",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.436,
+          37.5407
+        ]
+      },
+      "properties": {
+        "name": "Federal Reserve - Richmond",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.9966,
+          38.4732
+        ]
+      },
+      "properties": {
+        "name": "SWIFT Operations Center - Culpeper",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          4.497,
+          52.1601
+        ]
+      },
+      "properties": {
+        "name": "SWIFT Operations Center - Leiden",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.5417,
+          47.3769
+        ]
+      },
+      "properties": {
+        "name": "SWIFT Operations Center - Zurich",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -77.4874,
+          39.0438
+        ]
+      },
+      "properties": {
+        "name": "Visa Data Center - Ashburn",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.9698,
+          39.5501
+        ]
+      },
+      "properties": {
+        "name": "Visa Data Center - Denver (Highlands Ranch)",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.8198,
+          1.3521
+        ]
+      },
+      "properties": {
+        "name": "Visa Data Center - Singapore",
+        "source": "FinancialInfra",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.6998,
+          38.8106
+        ]
+      },
+      "properties": {
+        "name": "Mastercard Global Technology - O'Fallon",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -94.5786,
+          39.0997
+        ]
+      },
+      "properties": {
+        "name": "Mastercard Data Center - Kansas City",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.7688,
+          35.6834
+        ]
+      },
+      "properties": {
+        "name": "Japan Exchange Group - Tokyo",
+        "source": "FinancialInfra",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          114.2587,
+          22.3183
+        ]
+      },
+      "properties": {
+        "name": "Hong Kong Exchange Data Center",
+        "source": "FinancialInfra",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.2153,
+          -33.8568
+        ]
+      },
+      "properties": {
+        "name": "Australian Securities Exchange - Sydney",
+        "source": "FinancialInfra",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.6724,
+          50.1155
+        ]
+      },
+      "properties": {
+        "name": "Eurex - Frankfurt",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.3429,
+          48.8698
+        ]
+      },
+      "properties": {
+        "name": "Euronext - Paris",
+        "source": "FinancialInfra",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -90.049,
+          35.1495
+        ]
+      },
+      "properties": {
+        "name": "xAI Colossus",
+        "source": "xAI",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ffff00",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.3134,
+          51.1279
+        ]
+      },
+      "properties": {
+        "name": "HALO Centre Dover",
+        "source": "LaserLight",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#ff00ff",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.6693,
+          -33.4489
+        ]
+      },
+      "properties": {
+        "name": "Chile Beta",
+        "source": "LaserLight",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff00ff",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.372629023073098,
+          43.29316463678684
+        ]
+      },
+      "properties": {
+        "name": "Marseille, France",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 16,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          72.87590151562159,
+          19.07579693373203
+        ]
+      },
+      "properties": {
+        "name": "Mumbai, India",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 16,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.18276132165815,
+          21.481258967424996
+        ]
+      },
+      "properties": {
+        "name": "Jeddah, Saudi Arabia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 14,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          56.33372573425405,
+          25.12169311729696
+        ]
+      },
+      "properties": {
+        "name": "Fujairah, United Arab Emirates",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 13,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          136.87439133474103,
+          34.33683057441225
+        ]
+      },
+      "properties": {
+        "name": "Shima, Japan",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 11,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          106.82785500280222,
+          -6.171598654655946
+        ]
+      },
+      "properties": {
+        "name": "Jakarta, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 10,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.932478447942366,
+          60.17107541825205
+        ]
+      },
+      "properties": {
+        "name": "Helsinki, Finland",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 10,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.649855793379736,
+          29.116686929125173
+        ]
+      },
+      "properties": {
+        "name": "Zafarana, Egypt",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 10,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -38.54297900000012,
+          -3.718537
+        ]
+      },
+      "properties": {
+        "name": "Fortaleza, Brazil",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 10,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          80.24308379664043,
+          13.06348539106232
+        ]
+      },
+      "properties": {
+        "name": "Chennai, India",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 10,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -121.9636,
+          37.3874
+        ]
+      },
+      "properties": {
+        "name": "Equinix SV5 Silicon Valley",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -96.8206,
+          32.9245
+        ]
+      },
+      "properties": {
+        "name": "Equinix DA1 Dallas",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -80.2259,
+          25.7897
+        ]
+      },
+      "properties": {
+        "name": "Equinix MI1 Miami",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.2074,
+          47.4502
+        ]
+      },
+      "properties": {
+        "name": "Equinix SE2 Seattle",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -118.2518,
+          34.0488
+        ]
+      },
+      "properties": {
+        "name": "Equinix LA1 Los Angeles",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -46.6333,
+          -23.5505
+        ]
+      },
+      "properties": {
+        "name": "Equinix SP1 Sao Paulo",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.3832,
+          43.6532
+        ]
+      },
+      "properties": {
+        "name": "Equinix TR1 Toronto",
+        "source": "Equinix",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.5923,
+          51.5095
+        ]
+      },
+      "properties": {
+        "name": "Equinix LD4 London",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.7038,
+          40.4168
+        ]
+      },
+      "properties": {
+        "name": "Equinix MD1 Madrid",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.19,
+          45.4642
+        ]
+      },
+      "properties": {
+        "name": "Equinix ML2 Milan",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          21.0122,
+          52.2297
+        ]
+      },
+      "properties": {
+        "name": "Equinix WA1 Warsaw",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          55.2708,
+          25.2048
+        ]
+      },
+      "properties": {
+        "name": "Equinix DX1 Dubai",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          28.0473,
+          -26.2041
+        ]
+      },
+      "properties": {
+        "name": "Equinix JN1 Johannesburg",
+        "source": "Equinix",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.9631,
+          -37.8136
+        ]
+      },
+      "properties": {
+        "name": "Equinix ME1 Melbourne",
+        "source": "Equinix",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          126.978,
+          37.5665
+        ]
+      },
+      "properties": {
+        "name": "Equinix SL1 Seoul",
+        "source": "Equinix",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          135.5023,
+          34.6937
+        ]
+      },
+      "properties": {
+        "name": "Equinix OS1 Osaka",
+        "source": "Equinix",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.4737,
+          31.2304
+        ]
+      },
+      "properties": {
+        "name": "Equinix SH2 Shanghai",
+        "source": "Equinix",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -82.4572,
+          27.9506
+        ]
+      },
+      "properties": {
+        "name": "DTCC Operations - Tampa",
+        "source": "FinancialInfra",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#ff0000",
+        "marker-size": "large"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.5654,
+          25.033
+        ]
+      },
+      "properties": {
+        "name": "TPIX-TW",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 8,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          3.3792,
+          6.5244
+        ]
+      },
+      "properties": {
+        "name": "IXPN Lagos",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 8,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.02854237669561,
+          24.88937409747322
+        ]
+      },
+      "properties": {
+        "name": "Karachi, Pakistan",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.5951000000003,
+          7.198819999999446
+        ]
+      },
+      "properties": {
+        "name": "Songkhla, Thailand",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.544404967232005,
+          50.82811048000128
+        ]
+      },
+      "properties": {
+        "name": "Bude, United Kingdom",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.97546699999984,
+          35.005432999999265
+        ]
+      },
+      "properties": {
+        "name": "Maruyama, Japan",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.14799288765091,
+          11.594678044710776
+        ]
+      },
+      "properties": {
+        "name": "Djibouti City, Djibouti",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          144.69474214461212,
+          13.464655237903562
+        ]
+      },
+      "properties": {
+        "name": "Piti, Guam",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.99929925728011,
+          35.17014221411413
+        ]
+      },
+      "properties": {
+        "name": "Busan, South Korea",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 9,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.591276253065702,
+          37.650130188288585
+        ]
+      },
+      "properties": {
+        "name": "Mazara del Vallo, Italy",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -66.10666604344867,
+          18.465839112933374
+        ]
+      },
+      "properties": {
+        "name": "San Juan, PR, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -43.209563123346165,
+          -22.90339400756494
+        ]
+      },
+      "properties": {
+        "name": "Rio de Janeiro, Brazil",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          178.43744782858172,
+          -18.123812280017187
+        ]
+      },
+      "properties": {
+        "name": "Suva, Fiji",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.44763420482612,
+          1.665606179943663
+        ]
+      },
+      "properties": {
+        "name": "Dumai, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -9.331559779091531,
+          38.69016282606887
+        ]
+      },
+      "properties": {
+        "name": "Carcavelos, Portugal",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          57.88605,
+          23.678719999999707
+        ]
+      },
+      "properties": {
+        "name": "Barka, Oman",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 8,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          73.54015885755544,
+          4.211942635751779
+        ]
+      },
+      "properties": {
+        "name": "Hulhumale, Maldives",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -56.695491069788275,
+          -36.47252952471871
+        ]
+      },
+      "properties": {
+        "name": "Las Toninas, Argentina",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.752468999999603,
+          59.436369
+        ]
+      },
+      "properties": {
+        "name": "Tallinn, Estonia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.83960982123124,
+          1.490831387793467
+        ]
+      },
+      "properties": {
+        "name": "Manado, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.06611799999914,
+          6.613467
+        ]
+      },
+      "properties": {
+        "name": "Satun, Thailand",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.67280003701128,
+          -4.053206761989876
+        ]
+      },
+      "properties": {
+        "name": "Mombasa, Kenya",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 7,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.996259976968266,
+          58.15095596477219
+        ]
+      },
+      "properties": {
+        "name": "Kristiansand, Norway",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.46655514198169,
+          34.76641137968897
+        ]
+      },
+      "properties": {
+        "name": "Yeroskipos, Cyprus",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.53012931569517,
+          29.9722883988634
+        ]
+      },
+      "properties": {
+        "name": "Suez, Egypt",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -71.62048049678572,
+          -33.045765558769304
+        ]
+      },
+      "properties": {
+        "name": "Valpara\u00edso, Chile",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.14808275133401,
+          17.095825991958318
+        ]
+      },
+      "properties": {
+        "name": "Salalah, Oman",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -0.201097497196668,
+          5.558283401661053
+        ]
+      },
+      "properties": {
+        "name": "Accra, Ghana",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          29.702494600068096,
+          31.071848731738037
+        ]
+      },
+      "properties": {
+        "name": "Abu Talat, Egypt",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -68.89646699999949,
+          12.095587
+        ]
+      },
+      "properties": {
+        "name": "Willemstad, Cura\u00e7ao",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -86.767566,
+          21.095660000000468
+        ]
+      },
+      "properties": {
+        "name": "Canc\u00fan, Mexico",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.026241271803983,
+          5.323518612555771
+        ]
+      },
+      "properties": {
+        "name": "Abidjan, C\u00f4te d'Ivoire",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.603566055263556,
+          34.82848058540633
+        ]
+      },
+      "properties": {
+        "name": "Pentaskhinos, Cyprus",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.50568282259698,
+          10.386695392812182
+        ]
+      },
+      "properties": {
+        "name": "Cartagena, Colombia",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          51.51937367603625,
+          25.294340911551398
+        ]
+      },
+      "properties": {
+        "name": "Doha, Qatar",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.28445799999981,
+          31.259279
+        ]
+      },
+      "properties": {
+        "name": "Port Said, Egypt",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 6,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.4241,
+          -33.9249
+        ]
+      },
+      "properties": {
+        "name": "NAPAfrica IX Cape Town",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          115.8605,
+          -31.9505
+        ]
+      },
+      "properties": {
+        "name": "Equinix PE1 Perth",
+        "source": "Equinix",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#00cc00",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          18.0686,
+          59.3293
+        ]
+      },
+      "properties": {
+        "name": "Netnod Stockholm GREEN -- MTU1500",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          77.1025,
+          28.7041
+        ]
+      },
+      "properties": {
+        "name": "Extreme IX Delhi",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          36.8219,
+          -1.2921
+        ]
+      },
+      "properties": {
+        "name": "KIXP - Nairobi",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          101.6869,
+          3.139
+        ]
+      },
+      "properties": {
+        "name": "MyIX",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -6.2603,
+          53.3498
+        ]
+      },
+      "properties": {
+        "name": "INEX LAN1",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.9842,
+          14.5995
+        ]
+      },
+      "properties": {
+        "name": "GetaFIX Manila",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          145.63747106439294,
+          15.011127130087093
+        ]
+      },
+      "properties": {
+        "name": "Tinian, Northern Mariana Islands",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.84990301084824,
+          2.295511672819276
+        ]
+      },
+      "properties": {
+        "name": "Mersing, Malaysia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.8431456073319,
+          -12.467490679762426
+        ]
+      },
+      "properties": {
+        "name": "Darwin, NT, Australia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          38.10698083375123,
+          24.070555564820936
+        ]
+      },
+      "properties": {
+        "name": "Yanbu, Saudi Arabia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          123.5833851252144,
+          -10.183308656195656
+        ]
+      },
+      "properties": {
+        "name": "Kupang, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -88.59723848982233,
+          15.727143540875408
+        ]
+      },
+      "properties": {
+        "name": "Puerto Barrios, Guatemala",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -17.451915354680473,
+          14.686597713745336
+        ]
+      },
+      "properties": {
+        "name": "Dakar, Senegal",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.41239198623502,
+          -5.152184574655166
+        ]
+      },
+      "properties": {
+        "name": "Makassar, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -61.65080982501897,
+          10.686160924629455
+        ]
+      },
+      "properties": {
+        "name": "Chaguaramas, Trinidad and Tobago",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          15.067446373923563,
+          37.51158912057901
+        ]
+      },
+      "properties": {
+        "name": "Catania, Italy",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          39.26967532258757,
+          -6.823229228025631
+        ]
+      },
+      "properties": {
+        "name": "Dar Es Salaam, Tanzania",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          1.729174572880337,
+          52.47136138660393
+        ]
+      },
+      "properties": {
+        "name": "Lowestoft, United Kingdom",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.005095000000225,
+          29.581029499999897
+        ]
+      },
+      "properties": {
+        "name": "Aqaba, Jordan",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -64.8194110959771,
+          17.77186426252591
+        ]
+      },
+      "properties": {
+        "name": "St. Croix, Virgin Islands, Virgin Islands (U.S.)",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -23.521246992608987,
+          14.923010648471926
+        ]
+      },
+      "properties": {
+        "name": "Praia, Cape Verde",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          47.97474728083281,
+          29.37401624369425
+        ]
+      },
+      "properties": {
+        "name": "Kuwait City, Kuwait",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          50.214198819384315,
+          26.286171946143295
+        ]
+      },
+      "properties": {
+        "name": "Al Khobar, Saudi Arabia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.454364412783434,
+          0.394268790397072
+        ]
+      },
+      "properties": {
+        "name": "Libreville, Gabon",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.77975560247559,
+          10.94046235659719
+        ]
+      },
+      "properties": {
+        "name": "Barranquilla, Colombia",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          37.219676774825814,
+          19.61556365090266
+        ]
+      },
+      "properties": {
+        "name": "Port Sudan, Sudan",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.69652899999984,
+          27.354018999999465
+        ]
+      },
+      "properties": {
+        "name": "Duba, Saudi Arabia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.8826750000001,
+          33.69357
+        ]
+      },
+      "properties": {
+        "name": "Myrtle Beach, SC, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.938900000000473,
+          44.410338999999794
+        ]
+      },
+      "properties": {
+        "name": "Genoa, Italy",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 5,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -16.908946989325337,
+          32.64686582848514
+        ]
+      },
+      "properties": {
+        "name": "Funchal, Portugal",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          119.50038020515338,
+          10.819603438863586
+        ]
+      },
+      "properties": {
+        "name": "Taytay, Philippines",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.6319195386728,
+          8.454228346754538
+        ]
+      },
+      "properties": {
+        "name": "Cagayan de Oro, Philippines",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          127.68055019149426,
+          26.21241384638718
+        ]
+      },
+      "properties": {
+        "name": "Naha, Japan",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -158.2206478576183,
+          21.463431186887963
+        ]
+      },
+      "properties": {
+        "name": "Makaha, HI, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -120.84720343661348,
+          35.3666813511006
+        ]
+      },
+      "properties": {
+        "name": "Morro Bay, CA, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.40982400223058,
+          5.368393581488473
+        ]
+      },
+      "properties": {
+        "name": "Penang, Malaysia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.87428536869109,
+          -12.278527239265857
+        ]
+      },
+      "properties": {
+        "name": "Lurin, Peru",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.06492987806165,
+          13.765553306627538
+        ]
+      },
+      "properties": {
+        "name": "Batangas, Philippines",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -122.98980067645105,
+          45.522898824562965
+        ]
+      },
+      "properties": {
+        "name": "Hillsboro, OR, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.46670015731281,
+          -0.816539442758962
+        ]
+      },
+      "properties": {
+        "name": "Kuala Tungkal, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.69706984367991,
+          -10.437358645528692
+        ]
+      },
+      "properties": {
+        "name": "Flying Fish Cove, Christmas Island",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.51297572725252,
+          -3.998447236539088
+        ]
+      },
+      "properties": {
+        "name": "Kendari, Indonesia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          147.18851977030369,
+          -9.47960554573348
+        ]
+      },
+      "properties": {
+        "name": "Port Moresby, Papua New Guinea",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -155.83123627078376,
+          20.040296565242308
+        ]
+      },
+      "properties": {
+        "name": "Kawaihae, HI, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.06287361347052,
+          40.15287376160566
+        ]
+      },
+      "properties": {
+        "name": "Wall Township, NJ, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          8.329194484059272,
+          55.75167411423394
+        ]
+      },
+      "properties": {
+        "name": "Blaabjerg, Denmark",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          110.35370699724253,
+          1.520179142639674
+        ]
+      },
+      "properties": {
+        "name": "Kuching, Malaysia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          45.01088219296272,
+          10.43511582934602
+        ]
+      },
+      "properties": {
+        "name": "Berbera, Somalia",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          103.39365333405976,
+          4.130238298773818
+        ]
+      },
+      "properties": {
+        "name": "Cherating, Malaysia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          125.61277821882337,
+          7.079988883160643
+        ]
+      },
+      "properties": {
+        "name": "Davao, Philippines",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.05919805548162,
+          36.755008440641625
+        ]
+      },
+      "properties": {
+        "name": "Virginia Beach, VA, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          22.968222026939856,
+          59.82321000411124
+        ]
+      },
+      "properties": {
+        "name": "Hanko, Finland",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          43.24340297631166,
+          -11.700694108521688
+        ]
+      },
+      "properties": {
+        "name": "Moroni, Comoros",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.75786423777489,
+          -28.950640880887153
+        ]
+      },
+      "properties": {
+        "name": "Mtunzini, South Africa",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          32.58061756117876,
+          -25.968533089796413
+        ]
+      },
+      "properties": {
+        "name": "Maputo, Mozambique",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -151.54430693463783,
+          59.6463664840008
+        ]
+      },
+      "properties": {
+        "name": "Homer, AK, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -79.75354358290546,
+          9.437336030723529
+        ]
+      },
+      "properties": {
+        "name": "Maria Chiquita, Panama",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          48.531778136227075,
+          29.923295047889447
+        ]
+      },
+      "properties": {
+        "name": "Al Faw, Iraq",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -8.869599,
+          37.957190000000196
+        ]
+      },
+      "properties": {
+        "name": "Sines, Portugal",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.768278120000296,
+          35.07140756999981
+        ]
+      },
+      "properties": {
+        "name": "Tympaki, Greece",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          24.01216659989987,
+          35.51180510130388
+        ]
+      },
+      "properties": {
+        "name": "Chania, Greece",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          34.76967851042755,
+          32.044596253282435
+        ]
+      },
+      "properties": {
+        "name": "Tel Aviv, Israel",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          16.866663849341016,
+          41.12549190517644
+        ]
+      },
+      "properties": {
+        "name": "Bari, Italy",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          102.22090025859913,
+          2.273178376445331
+        ]
+      },
+      "properties": {
+        "name": "Melaka, Malaysia",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          11.928972034748147,
+          54.57634945132528
+        ]
+      },
+      "properties": {
+        "name": "Gedser, Denmark",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -3.05075368159855,
+          53.80866015617716
+        ]
+      },
+      "properties": {
+        "name": "Blackpool, United Kingdom",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.93056914143179,
+          13.174368777461584
+        ]
+      },
+      "properties": {
+        "name": "Sriracha, Thailand",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          107.07919759818566,
+          10.341846070577743
+        ]
+      },
+      "properties": {
+        "name": "Vung Tau, Vietnam",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          35.89780271125367,
+          34.891704567154335
+        ]
+      },
+      "properties": {
+        "name": "Tartous, Syria",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          54.41888334074638,
+          24.44378591321795
+        ]
+      },
+      "properties": {
+        "name": "Abu Dhabi, United Arab Emirates",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          139.79680232984748,
+          33.11229519278616
+        ]
+      },
+      "properties": {
+        "name": "Hachijo, Japan",
+        "source": "CableLanding",
+        "zone": "APAC",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          5.730793999999772,
+          58.970833
+        ]
+      },
+      "properties": {
+        "name": "Stavanger, Norway",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          33.082788999999806,
+          28.36590799999975
+        ]
+      },
+      "properties": {
+        "name": "Ras Ghareb, Egypt",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -131.64781899999988,
+          55.342096
+        ]
+      },
+      "properties": {
+        "name": "Ketchikan, AK, United States",
+        "source": "CableLanding",
+        "zone": "Americas",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          30.88039000000108,
+          -30.057720000000288
+        ]
+      },
+      "properties": {
+        "name": "Amanzimtoti, South Africa",
+        "source": "CableLanding",
+        "zone": "EMEA",
+        "cable_count": 4,
+        "marker-color": "#0066ff",
+        "marker-size": "medium"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          174.7633,
+          -36.8485
+        ]
+      },
+      "properties": {
+        "name": "AKL-IX (Auckland NZ)",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -123.1207,
+          49.2827
+        ]
+      },
+      "properties": {
+        "name": "VANIX",
+        "source": "IXP",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          100.5018,
+          13.7563
+        ]
+      },
+      "properties": {
+        "name": "BKNIX (Thailand)",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          10.7522,
+          59.9139
+        ]
+      },
+      "properties": {
+        "name": "NIX1",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -74.0721,
+          4.711
+        ]
+      },
+      "properties": {
+        "name": "PIT - Colombia - Bogota",
+        "source": "IXP",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          31.2357,
+          30.0444
+        ]
+      },
+      "properties": {
+        "name": "PyramIX",
+        "source": "IXP",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -99.1332,
+          19.4326
+        ]
+      },
+      "properties": {
+        "name": "DE-CIX Mexico",
+        "source": "IXP",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          116.4074,
+          39.9042
+        ]
+      },
+      "properties": {
+        "name": "CNIX",
+        "source": "IXP",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -58.3816,
+          -34.6037
+        ]
+      },
+      "properties": {
+        "name": "PIT - Argentina - Buenos Aires",
+        "source": "IXP",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#009900",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.6858,
+          35.6853
+        ]
+      },
+      "properties": {
+        "name": "China Lake California Hub",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          113.633319820303,
+          26.4533707767948
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-009",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -4.37905730775932,
+          39.1898952028439
+        ]
+      },
+      "properties": {
+        "name": "Europe-T1-007",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          42.3660343419409,
+          56.8733732515175
+        ]
+      },
+      "properties": {
+        "name": "Europe-T1-001",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          99.2980351833636,
+          19.0100278171647
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-008",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -76.0189580874871,
+          -32.9585988222592
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-003",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          40.128977961993,
+          35.6567766093745
+        ]
+      },
+      "properties": {
+        "name": "MiddleEast-T1-005",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          151.058662109131,
+          -18.5256668713249
+        ]
+      },
+      "properties": {
+        "name": "Australia-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          6.95080872905454,
+          66.3727073569873
+        ]
+      },
+      "properties": {
+        "name": "Europe-T1-008",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          159.668087189822,
+          -4.43658654268532
+        ]
+      },
+      "properties": {
+        "name": "Pacific-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.836944410771,
+          -23.5892523196096
+        ]
+      },
+      "properties": {
+        "name": "Pacific-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          97.6454043779434,
+          -5.64709982531789
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-005",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.3710302425721,
+          -1.86178249306521
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-006",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          2.7051434068162,
+          16.3981335849799
+        ]
+      },
+      "properties": {
+        "name": "Africa-T1-001",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          52.2884916166378,
+          20.3209575064591
+        ]
+      },
+      "properties": {
+        "name": "MiddleEast-T1-001",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -62.7264058442011,
+          -47.7481681866117
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-002",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -128.11436789352,
+          39.5533981731519
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-003",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.47730484444,
+          11.9628507559874
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          26.6547079657719,
+          61.4534099924218
+        ]
+      },
+      "properties": {
+        "name": "Europe-T1-006",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          124.115991291398,
+          15.6322535917868
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-010",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -102.632944694285,
+          40.8984830868869
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-001",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          59.2681641165585,
+          26.7220988733282
+        ]
+      },
+      "properties": {
+        "name": "MiddleEast-T1-003",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          9.29189970225839,
+          40.7834891468614
+        ]
+      },
+      "properties": {
+        "name": "Europe-T1-005",
+        "source": "GroundNode",
+        "zone": "EMEA",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          130.002587660777,
+          15.7691338619825
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-010",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          87.0864127009473,
+          8.61803573562139
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-003",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          60.859384876082,
+          37.5946462025899
+        ]
+      },
+      "properties": {
+        "name": "MiddleEast-T1-006",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          65.4044879218924,
+          28.4830869977827
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.702192439614,
+          2.65009365619151
+        ]
+      },
+      "properties": {
+        "name": "Pacific-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          75.4586412401331,
+          41.2909578116528
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-009",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -73.413103967398,
+          45.1068443959403
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-004",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -59.1462134359362,
+          -23.7818750516228
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-003",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          145.295223213608,
+          -20.7698604708951
+        ]
+      },
+      "properties": {
+        "name": "Australia-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.5902327951268,
+          40.7418559316016
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-007",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          92.0253999966349,
+          4.31242586511111
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.356005073692,
+          6.20737266066421
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-004",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -110.288303753126,
+          40.088469068936
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-002",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          64.417359171847,
+          15.8545132368548
+        ]
+      },
+      "properties": {
+        "name": "MiddleEast-T1-002",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          128.218346762931,
+          -21.1562342101047
+        ]
+      },
+      "properties": {
+        "name": "Australia-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          121.223800211154,
+          12.6445591464358
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-003",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.1720963772906,
+          -20.4027230218967
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-002",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -126.646998732761,
+          42.8978118296129
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-004",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -112.793175998441,
+          43.7198997323356
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-003",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -100.058541285835,
+          43.2749826689716
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-001",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -95.1448510674921,
+          37.5671196977545
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-005",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -70.4,
+          -24.8833
+        ]
+      },
+      "properties": {
+        "name": "Antofagasta Chile - Atacama",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          85.7209429262541,
+          18.1410743128639
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          67.1695912414123,
+          30.2531560297978
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-005",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.7879637699594,
+          26.6470153069758
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-005",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          62.7691069823901,
+          16.758588265828
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-008",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          74.8409504373996,
+          26.2625131343866
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-006",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -67.7466804079467,
+          -50.4330587223344
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-001",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -128.301383420531,
+          42.2275265605622
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T1-002",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          105.780649976453,
+          15.7622035729053
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-007",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          96.6114363858703,
+          13.9046273365154
+        ]
+      },
+      "properties": {
+        "name": "Asia-T1-004",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          133.832617330092,
+          -23.8572987530566
+        ]
+      },
+      "properties": {
+        "name": "Australia-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          164.683288353804,
+          -19.0145503761708
+        ]
+      },
+      "properties": {
+        "name": "Pacific-T1-001",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -75.8598278537913,
+          -16.589458329887
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T1-001",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          97.5494127423838,
+          27.032939820872
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-021",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          68.6318640721644,
+          35.2671319403504
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-003",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          108.301098002911,
+          -7.16285208812385
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-022",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          122.570419827351,
+          34.5357219924833
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-023",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -129.491213318115,
+          26.7953045352828
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-014",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          118.167086387021,
+          13.062931719371
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-008",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -78.6767287022484,
+          -45.0864546947389
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T2-006",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -109.928420952933,
+          35.8075963809908
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-023",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          120.022514516654,
+          2.41948911533018
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-031",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.715617586557,
+          38.5112142290202
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-027",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.74822081262,
+          48.1849013681636
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-006",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          104.386567070895,
+          43.1756564839001
+        ]
+      },
+      "properties": {
+        "name": "Asia-T2-022",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -104.865488531116,
+          36.0370963057484
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-021",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -106.345293156893,
+          29.8636681367798
+        ]
+      },
+      "properties": {
+        "name": "NorthAmerica-T2-004",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -48.3332442801953,
+          -34.049154764741
+        ]
+      },
+      "properties": {
+        "name": "SouthAmerica-T2-002",
+        "source": "GroundNode",
+        "zone": "Americas",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          141.418124216866,
+          -33.2855528972618
+        ]
+      },
+      "properties": {
+        "name": "Australia-T2-008",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          150.040313219966,
+          -16.7926568952099
+        ]
+      },
+      "properties": {
+        "name": "Australia-T2-003",
+        "source": "GroundNode",
+        "zone": "APAC",
+        "cable_count": 0,
+        "marker-color": "#888888",
+        "marker-size": "small"
+      }
+    }
+  ]
+}

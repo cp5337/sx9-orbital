@@ -1,7 +1,33 @@
 import { GroundStationData, SatelliteData, NetworkLinkData } from './cesiumWorldManager';
 
+export type LinkPhase =
+  | 'acquire'
+  | 'authenticate'
+  | 'handshake'
+  | 'maintain'
+  | 'degrade'
+  | 'terminate'
+  | 'reset';
+
+export interface LinkStatePayload {
+  link_id: string;
+  link_type: 'sat-sat' | 'sat-ground';
+  source_id: string;
+  target_id: string;
+  phase: LinkPhase;
+  margin_db?: number;
+  sla_score?: number;
+  active?: boolean;
+}
+
 export interface WebSocketMessage {
-  type: 'initial_data' | 'ground_station' | 'satellite' | 'network_link' | 'status_update';
+  type:
+    | 'initial_data'
+    | 'ground_station'
+    | 'satellite'
+    | 'network_link'
+    | 'status_update'
+    | 'link_state';
   data: any;
 }
 

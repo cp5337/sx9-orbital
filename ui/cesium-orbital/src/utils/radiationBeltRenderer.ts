@@ -34,16 +34,17 @@ export const RADIATION_BELTS: RadiationBeltConfig[] = [
   },
 ];
 
-export function addRadiationBeltsToViewer(viewer: Cesium.Viewer): void {
+export function addRadiationBeltsToViewer(viewer: Cesium.Viewer, layerId: string = 'radiationBelts'): void {
   RADIATION_BELTS.forEach((belt) => {
-    addRadiationBelt(viewer, belt);
-    addBeltLabel(viewer, belt);
+    addRadiationBelt(viewer, belt, layerId);
+    addBeltLabel(viewer, belt, layerId);
   });
 }
 
 function addRadiationBelt(
   viewer: Cesium.Viewer,
-  config: RadiationBeltConfig
+  config: RadiationBeltConfig,
+  layerId: string
 ): void {
   const innerRadius = config.innerRadiusKm;
   const outerRadius = config.outerRadiusKm;
@@ -72,12 +73,14 @@ function addRadiationBelt(
       outlineWidth: 2,
     },
     description: generateBeltDescription(config),
+    properties: new Cesium.PropertyBag({ layerId }),
   });
 }
 
 function addBeltLabel(
   viewer: Cesium.Viewer,
-  config: RadiationBeltConfig
+  config: RadiationBeltConfig,
+  layerId: string
 ): void {
   const midRadius = (config.innerRadiusKm + config.outerRadiusKm) / 2;
 
@@ -111,14 +114,16 @@ function addBeltLabel(
       pixelOffset: new Cesium.Cartesian2(-20, 0),
       disableDepthTestDistance: Number.POSITIVE_INFINITY,
     },
+    properties: new Cesium.PropertyBag({ layerId }),
   });
 
-  addRadiusMarkers(viewer, config);
+  addRadiusMarkers(viewer, config, layerId);
 }
 
 function addRadiusMarkers(
   viewer: Cesium.Viewer,
-  config: RadiationBeltConfig
+  config: RadiationBeltConfig,
+  layerId: string
 ): void {
   const angles = [90, 180, 270];
 
@@ -146,6 +151,7 @@ function addRadiusMarkers(
         pixelOffset: new Cesium.Cartesian2(0, -15),
         scale: 0.8,
       },
+      properties: new Cesium.PropertyBag({ layerId }),
     });
   });
 }

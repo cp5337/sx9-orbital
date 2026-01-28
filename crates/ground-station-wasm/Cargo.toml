@@ -12,6 +12,7 @@ crate-type = ["cdylib", "rlib"]
 default = ["std"]
 std = ["chrono"]
 wasm = ["wasm-bindgen", "getrandom/js"]
+weather-api = ["reqwest", "tokio", "futures"]
 
 [dependencies]
 # Core
@@ -27,6 +28,11 @@ nalgebra = { version = "0.33", default-features = false, features = ["std"] }
 # WASM support
 wasm-bindgen = { version = "0.2", optional = true }
 getrandom = { version = "0.2", optional = true }
+
+# Weather API support (optional - for live weather data)
+reqwest = { version = "0.11", features = ["json"], optional = true }
+tokio = { version = "1", features = ["sync"], optional = true }
+futures = { version = "0.3", optional = true }
 
 [dev-dependencies]
 wasm-bindgen-test = "0.3"

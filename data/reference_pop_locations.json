@@ -1,0 +1,448 @@
+{
+  "metadata": {
+    "description": "Reference POP locations for ground station proximity scoring",
+    "sources": [
+      "Laser Light Companies Beta Program (Nokia PSE-6s)",
+      "Equinix IBX Data Centers (305 facilities)",
+      "Compiled 2025-01-28"
+    ],
+    "notes": "Coordinates approximate - derived from city centers or known addresses"
+  },
+  "laser_light_beta": {
+    "description": "Laser Light Companies Beta Sites - Nokia PSE-6s 1.2Tb/s optical",
+    "sites": [
+      {
+        "id": "LL-RESTON-HQ",
+        "name": "Laser Light HQ - Reston",
+        "city": "Reston",
+        "country": "US",
+        "latitude": 38.9586,
+        "longitude": -77.3570,
+        "tier": 1,
+        "type": "headquarters",
+        "capacity_tbps": 1.2
+      },
+      {
+        "id": "LL-DOVER-NOC",
+        "name": "HALO Centre Dover",
+        "city": "Dover",
+        "country": "GB",
+        "latitude": 51.1279,
+        "longitude": 1.3134,
+        "tier": 1,
+        "type": "noc",
+        "facility": "TechFort at the Citadel",
+        "capacity_tbps": 1.2
+      },
+      {
+        "id": "LL-LONDON-HQ",
+        "name": "Laser Light Global Ltd",
+        "city": "London",
+        "country": "GB",
+        "latitude": 51.5074,
+        "longitude": -0.1278,
+        "tier": 1,
+        "type": "office"
+      },
+      {
+        "id": "LL-SYDNEY-BETA",
+        "name": "Australia Beta",
+        "city": "Sydney",
+        "country": "AU",
+        "latitude": -33.8688,
+        "longitude": 151.2093,
+        "tier": 1,
+        "type": "beta",
+        "focus": "Pacific/Indian Ocean ultra-long-haul"
+      },
+      {
+        "id": "LL-JOHANNESBURG",
+        "name": "Laser Light Africa",
+        "city": "Johannesburg",
+        "country": "ZA",
+        "latitude": -26.2041,
+        "longitude": 28.0473,
+        "tier": 1,
+        "type": "regional_hq",
+        "status": "Registered Nov 2024"
+      },
+      {
+        "id": "LL-SANTIAGO-BETA",
+        "name": "Chile Beta",
+        "city": "Santiago",
+        "country": "CL",
+        "latitude": -33.4489,
+        "longitude": -70.6693,
+        "tier": 1,
+        "type": "beta"
+      },
+      {
+        "id": "LL-MADRID-BETA",
+        "name": "Spain Beta",
+        "city": "Madrid",
+        "country": "ES",
+        "latitude": 40.4168,
+        "longitude": -3.7038,
+        "tier": 1,
+        "type": "beta"
+      }
+    ]
+  },
+  "equinix_ibx": {
+    "description": "Equinix IBX Data Centers - Major interconnection hubs",
+    "total_facilities": 305,
+    "total_markets": 84,
+    "sites": {
+      "americas": [
+        {
+          "id": "EQ-DC2",
+          "name": "Equinix DC2 Ashburn",
+          "city": "Ashburn",
+          "state": "VA",
+          "country": "US",
+          "latitude": 39.0438,
+          "longitude": -77.4874,
+          "address": "21715 Filigree Court",
+          "tier": 1,
+          "sqft": 147600,
+          "notes": "Largest peering exchange on US East Coast"
+        },
+        {
+          "id": "EQ-DC10",
+          "name": "Equinix DC10 Ashburn",
+          "city": "Ashburn",
+          "state": "VA",
+          "country": "US",
+          "latitude": 39.0397,
+          "longitude": -77.4709,
+          "address": "21551 Beaumeade Circle",
+          "tier": 1
+        },
+        {
+          "id": "EQ-SV5",
+          "name": "Equinix SV5 Silicon Valley",
+          "city": "San Jose",
+          "state": "CA",
+          "country": "US",
+          "latitude": 37.3874,
+          "longitude": -121.9636,
+          "tier": 1,
+          "notes": "Silicon Valley campus"
+        },
+        {
+          "id": "EQ-NY5",
+          "name": "Equinix NY5 New York",
+          "city": "Secaucus",
+          "state": "NJ",
+          "country": "US",
+          "latitude": 40.7895,
+          "longitude": -74.0565,
+          "tier": 1,
+          "notes": "NYSE/NASDAQ proximity"
+        },
+        {
+          "id": "EQ-CH1",
+          "name": "Equinix CH1 Chicago",
+          "city": "Chicago",
+          "state": "IL",
+          "country": "US",
+          "latitude": 41.8781,
+          "longitude": -87.6298,
+          "tier": 1,
+          "notes": "CME/CBOT proximity"
+        },
+        {
+          "id": "EQ-DA1",
+          "name": "Equinix DA1 Dallas",
+          "city": "Dallas",
+          "state": "TX",
+          "country": "US",
+          "latitude": 32.9245,
+          "longitude": -96.8206,
+          "tier": 1
+        },
+        {
+          "id": "EQ-MI1",
+          "name": "Equinix MI1 Miami",
+          "city": "Miami",
+          "state": "FL",
+          "country": "US",
+          "latitude": 25.7897,
+          "longitude": -80.2259,
+          "tier": 1,
+          "notes": "LATAM gateway"
+        },
+        {
+          "id": "EQ-SE2",
+          "name": "Equinix SE2 Seattle",
+          "city": "Seattle",
+          "state": "WA",
+          "country": "US",
+          "latitude": 47.4502,
+          "longitude": -122.2074,
+          "tier": 1
+        },
+        {
+          "id": "EQ-LA1",
+          "name": "Equinix LA1 Los Angeles",
+          "city": "Los Angeles",
+          "state": "CA",
+          "country": "US",
+          "latitude": 34.0488,
+          "longitude": -118.2518,
+          "tier": 1
+        },
+        {
+          "id": "EQ-SP1",
+          "name": "Equinix SP1 Sao Paulo",
+          "city": "Sao Paulo",
+          "country": "BR",
+          "latitude": -23.5505,
+          "longitude": -46.6333,
+          "tier": 1,
+          "notes": "LATAM hub"
+        },
+        {
+          "id": "EQ-TR1",
+          "name": "Equinix TR1 Toronto",
+          "city": "Toronto",
+          "country": "CA",
+          "latitude": 43.6532,
+          "longitude": -79.3832,
+          "tier": 1
+        },
+        {
+          "id": "EQ-ST1",
+          "name": "Equinix ST1 Santiago",
+          "city": "Santiago",
+          "country": "CL",
+          "latitude": -33.4489,
+          "longitude": -70.6693,
+          "tier": 2
+        }
+      ],
+      "emea": [
+        {
+          "id": "EQ-LD4",
+          "name": "Equinix LD4 London",
+          "city": "Slough",
+          "country": "GB",
+          "latitude": 51.5095,
+          "longitude": -0.5923,
+          "tier": 1,
+          "notes": "LINX peering"
+        },
+        {
+          "id": "EQ-FR5",
+          "name": "Equinix FR5 Frankfurt",
+          "city": "Frankfurt",
+          "country": "DE",
+          "latitude": 50.1109,
+          "longitude": 8.6821,
+          "tier": 1,
+          "notes": "DE-CIX peering"
+        },
+        {
+          "id": "EQ-AM3",
+          "name": "Equinix AM3 Amsterdam",
+          "city": "Amsterdam",
+          "country": "NL",
+          "latitude": 52.3676,
+          "longitude": 4.9041,
+          "tier": 1,
+          "notes": "AMS-IX peering"
+        },
+        {
+          "id": "EQ-PA3",
+          "name": "Equinix PA3 Paris",
+          "city": "Paris",
+          "country": "FR",
+          "latitude": 48.8566,
+          "longitude": 2.3522,
+          "tier": 1
+        },
+        {
+          "id": "EQ-MD1",
+          "name": "Equinix MD1 Madrid",
+          "city": "Madrid",
+          "country": "ES",
+          "latitude": 40.4168,
+          "longitude": -3.7038,
+          "tier": 1
+        },
+        {
+          "id": "EQ-ML2",
+          "name": "Equinix ML2 Milan",
+          "city": "Milan",
+          "country": "IT",
+          "latitude": 45.4642,
+          "longitude": 9.1900,
+          "tier": 1
+        },
+        {
+          "id": "EQ-ZH1",
+          "name": "Equinix ZH1 Zurich",
+          "city": "Zurich",
+          "country": "CH",
+          "latitude": 47.3769,
+          "longitude": 8.5417,
+          "tier": 1
+        },
+        {
+          "id": "EQ-WA1",
+          "name": "Equinix WA1 Warsaw",
+          "city": "Warsaw",
+          "country": "PL",
+          "latitude": 52.2297,
+          "longitude": 21.0122,
+          "tier": 1
+        },
+        {
+          "id": "EQ-DX1",
+          "name": "Equinix DX1 Dubai",
+          "city": "Dubai",
+          "country": "AE",
+          "latitude": 25.2048,
+          "longitude": 55.2708,
+          "tier": 1,
+          "notes": "Middle East hub"
+        },
+        {
+          "id": "EQ-JN1",
+          "name": "Equinix JN1 Johannesburg",
+          "city": "Johannesburg",
+          "country": "ZA",
+          "latitude": -26.2041,
+          "longitude": 28.0473,
+          "tier": 1,
+          "notes": "Africa hub"
+        },
+        {
+          "id": "EQ-LG1",
+          "name": "Equinix LG1 Lagos",
+          "city": "Lagos",
+          "country": "NG",
+          "latitude": 6.5244,
+          "longitude": 3.3792,
+          "tier": 2,
+          "notes": "West Africa"
+        }
+      ],
+      "apac": [
+        {
+          "id": "EQ-SG1",
+          "name": "Equinix SG1 Singapore",
+          "city": "Singapore",
+          "country": "SG",
+          "latitude": 1.3521,
+          "longitude": 103.8198,
+          "tier": 1,
+          "notes": "Asia-Pacific hub"
+        },
+        {
+          "id": "EQ-TY2",
+          "name": "Equinix TY2 Tokyo",
+          "city": "Tokyo",
+          "country": "JP",
+          "latitude": 35.6762,
+          "longitude": 139.6503,
+          "tier": 1
+        },
+        {
+          "id": "EQ-HK1",
+          "name": "Equinix HK1 Hong Kong",
+          "city": "Hong Kong",
+          "country": "HK",
+          "latitude": 22.3193,
+          "longitude": 114.1694,
+          "tier": 1
+        },
+        {
+          "id": "EQ-SY1",
+          "name": "Equinix SY1 Sydney",
+          "city": "Sydney",
+          "country": "AU",
+          "latitude": -33.8688,
+          "longitude": 151.2093,
+          "tier": 1
+        },
+        {
+          "id": "EQ-ME1",
+          "name": "Equinix ME1 Melbourne",
+          "city": "Melbourne",
+          "country": "AU",
+          "latitude": -37.8136,
+          "longitude": 144.9631,
+          "tier": 1
+        },
+        {
+          "id": "EQ-MB1",
+          "name": "Equinix MB1 Mumbai",
+          "city": "Mumbai",
+          "country": "IN",
+          "latitude": 19.0760,
+          "longitude": 72.8777,
+          "tier": 1,
+          "notes": "India hub"
+        },
+        {
+          "id": "EQ-SL1",
+          "name": "Equinix SL1 Seoul",
+          "city": "Seoul",
+          "country": "KR",
+          "latitude": 37.5665,
+          "longitude": 126.9780,
+          "tier": 1
+        },
+        {
+          "id": "EQ-OS1",
+          "name": "Equinix OS1 Osaka",
+          "city": "Osaka",
+          "country": "JP",
+          "latitude": 34.6937,
+          "longitude": 135.5023,
+          "tier": 1
+        },
+        {
+          "id": "EQ-SH2",
+          "name": "Equinix SH2 Shanghai",
+          "city": "Shanghai",
+          "country": "CN",
+          "latitude": 31.2304,
+          "longitude": 121.4737,
+          "tier": 1
+        },
+        {
+          "id": "EQ-JK1",
+          "name": "Equinix JK1 Jakarta",
+          "city": "Jakarta",
+          "country": "ID",
+          "latitude": -6.2088,
+          "longitude": 106.8456,
+          "tier": 1
+        },
+        {
+          "id": "EQ-PE1",
+          "name": "Equinix PE1 Perth",
+          "city": "Perth",
+          "country": "AU",
+          "latitude": -31.9505,
+          "longitude": 115.8605,
+          "tier": 2
+        }
+      ]
+    }
+  },
+  "xai_reference": {
+    "description": "xAI Colossus cluster - Memphis, TN",
+    "id": "XAI-MEMPHIS",
+    "name": "xAI Colossus",
+    "city": "Memphis",
+    "state": "TN",
+    "country": "US",
+    "latitude": 35.1495,
+    "longitude": -90.0490,
+    "tier": 0,
+    "notes": "Primary xAI training cluster - highest priority connectivity"
+  }
+}

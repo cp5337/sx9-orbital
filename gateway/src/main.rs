@@ -17,6 +17,7 @@ use ground_station_wasm::{
     stations::{load_strategic_stations, NetworkStation, StationStats},
     downselect::{Downselect, ScoringWeights, DownselectSummary},
 };
+use ground_stations::StationRegistry;
 
 mod routes;
 mod memory;
@@ -25,6 +26,7 @@ mod memory;
 pub struct AppState {
     pub constellation: Arc<ConstellationState>,
     pub strategic_stations: Arc<Vec<NetworkStation>>,
+    pub station_registry: Arc<StationRegistry>,
 }
 
 #[derive(Default)]
@@ -70,6 +72,7 @@ async fn main() -> Result<()> {
     let state = AppState {
         constellation: Arc::new(ConstellationState::default()),
         strategic_stations: Arc::new(strategic_stations),
+        station_registry: Arc::new(StationRegistry::with_fso_network()),
     };
 
     // Memory routes (sx9-tcache) - separate router with its own state
@@ -111,7 +114,7 @@ async fn main() -> Result<()> {
 
     tracing::info!("🛰️  Orbital Gateway starting on {}", addr);
     tracing::info!("   Constellation: HALO (12 MEO satellites)");
-    tracing::info!("   Ground stations: 257 Airbus FSO");
+    tracing::info!("   Ground stations: 257 FSO");
 
     let listener = tokio::net::TcpListener::bind(&addr).await?;
     axum::serve(listener, app).await?;

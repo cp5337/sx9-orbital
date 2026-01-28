@@ -25,6 +25,9 @@ pub mod stations;
 pub mod downselect;
 pub mod weather;
 
+#[cfg(feature = "weather-api")]
+pub mod weather_api;
+
 // Re-exports
 pub use slew::SlewController;
 pub use door::{DoorState, DoorController};
@@ -32,7 +35,17 @@ pub use contact::ContactWindow;
 pub use tracking::TrackingLoop;
 pub use stations::{NetworkStation, StationType, StationStats};
 pub use downselect::{Downselect, ScoringWeights, StationEvaluation, DownselectSummary};
-pub use weather::{WeatherConditions, FsoWeatherScore, MockWeatherProvider, WeatherProvider};
+pub use weather::{
+    WeatherConditions, FsoWeatherScore, MockWeatherProvider, WeatherProvider,
+    // FSO Weather scoring weights (9 decimal precision)
+    W_CLOUD, W_VISIBILITY, W_PRECIP, W_TURBULENCE, W_AIR_QUALITY, W_SUNSHINE, W_CLEAR_NIGHTS,
+    // Viability thresholds
+    VIABILITY_CLOUD_MIN, VIABILITY_VISIBILITY_MIN, VIABILITY_PRECIP_MIN,
+    VIABILITY_AIR_QUALITY_MIN, VIABILITY_COMPOSITE_MIN,
+};
+
+#[cfg(feature = "weather-api")]
+pub use weather_api::{WeatherApi, WeatherApiConfig, WeatherApiProvider, WeatherApiError};
 
 /// Earth constants
 const EARTH_RADIUS_KM: f64 = 6378.137;

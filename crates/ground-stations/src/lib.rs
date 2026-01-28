@@ -1,6 +1,6 @@
 //! Ground Stations Library
 //!
-//! Management of 257 Airbus FSO (Free Space Optical) ground stations
+//! Management of 257 FSO (Free Space Optical) ground stations
 //! with weather monitoring and health tracking.
 
 use chrono::{DateTime, Utc};
@@ -77,14 +77,18 @@ impl StationRegistry {
         }
     }
 
-    pub fn with_airbus_network() -> Self {
+    pub fn with_fso_network() -> Self {
         let mut registry = Self::new();
-        registry.load_airbus_network();
+        registry.load_fso_network();
         registry
     }
 
-    fn load_airbus_network(&mut self) {
-        // Load 257 Airbus FSO ground stations
+    pub fn with_airbus_network() -> Self {
+        Self::with_fso_network()
+    }
+
+    fn load_fso_network(&mut self) {
+        // Load 257 FSO ground stations
         // In production, this would load from config/database
         let major_stations = vec![
             ("GS-001", "Vandenberg", 34.7420, -120.5724, 150.0),
