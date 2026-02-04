@@ -36,14 +36,25 @@ uuid.workspace = true
 
 # Local crates
 orbital-mechanics = { path = "../crates/orbital-mechanics" }
+orbital-glaf = { path = "../crates/orbital-glaf" }
 beam-routing = { path = "../crates/beam-routing" }
 ground-stations = { path = "../crates/ground-stations" }
 collision-avoidance = { path = "../crates/collision-avoidance" }
-ground-station-wasm = { path = "../crates/ground-station-wasm", default-features = false }
+ground-station-wasm = { path = "../crates/ground-station-wasm", default-features = false, features = ["weather-api"] }
 
 # Memory system from sx9 main (local path for dev, git for CI)
 sx9-tcache = { path = "../../sx9/crates/sx9-tcache" }
 hex = "0.4"
+
+# Messaging and concurrency
+async-nats = "0.38"
+crossbeam = "0.8"
+crossbeam-channel = "0.5"
+futures = "0.3"
+
+# Real-time streaming
+tokio-stream = "0.1"
+axum-extra = { version = "0.9", features = ["typed-header"] }
 
 [[bin]]
 name = "orbital-gateway"

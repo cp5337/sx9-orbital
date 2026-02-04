@@ -13,7 +13,12 @@
 
 import { useRef, useMemo, useCallback, useState, useEffect } from 'react';
 import CytoscapeComponent from 'react-cytoscapejs';
-import { Core, ElementDefinition } from 'cytoscape';
+import cytoscape, { Core, ElementDefinition } from 'cytoscape';
+// @ts-ignore - no types available for cytoscape-dagre
+import dagre from 'cytoscape-dagre';
+
+// Register dagre layout
+cytoscape.use(dagre);
 import {
   generateStylesheet,
   getLayoutConfig,
@@ -23,37 +28,11 @@ import {
   HIGH_FIDELITY_THRESHOLD,
   LayoutType,
 } from '../config/graphStyles';
-
-interface Satellite {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  altitude: number;
-  planeIndex?: number;
-}
-
-interface GroundStation {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  tier: number;
-  weather_score: number;
-}
-
-interface FsoLink {
-  id: string;
-  sourceId: string;
-  targetId: string;
-  type: 'sat-sat' | 'sat-ground';
-  marginDb: number;
-  active: boolean;
-}
+import type { Satellite, GroundNode, FsoLink } from '@/types';
 
 interface ConstellationGraphViewProps {
   satellites: Satellite[];
-  groundStations: GroundStation[];
+  groundStations: GroundNode[];
   fsoLinks: FsoLink[];
   onNodeSelect?: (nodeId: string, nodeType: 'satellite' | 'ground-station') => void;
   onLinkSelect?: (linkId: string) => void;
@@ -63,10 +42,10 @@ interface ConstellationGraphViewProps {
 // Ground station tier to color mapping
 function getTierColor(tier: number): string {
   switch (tier) {
-    case 1: return '#ffff00';  // ANSI Yellow
-    case 2: return '#0000ff';  // ANSI Blue
-    case 3: return '#ff0000';  // ANSI Red
-    default: return '#808080'; // ANSI Gray
+    case 1: return '#34A853';  // Green - Tier 1
+    case 2: return '#00ACC1';  // Cyan - Tier 2
+    case 3: return '#FF9800';  // Orange - Tier 3
+    default: return '#9AA0A6'; // Gray
   }
 }
 
@@ -97,7 +76,7 @@ export function ConstellationGraphView({
 
     // Add satellite nodes
     satellites.forEach((sat, idx) => {
-      const planeIndex = sat.planeIndex ?? Math.floor(idx / 4);
+      const planeIndex = Math.floor(idx / 4);
       nodes.push({
         data: {
           id: sat.id,
@@ -134,11 +113,11 @@ export function ConstellationGraphView({
         edges.push({
           data: {
             id: link.id,
-            source: link.sourceId,
-            target: link.targetId,
-            linkType: link.type,
-            color: getLinkQualityColor(link.marginDb),
-            marginDb: link.marginDb,
+            source: link.source_id,
+            target: link.target_id,
+            linkType: link.link_type,
+            color: getLinkQualityColor(link.margin_db),
+            marginDb: link.margin_db,
           }
         });
       }
@@ -286,19 +265,19 @@ export function ConstellationGraphView({
         {/* Legend */}
         <div className="flex items-center gap-6 mt-2 text-[10px] text-slate-400">
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 rotate-45 border-2 border-slate-400 bg-slate-900/80" />
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#4C8BF5' }} />
             <span className="text-slate-300">SAT</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-3 h-3 bg-slate-900/80 border-2 border-sky-300" style={{ clipPath: 'polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%)' }} />
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: '#34A853' }} />
             <span className="text-slate-300">GND</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-0.5 bg-blue-400" />
+            <div className="w-5 h-0.5 bg-gray-500" />
             <span className="text-slate-300">ISL</span>
           </div>
           <div className="flex items-center gap-1.5">
-            <div className="w-5 h-0.5 border-t-2 border-dashed border-sky-300" />
+            <div className="w-5 h-0.5 bg-gray-400" />
             <span className="text-slate-300">DL</span>
           </div>
         </div>

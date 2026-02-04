@@ -44,15 +44,21 @@ export class WebSocketService {
   private url: string;
   private handlers: Set<MessageHandler> = new Set();
   private reconnectAttempts = 0;
-  private maxReconnectAttempts = 5;
-  private reconnectDelay = 2000;
+  private maxReconnectAttempts = 2; // Reduced - fail fast if backend not available
+  private reconnectDelay = 3000;
   private isIntentionallyClosed = false;
+  private isDisabled = false;
 
   constructor(url: string = 'ws://localhost:18400/stream') {
     this.url = url;
   }
 
   connect(): Promise<void> {
+    // If previously failed, don't keep trying
+    if (this.isDisabled) {
+      return Promise.resolve();
+    }
+
     return new Promise((resolve, reject) => {
       try {
         this.ws = new WebSocket(this.url);
@@ -73,19 +79,17 @@ export class WebSocketService {
           }
         };
 
-        this.ws.onerror = (error) => {
-          console.error('WebSocket error:', error);
-          reject(error);
+        this.ws.onerror = () => {
+          // Silently handle - will try to reconnect
+          reject(new Error('WebSocket connection failed'));
         };
 
         this.ws.onclose = () => {
-          console.log('WebSocket disconnected');
-          if (!this.isIntentionallyClosed) {
+          if (!this.isIntentionallyClosed && !this.isDisabled) {
             this.attemptReconnect();
           }
         };
       } catch (error) {
-        console.error('Failed to create WebSocket:', error);
         reject(error);
       }
     });
@@ -93,18 +97,16 @@ export class WebSocketService {
 
   private attemptReconnect() {
     if (this.reconnectAttempts >= this.maxReconnectAttempts) {
-      console.error('Max reconnection attempts reached');
+      console.info('WebSocket backend unavailable - using simulated data mode');
+      this.isDisabled = true;
       return;
     }
 
     this.reconnectAttempts++;
-    console.log(
-      `Attempting to reconnect (${this.reconnectAttempts}/${this.maxReconnectAttempts})...`
-    );
 
     setTimeout(() => {
-      this.connect().catch((error) => {
-        console.error('Reconnection failed:', error);
+      this.connect().catch(() => {
+        // Silent catch - attemptReconnect handles retry logic
       });
     }, this.reconnectDelay * this.reconnectAttempts);
   }

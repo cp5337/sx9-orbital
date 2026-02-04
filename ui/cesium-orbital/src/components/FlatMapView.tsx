@@ -1,358 +1,364 @@
-import { useState } from 'react';
-import { useSupabaseData } from '../hooks/useSupabaseData';
-import { LoadingScreen } from './LoadingScreen';
-import { AlertTriangle } from 'lucide-react';
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
-import { Button } from './ui/button';
+/**
+ * Flat Map View - 2D Map visualization with animated beams
+ *
+ * Uses MapLibre GL with CARTO dark tiles.
+ * Receives data from App.tsx for consistency with other views.
+ * Features momentary/pulsing beam animations.
+ */
 
-interface GroundNode {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  tier: number;
-  demand_gbps: number;
-  weather_score: number;
-  status: string;
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
+import Map, { Marker, Source, Layer, NavigationControl, MapRef } from 'react-map-gl/maplibre';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import type { Satellite, GroundNode, FsoLink } from '@/types';
+import { beamSelectionStore } from '@/store/beamSelectionStore';
+
+interface FlatMapViewProps {
+  satellites: Satellite[];
+  groundStations: GroundNode[];
+  fsoLinks: FsoLink[];
+  onNodeSelect?: (nodeId: string, nodeType: 'satellite' | 'ground-station') => void;
 }
 
-interface Satellite {
-  id: string;
-  name: string;
-  latitude: number;
-  longitude: number;
-  altitude: number;
-  status: string;
+// Node colors matching the graph view
+const NODE_COLORS = {
+  satellite: '#4C8BF5',
+  tier1: '#34A853',
+  tier2: '#00ACC1',
+  tier3: '#FF9800',
+};
+
+// Beam colors based on link quality
+function getBeamColor(marginDb: number): string {
+  if (marginDb >= 6) return '#34A853'; // Green - excellent
+  if (marginDb >= 3) return '#4C8BF5'; // Blue - good
+  if (marginDb >= 0) return '#FF9800'; // Orange - marginal
+  return '#EA4335'; // Red - weak
 }
 
-interface Beam {
-  id: string;
-  beam_type: string;
-  source_node_id: string;
-  target_node_id: string;
-  beam_status: string;
-  link_quality_score: number;
-  throughput_gbps: number;
+function getTierColor(tier: number): string {
+  switch (tier) {
+    case 1: return NODE_COLORS.tier1;
+    case 2: return NODE_COLORS.tier2;
+    case 3: return NODE_COLORS.tier3;
+    default: return '#9AA0A6';
+  }
 }
 
-export function FlatMapView() {
-  const [selectedNode, setSelectedNode] = useState<string | null>(null);
-
-  const { data: groundNodes, loading: nodesLoading, error: nodesError } = useSupabaseData<GroundNode>('ground_nodes');
-  const { data: satellites, loading: satsLoading, error: satsError } = useSupabaseData<Satellite>('satellites');
-  const { data: beams, loading: beamsLoading, error: beamsError } = useSupabaseData<Beam>('beams');
-
-  const isLoading = nodesLoading || satsLoading || beamsLoading;
-  const hasError = nodesError || satsError || beamsError;
-
-  if (isLoading) {
-    return (
-      <LoadingScreen
-        message="Loading Map View"
-        subMessage="Fetching ground stations, satellites, and beam data..."
-      />
-    );
+function getGroundStationSize(tier: number): number {
+  switch (tier) {
+    case 1: return 10;
+    case 2: return 8;
+    case 3: return 6;
+    default: return 6;
   }
+}
 
-  if (hasError) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-slate-950 p-4">
-        <Card className="max-w-2xl w-full bg-slate-900 border-red-900">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-red-400">
-              <AlertTriangle className="w-6 h-6" />
-              Failed to Load Map Data
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            {nodesError && (
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-                <p className="text-sm font-semibold text-red-300 mb-2">Ground Nodes Error:</p>
-                <p className="text-sm text-slate-300">{nodesError.message}</p>
-              </div>
-            )}
-            {satsError && (
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-                <p className="text-sm font-semibold text-red-300 mb-2">Satellites Error:</p>
-                <p className="text-sm text-slate-300">{satsError.message}</p>
-              </div>
-            )}
-            {beamsError && (
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-                <p className="text-sm font-semibold text-red-300 mb-2">Beams Error:</p>
-                <p className="text-sm text-slate-300">{beamsError.message}</p>
-              </div>
-            )}
-            <Button onClick={() => window.location.reload()}>Reload Application</Button>
-            <div className="text-xs text-slate-500 bg-slate-800/50 border border-slate-700 rounded p-3">
-              <p className="font-semibold mb-1">Troubleshooting:</p>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Check Supabase connection</li>
-                <li>Verify database tables exist</li>
-                <li>Run "npm run seed" to populate data</li>
-                <li>Check browser console for details</li>
-              </ul>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+export function FlatMapView({
+  satellites,
+  groundStations,
+  fsoLinks,
+  onNodeSelect,
+}: FlatMapViewProps) {
+  const mapRef = useRef<MapRef>(null);
+  const [selectedNode, setSelectedNode] = useState<{ id: string; name: string; type: string } | null>(null);
+  const [viewState, setViewState] = useState({
+    longitude: 0,
+    latitude: 20,
+    zoom: 1.5,
+  });
 
-  if (groundNodes.length === 0 && satellites.length === 0) {
-    return (
-      <div className="w-full h-full flex items-center justify-center bg-slate-950 p-4">
-        <Card className="max-w-2xl w-full bg-slate-900 border-yellow-900">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-3 text-yellow-400">
-              <AlertTriangle className="w-6 h-6" />
-              No Data Available
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <p className="text-slate-300">
-              The map cannot be displayed because there are no ground stations or satellites in the database.
-            </p>
-            <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-              <p className="text-sm font-semibold text-slate-300 mb-2">Run this command to seed data:</p>
-              <code className="text-sm text-cyan-400 bg-slate-900 px-3 py-2 rounded block">
-                npm run seed
-              </code>
-            </div>
-            <Button onClick={() => window.location.reload()}>Reload After Seeding</Button>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
+  // Animated beam state - cycle through active beams
+  const [activeBeamIds, setActiveBeamIds] = useState<Set<string>>(new Set());
+  const beamPhaseRef = useRef(0);
+  const [beamPhase, setBeamPhase] = useState(0);
 
-  const worldWidth = 1200;
-  const worldHeight = 600;
+  // Stable reference to fsoLinks for the interval closure
+  const fsoLinksRef = useRef(fsoLinks);
+  fsoLinksRef.current = fsoLinks;
 
-  const latToY = (lat: number) => {
-    return ((90 - lat) / 180) * worldHeight;
-  };
+  // Animate beams - single stable interval, no stale closures
+  useEffect(() => {
+    const interval = setInterval(() => {
+      beamPhaseRef.current = (beamPhaseRef.current + 1) % 60;
+      setBeamPhase(beamPhaseRef.current);
 
-  const lonToX = (lon: number) => {
-    return ((lon + 180) / 360) * worldWidth;
-  };
+      // Every 2 seconds, randomly activate/deactivate some beams
+      if (beamPhaseRef.current % 20 === 0) {
+        const activeLinks = fsoLinksRef.current.filter(l => l.active);
+        const newActive = new Set<string>();
 
-  const getTierColor = (tier: number) => {
-    const colors = {
-      1: '#3b82f6',
-      2: '#10b981',
-      3: '#eab308'
+        activeLinks.forEach(link => {
+          if (Math.random() < 0.7) {
+            newActive.add(link.id);
+          }
+        });
+
+        setActiveBeamIds(newActive);
+      }
+    }, 100);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Listen for satellite selection from store — center/zoom the map
+  useEffect(() => {
+    const unsubscribe = beamSelectionStore.subscribe((state) => {
+      const satId = state.selectedSatelliteId;
+      if (!satId) return;
+      const sat = satellites.find((s) => s.id === satId);
+      if (sat && mapRef.current) {
+        mapRef.current.flyTo({
+          center: [sat.longitude, sat.latitude],
+          zoom: 4,
+          duration: 1500,
+        });
+        setSelectedNode({ id: sat.id, name: sat.name, type: `${sat.altitude} km` });
+      }
+    });
+    return () => { unsubscribe(); };
+  }, [satellites]);
+
+  // Build GeoJSON for beam lines - only active beams with pulse effect
+  const beamGeoJson = useMemo((): GeoJSON.FeatureCollection => {
+    const features: GeoJSON.Feature[] = [];
+
+    fsoLinks
+      .filter(link => link.active && activeBeamIds.has(link.id))
+      .forEach(link => {
+        // Find source (satellite)
+        const source = satellites.find(s => s.id === link.source_id);
+        // Find target (could be satellite or ground station)
+        const targetSat = satellites.find(s => s.id === link.target_id);
+        const targetGround = groundStations.find(g => g.id === link.target_id);
+        const target = targetSat || targetGround;
+
+        if (source && target) {
+          features.push({
+            type: 'Feature',
+            properties: {
+              id: link.id,
+              color: getBeamColor(link.margin_db),
+              linkType: link.link_type,
+              opacity: 0.4 + 0.4 * Math.sin(beamPhase * 0.2), // Pulsing opacity
+            },
+            geometry: {
+              type: 'LineString',
+              coordinates: [
+                [source.longitude, source.latitude],
+                [target.longitude, target.latitude],
+              ],
+            },
+          });
+        }
+      });
+
+    return {
+      type: 'FeatureCollection',
+      features,
     };
-    return colors[tier as keyof typeof colors] || '#6b7280';
-  };
+  }, [satellites, groundStations, fsoLinks, activeBeamIds, beamPhase]);
 
-  const getBeamColor = (quality: number) => {
-    if (quality > 0.8) return '#10b981';
-    if (quality > 0.6) return '#eab308';
-    if (quality > 0.4) return '#f97316';
-    return '#ef4444';
-  };
+  // Count stats
+  const activeLinks = fsoLinks.filter(l => l.active);
+  const islLinks = activeLinks.filter(l => l.link_type === 'sat-sat');
+  const groundLinks = activeLinks.filter(l => l.link_type === 'sat-ground');
 
-  const spaceToGroundBeams = (beams || []).filter(beam => beam.beam_type === 'space_to_ground');
+  const showSatLabels = viewState.zoom > 3;
+
+  const handleNodeClick = useCallback((id: string, name: string, type: string, nodeType: 'satellite' | 'ground-station') => {
+    setSelectedNode({ id, name, type });
+    onNodeSelect?.(id, nodeType);
+  }, [onNodeSelect]);
+
+  const handleSatelliteMarkerClick = useCallback((sat: Satellite) => {
+    setSelectedNode({ id: sat.id, name: sat.name, type: `${sat.altitude} km` });
+    onNodeSelect?.(sat.id, 'satellite');
+    beamSelectionStore.selectSatellite(sat.id);
+  }, [onNodeSelect]);
 
   return (
     <div className="w-full h-full flex flex-col bg-slate-900 rounded-lg overflow-hidden">
-      <div className="flex items-center justify-between p-4 border-b border-slate-700">
-        <h2 className="text-xl font-semibold">SpaceWorld Map</h2>
+      {/* Header with legend */}
+      <div className="flex items-center justify-between p-3 border-b border-slate-700 bg-slate-900/80 z-10">
+        <div className="flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+          <span className="text-xs font-semibold text-slate-100 tracking-wide">
+            Constellation Map
+          </span>
+        </div>
         <div className="flex items-center gap-4 text-xs">
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-            <span>Tier 1 Nodes</span>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: NODE_COLORS.tier1 }} />
+            <span className="text-slate-300">Tier 1</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            <span>Tier 2 Nodes</span>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: NODE_COLORS.tier2 }} />
+            <span className="text-slate-300">Tier 2</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-            <span>Tier 3 Nodes</span>
+            <div className="w-3 h-3 rounded-full" style={{ backgroundColor: NODE_COLORS.tier3 }} />
+            <span className="text-slate-300">Tier 3</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 rounded-full bg-red-500"></div>
-            <span>Satellites</span>
+            <div className="w-2.5 h-2.5" style={{ backgroundColor: NODE_COLORS.satellite, transform: 'rotate(45deg)' }} />
+            <span className="text-slate-300">SAT</span>
           </div>
         </div>
       </div>
 
-      <div className="flex-1 p-6 overflow-auto">
-        <div className="w-full h-full min-h-[600px] flex items-center justify-center">
-          <svg
-            width={worldWidth}
-            height={worldHeight}
-            className="bg-slate-950"
-            viewBox={`0 0 ${worldWidth} ${worldHeight}`}
-            style={{ maxWidth: '100%', height: 'auto' }}
-          >
-            <defs>
-              <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgb(51 65 85)" strokeWidth="0.5" />
-              </pattern>
-            </defs>
+      {/* Map */}
+      <div className="flex-1 relative">
+        <Map
+          ref={mapRef}
+          {...viewState}
+          onMove={evt => setViewState(evt.viewState)}
+          style={{ width: '100%', height: '100%' }}
+          mapStyle={{
+            version: 8,
+            name: 'Dark',
+            sources: {
+              'carto-dark': {
+                type: 'raster',
+                tiles: [
+                  'https://a.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+                  'https://b.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+                  'https://c.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}@2x.png',
+                ],
+                tileSize: 256,
+                attribution: '&copy; <a href="https://carto.com/">CARTO</a>',
+              },
+            },
+            layers: [
+              {
+                id: 'carto-dark-layer',
+                type: 'raster',
+                source: 'carto-dark',
+                minzoom: 0,
+                maxzoom: 19,
+              },
+            ],
+          }}
+        >
+          <NavigationControl position="top-left" />
 
-            <rect width={worldWidth} height={worldHeight} fill="url(#grid)" />
+          {/* Animated beam lines */}
+          <Source id="beams" type="geojson" data={beamGeoJson}>
+            <Layer
+              id="beam-lines"
+              type="line"
+              paint={{
+                'line-color': ['get', 'color'],
+                'line-width': 2,
+                'line-opacity': ['get', 'opacity'],
+              }}
+            />
+          </Source>
 
-            <line x1="0" y1={worldHeight / 2} x2={worldWidth} y2={worldHeight / 2} stroke="rgb(71 85 105)" strokeWidth="1" strokeDasharray="4 4" />
-            <line x1={worldWidth / 2} y1="0" x2={worldWidth / 2} y2={worldHeight} stroke="rgb(71 85 105)" strokeWidth="1" strokeDasharray="4 4" />
-
-            {spaceToGroundBeams.map(beam => {
-              const source = satellites?.find(s => s.id === beam.source_node_id);
-              const target = groundNodes?.find(g => g.id === beam.target_node_id);
-
-              if (!source || !target) return null;
-
-              const x1 = lonToX(source.longitude);
-              const y1 = latToY(source.latitude);
-              const x2 = lonToX(target.longitude);
-              const y2 = latToY(target.latitude);
-
-              return (
-                <line
-                  key={beam.id}
-                  x1={x1}
-                  y1={y1}
-                  x2={x2}
-                  y2={y2}
-                  stroke={getBeamColor(beam.link_quality_score)}
-                  strokeWidth="1.5"
-                  strokeDasharray="4 4"
-                  opacity="0.6"
+          {/* Ground station markers — circles */}
+          {groundStations.map(gs => {
+            const size = getGroundStationSize(gs.tier);
+            return (
+              <Marker
+                key={gs.id}
+                longitude={gs.longitude}
+                latitude={gs.latitude}
+                anchor="center"
+                onClick={(e) => {
+                  e.originalEvent.stopPropagation();
+                  handleNodeClick(gs.id, gs.name, `Tier ${gs.tier}`, 'ground-station');
+                }}
+              >
+                <div
+                  className="cursor-pointer transition-transform hover:scale-125"
+                  style={{
+                    width: size,
+                    height: size,
+                    backgroundColor: getTierColor(gs.tier),
+                    borderRadius: '50%',
+                    border: '2px solid #1F1F1F',
+                    boxShadow: selectedNode?.id === gs.id ? '0 0 8px #fff' : undefined,
+                  }}
+                  title={gs.name}
                 />
-              );
-            })}
+              </Marker>
+            );
+          })}
 
-            {groundNodes?.map(node => {
-              const x = lonToX(node.longitude);
-              const y = latToY(node.latitude);
-              const size = node.tier === 1 ? 8 : node.tier === 2 ? 6 : 5;
-              const color = getTierColor(node.tier);
+          {/* Satellite markers — diamonds (rotated squares) with optional labels */}
+          {satellites.map(sat => (
+            <Marker
+              key={sat.id}
+              longitude={sat.longitude}
+              latitude={sat.latitude}
+              anchor="center"
+              onClick={(e) => {
+                e.originalEvent.stopPropagation();
+                handleSatelliteMarkerClick(sat);
+              }}
+            >
+              <div className="flex flex-col items-center cursor-pointer">
+                <div
+                  className="transition-transform hover:scale-125"
+                  style={{
+                    width: 8,
+                    height: 8,
+                    backgroundColor: NODE_COLORS.satellite,
+                    transform: 'rotate(45deg)',
+                    border: '1.5px solid #1F1F1F',
+                    boxShadow: selectedNode?.id === sat.id ? '0 0 8px #fff' : undefined,
+                  }}
+                  title={sat.name}
+                />
+                {showSatLabels && (
+                  <span className="text-[8px] text-blue-300 mt-0.5 whitespace-nowrap select-none pointer-events-none">
+                    {sat.name?.slice(0, 3).toUpperCase()}
+                  </span>
+                )}
+              </div>
+            </Marker>
+          ))}
+        </Map>
 
-              return (
-                <g key={node.id}>
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r={size}
-                    fill={color}
-                    stroke={node.status === 'active' ? 'white' : '#ef4444'}
-                    strokeWidth="2"
-                    className="cursor-pointer transition-all hover:r-10"
-                    onMouseEnter={() => setSelectedNode(node.id)}
-                    onMouseLeave={() => setSelectedNode(null)}
-                  />
-                  {node.weather_score < 0.5 && (
-                    <circle
-                      cx={x}
-                      cy={y}
-                      r={size + 4}
-                      fill="none"
-                      stroke="rgb(245 158 11)"
-                      strokeWidth="2"
-                      opacity="0.5"
-                    />
-                  )}
-                  {selectedNode === node.id && (
-                    <g>
-                      <rect
-                        x={x + 10}
-                        y={y - 25}
-                        width="150"
-                        height="40"
-                        fill="rgb(15 23 42)"
-                        stroke="rgb(71 85 105)"
-                        strokeWidth="1"
-                        rx="4"
-                      />
-                      <text x={x + 15} y={y - 10} fill="white" fontSize="12" fontWeight="bold">
-                        {node.name}
-                      </text>
-                      <text x={x + 15} y={y + 5} fill="rgb(148 163 184)" fontSize="10">
-                        Tier {node.tier} | {node.demand_gbps} Gbps
-                      </text>
-                    </g>
-                  )}
-                </g>
-              );
-            })}
-
-            {satellites?.map(sat => {
-              const x = lonToX(sat.longitude);
-              const y = latToY(sat.latitude);
-
-              return (
-                <g key={sat.id}>
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r="6"
-                    fill="#ef4444"
-                    stroke="white"
-                    strokeWidth="2"
-                    className="cursor-pointer"
-                    onMouseEnter={() => setSelectedNode(sat.id)}
-                    onMouseLeave={() => setSelectedNode(null)}
-                  />
-                  <circle
-                    cx={x}
-                    cy={y}
-                    r="10"
-                    fill="none"
-                    stroke="rgb(239 68 68)"
-                    strokeWidth="1"
-                    opacity="0.3"
-                  />
-                  {selectedNode === sat.id && (
-                    <g>
-                      <rect
-                        x={x + 10}
-                        y={y - 25}
-                        width="120"
-                        height="40"
-                        fill="rgb(15 23 42)"
-                        stroke="rgb(71 85 105)"
-                        strokeWidth="1"
-                        rx="4"
-                      />
-                      <text x={x + 15} y={y - 10} fill="white" fontSize="12" fontWeight="bold">
-                        {sat.name}
-                      </text>
-                      <text x={x + 15} y={y + 5} fill="rgb(148 163 184)" fontSize="10">
-                        Alt: {sat.altitude} km
-                      </text>
-                    </g>
-                  )}
-                </g>
-              );
-            })}
-
-            <text x="10" y="20" fill="rgb(148 163 184)" fontSize="12">90°N</text>
-            <text x="10" y={worldHeight - 10} fill="rgb(148 163 184)" fontSize="12">90°S</text>
-            <text x="10" y={worldHeight / 2 + 5} fill="rgb(148 163 184)" fontSize="12">0°</text>
-            <text x={worldWidth - 40} y={worldHeight / 2 + 5} fill="rgb(148 163 184)" fontSize="12">180°</text>
-          </svg>
-        </div>
+        {/* Selected node tooltip */}
+        {selectedNode && (
+          <div className="absolute top-4 right-4 bg-slate-900/95 border border-slate-700 rounded-lg p-3 z-20">
+            <div className="text-sm font-semibold text-white">{selectedNode.name}</div>
+            <div className="text-xs text-slate-400">{selectedNode.type}</div>
+            <button
+              className="mt-2 text-xs text-slate-500 hover:text-slate-300"
+              onClick={() => setSelectedNode(null)}
+            >
+              Close
+            </button>
+          </div>
+        )}
       </div>
 
-      <div className="p-4 bg-slate-800 border-t border-slate-700">
-        <div className="flex items-center justify-between text-sm">
+      {/* Stats footer */}
+      <div className="p-3 bg-slate-800 border-t border-slate-700">
+        <div className="flex items-center justify-between text-xs">
           <div className="flex items-center gap-6">
             <span className="text-slate-400">
-              Ground Nodes: <span className="text-white font-semibold">{groundNodes?.length || 0}</span>
+              GND: <span className="text-white font-semibold">{groundStations.length}</span>
             </span>
             <span className="text-slate-400">
-              Satellites: <span className="text-white font-semibold">{satellites?.length || 0}</span>
+              SAT: <span className="text-white font-semibold">{satellites.length}</span>
             </span>
             <span className="text-slate-400">
-              Active Beams: <span className="text-white font-semibold">{spaceToGroundBeams.length}</span>
+              ISL: <span className="text-white font-semibold">{islLinks.length}</span>
+            </span>
+            <span className="text-slate-400">
+              DL: <span className="text-white font-semibold">{groundLinks.length}</span>
             </span>
           </div>
-          <span className="text-xs text-slate-500">Hover over nodes for details</span>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
+            <span className="text-slate-500">Beams active</span>
+          </div>
         </div>
       </div>
     </div>
   );
 }
+
+export default FlatMapView;

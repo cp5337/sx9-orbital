@@ -12,7 +12,7 @@ crate-type = ["cdylib", "rlib"]
 default = ["std"]
 std = ["chrono"]
 wasm = ["wasm-bindgen", "getrandom/js"]
-weather-api = ["reqwest", "tokio", "futures"]
+weather-api = ["reqwest", "tokio", "futures", "chrono"]
 
 [dependencies]
 # Core

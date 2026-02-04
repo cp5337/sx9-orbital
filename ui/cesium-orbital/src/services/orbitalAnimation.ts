@@ -1,11 +1,18 @@
 import * as Cesium from 'cesium';
-import {
-  simplifiedSGP4Propagate,
-  eciToGeodetic,
-  calculateGMST,
-  calculateLinkGeometry,
-  OrbitalElements,
-} from '@/utils/orbitalMechanics';
+
+const GATEWAY_URL = import.meta.env.VITE_GATEWAY_URL || 'http://localhost:18700';
+const POSITION_FETCH_INTERVAL = 5000;
+const ASSIGNMENT_FETCH_INTERVAL = 10000;
+
+interface GatewayPosition {
+  id: string;
+  norad_id: number;
+  latitude: number;
+  longitude: number;
+  altitude_km: number;
+  velocity_km_s: number;
+  timestamp: string;
+}
 
 interface SatelliteEntity {
   id: string;
@@ -13,8 +20,6 @@ interface SatelliteEntity {
   entity: Cesium.Entity;
   billboard: Cesium.Entity;
   spotBeam: Cesium.Entity;
-  orbitalElements: OrbitalElements;
-  startTime: Date;
   rotationAngle: number;
 }
 
@@ -37,15 +42,22 @@ export class OrbitalAnimationManager {
   private groundStations: Map<string, GroundStationEntity> = new Map();
   private laserLinks: Map<string, LaserLink> = new Map();
   private animationFrameId: number | null = null;
+  private positionFetchTimer: number | null = null;
+  private assignmentFetchTimer: number | null = null;
   private viewer: Cesium.Viewer;
   private onSatellitePositionUpdate?: (id: string, lat: number, lon: number, altKm: number) => void;
+  private cachedPositions: Map<string, GatewayPosition> = new Map();
+  private annAssignments: Map<string, string> = new Map();
+  private gatewayUrl: string;
 
   constructor(
     viewer: Cesium.Viewer,
-    onSatellitePositionUpdate?: (id: string, lat: number, lon: number, altKm: number) => void
+    onSatellitePositionUpdate?: (id: string, lat: number, lon: number, altKm: number) => void,
+    gatewayUrl?: string
   ) {
     this.viewer = viewer;
     this.onSatellitePositionUpdate = onSatellitePositionUpdate;
+    this.gatewayUrl = gatewayUrl || GATEWAY_URL;
   }
 
   addSatellite(
@@ -54,15 +66,8 @@ export class OrbitalAnimationManager {
     latitude: number,
     longitude: number,
     altitude: number,
-    inclination: number
+    _inclination: number
   ): void {
-    const orbitalElements = this.createOrbitalElements(
-      altitude,
-      inclination,
-      longitude,
-      latitude
-    );
-
     const billboard = this.viewer.entities.add({
       position: Cesium.Cartesian3.fromDegrees(longitude, latitude, altitude * 1000),
       billboard: {
@@ -127,8 +132,6 @@ export class OrbitalAnimationManager {
       entity,
       billboard,
       spotBeam,
-      orbitalElements,
-      startTime: new Date(),
       rotationAngle: 0,
     });
   }
@@ -153,34 +156,76 @@ export class OrbitalAnimationManager {
     });
   }
 
-  private createOrbitalElements(
-    altitudeKm: number,
-    inclinationDeg: number,
-    longitudeDeg: number,
-    latitudeDeg: number
-  ): OrbitalElements {
-    const earthRadius = 6371;
-    const semiMajorAxis = earthRadius + altitudeKm;
-    const meanMotion = Math.sqrt(398600.4418 / (semiMajorAxis ** 3)) * 60;
+  private useExternalPositions = false;
+  private speedMultiplier = 1;
+  private paused = false;
 
-    return {
-      meanMotion: meanMotion * (1440 / (2 * Math.PI)),
-      eccentricity: 0.001,
-      inclination: inclinationDeg * (Math.PI / 180),
-      raan: longitudeDeg * (Math.PI / 180),
-      argPerigee: 0,
-      meanAnomaly: latitudeDeg * (Math.PI / 180),
-      bstar: 0.00001,
-      epoch: new Date(),
-    };
+  /** Update satellite position from an external source (e.g. ConstellationStore polling) */
+  updatePositionExternal(id: string, lat: number, lon: number, altKm: number): void {
+    this.cachedPositions.set(id, {
+      id,
+      norad_id: 0,
+      latitude: lat,
+      longitude: lon,
+      altitude_km: altKm,
+      velocity_km_s: 0,
+      timestamp: new Date().toISOString(),
+    });
+  }
+
+  /** When driven by external store, skip internal fetch loops */
+  setExternalPositionMode(enabled: boolean): void {
+    this.useExternalPositions = enabled;
+  }
+
+  /** Scale visual animation speed (billboard rotation). 1 = real-time. */
+  setSpeedMultiplier(multiplier: number): void {
+    this.speedMultiplier = multiplier;
+  }
+
+  /** Pause the animation loop (positions stop updating visually) */
+  pause(): void {
+    this.paused = true;
+  }
+
+  /** Resume the animation loop */
+  resume(): void {
+    this.paused = false;
+  }
+
+  isPaused(): boolean {
+    return this.paused;
   }
 
   startAnimation(): void {
     if (this.animationFrameId !== null) return;
 
+    if (!this.useExternalPositions) {
+      this.fetchPositions();
+      this.fetchAssignments();
+
+      this.positionFetchTimer = window.setInterval(
+        () => this.fetchPositions(),
+        POSITION_FETCH_INTERVAL
+      );
+      this.assignmentFetchTimer = window.setInterval(
+        () => this.fetchAssignments(),
+        ASSIGNMENT_FETCH_INTERVAL
+      );
+    } else {
+      // Still fetch assignments for ANN beam targeting
+      this.fetchAssignments();
+      this.assignmentFetchTimer = window.setInterval(
+        () => this.fetchAssignments(),
+        ASSIGNMENT_FETCH_INTERVAL
+      );
+    }
+
     const animate = () => {
-      this.updateSatellitePositions();
-      this.updateLaserLinks();
+      if (!this.paused) {
+        this.updateSatellitePositions();
+        this.updateLaserLinks();
+      }
       this.animationFrameId = requestAnimationFrame(animate);
     };
 
@@ -192,46 +237,74 @@ export class OrbitalAnimationManager {
       cancelAnimationFrame(this.animationFrameId);
       this.animationFrameId = null;
     }
+    if (this.positionFetchTimer !== null) {
+      clearInterval(this.positionFetchTimer);
+      this.positionFetchTimer = null;
+    }
+    if (this.assignmentFetchTimer !== null) {
+      clearInterval(this.assignmentFetchTimer);
+      this.assignmentFetchTimer = null;
+    }
+  }
+
+  private async fetchPositions(): Promise<void> {
+    try {
+      const response = await fetch(
+        `${this.gatewayUrl}/api/v1/satellites/positions`
+      );
+      if (!response.ok) return;
+      const data = await response.json();
+      for (const pos of data.satellites) {
+        this.cachedPositions.set(pos.id, pos);
+      }
+    } catch {
+      // Gateway not running — positions stay at last known or initial
+    }
+  }
+
+  private async fetchAssignments(): Promise<void> {
+    try {
+      const response = await fetch(
+        `${this.gatewayUrl}/api/v1/ann/assignments`
+      );
+      if (!response.ok) return;
+      const data = await response.json();
+      this.annAssignments = new Map(Object.entries(data.assignments));
+    } catch {
+      // Gateway not running — keep existing assignments
+    }
   }
 
   private updateSatellitePositions(): void {
-    const now = new Date();
-
     this.satellites.forEach((sat) => {
-      const minutesSinceEpoch =
-        (now.getTime() - sat.startTime.getTime()) / 60000;
+      const pos = this.cachedPositions.get(sat.id);
+      if (!pos) return;
 
-      const eci = simplifiedSGP4Propagate(sat.orbitalElements, minutesSinceEpoch);
-      const gmst = calculateGMST(now);
-      const geodetic = eciToGeodetic(eci, gmst);
-
-      if (!isFinite(geodetic.longitude) || !isFinite(geodetic.latitude) || !isFinite(geodetic.altitude)) {
-        console.warn(`Invalid geodetic coordinates for satellite ${sat.id}:`, geodetic);
+      if (!isFinite(pos.longitude) || !isFinite(pos.latitude) || !isFinite(pos.altitude_km)) {
         return;
       }
-
-      if (Math.abs(geodetic.latitude) > 90 || Math.abs(geodetic.longitude) > 180) {
-        console.warn(`Out of bounds coordinates for satellite ${sat.id}:`, geodetic);
+      if (Math.abs(pos.latitude) > 90 || Math.abs(pos.longitude) > 180) {
         return;
       }
 
       const position = Cesium.Cartesian3.fromDegrees(
-        geodetic.longitude,
-        geodetic.latitude,
-        geodetic.altitude * 1000
+        pos.longitude,
+        pos.latitude,
+        pos.altitude_km * 1000
       );
 
       sat.billboard.position = new Cesium.ConstantPositionProperty(position);
-      this.onSatellitePositionUpdate?.(sat.id, geodetic.latitude, geodetic.longitude, geodetic.altitude);
+      this.onSatellitePositionUpdate?.(sat.id, pos.latitude, pos.longitude, pos.altitude_km);
 
-      sat.rotationAngle += 0.02;
+      const rotationStep = 0.02 * Math.min(this.speedMultiplier, 100);
+      sat.rotationAngle += rotationStep;
       if (sat.rotationAngle > Math.PI * 2) {
         sat.rotationAngle -= Math.PI * 2;
       }
 
       const beamPosition = Cesium.Cartesian3.fromDegrees(
-        geodetic.longitude,
-        geodetic.latitude,
+        pos.longitude,
+        pos.latitude,
         0
       );
       sat.spotBeam.position = new Cesium.ConstantPositionProperty(beamPosition);
@@ -239,44 +312,35 @@ export class OrbitalAnimationManager {
   }
 
   private updateLaserLinks(): void {
-    const now = new Date();
-    const gmst = calculateGMST(now);
-
-    this.satellites.forEach((sat) => {
-      const minutesSinceEpoch = (now.getTime() - sat.startTime.getTime()) / 60000;
-      const eci = simplifiedSGP4Propagate(sat.orbitalElements, minutesSinceEpoch);
-      const geodetic = eciToGeodetic(eci, gmst);
-
-      let bestGroundStationId = '';
-      let bestElevation = 0;
-
-      this.groundStations.forEach((gs) => {
-        const linkGeometry = calculateLinkGeometry(
-          eci,
-          { latitude: gs.latitude, longitude: gs.longitude, altitude: gs.altitude },
-          gmst
-        );
-
-        if (linkGeometry.visible && linkGeometry.elevation > 20 && linkGeometry.elevation > bestElevation) {
-          bestGroundStationId = gs.id;
-          bestElevation = linkGeometry.elevation;
-        }
-      });
-
-      const linkId = `${sat.id}-link`;
-
-      if (bestGroundStationId) {
-        this.createOrUpdateLaserLink(
-          linkId,
-          sat.id,
-          bestGroundStationId,
-          geodetic.longitude,
-          geodetic.latitude,
-          geodetic.altitude
-        );
-        this.illuminateSpotBeam(sat.id, true);
-      } else {
+    // Remove links whose assignment changed
+    this.laserLinks.forEach((link, linkId) => {
+      const assignment = this.annAssignments.get(link.satelliteId);
+      if (assignment !== link.groundStationId) {
         this.removeLaserLink(linkId);
+      }
+    });
+
+    // Create/update links from ANN assignments
+    this.annAssignments.forEach((stationId, satId) => {
+      const sat = this.satellites.get(satId);
+      const pos = this.cachedPositions.get(satId);
+      if (!sat || !pos) return;
+
+      const linkId = `${satId}-link`;
+      this.createOrUpdateLaserLink(
+        linkId,
+        satId,
+        stationId,
+        pos.longitude,
+        pos.latitude,
+        pos.altitude_km
+      );
+      this.illuminateSpotBeam(satId, true);
+    });
+
+    // Dim beams for unassigned satellites
+    this.satellites.forEach((sat) => {
+      if (!this.annAssignments.has(sat.id)) {
         this.illuminateSpotBeam(sat.id, false);
       }
     });
@@ -294,12 +358,10 @@ export class OrbitalAnimationManager {
     if (!gs) return;
 
     if (!isFinite(satLon) || !isFinite(satLat) || !isFinite(satAlt)) {
-      console.warn(`Invalid satellite coordinates for laser link:`, { satLon, satLat, satAlt });
       return;
     }
 
     if (Math.abs(satLat) > 90 || Math.abs(satLon) > 180) {
-      console.warn(`Out of bounds satellite coordinates for laser link:`, { satLon, satLat });
       return;
     }
 

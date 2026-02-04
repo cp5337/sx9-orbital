@@ -20,19 +20,7 @@ import {
 } from '@tanstack/react-table';
 import { ArrowUpDown, ArrowUp, ArrowDown, Search, Database, Satellite, Radio, Zap } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import type { GroundNode, Satellite as SatelliteType } from '@/types';
-
-// FSO Link type for internal use
-export interface FsoLink {
-  id: string;
-  source_id: string;
-  target_id: string;
-  link_type: 'sat-sat' | 'sat-ground';
-  margin_db: number;
-  throughput_gbps: number;
-  active: boolean;
-  weather_score: number;
-}
+import type { GroundNode, Satellite as SatelliteType, FsoLink } from '@/types';
 
 type DataType = 'ground-stations' | 'satellites' | 'fso-links';
 
@@ -97,40 +85,92 @@ function SortableHeader({ column, children }: { column: any; children: React.Rea
   );
 }
 
+// Helper to parse station code and name from combined name field
+// Name format: "[CODE] Full Name" or just "Full Name"
+function parseStationName(name: string): { code: string | null; displayName: string } {
+  const match = name.match(/^\[([^\]]+)\]\s*(.+)$/);
+  if (match) {
+    return { code: match[1], displayName: match[2] };
+  }
+  return { code: null, displayName: name };
+}
+
 // Ground stations columns (using GroundNode type)
 const groundStationColumns: ColumnDef<GroundNode>[] = [
   {
-    accessorKey: 'id',
-    header: ({ column }) => <SortableHeader column={column}>ID</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{row.getValue('id')}</span>,
+    accessorKey: 'name',
+    header: ({ column }) => <SortableHeader column={column}>Code</SortableHeader>,
+    cell: ({ row }) => {
+      const name = row.getValue('name') as string;
+      const stationCode = row.original.station_code;
+      // Use station_code if available, otherwise parse from name
+      const code = stationCode || parseStationName(name).code;
+      return <span className="font-mono text-xs text-cyan-400">{code || '—'}</span>;
+    },
   },
   {
-    accessorKey: 'name',
+    id: 'displayName',
     header: ({ column }) => <SortableHeader column={column}>Name</SortableHeader>,
+    cell: ({ row }) => {
+      const name = row.getValue('name') as string;
+      const stationCode = row.original.station_code;
+      // If we have station_code, name is clean; otherwise parse it
+      const displayName = stationCode ? name : parseStationName(name).displayName;
+      return <span className="text-sm">{displayName}</span>;
+    },
+  },
+  {
+    accessorKey: 'zone',
+    header: ({ column }) => <SortableHeader column={column}>Zone</SortableHeader>,
+    cell: ({ row }) => {
+      const zone = row.original.zone;
+      const colors: Record<string, string> = {
+        'Americas': 'text-blue-400',
+        'EMEA': 'text-green-400',
+        'APAC': 'text-orange-400',
+      };
+      return <span className={cn('text-xs font-medium', colors[zone || ''] || 'text-slate-400')}>{zone || '—'}</span>;
+    },
+  },
+  {
+    accessorKey: 'source',
+    header: ({ column }) => <SortableHeader column={column}>Type</SortableHeader>,
+    cell: ({ row }) => {
+      const source = row.original.source;
+      const colors: Record<string, string> = {
+        'FinancialInfra': 'bg-purple-500/20 text-purple-400',
+        'Equinix': 'bg-green-500/20 text-green-400',
+        'CableLanding': 'bg-blue-500/20 text-blue-400',
+        'IXP': 'bg-cyan-500/20 text-cyan-400',
+        'LaserLight': 'bg-orange-500/20 text-orange-400',
+        'xAI': 'bg-red-500/20 text-red-400',
+        'GroundNode': 'bg-slate-500/20 text-slate-400',
+      };
+      return (
+        <span className={cn('px-2 py-0.5 rounded text-xs font-medium', colors[source || ''] || 'bg-slate-500/20 text-slate-400')}>
+          {source || '—'}
+        </span>
+      );
+    },
   },
   {
     accessorKey: 'latitude',
     header: ({ column }) => <SortableHeader column={column}>Lat</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('latitude') as number).toFixed(4)}</span>,
+    cell: ({ row }) => <span className="font-mono text-xs text-slate-400">{(row.getValue('latitude') as number).toFixed(2)}°</span>,
   },
   {
     accessorKey: 'longitude',
     header: ({ column }) => <SortableHeader column={column}>Lon</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('longitude') as number).toFixed(4)}</span>,
+    cell: ({ row }) => <span className="font-mono text-xs text-slate-400">{(row.getValue('longitude') as number).toFixed(2)}°</span>,
   },
   {
     accessorKey: 'tier',
     header: ({ column }) => <SortableHeader column={column}>Tier</SortableHeader>,
     cell: ({ row }) => {
       const tier = row.getValue('tier') as number;
-      const colors = ['', 'text-blue-400', 'text-green-400', 'text-yellow-400'];
-      return <span className={cn('font-semibold', colors[tier])}>Tier {tier}</span>;
+      const colors = ['', 'text-green-400', 'text-cyan-400', 'text-orange-400'];
+      return <span className={cn('font-semibold', colors[tier])}>T{tier}</span>;
     },
-  },
-  {
-    accessorKey: 'demand_gbps',
-    header: ({ column }) => <SortableHeader column={column}>Demand</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono">{(row.getValue('demand_gbps') as number).toFixed(1)} Gbps</span>,
   },
   {
     accessorKey: 'weather_score',
@@ -147,40 +187,36 @@ const groundStationColumns: ColumnDef<GroundNode>[] = [
 // Satellites columns (using Satellite type)
 const satelliteColumns: ColumnDef<SatelliteType>[] = [
   {
-    accessorKey: 'id',
-    header: ({ column }) => <SortableHeader column={column}>ID</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{row.getValue('id')}</span>,
-  },
-  {
     accessorKey: 'name',
     header: ({ column }) => <SortableHeader column={column}>Name</SortableHeader>,
+    cell: ({ row }) => <span className="text-sm text-cyan-400 font-medium">{row.getValue('name')}</span>,
   },
   {
     accessorKey: 'altitude',
-    header: ({ column }) => <SortableHeader column={column}>Alt (km)</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono">{(row.getValue('altitude') as number).toFixed(0)}</span>,
+    header: ({ column }) => <SortableHeader column={column}>Altitude</SortableHeader>,
+    cell: ({ row }) => <span className="font-mono text-sm">{(row.getValue('altitude') as number).toFixed(0)} km</span>,
   },
   {
     accessorKey: 'inclination',
     header: ({ column }) => <SortableHeader column={column}>Inc</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono">{(row.getValue('inclination') as number).toFixed(1)}°</span>,
+    cell: ({ row }) => <span className="font-mono text-sm">{(row.getValue('inclination') as number).toFixed(1)}°</span>,
   },
   {
     accessorKey: 'latitude',
     header: ({ column }) => <SortableHeader column={column}>Lat</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('latitude') as number).toFixed(4)}</span>,
+    cell: ({ row }) => <span className="font-mono text-xs text-slate-400">{(row.getValue('latitude') as number).toFixed(2)}°</span>,
   },
   {
     accessorKey: 'longitude',
     header: ({ column }) => <SortableHeader column={column}>Lon</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{(row.getValue('longitude') as number).toFixed(4)}</span>,
+    cell: ({ row }) => <span className="font-mono text-xs text-slate-400">{(row.getValue('longitude') as number).toFixed(2)}°</span>,
   },
   {
     accessorKey: 'qber',
     header: ({ column }) => <SortableHeader column={column}>QBER</SortableHeader>,
     cell: ({ row }) => {
       const qber = row.getValue('qber') as number;
-      const color = qber < 3 ? 'text-green-400' : qber < 5 ? 'text-yellow-400' : 'text-red-400';
+      const color = qber < 3 ? 'text-green-400' : qber < 5 ? 'text-orange-400' : 'text-red-400';
       return <span className={cn('font-mono', color)}>{qber.toFixed(2)}%</span>;
     },
   },
@@ -188,9 +224,9 @@ const satelliteColumns: ColumnDef<SatelliteType>[] = [
     accessorKey: 'jammed',
     header: 'Jammed',
     cell: ({ row }) => row.getValue('jammed') ? (
-      <span className="text-red-400">⚠ Yes</span>
+      <span className="text-red-400 text-xs font-medium">JAMMED</span>
     ) : (
-      <span className="text-green-400">No</span>
+      <span className="text-green-400 text-xs">Clear</span>
     ),
   },
   {
@@ -203,41 +239,36 @@ const satelliteColumns: ColumnDef<SatelliteType>[] = [
 // FSO links columns
 const fsoLinkColumns: ColumnDef<FsoLink>[] = [
   {
-    accessorKey: 'id',
-    header: ({ column }) => <SortableHeader column={column}>Link ID</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{row.getValue('id')}</span>,
-  },
-  {
-    accessorKey: 'source_id',
-    header: ({ column }) => <SortableHeader column={column}>Source</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{row.getValue('source_id')}</span>,
-  },
-  {
-    accessorKey: 'target_id',
-    header: ({ column }) => <SortableHeader column={column}>Target</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono text-xs">{row.getValue('target_id')}</span>,
-  },
-  {
     accessorKey: 'link_type',
     header: 'Type',
     cell: ({ row }) => {
       const type = row.getValue('link_type') as string;
       return type === 'sat-sat' ? (
-        <span className="text-cyan-400">ISL</span>
+        <span className="px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-400 text-xs font-medium">ISL</span>
       ) : (
-        <span className="text-purple-400">Ground</span>
+        <span className="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-xs font-medium">Downlink</span>
       );
     },
   },
   {
+    accessorKey: 'source_id',
+    header: ({ column }) => <SortableHeader column={column}>Source</SortableHeader>,
+    cell: ({ row }) => <span className="text-sm text-slate-300">{(row.getValue('source_id') as string).slice(0, 8)}...</span>,
+  },
+  {
+    accessorKey: 'target_id',
+    header: ({ column }) => <SortableHeader column={column}>Target</SortableHeader>,
+    cell: ({ row }) => <span className="text-sm text-slate-300">{(row.getValue('target_id') as string).slice(0, 8)}...</span>,
+  },
+  {
     accessorKey: 'margin_db',
-    header: ({ column }) => <SortableHeader column={column}>Margin (dB)</SortableHeader>,
+    header: ({ column }) => <SortableHeader column={column}>Link Margin</SortableHeader>,
     cell: ({ row }) => <QualityBar value={row.getValue('margin_db')} max={10} />,
   },
   {
     accessorKey: 'throughput_gbps',
     header: ({ column }) => <SortableHeader column={column}>Throughput</SortableHeader>,
-    cell: ({ row }) => <span className="font-mono">{(row.getValue('throughput_gbps') as number).toFixed(1)} Gbps</span>,
+    cell: ({ row }) => <span className="font-mono text-sm">{(row.getValue('throughput_gbps') as number).toFixed(1)} Gbps</span>,
   },
   {
     accessorKey: 'weather_score',
@@ -246,11 +277,11 @@ const fsoLinkColumns: ColumnDef<FsoLink>[] = [
   },
   {
     accessorKey: 'active',
-    header: 'Active',
+    header: 'Status',
     cell: ({ row }) => row.getValue('active') ? (
-      <span className="text-green-400">Active</span>
+      <span className="text-green-400 text-xs font-medium">ACTIVE</span>
     ) : (
-      <span className="text-red-400">Down</span>
+      <span className="text-red-400 text-xs font-medium">DOWN</span>
     ),
   },
 ];

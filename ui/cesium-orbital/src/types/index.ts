@@ -1,14 +1,19 @@
 export type GroundNode = {
   id: string;
   name: string;
+  station_code: string;  // Human-readable ID like "NYSE-MAHWAH"
+  city?: string;
+  country?: string;
+  zone?: string;         // Americas, EMEA, APAC
+  source?: string;       // CableLanding, FinancialInfra, Equinix, etc.
   latitude: number;
   longitude: number;
   tier: 1 | 2 | 3;
   demand_gbps: number;
   weather_score: number;
   status: 'active' | 'degraded' | 'offline';
-  created_at: string;
-  last_updated: string;
+  created_at?: string;
+  last_updated?: string;
 };
 
 export type Satellite = {
@@ -70,6 +75,17 @@ export type WeatherCondition = {
   windSpeed: number;
   precipitation: number;
   temperature: number;
+};
+
+export type FsoLink = {
+  id: string;
+  source_id: string;
+  target_id: string;
+  link_type: 'sat-sat' | 'sat-ground';
+  margin_db: number;
+  throughput_gbps: number;
+  active: boolean;
+  weather_score: number;
 };
 
 export type TelemetryStream = {

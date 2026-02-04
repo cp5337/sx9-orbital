@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChevronLeft, ChevronRight, Play, Pause, RotateCcw } from 'lucide-react';
+import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Play, Pause, RotateCcw } from 'lucide-react';
 import { Slider } from './ui/slider';
+import { beamSelectionStore } from '@/store/beamSelectionStore';
 
 export interface LayerConfig {
   id: string;
@@ -8,6 +9,7 @@ export interface LayerConfig {
   visible: boolean;
   color: string;
   opacity: number;
+  children?: LayerConfig[];
 }
 
 export interface BeamTuning {
@@ -54,6 +56,7 @@ export function RightPanel({
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [expandedSatellites, setExpandedSatellites] = useState<Set<string>>(new Set());
   const [beamTunings, setBeamTunings] = useState<Map<string, BeamTuning>>(new Map());
+  const [satelliteSectionOpen, setSatelliteSectionOpen] = useState(false);
 
   const satelliteList = useMemo(() => satellites ?? [], [satellites]);
 
@@ -98,6 +101,10 @@ export function RightPanel({
     });
   };
 
+  const handleSatelliteClick = (satelliteId: string) => {
+    beamSelectionStore.selectSatellite(satelliteId);
+  };
+
   const renderLayerItem = (layer: LayerConfig) => (
     <label key={layer.id} className="flex items-center gap-2 px-2 py-1 text-xs hover:bg-gray-800 cursor-pointer">
       <input
@@ -140,33 +147,41 @@ export function RightPanel({
         {!isCollapsed && (
           <div className="px-2">
             <div className="text-[10px] text-gray-500 mb-1">Time Control</div>
-            <div className="flex items-center gap-2 mb-1.5">
+            <div className="flex items-center gap-1 mb-1.5">
               <button
                 onClick={onPlayPause}
-                className={`p-1 rounded-sm ${
+                className={`p-1.5 rounded-sm ${
                   timeControl.isPlaying
                     ? 'bg-green-900/30 text-green-500'
                     : 'text-gray-400 hover:bg-gray-800'
                 }`}
+                title={timeControl.isPlaying ? 'Pause (Space)' : 'Play (Space)'}
               >
-                {timeControl.isPlaying ? <Pause size={12} /> : <Play size={12} />}
+                {timeControl.isPlaying ? <Pause size={14} /> : <Play size={14} />}
               </button>
               <button
                 onClick={onReset}
-                className="p-1 rounded-sm text-gray-400 hover:bg-gray-800"
+                className="px-2 py-1 rounded-sm text-gray-400 hover:bg-gray-800 flex items-center gap-1 text-[10px] border border-gray-700"
+                title="Reset view to home (H)"
               >
-                <RotateCcw size={12} />
+                <RotateCcw size={10} />
+                Home
               </button>
               <span className="text-xs text-gray-400 ml-auto">{timeControl.speed}x</span>
             </div>
             <Slider
               value={[timeControl.speed]}
               onValueChange={([value]) => onSpeedChange(value)}
-              min={0.1}
-              max={100}
-              step={0.1}
+              min={1}
+              max={3600}
+              step={1}
               className="w-full"
             />
+            <div className="flex justify-between text-[9px] text-gray-500 mt-1">
+              <span>1x</span>
+              <span>60x = 1hr/min</span>
+              <span>3600x</span>
+            </div>
           </div>
         )}
 
@@ -187,107 +202,97 @@ export function RightPanel({
           </div>
         )}
 
+        {/* Satellites section — collapsed by default */}
         {!isCollapsed && satelliteList.length > 0 && (
           <>
             <div className="border-t border-gray-800 my-2 mx-2"></div>
             <div className="px-2">
-              <div className="text-[10px] text-gray-500 mb-2">Quick Bird Jump</div>
-              <div className="grid grid-cols-3 gap-1 mb-2">
-                {satelliteList.slice(0, 6).map((sat) => (
-                  <button
-                    key={`quick-${sat.id}`}
-                    onClick={() => toggleExpanded(sat.id)}
-                    className="px-1.5 py-1 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-sm text-[10px] text-gray-300 transition-colors"
-                    title={`Jump to ${sat.name}`}
-                  >
-                    {sat.name?.slice(0, 3)}
-                  </button>
-                ))}
-              </div>
-              {satelliteList.length > 6 && (
-                <div className="grid grid-cols-3 gap-1 mb-2">
-                  {satelliteList.slice(6, 12).map((sat) => (
-                    <button
-                      key={`quick-${sat.id}`}
-                      onClick={() => toggleExpanded(sat.id)}
-                      className="px-1.5 py-1 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-sm text-[10px] text-gray-300 transition-colors"
-                      title={`Jump to ${sat.name}`}
-                    >
-                      {sat.name?.slice(0, 3)}
-                    </button>
-                  ))}
+              <button
+                onClick={() => setSatelliteSectionOpen(!satelliteSectionOpen)}
+                className="w-full flex items-center justify-between text-[10px] text-gray-500 mb-2 hover:text-gray-300"
+              >
+                <span>Satellites ({satelliteList.length})</span>
+                {satelliteSectionOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
+              </button>
+
+              {satelliteSectionOpen && (
+                <div className="space-y-2">
+                  {satelliteList.map((sat) => {
+                    const tuning = beamTunings.get(sat.id) ?? DEFAULT_BEAM_TUNING;
+                    const isExpanded = expandedSatellites.has(sat.id);
+                    return (
+                      <div key={sat.id} className="rounded-sm border border-gray-800 bg-gray-900/50">
+                        <button
+                          onClick={() => toggleExpanded(sat.id)}
+                          onDoubleClick={() => updateBeamTuning(sat.id, { highlightSatellite: true, highlight: true })}
+                          className="w-full flex items-center justify-between px-2 py-1 text-xs text-gray-300 hover:bg-gray-800/60"
+                        >
+                          <span
+                            className="truncate cursor-pointer hover:text-white"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              handleSatelliteClick(sat.id);
+                            }}
+                          >
+                            {sat.name}
+                          </span>
+                          <span className={`text-[10px] ${sat.status === 'active' ? 'text-green-400' : 'text-gray-500'}`}>
+                            {sat.status ?? 'unknown'}
+                          </span>
+                        </button>
+                        {isExpanded && (
+                          <div className="px-2 pb-2 space-y-2">
+                            <div className="grid grid-cols-2 gap-1">
+                              <button
+                                onClick={() => updateBeamTuning(sat.id, { highlightSatellite: !tuning.highlightSatellite })}
+                                className={`px-2 py-1 rounded-sm text-[10px] border ${
+                                  tuning.highlightSatellite
+                                    ? 'bg-blue-600/20 text-blue-300 border-blue-500/30'
+                                    : 'bg-gray-800 text-gray-400 border-gray-700'
+                                }`}
+                              >
+                                Satellite
+                              </button>
+                              <button
+                                onClick={() => updateBeamTuning(sat.id, { highlight: !tuning.highlight })}
+                                className={`px-2 py-1 rounded-sm text-[10px] border ${
+                                  tuning.highlight
+                                    ? 'bg-blue-600/20 text-blue-300 border-blue-500/30'
+                                    : 'bg-gray-800 text-gray-400 border-gray-700'
+                                }`}
+                              >
+                                Beam
+                              </button>
+                            </div>
+                            <div className="flex items-center justify-between text-[10px] text-gray-400">
+                              <span>Pulse</span>
+                              <span className="font-mono text-gray-200">{tuning.pulseRate} Hz</span>
+                            </div>
+                            <input
+                              type="range"
+                              min={1}
+                              max={100}
+                              step={1}
+                              value={tuning.pulseRate}
+                              onChange={(e) => updateBeamTuning(sat.id, { pulseRate: Number(e.target.value) })}
+                              className="w-full h-1 bg-gray-800 rounded-sm appearance-none cursor-pointer"
+                            />
+                            <div className="flex items-center justify-between">
+                              <label className="text-[10px] text-gray-400">Color</label>
+                              <input
+                                type="color"
+                                value={tuning.color}
+                                onChange={(e) => updateBeamTuning(sat.id, { color: e.target.value })}
+                                className="h-6 w-10 bg-transparent border border-gray-700 rounded-sm"
+                              />
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
                 </div>
               )}
-
-              <div className="text-[10px] text-gray-500 mb-2">Beam Tuning</div>
-              <div className="space-y-2">
-                {satelliteList.map((sat) => {
-                  const tuning = beamTunings.get(sat.id) ?? DEFAULT_BEAM_TUNING;
-                  const isExpanded = expandedSatellites.has(sat.id);
-                  return (
-                    <div key={sat.id} className="rounded-sm border border-gray-800 bg-gray-900/50">
-                      <button
-                        onClick={() => toggleExpanded(sat.id)}
-                        onDoubleClick={() => updateBeamTuning(sat.id, { highlightSatellite: true, highlight: true })}
-                        className="w-full flex items-center justify-between px-2 py-1 text-xs text-gray-300 hover:bg-gray-800/60"
-                      >
-                        <span className="truncate">{sat.name}</span>
-                        <span className={`text-[10px] ${sat.status === 'active' ? 'text-green-400' : 'text-gray-500'}`}>
-                          {sat.status ?? 'unknown'}
-                        </span>
-                      </button>
-                      {isExpanded && (
-                        <div className="px-2 pb-2 space-y-2">
-                          <div className="grid grid-cols-2 gap-1">
-                            <button
-                              onClick={() => updateBeamTuning(sat.id, { highlightSatellite: !tuning.highlightSatellite })}
-                              className={`px-2 py-1 rounded-sm text-[10px] border ${
-                                tuning.highlightSatellite
-                                  ? 'bg-blue-600/20 text-blue-300 border-blue-500/30'
-                                  : 'bg-gray-800 text-gray-400 border-gray-700'
-                              }`}
-                            >
-                              Satellite
-                            </button>
-                            <button
-                              onClick={() => updateBeamTuning(sat.id, { highlight: !tuning.highlight })}
-                              className={`px-2 py-1 rounded-sm text-[10px] border ${
-                                tuning.highlight
-                                  ? 'bg-blue-600/20 text-blue-300 border-blue-500/30'
-                                  : 'bg-gray-800 text-gray-400 border-gray-700'
-                              }`}
-                            >
-                              Beam
-                            </button>
-                          </div>
-                          <div className="flex items-center justify-between text-[10px] text-gray-400">
-                            <span>Pulse</span>
-                            <span className="font-mono text-gray-200">{tuning.pulseRate} Hz</span>
-                          </div>
-                          <input
-                            type="range"
-                            min={1}
-                            max={100}
-                            step={1}
-                            value={tuning.pulseRate}
-                            onChange={(e) => updateBeamTuning(sat.id, { pulseRate: Number(e.target.value) })}
-                            className="w-full h-1 bg-gray-800 rounded-sm appearance-none cursor-pointer"
-                          />
-                          <div className="flex items-center justify-between">
-                            <label className="text-[10px] text-gray-400">Color</label>
-                            <input
-                              type="color"
-                              value={tuning.color}
-                              onChange={(e) => updateBeamTuning(sat.id, { color: e.target.value })}
-                              className="h-6 w-10 bg-transparent border border-gray-700 rounded-sm"
-                            />
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
             </div>
           </>
         )}

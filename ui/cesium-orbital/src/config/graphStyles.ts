@@ -1,60 +1,48 @@
-// config/graphStyles.ts - Orbital HUD/ACOG Aesthetic
-// Tactical visualization for satellite constellation topology
+// config/graphStyles.ts - Neo4j-inspired clean graph visualization
+// Professional, scientific aesthetic for constellation topology
 
-// Cytoscape stylesheet type - using any[] for flexibility with dynamic styles
 type CytoscapeStylesheet = Array<{ selector: string; style: Record<string, any> }>;
 
 // ============================================
-// ORBITAL NODE COLORS - High Contrast Neon HUD
+// COLOR PALETTE - Muted, Professional
 // ============================================
 export const NODE_COLORS: Record<string, string> = {
-  // Primary orbital entities (aligned to app palette)
-  Satellite: "#0000ff",      // ANSI Blue
-  GroundStation: "#ffff00",  // ANSI Yellow
-  Gateway: "#ff0000",        // ANSI Red
-
-  // Link types (for edge styling reference)
-  ISL: "#0000ff",            // ANSI Blue
-  GroundLink: "#ffff00",     // ANSI Yellow
+  // Node types
+  Satellite: "#4C8BF5",      // Soft blue
+  GroundStation: "#34A853",  // Soft green
+  Gateway: "#9334E6",        // Soft purple
 
   // Status colors
-  Active: "#0000ff",         // ANSI Blue
-  Degraded: "#ffff00",       // ANSI Yellow
-  Critical: "#ff0000",       // ANSI Red
-  Offline: "#808080",        // ANSI Gray
+  Active: "#4C8BF5",         // Blue
+  Degraded: "#FF9800",       // Orange (was amber/yellow)
+  Critical: "#EA4335",       // Red
+  Offline: "#9AA0A6",        // Gray
 
-  // Orbital plane identifiers
-  Plane0: "#0000ff",         // ANSI Blue
-  Plane1: "#ffff00",         // ANSI Yellow
-  Plane2: "#ff0000",         // ANSI Red
-  Plane3: "#0000ff",         // ANSI Blue
-  Plane4: "#ffff00",         // ANSI Yellow
-  Plane5: "#ff0000",         // ANSI Red
-  Plane6: "#0000ff",         // ANSI Blue
-  Plane7: "#ffff00",         // ANSI Yellow
+  // Orbital planes - subtle variations
+  Plane0: "#4C8BF5",         // Blue
+  Plane1: "#34A853",         // Green
+  Plane2: "#EA4335",         // Red
+  Plane3: "#9334E6",         // Purple
+  Plane4: "#00ACC1",         // Cyan
+  Plane5: "#FB8C00",         // Orange
+  Plane6: "#7CB342",         // Light green
+  Plane7: "#F06292",         // Pink
 };
 
-// Link quality gradient colors
+// Link colors based on quality
 export const LINK_QUALITY_COLORS = {
-  excellent: "#0000ff",      // >6dB margin - ANSI Blue
-  good: "#0000ff",           // 3-6dB - ANSI Blue
-  marginal: "#ffff00",       // 0-3dB - ANSI Yellow
-  weak: "#ff0000",           // <0dB - ANSI Red
-  failing: "#ff0000",        // Disconnecting - ANSI Red
+  excellent: "#34A853",      // Green - healthy
+  good: "#4C8BF5",           // Blue - normal
+  marginal: "#FF9800",       // Orange - warning
+  weak: "#EA4335",           // Red - degraded
+  failing: "#9AA0A6",        // Gray - failing
 };
 
-// ============================================
-// NODE SHAPES - Military/Tactical
-// ============================================
-export const NODE_SHAPES: Record<string, string> = {
-  Satellite: "diamond",        // Diamond for orbital assets
-  GroundStation: "hexagon",    // Hexagon for ground sites
-  Gateway: "octagon",          // Octagon for major relay
-  Relay: "triangle",           // Triangle for relay nodes
-};
+// Edge colors
+const EDGE_COLOR = "#5F6368";        // Gray for edges
+const EDGE_COLOR_LIGHT = "#80868B";  // Lighter gray
 
-export const DEFAULT_COLOR = "#9d4edd";
-export const DEFAULT_SHAPE = "diamond";
+export const DEFAULT_COLOR = "#4C8BF5";
 
 // ============================================
 // HELPER FUNCTIONS
@@ -63,20 +51,11 @@ export function getNodeColor(nodeType: string): string {
   return NODE_COLORS[nodeType] || DEFAULT_COLOR;
 }
 
-export function getNodeShape(nodeType: string): string {
-  return NODE_SHAPES[nodeType] || DEFAULT_SHAPE;
-}
-
 export function getPlaneColor(planeIndex: number): string {
   const colors = [
-    NODE_COLORS.Plane0,
-    NODE_COLORS.Plane1,
-    NODE_COLORS.Plane2,
-    NODE_COLORS.Plane3,
-    NODE_COLORS.Plane4,
-    NODE_COLORS.Plane5,
-    NODE_COLORS.Plane6,
-    NODE_COLORS.Plane7,
+    NODE_COLORS.Plane0, NODE_COLORS.Plane1, NODE_COLORS.Plane2,
+    NODE_COLORS.Plane3, NODE_COLORS.Plane4, NODE_COLORS.Plane5,
+    NODE_COLORS.Plane6, NODE_COLORS.Plane7,
   ];
   return colors[planeIndex % colors.length];
 }
@@ -90,257 +69,57 @@ export function getLinkQualityColor(marginDb: number): string {
 }
 
 // ============================================
-// BASE NODE STYLE - ACOG / HUD Aesthetic
-// Dark fill, thin crisp borders, monospace text
-// ============================================
-const baseNodeStyle = {
-  // Subtle dark fill
-  "background-color": "#0b1220",
-  "background-opacity": 0.9,
-
-  // Metrics
-  width: 36,
-  height: 36,
-
-  // Border
-  "border-width": 1,
-  "border-style": "solid",
-  "border-color": (ele: any) =>
-    ele.data("color") || getNodeColor(ele.data("nodeType")),
-  "border-opacity": 0.95,
-
-  // Label
-  label: (ele: any) => ele.data("label") || ele.data("id") || "",
-  color: "#ffffff",
-  "font-family": "Inter, system-ui, -apple-system, sans-serif",
-  "font-size": 9.5,
-  "font-weight": 500,
-  "text-valign": "bottom",
-  "text-halign": "center",
-  "text-margin-y": 8,
-
-  // Text legibility against dark backgrounds
-  "text-outline-color": "#0b1220",
-  "text-outline-width": 2,
-  "text-background-color": "#0b1220",
-  "text-background-opacity": 0.7,
-  "text-background-padding": 2.5,
-  "text-background-shape": "round-rectangle",
-};
-
-// ============================================
-// HIGH FIDELITY NODE STYLE
-// With glows and animations for demo mode
-// ============================================
-export function getNodeStyle(isHighFidelity: boolean): any {
-  if (isHighFidelity) {
-    return {
-      ...baseNodeStyle,
-
-      // Subtle elevation
-      "shadow-blur": 8,
-      "shadow-color": (ele: any) =>
-        ele.data("color") || getNodeColor(ele.data("nodeType")),
-      "shadow-opacity": 0.25,
-      "shadow-offset-x": 0,
-      "shadow-offset-y": 0,
-
-      // Smooth transitions for state changes
-      "transition-property":
-        "background-color, border-color, width, height, border-width, shadow-blur, shadow-opacity",
-      "transition-duration": "0.25s",
-      "transition-timing-function": "ease-out",
-    };
-  }
-  return {
-    ...baseNodeStyle,
-    // Performance mode: no shadows
-    "shadow-opacity": 0,
-    "border-width": 1,
-  };
-}
-
-// ============================================
-// EDGE STYLES - ISL and Ground Links
-// ============================================
-export const EDGE_STYLE_ISL: any = {
-  width: 2,
-  "line-color": NODE_COLORS.ISL,
-  "line-style": "solid",
-  "line-opacity": 0.8,
-
-  // Sharp arrow for directionality
-  "target-arrow-color": NODE_COLORS.ISL,
-  "target-arrow-shape": "triangle",
-  "arrow-scale": 0.8,
-
-  "curve-style": "bezier",
-  "control-point-step-size": 50,
-
-  // Edge label
-  label: "data(linkType)",
-  "font-size": 7,
-  "font-family": "Inter, system-ui, -apple-system, sans-serif",
-  color: "#94a3b8",
-  "text-rotation": "autorotate",
-  "text-margin-y": -8,
-
-  "text-background-color": "#0b1220",
-  "text-background-opacity": 0.7,
-  "text-background-padding": 2,
-};
-
-export const EDGE_STYLE_GROUND: any = {
-  width: 1.5,
-  "line-color": "#ffff00",
-  "line-style": "dashed",
-  "line-opacity": 0.7,
-  "line-dash-pattern": [6, 4],
-
-  "target-arrow-color": "#ffff00",
-  "target-arrow-shape": "vee",
-  "arrow-scale": 0.7,
-
-  "curve-style": "bezier",
-
-  label: "",
-  "font-size": 6,
-  "font-family": "Inter, system-ui, -apple-system, sans-serif",
-  color: "#94a3b8",
-};
-
-// Generic edge style with quality-based coloring
-export const EDGE_STYLE: any = {
-  width: (ele: any) => {
-    const margin = ele.data("marginDb") || 3;
-    return margin >= 3 ? 2.5 : 1.5;
-  },
-  "line-color": (ele: any) =>
-    ele.data("linkType") === "sat-ground" ? "#64748b" : "#334155",
-  "line-style": (ele: any) =>
-    ele.data("linkType") === "sat-ground" ? "dashed" : "solid",
-  "line-opacity": 0.75,
-
-  "target-arrow-color": (ele: any) =>
-    ele.data("linkType") === "sat-ground" ? "#94a3b8" : "#475569",
-  "target-arrow-shape": "triangle",
-  "arrow-scale": 0.7,
-
-  "curve-style": "bezier",
-  "control-point-step-size": 45,
-
-  "font-size": 7,
-  "font-family": "Inter, system-ui, -apple-system, sans-serif",
-  "text-rotation": "autorotate",
-
-  "text-background-color": "#0b1220",
-  "text-background-opacity": 0.7,
-  "text-background-padding": 2,
-};
-
-// ============================================
-// SELECTED STATE - "TARGET LOCK"
-// White-hot border with intense glow
-// ============================================
-export const SELECTED_STYLE: any = {
-  "border-width": 2.5,
-  "border-style": "solid",
-  "border-color": "#e2e8f0",
-
-  // Subtle halo
-  "shadow-blur": 12,
-  "shadow-color": (ele: any) =>
-    ele.data("color") || getNodeColor(ele.data("nodeType")),
-  "shadow-opacity": 0.35,
-
-  // High z-index to render on top
-  "z-index": 999,
-};
-
-export const SELECTED_EDGE_STYLE: any = {
-  "line-color": "#e2e8f0",
-  "target-arrow-color": "#e2e8f0",
-  width: 3,
-  "line-opacity": 1,
-  "z-index": 999,
-};
-
-// ============================================
-// HOVER STATE - "ACQUISITION"
-// Subtle glow increase on mouse over
-// ============================================
-export const HOVER_STYLE: any = {
-  "border-width": 2,
-  "shadow-blur": 10,
-  "shadow-opacity": 0.3,
-  "z-index": 500,
-};
-
-// ============================================
-// ACTIVE/PINNED STATE
-// Persistent highlight for tracked nodes
-// ============================================
-export const ACTIVE_STYLE: any = {
-  "border-width": 3,
-  "border-style": "solid",
-  "overlay-color": "#e2e8f0",
-  "overlay-opacity": 0.12,
-};
-
-// ============================================
 // LAYOUT CONFIGURATIONS
 // ============================================
 export const LAYOUT_CONFIGS = {
-  dagre: {
-    name: "dagre",
-    rankDir: "TB",
-    nodeSep: 80,
-    rankSep: 100,
-    padding: 50,
+  cose: {
+    name: "cose",
+    idealEdgeLength: 120,
+    nodeOverlap: 20,
+    refresh: 20,
+    fit: true,
+    padding: 40,
+    randomize: false,
+    componentSpacing: 100,
+    nodeRepulsion: () => 800000,
+    edgeElasticity: () => 80,
+    nestingFactor: 5,
+    gravity: 30,
+    numIter: 1000,
+    initialTemp: 200,
+    coolingFactor: 0.95,
+    minTemp: 1.0,
     animate: true,
     animationDuration: 500,
   },
 
-  cose: {
-    name: "cose",
-    idealEdgeLength: 100,
-    nodeOverlap: 25,
-    refresh: 20,
-    fit: true,
-    padding: 50,
-    randomize: false,
-    componentSpacing: 150,
-    nodeRepulsion: () => 1200000,
-    edgeElasticity: () => 100,
-    nestingFactor: 5,
-    gravity: 40,
-    numIter: 1000,
-    initialTemp: 250,
-    coolingFactor: 0.95,
-    minTemp: 1.0,
+  dagre: {
+    name: "dagre",
+    rankDir: "TB",
+    nodeSep: 60,
+    rankSep: 80,
+    padding: 40,
     animate: true,
-    animationDuration: 700,
-    animationEasing: "ease-out-cubic" as const,
+    animationDuration: 400,
   },
 
   circle: {
     name: "circle",
-    padding: 60,
+    padding: 40,
     animate: true,
-    animationDuration: 400,
+    animationDuration: 300,
     avoidOverlap: true,
-    spacingFactor: 1.5,
+    spacingFactor: 1.2,
   },
 
   concentric: {
     name: "concentric",
-    padding: 60,
+    padding: 40,
     animate: true,
-    animationDuration: 500,
+    animationDuration: 400,
     avoidOverlap: true,
-    minNodeSpacing: 50,
+    minNodeSpacing: 40,
     concentric: (node: any) => {
-      // Satellites in inner ring, ground stations outer
       return node.data("nodeType") === "Satellite" ? 2 : 1;
     },
     levelWidth: () => 1,
@@ -348,22 +127,20 @@ export const LAYOUT_CONFIGS = {
 
   grid: {
     name: "grid",
-    padding: 50,
+    padding: 40,
     animate: true,
-    animationDuration: 400,
+    animationDuration: 300,
     avoidOverlap: true,
     condense: true,
-    rows: undefined,
-    cols: undefined,
   },
 
   breadthfirst: {
     name: "breadthfirst",
     directed: false,
-    padding: 50,
-    spacingFactor: 1.75,
+    padding: 40,
+    spacingFactor: 1.5,
     animate: true,
-    animationDuration: 500,
+    animationDuration: 400,
   },
 };
 
@@ -376,152 +153,179 @@ export function getLayoutConfig(layoutType: LayoutType): any {
 // ============================================
 // PERFORMANCE THRESHOLDS
 // ============================================
-export const HIGH_FIDELITY_THRESHOLD = 200; // Disable effects above this node count
-export const ANIMATION_THRESHOLD = 500;     // Disable animations above this
+export const HIGH_FIDELITY_THRESHOLD = 200;
+export const ANIMATION_THRESHOLD = 500;
+
+// Unused but kept for API compatibility
+export function getNodeStyle(_isHighFidelity: boolean): any {
+  return {};
+}
 
 // ============================================
-// COMPLETE STYLESHEET GENERATOR
-// Returns Cytoscape-compatible stylesheet array
+// STYLESHEET - Neo4j-inspired clean design
 // ============================================
-export function generateStylesheet(isHighFidelity: boolean): CytoscapeStylesheet {
-  const nodeStyle = getNodeStyle(isHighFidelity);
-
+export function generateStylesheet(_isHighFidelity: boolean): CytoscapeStylesheet {
   return [
-    // Base node style
+    // Base node style - clean circles
     {
       selector: "node",
-      style: nodeStyle,
+      style: {
+        shape: "ellipse",
+        width: 40,
+        height: 40,
+        "background-color": (ele: any) => ele.data("color") || getNodeColor(ele.data("nodeType")),
+        "background-opacity": 1,
+        "border-width": 2,
+        "border-color": "#1F1F1F",
+        "border-opacity": 1,
+
+        // Clean label
+        label: (ele: any) => ele.data("label") || ele.data("id") || "",
+        color: "#E8EAED",
+        "font-family": "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+        "font-size": 11,
+        "font-weight": 500,
+        "text-valign": "bottom",
+        "text-halign": "center",
+        "text-margin-y": 6,
+        "text-wrap": "ellipsis",
+        "text-max-width": 80,
+      },
     },
 
-    // Satellite nodes - Diamond shape
+    // Satellite nodes - slightly smaller
     {
       selector: 'node[nodeType="Satellite"]',
       style: {
-        shape: "ellipse",
-        width: 24,
-        height: 24,
-        "background-color": "#0b1220",
-        "border-color": (ele: any) => ele.data("color") || NODE_COLORS.Satellite,
-        "border-width": 2,
-        "border-style": "solid",
+        width: 36,
+        height: 36,
+        "background-color": (ele: any) => ele.data("color") || NODE_COLORS.Satellite,
       },
     },
 
-    // Ground station nodes - Hexagon shape
+    // Ground station nodes - slightly larger
     {
       selector: 'node[nodeType="GroundStation"]',
       style: {
-        shape: "hexagon",
-        width: 28,
-        height: 28,
-        "background-color": "#0b1220",
-        "border-color": (ele: any) => ele.data("color") || NODE_COLORS.GroundStation,
+        width: 44,
+        height: 44,
+        "background-color": (ele: any) => ele.data("color") || NODE_COLORS.GroundStation,
       },
     },
 
-    // Gateway nodes - Octagon shape
+    // Gateway nodes
     {
       selector: 'node[nodeType="Gateway"]',
       style: {
-        shape: "octagon",
-        width: 36,
-        height: 36,
-        "border-width": 2,
-        "border-color": NODE_COLORS.Gateway,
+        width: 50,
+        height: 50,
+        "background-color": NODE_COLORS.Gateway,
       },
     },
 
-    // Base edge style
+    // Base edge style - thin, clean lines
     {
       selector: "edge",
-      style: EDGE_STYLE,
+      style: {
+        width: 1,
+        "line-color": EDGE_COLOR,
+        "line-opacity": 0.6,
+        "curve-style": "bezier",
+        "target-arrow-shape": "none",
+      },
     },
 
-    // ISL (Inter-Satellite Link) edges
+    // ISL edges - solid
     {
       selector: 'edge[linkType="sat-sat"]',
       style: {
+        width: 1,
         "line-style": "solid",
-        width: 2.5,
-        "line-color": "#334155",
-        "target-arrow-color": "#475569",
+        "line-color": EDGE_COLOR,
       },
     },
 
-    // Ground link edges
+    // Ground link edges - slightly different
     {
       selector: 'edge[linkType="sat-ground"]',
       style: {
-        "line-style": "dashed",
-        width: 2,
-        "line-dash-pattern": [8, 4],
-        "line-color": "#64748b",
-        "target-arrow-color": "#94a3b8",
+        width: 1,
+        "line-style": "solid",
+        "line-color": EDGE_COLOR_LIGHT,
       },
     },
 
-    // Selected state - "TARGET LOCK"
+    // Selected node
     {
-      selector: ":selected",
-      style: SELECTED_STYLE,
+      selector: "node:selected",
+      style: {
+        "border-width": 3,
+        "border-color": "#FFFFFF",
+        "z-index": 999,
+      },
     },
 
+    // Selected edge
     {
       selector: "edge:selected",
-      style: SELECTED_EDGE_STYLE,
+      style: {
+        width: 2,
+        "line-color": "#FFFFFF",
+        "line-opacity": 1,
+        "z-index": 999,
+      },
+    },
+
+    // Hover state
+    {
+      selector: "node.hover",
+      style: {
+        "border-width": 3,
+        "border-color": "#FFFFFF",
+      },
     },
 
     // Highlighted path
     {
       selector: ".highlighted",
       style: {
-        "border-color": "#fbbf24",
-        "background-color": "#1f1b12",
-        "line-color": "#fbbf24",
-        "target-arrow-color": "#fbbf24",
-        "shadow-color": "#fbbf24",
-        "shadow-opacity": 0.35,
-        "transition-property": "background-color, line-color, border-color",
-        "transition-duration": "0.3s",
+        "border-color": "#FF9800",
+        "line-color": "#FF9800",
+        "line-opacity": 1,
+        width: 2,
         "z-index": 800,
       },
     },
 
-    // Faded state for non-path elements
+    // Faded elements
     {
       selector: ".faded",
       style: {
-        opacity: 0.2,
+        opacity: 0.15,
       },
     },
 
-    // Critical status
+    // Status: Critical
     {
       selector: ".critical",
       style: {
-        "border-color": NODE_COLORS.Critical,
-        "shadow-color": NODE_COLORS.Critical,
-        "shadow-opacity": 0.9,
-        "shadow-blur": 25,
+        "background-color": NODE_COLORS.Critical,
       },
     },
 
-    // Degraded status
+    // Status: Degraded
     {
       selector: ".degraded",
       style: {
-        "border-color": NODE_COLORS.Degraded,
-        "shadow-color": NODE_COLORS.Degraded,
-        "shadow-opacity": 0.6,
+        "background-color": NODE_COLORS.Degraded,
       },
     },
 
-    // Offline status
+    // Status: Offline
     {
       selector: ".offline",
       style: {
-        "border-color": NODE_COLORS.Offline,
-        "background-opacity": 0.4,
+        "background-color": NODE_COLORS.Offline,
         opacity: 0.5,
       },
     },

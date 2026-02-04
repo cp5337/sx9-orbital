@@ -280,6 +280,10 @@ export class CesiumWorldManager {
       return;
     }
 
+    // Use human-readable names instead of raw IDs
+    const sourceName = sourceEntity.name || link.source_id;
+    const targetName = targetEntity.name || link.target_id;
+
     const color = link.status === 'active'
       ? Cesium.Color.CYAN.withAlpha(0.5)
       : link.status === 'degraded'
@@ -288,7 +292,7 @@ export class CesiumWorldManager {
 
     const entity = dataSource.entities.add({
       id: `${world}-${link.id}`,
-      name: `Link: ${link.source_id} → ${link.target_id}`,
+      name: `${sourceName} ⟷ ${targetName}`,
       polyline: {
         positions: new Cesium.CallbackProperty(() => {
           const sourcePos = sourceEntity.position?.getValue(this.viewer.clock.currentTime);

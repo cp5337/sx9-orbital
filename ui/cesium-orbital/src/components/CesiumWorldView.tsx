@@ -20,7 +20,7 @@ export function CesiumWorldView() {
   const [currentWorld, setCurrentWorld] = useState<WorldType>('production');
   const [initError, setInitError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
-  const [dataLoaded, setDataLoaded] = useState(false);
+  const [wsConnected, setWsConnected] = useState(false);
 
   const [stats, setStats] = useState({
     groundStations: 0,
@@ -69,8 +69,26 @@ export function CesiumWorldView() {
 
   const [timeControl, setTimeControl] = useState({
     isPlaying: false,
-    speed: 1,
+    speed: 60, // Default 60x = 1 hour per minute (good for visualization)
   });
+
+  // Keyboard shortcuts
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Ignore if typing in input
+      if (e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement) return;
+
+      if (e.key === 'h' || e.key === 'H') {
+        handleReset();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        handlePlayPause();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     if (!containerRef.current) return;

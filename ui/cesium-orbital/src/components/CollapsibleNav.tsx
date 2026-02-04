@@ -3,14 +3,12 @@ import type { ViewType } from '@/store/beamSelectionStore';
 import {
   Activity,
   AlertTriangle,
-  Bug,
   ChevronLeft,
   ChevronRight,
   Database,
   Globe,
   Radio,
   Satellite,
-  Settings,
   Zap,
 } from 'lucide-react';
 
@@ -42,11 +40,7 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     satellites: Satellite,
     'ground-stations': Radio,
     'fso-links': Zap,
-    coverage: Activity,
-    wasm: Bug,
-    telemetry: Activity,
     diagnostics: AlertTriangle,
-    settings: Settings,
   };
 
   const shortLabelMap: Record<string, string> = {
@@ -58,11 +52,7 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     satellites: 'SAT',
     'ground-stations': 'GND',
     'fso-links': 'FSO',
-    coverage: 'COV',
-    wasm: 'WASM',
-    telemetry: 'TEL',
     diagnostics: 'DIAG',
-    settings: 'SET',
   };
 
   const renderMenuItem = (item: { id: string; label: string; action?: () => void }) => {
@@ -111,20 +101,12 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     { id: 'data', label: 'Data Tables' },
   ];
 
-  // Constellation Section
+  // Constellation Section (includes diagnostics)
   const constellationSection = [
     { id: 'satellites', label: 'Satellites', action: onSatelliteControlOpen ?? (() => onViewChange('3d')) },
     { id: 'ground-stations', label: 'Ground Stations', action: () => onViewChange('data') },
     { id: 'fso-links', label: 'FSO Links', action: () => onViewChange('data') },
-    { id: 'coverage', label: 'Coverage' },
-  ];
-
-  // System Section
-  const systemSection = [
-    { id: 'wasm', label: 'WASM Test' },
-    { id: 'telemetry', label: 'Telemetry' },
     { id: 'diagnostics', label: 'Diagnostics', action: onDiagnosticsOpen },
-    { id: 'settings', label: 'Settings' },
   ];
 
   return (
@@ -156,23 +138,8 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
 
         {renderSectionHeader('Constellation')}
         {constellationSection.map(renderMenuItem)}
-
-        {renderSectionHeader('System')}
-        {systemSection.map(renderMenuItem)}
       </nav>
 
-      <div className="border-t border-gray-800 p-2">
-        <button
-          onClick={onDiagnosticsOpen}
-          className={`w-full flex items-center gap-2 text-xs text-gray-400 hover:text-gray-200 ${
-            isCollapsed ? 'flex-col justify-center' : ''
-          }`}
-          title="Settings"
-        >
-          <Settings className="w-4 h-4" />
-          <span className={isCollapsed ? 'text-[9px]' : ''}>Settings</span>
-        </button>
-      </div>
     </div>
   );
 }

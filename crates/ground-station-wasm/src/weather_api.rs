@@ -234,6 +234,15 @@ impl WeatherApi {
             temperature_c: data.current.temperature_2m,
             humidity_pct: data.current.relative_humidity_2m,
             timestamp: chrono::Utc::now().timestamp(),
+            // Long-term climate factors (not available from real-time API)
+            annual_sunshine_hours: None,
+            clear_days_per_year: None,
+            clear_nights_per_year: None,
+            precip_days_per_year: None,
+            is_daytime: None,
+            air_quality_index: None,
+            pm25_ugm3: None,
+            pm10_ugm3: None,
         })
     }
 
@@ -293,6 +302,15 @@ impl WeatherApi {
             temperature_c: data.data.values.temperature,
             humidity_pct: data.data.values.humidity,
             timestamp: chrono::Utc::now().timestamp(),
+            // Long-term climate factors (not available from real-time API)
+            annual_sunshine_hours: None,
+            clear_days_per_year: None,
+            clear_nights_per_year: None,
+            precip_days_per_year: None,
+            is_daytime: None,
+            air_quality_index: None,
+            pm25_ugm3: None,
+            pm10_ugm3: None,
         })
     }
 
@@ -362,6 +380,15 @@ impl WeatherApi {
             temperature_c: data.main.temp,
             humidity_pct: data.main.humidity,
             timestamp: chrono::Utc::now().timestamp(),
+            // Long-term climate factors (not available from real-time API)
+            annual_sunshine_hours: None,
+            clear_days_per_year: None,
+            clear_nights_per_year: None,
+            precip_days_per_year: None,
+            is_daytime: None,
+            air_quality_index: None,
+            pm25_ugm3: None,
+            pm10_ugm3: None,
         })
     }
 

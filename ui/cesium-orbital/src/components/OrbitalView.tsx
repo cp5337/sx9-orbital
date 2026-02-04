@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { motion } from 'framer-motion';
 import { TriangleAlert as AlertTriangle, Bug } from 'lucide-react';
 import { RightPanel, LayerConfig, type BeamTuning } from './RightPanel';
 import {
@@ -23,14 +22,14 @@ import {
   Area,
   AreaChart,
 } from 'recharts';
-// import { useGroundNodes, useSatellites } from '@/hooks/useSupabaseData';
-import { useMockGroundNodes as useGroundNodes, useMockSatellites as useSatellites } from '@/hooks/useMockData';
+import type { Satellite, GroundNode, FsoLink } from '@/types';
+import { beamSelectionStore } from '@/store/beamSelectionStore';
 import { fetchWeatherForLocation } from '@/services/weatherService';
 import { addRadiationBeltsToViewer } from '@/utils/radiationBeltRenderer';
 import { OrbitalAnimationManager } from '@/services/orbitalAnimation';
 import { DiagnosticPanel } from '@/components/DiagnosticPanel';
 import { addOrbitalZonesToViewer, createOrbitPath } from '@/utils/orbitalZones';
-import { FsoBeamManager, createWalkerDeltaLinks } from '@/utils/fsoBeamRenderer';
+import { FsoBeamManager } from '@/utils/fsoBeamRenderer';
 import { WebSocketService, type LinkStatePayload } from '@/services/websocketService';
 import * as Cesium from 'cesium';
 
@@ -68,13 +67,18 @@ function getWeatherColor(score: number): string {
   return '#ef4444';
 }
 
-export default function SpaceWorldDemo() {
+interface OrbitalViewProps {
+  satellites: Satellite[];
+  groundStations: GroundNode[];
+  fsoLinks: FsoLink[];
+}
+
+export default function OrbitalView({ satellites, groundStations, fsoLinks }: OrbitalViewProps) {
   const [openModal, setOpenModal] = useState<null | 'network' | 'qkd' | 'hourglass' | 'diagnostics'>(
     null
   );
   const globeRef = useRef<HTMLDivElement | null>(null);
-  const { nodes: groundNodes, loading: nodesLoading, error: nodesError } = useGroundNodes();
-  const { satellites, loading: satsLoading, error: satsError } = useSatellites();
+  const groundNodes = groundStations;
   const hourglass = useHourglassSeries();
   const [weatherUpdates, setWeatherUpdates] = useState<Map<string, number>>(new Map());
   const [cesiumError, setCesiumError] = useState<string | null>(null);
@@ -341,20 +345,7 @@ export default function SpaceWorldDemo() {
 
   useEffect(() => {
     if (!globeRef.current) return;
-
-    if (nodesLoading || satsLoading) {
-      return;
-    }
-
-    if (nodesError || satsError) {
-      setCesiumError(`Database error: ${nodesError?.message || satsError?.message}`);
-      setInitializationStatus('error');
-      return;
-    }
-
-    if (groundNodes.length === 0 && satellites.length === 0) {
-      return;
-    }
+    if (groundNodes.length === 0 && satellites.length === 0) return;
 
     const cesiumToken = import.meta.env.VITE_CESIUM_TOKEN;
     if (!cesiumToken || cesiumToken === 'PASTE_YOUR_TOKEN_HERE') {
@@ -372,6 +363,8 @@ export default function SpaceWorldDemo() {
         geocoder: false,
         homeButton: false,
         navigationHelpButton: false,
+        infoBox: false,
+        selectionIndicator: false,
       });
       viewerRef.current = viewer;
       setInitializationStatus('ready');
@@ -380,13 +373,13 @@ export default function SpaceWorldDemo() {
       const animationManager = new OrbitalAnimationManager(viewer, (satId, lat, lon, altKm) => {
         fsoBeamManagerRef.current?.setSatellitePosition(satId, lat, lon, altKm);
       });
+      animationManager.setExternalPositionMode(true);
       animationManagerRef.current = animationManager;
 
-    groundNodes.forEach((node, index) => {
+    groundNodes.forEach((node) => {
       const weatherScore = weatherUpdates.get(node.id) ?? node.weather_score;
       const color = getWeatherColor(weatherScore);
-      const gnNumber = index + 1;
-      const displayLabel = `GN-${gnNumber}`;
+      const displayLabel = node.station_code || node.name.slice(0, 12);
 
       viewer.entities.add({
         position: Cesium.Cartesian3.fromDegrees(node.longitude, node.latitude),
@@ -396,13 +389,14 @@ export default function SpaceWorldDemo() {
         },
         label: {
           text: displayLabel,
-          font: '11px sans-serif',
-          pixelOffset: new Cesium.Cartesian2(0, -15),
+          font: '10px sans-serif',
+          pixelOffset: new Cesium.Cartesian2(0, -12),
           fillColor: Cesium.Color.WHITE,
           showBackground: true,
           backgroundColor: Cesium.Color.fromCssColorString('#14171c99'),
+          scaleByDistance: new Cesium.NearFarScalar(1.5e6, 1.0, 8e6, 0.4),
         },
-        description: `<strong>${node.name}</strong><br/>${displayLabel}<br/>Tier ${node.tier}<br/>Demand: ${node.demand_gbps.toFixed(
+        description: `<strong>${node.name}</strong><br/>Tier ${node.tier}<br/>Demand: ${node.demand_gbps.toFixed(
           1
         )} Gbps<br/>Weather: ${(weatherScore * 100).toFixed(0)}%`,
         properties: new Cesium.PropertyBag({
@@ -433,7 +427,7 @@ export default function SpaceWorldDemo() {
     addRadiationBeltsToViewer(viewer, 'radiationBelts');
     addOrbitalZonesToViewer(viewer, 'orbitalZones');
 
-    // Initialize FSO Beam Manager
+    // Initialize FSO Beam Manager from shared fsoLinks prop
     const fsoManager = new FsoBeamManager(viewer);
     fsoBeamManagerRef.current = fsoManager;
 
@@ -447,31 +441,22 @@ export default function SpaceWorldDemo() {
       fsoManager.setSatellitePosition(sat.id, sat.latitude, sat.longitude, sat.altitude);
     });
 
-    // Create inter-satellite links (Walker Delta constellation pattern)
-    createWalkerDeltaLinks(fsoManager, satellites.map((s, i) => ({
-      id: s.id,
-      planeIndex: Math.floor(i / 4), // 4 satellites per plane for Walker 53:12/3/1
-    })));
-
-    // Create satellite-to-ground links (each sat connects to nearest visible ground stations)
-    satellites.forEach((sat) => {
-      // Find nearest ground stations and create links (limit to 2 per satellite for clarity)
-      const sortedGs = [...groundNodes]
-        .map((gs) => ({
-          gs,
-          dist: Math.sqrt(
-            Math.pow(sat.latitude - gs.latitude, 2) +
-            Math.pow(sat.longitude - gs.longitude, 2)
-          ),
-        }))
-        .sort((a, b) => a.dist - b.dist)
-        .slice(0, 2);
-
-      sortedGs.forEach((item) => {
-        const linkId = `${sat.id}-${item.gs.id}`;
-        const margin = 4 + Math.random() * 6; // 4-10 dB margin varies by weather/distance
-        fsoManager.addSatToGroundLink(linkId, sat.id, item.gs.id, margin);
-      });
+    // Initialize links from canonical fsoLinks prop
+    fsoLinks.forEach((link) => {
+      if (!link.active) return;
+      if (link.link_type === 'sat-sat') {
+        fsoManager.upsertLink({
+          id: link.id,
+          type: 'sat-sat',
+          sourceId: link.source_id,
+          targetId: link.target_id,
+          linkMargin: link.margin_db,
+          wavelength: 1550,
+          active: true,
+        });
+      } else {
+        fsoManager.addSatToGroundLink(link.id, link.source_id, link.target_id, link.margin_db);
+      }
     });
 
     if (orbitPathsVisible) {
@@ -603,7 +588,86 @@ export default function SpaceWorldDemo() {
       setCesiumError(`Failed to initialize Cesium viewer: ${errorMessage}`);
       setInitializationStatus('error');
     }
-  }, [groundNodes, satellites, nodesLoading, satsLoading, weatherUpdates, nodesError, satsError, orbitPathsVisible]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  // Feed position updates from store polling into the animation manager (no viewer rebuild)
+  useEffect(() => {
+    const manager = animationManagerRef.current;
+    if (!manager) return;
+    for (const sat of satellites) {
+      manager.updatePositionExternal(sat.id, sat.latitude, sat.longitude, sat.altitude);
+    }
+  }, [satellites]);
+
+  // Update FSO beam manager when links change from store
+  useEffect(() => {
+    const fsoManager = fsoBeamManagerRef.current;
+    if (!fsoManager) return;
+    for (const link of fsoLinks) {
+      if (!link.active) continue;
+      if (link.link_type === 'sat-sat') {
+        fsoManager.upsertLink({
+          id: link.id,
+          type: 'sat-sat',
+          sourceId: link.source_id,
+          targetId: link.target_id,
+          linkMargin: link.margin_db,
+          wavelength: 1550,
+          active: true,
+        });
+      }
+    }
+  }, [fsoLinks]);
+
+  // Camera flyTo when a satellite is selected via the store
+  useEffect(() => {
+    const unsubscribe = beamSelectionStore.subscribe((state) => {
+      const satId = state.selectedSatelliteId;
+      if (!satId) return;
+      const viewer = viewerRef.current;
+      if (!viewer || viewer.isDestroyed()) return;
+
+      // Find the satellite entity in the viewer
+      const entity = viewer.entities.values.find((e) => {
+        const props = e.properties;
+        const entitySatId = props?.satId?.getValue?.(Cesium.JulianDate.now());
+        return entitySatId === satId;
+      });
+
+      const onComplete = () => {
+        beamSelectionStore.selectSatellite(null);
+      };
+
+      if (entity && entity.position) {
+        const pos = entity.position.getValue(Cesium.JulianDate.now());
+        if (pos) {
+          viewer.camera.flyTo({
+            destination: pos,
+            duration: 1.5,
+            complete: onComplete,
+          });
+        }
+      } else {
+        // Fallback: find satellite from props and flyTo by coordinates
+        const sat = satellites.find((s) => s.id === satId);
+        if (sat) {
+          viewer.camera.flyTo({
+            destination: Cesium.Cartesian3.fromDegrees(
+              sat.longitude,
+              sat.latitude,
+              sat.altitude * 1000 + 2000000
+            ),
+            duration: 1.5,
+            complete: onComplete,
+          });
+        }
+      }
+    });
+
+    return () => { unsubscribe(); };
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [satellites]);
 
   const handleLayerToggle = (layerId: string, visible: boolean) => {
     setLayers((prev) =>
@@ -643,9 +707,17 @@ export default function SpaceWorldDemo() {
   };
 
   const handlePlayPause = () => {
+    const manager = animationManagerRef.current;
     if (viewerRef.current) {
       const isCurrentlyPlaying = !viewerRef.current.clock.shouldAnimate;
       viewerRef.current.clock.shouldAnimate = isCurrentlyPlaying;
+      if (manager) {
+        if (isCurrentlyPlaying) {
+          manager.resume();
+        } else {
+          manager.pause();
+        }
+      }
       setTimeControl((prev) => ({ ...prev, isPlaying: isCurrentlyPlaying }));
     }
   };
@@ -653,21 +725,28 @@ export default function SpaceWorldDemo() {
   const handleSpeedChange = (speed: number) => {
     if (viewerRef.current) {
       viewerRef.current.clock.multiplier = speed;
-      setTimeControl((prev) => ({ ...prev, speed }));
     }
+    animationManagerRef.current?.setSpeedMultiplier(speed);
+    setTimeControl((prev) => ({ ...prev, speed }));
   };
 
   const handleReset = () => {
     if (viewerRef.current) {
       viewerRef.current.camera.flyHome(2.0);
+      viewerRef.current.clock.shouldAnimate = true;
       viewerRef.current.clock.multiplier = 1;
-      setTimeControl({ isPlaying: true, speed: 1 });
     }
+    const manager = animationManagerRef.current;
+    if (manager) {
+      manager.setSpeedMultiplier(1);
+      manager.resume();
+    }
+    setTimeControl({ isPlaying: true, speed: 1 });
   };
 
   const showErrorScreen = initializationStatus === 'error' && cesiumError;
-  const showNoDataScreen = !nodesLoading && !satsLoading && groundNodes.length === 0 && satellites.length === 0;
-  const showLoadingOverlay = nodesLoading || satsLoading;
+  const showNoDataScreen = groundNodes.length === 0 && satellites.length === 0;
+  const showLoadingOverlay = false;
 
   if (showErrorScreen) {
     return (
@@ -685,19 +764,6 @@ export default function SpaceWorldDemo() {
               <p className="text-sm text-slate-300">{cesiumError}</p>
             </div>
 
-            {nodesError && (
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-                <p className="text-sm font-semibold text-yellow-300 mb-2">Database Error (Ground Nodes):</p>
-                <p className="text-sm text-slate-300">{nodesError.message}</p>
-              </div>
-            )}
-
-            {satsError && (
-              <div className="bg-slate-800 border border-slate-700 rounded-lg p-4">
-                <p className="text-sm font-semibold text-yellow-300 mb-2">Database Error (Satellites):</p>
-                <p className="text-sm text-slate-300">{satsError.message}</p>
-              </div>
-            )}
 
             <div className="flex gap-3">
               <Button onClick={() => window.location.reload()} className="flex items-center gap-2">

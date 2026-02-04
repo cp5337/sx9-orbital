@@ -8,6 +8,7 @@ export type ViewType = 'map' | 'dashboard' | '3d' | 'graph' | 'data';
 interface BeamSelectionState {
   selectedBeamId: string | null;
   highlightedBeamId: string | null;
+  selectedSatelliteId: string | null;
   currentView: ViewType;
 }
 
@@ -15,6 +16,7 @@ class BeamSelectionStore {
   private state: BeamSelectionState = {
     selectedBeamId: null,
     highlightedBeamId: null,
+    selectedSatelliteId: null,
     currentView: '3d',
   };
 
@@ -56,6 +58,10 @@ class BeamSelectionStore {
       currentView: targetView
     });
   }
+
+  selectSatellite(satelliteId: string | null) {
+    this.setState({ selectedSatelliteId: satelliteId });
+  }
 }
 
 export const beamSelectionStore = new BeamSelectionStore();
@@ -65,6 +71,7 @@ export function useBeamSelectionStore(): BeamSelectionState & {
   setHighlightedBeam: (beamId: string | null) => void;
   setCurrentView: (view: ViewType) => void;
   selectBeamAndNavigate: (beamId: string, targetView: ViewType) => void;
+  selectSatellite: (satelliteId: string | null) => void;
 } {
   const [state, setState] = useState(beamSelectionStore.getState());
 
@@ -82,5 +89,6 @@ export function useBeamSelectionStore(): BeamSelectionState & {
     setCurrentView: (view) => beamSelectionStore.setCurrentView(view),
     selectBeamAndNavigate: (beamId, targetView) =>
       beamSelectionStore.selectBeamAndNavigate(beamId, targetView),
+    selectSatellite: (satelliteId) => beamSelectionStore.selectSatellite(satelliteId),
   };
 }

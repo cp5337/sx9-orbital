@@ -28,6 +28,9 @@ pub mod weather;
 #[cfg(feature = "weather-api")]
 pub mod weather_api;
 
+#[cfg(feature = "weather-api")]
+pub mod weather_historical;
+
 // Re-exports
 pub use slew::SlewController;
 pub use door::{DoorState, DoorController};

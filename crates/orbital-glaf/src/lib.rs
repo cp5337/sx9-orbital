@@ -16,6 +16,7 @@ use std::collections::HashMap;
 use thiserror::Error;
 
 pub mod routing;
+pub mod satellite_ann;
 pub mod export;
 
 #[cfg(feature = "neo4j")]

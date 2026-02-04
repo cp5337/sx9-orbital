@@ -1,0 +1,58 @@
+# docker-compose.yml - SX9 Orbital Infrastructure (Minimal Stack)
+# Services: Gateway (Rust) + NATS (telemetry pub/sub)
+# Persistence: Supabase (cloud) when ready - migrations in legacy-migration/
+
+services:
+  gateway:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.gateway
+    container_name: orbital-gateway
+    ports:
+      - "18700:18700"
+    environment:
+      - RUST_LOG=orbital_gateway=debug,info
+      - ORBITAL_GATEWAY_PORT=18700
+      - ORBITAL_MEMORY_PATH=/data/orbital-memory
+      - NATS_URL=nats://nats:4222
+      # Supabase connection (add when ready)
+      # - SUPABASE_URL=${SUPABASE_URL}
+      # - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+    volumes:
+      - gateway_data:/data
+    depends_on:
+      nats:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:18700/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    networks:
+      - orbital-net
+
+  nats:
+    image: nats:2-alpine
+    container_name: orbital-nats
+    ports:
+      - "4222:4222"
+      - "8222:8222"  # Monitoring UI
+    command: --jetstream --store_dir /data -m 8222
+    volumes:
+      - nats_data:/data
+    healthcheck:
+      test: ["CMD-SHELL", "wget -q --spider http://localhost:8222/healthz || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - orbital-net
+
+volumes:
+  gateway_data:
+  nats_data:
+
+networks:
+  orbital-net:
+    driver: bridge
