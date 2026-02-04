@@ -197,6 +197,8 @@ export function getZoneForAltitude(altitudeKm: number): OrbitalZoneConfig | null
   return null;
 }
 
+const GREEK = ['α', 'β', 'γ', 'δ', 'ε', 'ζ', 'η', 'θ', 'ι', 'κ', 'λ', 'μ'];
+
 export function createOrbitPath(
   viewer: Cesium.Viewer,
   satelliteId: string,
@@ -204,8 +206,10 @@ export function createOrbitPath(
   inclinationDeg: number,
   color: string = '#00f0ff',
   layerId: string = 'orbits',
-  raanDeg: number = 0
-): Cesium.Entity {
+  raanDeg: number = 0,
+  satelliteIndex: number = 0,
+  satelliteName: string = ''
+): Cesium.Entity[] {
   const orbitRadiusKm = EARTH_RADIUS_KM + altitudeKm;
   const incRad = Cesium.Math.toRadians(inclinationDeg);
   const raanRad = Cesium.Math.toRadians(raanDeg);
@@ -213,34 +217,39 @@ export function createOrbitPath(
   const numPoints = 120;
   const positions: Cesium.Cartesian3[] = [];
 
+  // Positions for inline labels — every 30° (12 labels, show 6 with alternating symbol/name)
+  const labelInterval = 20; // every 20 points = 60°, so 6 labels
+  const labelPositions: Cesium.Cartesian3[] = [];
+
   for (let i = 0; i <= numPoints; i++) {
     const trueAnomaly = (i / numPoints) * 2 * Math.PI;
 
-    // Position in orbital plane (perifocal frame)
     const xOrb = orbitRadiusKm * Math.cos(trueAnomaly);
     const yOrb = orbitRadiusKm * Math.sin(trueAnomaly);
 
-    // Rotate by inclination (around x-axis) then by RAAN (around z-axis)
-    // This converts from orbital plane to ECI-like frame
     const xEci =
       xOrb * Math.cos(raanRad) - yOrb * Math.cos(incRad) * Math.sin(raanRad);
     const yEci =
       xOrb * Math.sin(raanRad) + yOrb * Math.cos(incRad) * Math.cos(raanRad);
     const zEci = yOrb * Math.sin(incRad);
 
-    // Convert from km to Cartographic (lat/lon/alt) then to Cartesian3
-    // ECI x,y,z -> spherical -> geodetic approximation
     const r = Math.sqrt(xEci * xEci + yEci * yEci + zEci * zEci);
     const lat = Math.asin(zEci / r);
     const lon = Math.atan2(yEci, xEci);
 
-    positions.push(
-      Cesium.Cartesian3.fromRadians(lon, lat, (r - EARTH_RADIUS_KM) * 1000)
-    );
+    const pos = Cesium.Cartesian3.fromRadians(lon, lat, (r - EARTH_RADIUS_KM) * 1000);
+    positions.push(pos);
+
+    if (i > 0 && i < numPoints && i % labelInterval === 0) {
+      labelPositions.push(pos);
+    }
   }
 
-  return viewer.entities.add({
-    name: `${satelliteId}-orbit-path`,
+  const entities: Cesium.Entity[] = [];
+
+  // The dashed orbit path itself
+  entities.push(viewer.entities.add({
+    name: `${satelliteName || satelliteId} orbit`,
     polyline: {
       positions: positions,
       width: 2,
@@ -250,5 +259,34 @@ export function createOrbitPath(
       }),
     },
     properties: new Cesium.PropertyBag({ layerId }),
+  }));
+
+  // Inline labels along the path
+  const greek = GREEK[satelliteIndex] || `#${satelliteIndex + 1}`;
+  const shortName = satelliteName ? satelliteName.slice(0, 3).toUpperCase() : '';
+
+  labelPositions.forEach((pos, idx) => {
+    const labelText = idx % 2 === 0 ? greek : shortName;
+    entities.push(viewer.entities.add({
+      position: pos,
+      label: {
+        text: labelText,
+        font: '10px monospace',
+        fillColor: Cesium.Color.fromCssColorString(color).withAlpha(0.7),
+        showBackground: true,
+        backgroundColor: Cesium.Color.fromCssColorString('#0a0c10cc'),
+        backgroundPadding: new Cesium.Cartesian2(4, 2),
+        style: Cesium.LabelStyle.FILL,
+        horizontalOrigin: Cesium.HorizontalOrigin.CENTER,
+        verticalOrigin: Cesium.VerticalOrigin.CENTER,
+        pixelOffset: new Cesium.Cartesian2(0, 0),
+        scale: 0.9,
+        disableDepthTestDistance: Number.POSITIVE_INFINITY,
+        scaleByDistance: new Cesium.NearFarScalar(1e6, 1.0, 2e7, 0.0),
+      },
+      properties: new Cesium.PropertyBag({ layerId }),
+    }));
   });
+
+  return entities;
 }

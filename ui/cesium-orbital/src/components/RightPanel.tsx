@@ -1,5 +1,20 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ChevronDown, ChevronLeft, ChevronRight, ChevronUp, Play, Pause, RotateCcw } from 'lucide-react';
+import {
+  ArrowDownFromLine,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+  ChevronUp,
+  Layers,
+  Orbit,
+  Pause,
+  Play,
+  Radio,
+  RotateCcw,
+  Satellite,
+  Shield,
+  Zap,
+} from 'lucide-react';
 import { Slider } from './ui/slider';
 import { beamSelectionStore } from '@/store/beamSelectionStore';
 
@@ -105,48 +120,104 @@ export function RightPanel({
     beamSelectionStore.selectSatellite(satelliteId);
   };
 
-  const renderLayerItem = (layer: LayerConfig) => (
-    <label key={layer.id} className="flex items-center gap-2 px-2 py-1 text-xs hover:bg-gray-800 cursor-pointer">
-      <input
-        type="checkbox"
-        checked={layer.visible}
-        onChange={(e) => onLayerToggle(layer.id, e.target.checked)}
-        className="w-3 h-3 rounded-sm border-gray-600 bg-gray-800 text-blue-500"
-      />
-      <div className="w-2 h-2 rounded-full" style={{ backgroundColor: layer.color }} />
-      {!isCollapsed && <span className="text-gray-300">{layer.label}</span>}
-    </label>
-  );
+  // Layer icons and short labels — mirrors left nav pattern
+  const LAYER_ICONS: Record<string, React.ElementType> = {
+    groundStations: Radio,
+    satellites: Satellite,
+    orbits: Orbit,
+    radiationBelts: Shield,
+    orbitalZones: Layers,
+    fsoSatSat: Zap,
+    fsoSatGround: ArrowDownFromLine,
+  };
+
+  const LAYER_SHORT: Record<string, string> = {
+    groundStations: 'GND',
+    satellites: 'SAT',
+    orbits: 'ORB',
+    radiationBelts: 'RAD',
+    orbitalZones: 'ZNE',
+    fsoSatSat: 'ISL',
+    fsoSatGround: 'DL',
+  };
+
+  const renderLayerItem = (layer: LayerConfig) => {
+    const Icon = LAYER_ICONS[layer.id] || Radio;
+    const shortLabel = LAYER_SHORT[layer.id] || layer.label;
+
+    if (isCollapsed) {
+      return (
+        <div
+          key={layer.id}
+          onClick={() => onLayerToggle(layer.id, !layer.visible)}
+          className="px-3 py-2 text-xs cursor-pointer flex flex-col items-center"
+          title={`${layer.label} ${layer.visible ? '(on)' : '(off)'}`}
+        >
+          <Icon
+            className="w-3.5 h-3.5"
+            style={{
+              color: layer.color,
+              opacity: layer.visible ? 1 : 0.25,
+            }}
+          />
+          <span
+            className={`text-[9px] mt-0.5 ${layer.visible ? 'text-gray-400' : 'text-gray-600'}`}
+          >
+            {shortLabel}
+          </span>
+        </div>
+      );
+    }
+
+    return (
+      <label key={layer.id} className="px-3 py-2 text-xs cursor-pointer flex items-center gap-2 hover:bg-gray-800">
+        <Icon className="w-3.5 h-3.5" style={{ color: layer.color, opacity: layer.visible ? 1 : 0.4 }} />
+        <input
+          type="checkbox"
+          checked={layer.visible}
+          onChange={(e) => onLayerToggle(layer.id, e.target.checked)}
+          className="w-3 h-3 rounded-sm border-gray-600 bg-gray-800 text-blue-500"
+        />
+        <span className={layer.visible ? 'text-gray-300' : 'text-gray-500'}>{layer.label}</span>
+      </label>
+    );
+  };
 
   return (
-    <div className={`${isCollapsed ? 'w-12' : 'w-48'} h-full bg-gray-900 text-gray-300 fixed right-0 top-0 overflow-y-auto transition-all duration-300 border-l border-gray-800`}>
-      {/* Collapse Toggle */}
-      <div className="absolute top-2 right-2 z-50">
+    <div className={`${isCollapsed ? 'w-12' : 'w-48'} h-full bg-gray-900 text-gray-300 fixed right-0 top-0 overflow-y-auto transition-all duration-300 border-l border-gray-800 flex flex-col`}>
+      {/* Header — mirrors left nav structure */}
+      <div className="px-4 pt-3 pb-2">
+        {!isCollapsed && (
+          <div>
+            <span className="text-sm font-medium text-white">Controls</span>
+          </div>
+        )}
         <button
           onClick={() => setIsCollapsed(!isCollapsed)}
-          className="text-gray-400 hover:text-white p-1 rounded-sm hover:bg-gray-800"
+          className={`mt-2 p-1 rounded hover:bg-gray-800 ${isCollapsed ? 'mx-auto' : ''}`}
           title={isCollapsed ? 'Expand' : 'Collapse'}
         >
           {isCollapsed ? (
-            <ChevronLeft size={14} />
+            <ChevronLeft className="w-4 h-4 text-gray-400" />
           ) : (
-            <ChevronRight size={14} />
+            <ChevronRight className="w-4 h-4 text-gray-400" />
           )}
         </button>
       </div>
 
-      <div className="p-3 pt-10" />
-
       {/* Layers */}
-      <nav className="mt-1">
+      <nav className="flex-1">
+        <div className="px-4 pt-3 pb-1 text-[10px] text-gray-500 uppercase tracking-wider">
+          {!isCollapsed && 'Layers'}
+        </div>
         {layers.map(renderLayerItem)}
 
-        <div className="border-t border-gray-800 my-2 mx-2"></div>
-
         {/* Time Controls */}
+        <div className="px-4 pt-3 pb-1 text-[10px] text-gray-500 uppercase tracking-wider">
+          {!isCollapsed && 'Time'}
+        </div>
         {!isCollapsed && (
-          <div className="px-2">
-            <div className="text-[10px] text-gray-500 mb-1">Time Control</div>
+          <div className="px-3">
             <div className="flex items-center gap-1 mb-1.5">
               <button
                 onClick={onPlayPause}
@@ -185,9 +256,9 @@ export function RightPanel({
           </div>
         )}
 
-        {/* Collapsed play button */}
+        {/* Collapsed play button + satellite count */}
         {isCollapsed && (
-          <div className="flex justify-center mt-2">
+          <div className="flex flex-col items-center gap-2 mt-2">
             <button
               onClick={onPlayPause}
               className="p-2 hover:bg-gray-800 rounded-sm"
@@ -199,24 +270,41 @@ export function RightPanel({
                 <Play size={14} className="text-gray-400" />
               )}
             </button>
+            <button
+              onClick={onReset}
+              className="p-1 hover:bg-gray-800 rounded-sm"
+              title="Reset view (Home)"
+            >
+              <RotateCcw size={12} className="text-gray-400" />
+            </button>
+            {satelliteList.length > 0 && (
+              <div
+                className="text-[9px] text-cyan-400 font-mono mt-1"
+                title={`${satelliteList.length} satellites`}
+              >
+                {satelliteList.length}
+              </div>
+            )}
           </div>
         )}
 
         {/* Satellites section — collapsed by default */}
         {!isCollapsed && satelliteList.length > 0 && (
           <>
-            <div className="border-t border-gray-800 my-2 mx-2"></div>
-            <div className="px-2">
+            <div className="px-4 pt-3 pb-1 text-[10px] text-gray-500 uppercase tracking-wider">
+              Satellites
+            </div>
+            <div className="px-3">
               <button
                 onClick={() => setSatelliteSectionOpen(!satelliteSectionOpen)}
-                className="w-full flex items-center justify-between text-[10px] text-gray-500 mb-2 hover:text-gray-300"
+                className="w-full flex items-center justify-between text-[10px] text-gray-400 py-1 hover:text-gray-200"
               >
-                <span>Satellites ({satelliteList.length})</span>
+                <span>{satelliteList.length} active</span>
                 {satelliteSectionOpen ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
               </button>
 
               {satelliteSectionOpen && (
-                <div className="space-y-2">
+                <div className="space-y-1.5 mt-1">
                   {satelliteList.map((sat) => {
                     const tuning = beamTunings.get(sat.id) ?? DEFAULT_BEAM_TUNING;
                     const isExpanded = expandedSatellites.has(sat.id);
@@ -225,7 +313,7 @@ export function RightPanel({
                         <button
                           onClick={() => toggleExpanded(sat.id)}
                           onDoubleClick={() => updateBeamTuning(sat.id, { highlightSatellite: true, highlight: true })}
-                          className="w-full flex items-center justify-between px-2 py-1 text-xs text-gray-300 hover:bg-gray-800/60"
+                          className="w-full flex items-center justify-between px-2 py-1.5 text-xs text-gray-300 hover:bg-gray-800/60"
                         >
                           <span
                             className="truncate cursor-pointer hover:text-white"

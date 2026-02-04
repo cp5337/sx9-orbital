@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 type BeamSelectionListener = (state: BeamSelectionState) => void;
 
 // All available views in the application
-export type ViewType = 'map' | 'dashboard' | '3d' | 'graph' | 'data';
+export type ViewType = 'map' | 'dashboard' | '3d' | 'graph' | 'data' | 'financial' | 'monitoring';
 
 interface BeamSelectionState {
   selectedBeamId: string | null;

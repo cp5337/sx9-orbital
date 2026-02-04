@@ -5,6 +5,8 @@ import { BeamDashboard } from './components/BeamDashboard';
 import { CollapsibleNav } from './components/CollapsibleNav';
 import { ConstellationGraphView } from './components/ConstellationGraphView';
 import { DataTableView } from './components/DataTableView';
+import FinancialDashboard from './components/FinancialDashboard';
+import { FinancialMonitoringPanel } from './components/FinancialMonitoringPanel';
 import { useBeamSelectionStore } from './store/beamSelectionStore';
 import { useConstellationStore } from './store/constellationStore';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './components/ui/dialog';
@@ -114,6 +116,26 @@ function App() {
               onRowSelect={(type, id) => {
                 console.log(`Selected ${type}: ${id}`);
               }}
+            />
+          </div>
+        )}
+
+        {currentView === 'financial' && (
+          <div className="h-screen overflow-y-auto">
+            <FinancialDashboard
+              satellites={satellites}
+              groundStations={groundStations}
+              fsoLinks={fsoLinks}
+            />
+          </div>
+        )}
+
+        {currentView === 'monitoring' && (
+          <div className="h-screen overflow-y-auto">
+            <FinancialMonitoringPanel
+              satellites={satellites}
+              groundStations={groundStations}
+              fsoLinks={fsoLinks}
             />
           </div>
         )}

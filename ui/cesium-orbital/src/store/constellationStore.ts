@@ -151,6 +151,8 @@ class ConstellationStore {
         longitude: pos?.longitude ?? 0,
         altitude: pos?.altitude_km ?? 10500,
         inclination: 55,
+        plane: info.plane,
+        slot: info.slot,
         jammed: false,
         qber: 0,
         status:

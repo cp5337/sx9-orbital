@@ -23,6 +23,8 @@ export type Satellite = {
   longitude: number;
   altitude: number;
   inclination: number;
+  plane: number;
+  slot: number;
   jammed: boolean;
   qber: number;
   status: 'active' | 'degraded' | 'offline';

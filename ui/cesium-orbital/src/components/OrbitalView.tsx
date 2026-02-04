@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { TriangleAlert as AlertTriangle, Bug } from 'lucide-react';
+import { useEffect, useRef, useState, useMemo } from 'react';
+import { TriangleAlert as AlertTriangle, Bug, Radio, ChevronDown, ChevronUp } from 'lucide-react';
 import { RightPanel, LayerConfig, type BeamTuning } from './RightPanel';
 import {
   Dialog,
@@ -86,6 +86,12 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
   const [diagnosticChecks, setDiagnosticChecks] = useState<any[]>([]);
   const [diagnosticsRunning, setDiagnosticsRunning] = useState(false);
   const [orbitPathsVisible, setOrbitPathsVisible] = useState(true);
+  const [hoverTooltip, setHoverTooltip] = useState<{
+    x: number;
+    y: number;
+    text: string;
+    sub?: string;
+  } | null>(null);
   const [pinnedCards, setPinnedCards] = useState<Array<{
     id: string;
     title: string;
@@ -104,7 +110,7 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
     originY: number;
   } | null>(null);
   const doubleClickLockUntilRef = useRef<number>(0);
-  const orbitPathsRef = useRef<Map<string, Cesium.Entity>>(new Map());
+  const orbitPathsRef = useRef<Map<string, Cesium.Entity[]>>(new Map());
   const viewerRef = useRef<Cesium.Viewer | null>(null);
   const animationManagerRef = useRef<OrbitalAnimationManager | null>(null);
   const fsoBeamManagerRef = useRef<FsoBeamManager | null>(null);
@@ -460,17 +466,19 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
     });
 
     if (orbitPathsVisible) {
-      satellites.forEach((sat) => {
-        const orbitPath = createOrbitPath(
+      satellites.forEach((sat, idx) => {
+        const orbitEntities = createOrbitPath(
           viewer,
           sat.id,
           sat.altitude,
           sat.inclination,
           '#00f0ff',
           'orbits',
-          sat.longitude
+          sat.longitude,
+          idx,
+          sat.name
         );
-        orbitPathsRef.current.set(sat.id, orbitPath);
+        orbitPathsRef.current.set(sat.id, orbitEntities);
       });
     }
 
@@ -553,6 +561,51 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
       doubleClickLockUntilRef.current = Date.now() + 350;
     }, Cesium.ScreenSpaceEventType.LEFT_DOUBLE_CLICK);
 
+    // Hover tooltip — show entity name on mouse move
+    handler.setInputAction((movement: Cesium.ScreenSpaceEventHandler.MotionEvent) => {
+      const picked = viewer.scene.pick(movement.endPosition);
+      if (!Cesium.defined(picked) || !picked.id) {
+        setHoverTooltip(null);
+        return;
+      }
+      const entity = picked.id as Cesium.Entity;
+      const props = entity.properties;
+      const now = Cesium.JulianDate.now();
+      const entityType = props?.entityType?.getValue?.(now);
+      const layerId = props?.layerId?.getValue?.(now);
+
+      let text = '';
+      let sub = '';
+
+      if (entityType === 'satellite') {
+        text = props?.name?.getValue?.(now) ?? 'Satellite';
+        sub = 'SAT';
+      } else if (entityType === 'ground') {
+        text = props?.name?.getValue?.(now) ?? 'Ground Station';
+        const tier = props?.tier?.getValue?.(now);
+        sub = tier ? `GND T${tier}` : 'GND';
+      } else if (entityType === 'link') {
+        const linkType = props?.linkType?.getValue?.(now);
+        const margin = props?.marginDb?.getValue?.(now);
+        text = linkType === 'sat-sat' ? 'ISL' : 'Downlink';
+        sub = margin != null ? `${Number(margin).toFixed(1)} dB` : 'FSO Link';
+      } else if (entity.name) {
+        // Orbital paths, zones, radiation belts
+        text = entity.name;
+        sub = layerId ?? '';
+      } else {
+        setHoverTooltip(null);
+        return;
+      }
+
+      setHoverTooltip({
+        x: movement.endPosition.x,
+        y: movement.endPosition.y,
+        text,
+        sub,
+      });
+    }, Cesium.ScreenSpaceEventType.MOUSE_MOVE);
+
     animationManager.startAnimation();
 
     if (viewer) {
@@ -564,10 +617,12 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
           pickHandlerRef.current.destroy();
           pickHandlerRef.current = null;
         }
-        orbitPathsRef.current.forEach((path) => {
-          if (viewer && !viewer.isDestroyed()) {
-            viewer.entities.remove(path);
-          }
+        orbitPathsRef.current.forEach((pathEntities) => {
+          pathEntities.forEach((entity) => {
+            if (viewer && !viewer.isDestroyed()) {
+              viewer.entities.remove(entity);
+            }
+          });
         });
         orbitPathsRef.current.clear();
 
@@ -687,8 +742,10 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
 
     if (layerId === 'orbits') {
       setOrbitPathsVisible(visible);
-      orbitPathsRef.current.forEach((path) => {
-        path.show = visible;
+      orbitPathsRef.current.forEach((pathEntities) => {
+        pathEntities.forEach((entity) => {
+          entity.show = visible;
+        });
       });
     }
 
@@ -744,6 +801,53 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
     }
     setTimeControl({ isPlaying: true, speed: 1 });
   };
+
+  // Live activity feed derived from FSO link state
+  const [feedOpen, setFeedOpen] = useState(true);
+  const liveEvents = useMemo(() => {
+    const events: Array<{
+      id: string;
+      type: 'beam' | 'isl' | 'idle';
+      satName: string;
+      targetName: string;
+      margin: number;
+      linkType: string;
+    }> = [];
+
+    fsoLinks.filter(l => l.active).forEach((link) => {
+      const sourceSat = satellites.find(s => s.id === link.source_id);
+      const targetSat = satellites.find(s => s.id === link.target_id);
+      const targetGnd = groundNodes.find(g => g.id === link.target_id);
+
+      if (sourceSat) {
+        events.push({
+          id: link.id,
+          type: link.link_type === 'sat-sat' ? 'isl' : 'beam',
+          satName: sourceSat.name,
+          targetName: targetSat?.name || targetGnd?.name || link.target_id.slice(0, 8),
+          margin: link.margin_db,
+          linkType: link.link_type,
+        });
+      }
+    });
+
+    // Show idle satellites
+    const activeSatIds = new Set(fsoLinks.filter(l => l.active).map(l => l.source_id));
+    satellites.forEach((sat) => {
+      if (!activeSatIds.has(sat.id)) {
+        events.push({
+          id: `idle-${sat.id}`,
+          type: 'idle',
+          satName: sat.name,
+          targetName: '',
+          margin: 0,
+          linkType: '',
+        });
+      }
+    });
+
+    return events;
+  }, [satellites, groundNodes, fsoLinks]);
 
   const showErrorScreen = initializationStatus === 'error' && cesiumError;
   const showNoDataScreen = groundNodes.length === 0 && satellites.length === 0;
@@ -907,6 +1011,73 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
                   </div>
                 );
               })}
+            </div>
+          )}
+
+          {/* Live activity feed — bottom-left floating panel */}
+          <div className="absolute bottom-4 left-4 z-20 w-64">
+            <button
+              onClick={() => setFeedOpen(!feedOpen)}
+              className="flex items-center gap-2 px-2 py-1 bg-slate-900/95 border border-slate-700 rounded-t text-[10px] text-slate-300 hover:text-white w-full"
+            >
+              <Radio size={10} className="text-cyan-400" />
+              <span className="font-semibold tracking-wide">LIVE FEED</span>
+              <span className="text-slate-500 ml-auto">{liveEvents.filter(e => e.type !== 'idle').length} active</span>
+              {feedOpen ? <ChevronDown size={10} /> : <ChevronUp size={10} />}
+            </button>
+            {feedOpen && (
+              <div className="bg-slate-900/95 border border-t-0 border-slate-700 rounded-b max-h-48 overflow-y-auto">
+                {liveEvents.length === 0 ? (
+                  <div className="px-2 py-3 text-[10px] text-slate-500 text-center">No active links</div>
+                ) : (
+                  liveEvents.map((event) => (
+                    <div
+                      key={event.id}
+                      className="flex items-center gap-2 px-2 py-1 text-[10px] border-b border-slate-800 last:border-0 hover:bg-slate-800/50"
+                    >
+                      <span className={`font-mono font-bold ${
+                        event.type === 'beam' ? 'text-cyan-400' :
+                        event.type === 'isl' ? 'text-green-400' :
+                        'text-slate-500'
+                      }`}>
+                        {event.type === 'beam' ? 'DL' : event.type === 'isl' ? 'ISL' : '---'}
+                      </span>
+                      <span className="text-slate-200 truncate">{event.satName}</span>
+                      {event.targetName && (
+                        <>
+                          <span className="text-slate-600">→</span>
+                          <span className="text-slate-300 truncate">{event.targetName}</span>
+                        </>
+                      )}
+                      {event.margin > 0 && (
+                        <span className={`ml-auto font-mono ${
+                          event.margin >= 6 ? 'text-green-400' :
+                          event.margin >= 3 ? 'text-yellow-400' :
+                          'text-red-400'
+                        }`}>
+                          {event.margin.toFixed(1)}
+                        </span>
+                      )}
+                    </div>
+                  ))
+                )}
+              </div>
+            )}
+          </div>
+
+          {/* Hover tooltip */}
+          {hoverTooltip && (
+            <div
+              className="absolute z-30 pointer-events-none bg-slate-900/95 border border-slate-600 rounded px-2 py-1 text-[10px] text-slate-100 shadow-lg"
+              style={{
+                left: hoverTooltip.x + 14,
+                top: hoverTooltip.y - 10,
+              }}
+            >
+              <span className="font-semibold">{hoverTooltip.text}</span>
+              {hoverTooltip.sub && (
+                <span className="text-slate-400 ml-1.5">{hoverTooltip.sub}</span>
+              )}
             </div>
           )}
 

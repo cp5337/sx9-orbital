@@ -3,9 +3,11 @@ import type { ViewType } from '@/store/beamSelectionStore';
 import {
   Activity,
   AlertTriangle,
+  BarChart3,
   ChevronLeft,
   ChevronRight,
   Database,
+  DollarSign,
   Globe,
   Radio,
   Satellite,
@@ -29,7 +31,7 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     onCollapseChange?.(newState);
   };
 
-  const viewIds: ViewType[] = ['3d', 'map', 'dashboard', 'graph', 'data'];
+  const viewIds: ViewType[] = ['3d', 'map', 'dashboard', 'graph', 'data', 'financial', 'monitoring'];
 
   const iconMap: Record<string, React.ElementType> = {
     dashboard: Activity,
@@ -40,6 +42,8 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     satellites: Satellite,
     'ground-stations': Radio,
     'fso-links': Zap,
+    financial: DollarSign,
+    monitoring: BarChart3,
     diagnostics: AlertTriangle,
   };
 
@@ -49,6 +53,8 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     map: 'MAP',
     graph: 'NET',
     data: 'DATA',
+    financial: 'FIN',
+    monitoring: 'SX9',
     satellites: 'SAT',
     'ground-stations': 'GND',
     'fso-links': 'FSO',
@@ -99,6 +105,8 @@ export function CollapsibleNav({ currentView, onViewChange, onDiagnosticsOpen, o
     { id: 'map', label: 'Flat Map' },
     { id: 'graph', label: 'Network Graph' },
     { id: 'data', label: 'Data Tables' },
+    { id: 'financial', label: 'Fleet Finance' },
+    { id: 'monitoring', label: 'SX9 Monitor' },
   ];
 
   // Constellation Section (includes diagnostics)
