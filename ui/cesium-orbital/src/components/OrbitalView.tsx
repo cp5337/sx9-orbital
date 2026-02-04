@@ -467,7 +467,8 @@ export default function OrbitalView({ satellites, groundStations, fsoLinks }: Or
           sat.altitude,
           sat.inclination,
           '#00f0ff',
-          'orbits'
+          'orbits',
+          sat.longitude
         );
         orbitPathsRef.current.set(sat.id, orbitPath);
       });

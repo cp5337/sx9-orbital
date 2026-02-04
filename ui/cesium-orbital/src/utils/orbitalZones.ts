@@ -203,23 +203,40 @@ export function createOrbitPath(
   altitudeKm: number,
   inclinationDeg: number,
   color: string = '#00f0ff',
-  layerId: string = 'orbits'
+  layerId: string = 'orbits',
+  raanDeg: number = 0
 ): Cesium.Entity {
-  const earthRadiusMeters = EARTH_RADIUS_KM * 1000;
-  const orbitRadius = earthRadiusMeters + altitudeKm * 1000;
-  const inclinationRad = inclinationDeg * (Math.PI / 180);
+  const orbitRadiusKm = EARTH_RADIUS_KM + altitudeKm;
+  const incRad = Cesium.Math.toRadians(inclinationDeg);
+  const raanRad = Cesium.Math.toRadians(raanDeg);
 
   const numPoints = 120;
   const positions: Cesium.Cartesian3[] = [];
 
   for (let i = 0; i <= numPoints; i++) {
-    const angle = (i / numPoints) * 2 * Math.PI;
+    const trueAnomaly = (i / numPoints) * 2 * Math.PI;
 
-    const x = orbitRadius * Math.cos(angle);
-    const y = orbitRadius * Math.sin(angle) * Math.cos(inclinationRad);
-    const z = orbitRadius * Math.sin(angle) * Math.sin(inclinationRad);
+    // Position in orbital plane (perifocal frame)
+    const xOrb = orbitRadiusKm * Math.cos(trueAnomaly);
+    const yOrb = orbitRadiusKm * Math.sin(trueAnomaly);
 
-    positions.push(new Cesium.Cartesian3(x, y, z));
+    // Rotate by inclination (around x-axis) then by RAAN (around z-axis)
+    // This converts from orbital plane to ECI-like frame
+    const xEci =
+      xOrb * Math.cos(raanRad) - yOrb * Math.cos(incRad) * Math.sin(raanRad);
+    const yEci =
+      xOrb * Math.sin(raanRad) + yOrb * Math.cos(incRad) * Math.cos(raanRad);
+    const zEci = yOrb * Math.sin(incRad);
+
+    // Convert from km to Cartographic (lat/lon/alt) then to Cartesian3
+    // ECI x,y,z -> spherical -> geodetic approximation
+    const r = Math.sqrt(xEci * xEci + yEci * yEci + zEci * zEci);
+    const lat = Math.asin(zEci / r);
+    const lon = Math.atan2(yEci, xEci);
+
+    positions.push(
+      Cesium.Cartesian3.fromRadians(lon, lat, (r - EARTH_RADIUS_KM) * 1000)
+    );
   }
 
   return viewer.entities.add({
