@@ -21,7 +21,6 @@ interface FlatMapViewProps {
 
 // Node colors matching the graph view
 const NODE_COLORS = {
-  satellite: '#4C8BF5',
   tier1: '#34A853',
   tier2: '#00ACC1',
   tier3: '#FF9800',
@@ -200,7 +199,11 @@ export function FlatMapView({
             <span className="text-slate-300">Tier 3</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5" style={{ backgroundColor: NODE_COLORS.satellite, transform: 'rotate(45deg)' }} />
+            <svg width="12" height="12" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="16" cy="16" r="6" fill="#00f0ff" opacity="0.9"/>
+              <rect x="4" y="14" width="8" height="4" fill="#4a90e2" opacity="0.8"/>
+              <rect x="20" y="14" width="8" height="4" fill="#4a90e2" opacity="0.8"/>
+            </svg>
             <span className="text-slate-300">SAT</span>
           </div>
         </div>
@@ -284,7 +287,7 @@ export function FlatMapView({
             );
           })}
 
-          {/* Satellite markers — diamonds (rotated squares) with optional labels */}
+          {/* Satellite markers — same SVG icon as 3D globe, spinning */}
           {satellites.map(sat => (
             <Marker
               key={sat.id}
@@ -296,21 +299,23 @@ export function FlatMapView({
                 handleSatelliteMarkerClick(sat);
               }}
             >
-              <div className="flex flex-col items-center cursor-pointer">
-                <div
-                  className="transition-transform hover:scale-125"
+              <div className="flex flex-col items-center cursor-pointer" title={sat.name}>
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 32 32"
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="animate-[spin_8s_linear_infinite] hover:scale-125 transition-transform"
                   style={{
-                    width: 8,
-                    height: 8,
-                    backgroundColor: NODE_COLORS.satellite,
-                    transform: 'rotate(45deg)',
-                    border: '1.5px solid #1F1F1F',
-                    boxShadow: selectedNode?.id === sat.id ? '0 0 8px #fff' : undefined,
+                    filter: selectedNode?.id === sat.id ? 'drop-shadow(0 0 4px #fff)' : undefined,
                   }}
-                  title={sat.name}
-                />
+                >
+                  <circle cx="16" cy="16" r="6" fill="#00f0ff" opacity="0.9"/>
+                  <rect x="4" y="14" width="8" height="4" fill="#4a90e2" opacity="0.8"/>
+                  <rect x="20" y="14" width="8" height="4" fill="#4a90e2" opacity="0.8"/>
+                </svg>
                 {showSatLabels && (
-                  <span className="text-[8px] text-blue-300 mt-0.5 whitespace-nowrap select-none pointer-events-none">
+                  <span className="text-[8px] text-cyan-300 mt-0.5 whitespace-nowrap select-none pointer-events-none">
                     {sat.name?.slice(0, 3).toUpperCase()}
                   </span>
                 )}
