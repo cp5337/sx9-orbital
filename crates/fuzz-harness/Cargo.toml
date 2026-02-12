@@ -1,0 +1,45 @@
+[package]
+name = "fuzz-harness"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+authors.workspace = true
+description = "Reusable property-based fuzz testing harness for SX9 Orbital"
+
+[package.metadata.sx9]
+crate_type = "dev-tool"
+mission = "QA"
+bernoulli_zone = "D"
+llm_allowed = true
+
+[dependencies]
+# Property testing
+proptest = "1.4"
+
+# Foundation types
+sx9-foundation-primitives = { path = "../../../sx9/crates/sx9-foundation-primitives" }
+
+# Serialization for test case export
+serde = { workspace = true }
+serde_json = { workspace = true }
+
+# Async runtime for GCP integration
+tokio = { workspace = true, features = ["full"] }
+
+# Time tracking
+chrono = { workspace = true }
+
+# Reporting
+tracing = { workspace = true }
+
+[features]
+default = []
+gcp = []  # GCP Cloud Build / Secret Manager integration
+
+[dev-dependencies]
+# For integration tests
+orbital-mechanics = { path = "../orbital-mechanics" }
+
+[[bin]]
+name = "sx9-fuzz"
+path = "src/bin/sx9_fuzz.rs"

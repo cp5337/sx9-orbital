@@ -8,6 +8,7 @@ members = [
     "crates/ground-station-wasm",
     "crates/orbital-glaf",
     "crates/candidate-selector",
+    "crates/fuzz-harness",
 ]
 resolver = "2"
 
