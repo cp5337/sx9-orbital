@@ -16,6 +16,7 @@ use std::collections::HashMap;
 use thiserror::Error;
 
 pub mod routing;
+pub mod rfc_routing;
 pub mod satellite_ann;
 pub mod export;
 
@@ -39,6 +40,8 @@ pub enum GlafError {
     SerializationError(#[from] serde_json::Error),
     #[error("Neo4j error: {0}")]
     Neo4jError(String),
+    #[error("Invalid state: {0}")]
+    InvalidState(String),
 }
 
 pub type Result<T> = std::result::Result<T, GlafError>;

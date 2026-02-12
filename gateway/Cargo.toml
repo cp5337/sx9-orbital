@@ -42,20 +42,28 @@ ground-stations = { path = "../crates/ground-stations" }
 collision-avoidance = { path = "../crates/collision-avoidance" }
 ground-station-wasm = { path = "../crates/ground-station-wasm", default-features = false, features = ["weather-api"] }
 
-# Memory system from sx9 main (local path for dev, git for CI)
+# SX9 Foundation crates (Zone A/B primitives)
+sx9-foundation-primitives = { path = "../../sx9/crates/sx9-foundation-primitives" }
+sx9-atlas-bus = { path = "../../sx9/crates/sx9-atlas-bus" }
 sx9-tcache = { path = "../../sx9/crates/sx9-tcache" }
-hex = "0.4"
+sx9-glaf-algo = { path = "../../sx9/crates/sx9-glaf-algo" }
 
-# Messaging and concurrency
+# Messaging
 async-nats = "0.38"
-crossbeam = "0.8"
-crossbeam-channel = "0.5"
 futures = "0.3"
 
 # Real-time streaming
 tokio-stream = "0.1"
 axum-extra = { version = "0.9", features = ["typed-header"] }
 
+# HTTP client for external APIs
+reqwest = { version = "0.12", features = ["json"] }
+
+[dev-dependencies]
+proptest = "1.4"
+criterion = { version = "0.5", features = ["html_reports"] }
+
 [[bin]]
 name = "orbital-gateway"
 path = "src/main.rs"
+

@@ -165,22 +165,103 @@ pub mod propagation {
 
 pub mod transforms {
     use super::*;
+    use chrono::{Datelike, Timelike};
 
     const EARTH_RADIUS_KM: f64 = 6378.137;
     const EARTH_FLATTENING: f64 = 1.0 / 298.257223563;
 
-    pub fn eci_to_geodetic(x: f64, y: f64, z: f64) -> Result<GeodeticPosition> {
-        // Convert ECI to ECEF (simplified - ignoring Earth rotation for now)
-        let r = (x * x + y * y).sqrt();
-        let longitude = y.atan2(x).to_degrees();
-        let latitude = z.atan2(r).to_degrees();
-        let altitude_km = (x * x + y * y + z * z).sqrt() - EARTH_RADIUS_KM;
+    // WGS84 constants
+    const A: f64 = 6378.137;          // Equatorial radius (km)
+    const E2: f64 = 0.00669437999014; // First eccentricity squared
 
-        Ok(GeodeticPosition {
-            latitude,
+    /// Calculate Greenwich Mean Sidereal Time (GMST) in radians
+    /// Uses IAU 1982 model for accuracy
+    pub fn gmst_rad(time: DateTime<Utc>) -> f64 {
+        // Julian Date calculation
+        let y = time.year() as f64;
+        let m = time.month() as f64;
+        let d = time.day() as f64;
+        let h = time.hour() as f64 + time.minute() as f64 / 60.0
+              + time.second() as f64 / 3600.0
+              + time.timestamp_subsec_millis() as f64 / 3600000.0;
+
+        // Julian Date (Meeus algorithm)
+        let jd = 367.0 * y - (7.0 * (y + ((m + 9.0) / 12.0).floor()) / 4.0).floor()
+               + (275.0 * m / 9.0).floor() + d + 1721013.5 + h / 24.0;
+
+        // Julian centuries since J2000.0
+        let t = (jd - 2451545.0) / 36525.0;
+
+        // GMST in degrees (IAU 1982)
+        let gmst_deg = 280.46061837
+                     + 360.98564736629 * (jd - 2451545.0)
+                     + 0.000387933 * t * t
+                     - t * t * t / 38710000.0;
+
+        // Normalize to 0-360 and convert to radians
+        let gmst_norm = ((gmst_deg % 360.0) + 360.0) % 360.0;
+        gmst_norm.to_radians()
+    }
+
+    /// Convert ECI (TEME) to ECEF coordinates
+    /// Applies Earth rotation correction using GMST
+    pub fn eci_to_ecef(x_eci: f64, y_eci: f64, z_eci: f64, time: DateTime<Utc>) -> (f64, f64, f64) {
+        let gmst = gmst_rad(time);
+        let cos_g = gmst.cos();
+        let sin_g = gmst.sin();
+
+        // Rotate around Z-axis by -GMST (ECI → ECEF)
+        let x_ecef = x_eci * cos_g + y_eci * sin_g;
+        let y_ecef = -x_eci * sin_g + y_eci * cos_g;
+        let z_ecef = z_eci;
+
+        (x_ecef, y_ecef, z_ecef)
+    }
+
+    /// Convert ECEF to geodetic (lat/lon/alt)
+    /// Uses iterative method for WGS84 ellipsoid
+    pub fn ecef_to_geodetic(x: f64, y: f64, z: f64) -> GeodeticPosition {
+        let p = (x * x + y * y).sqrt();
+        let longitude = y.atan2(x).to_degrees();
+
+        // Iterative latitude calculation (Bowring's method)
+        let mut lat = z.atan2(p * (1.0 - E2));
+        for _ in 0..5 {
+            let sin_lat = lat.sin();
+            let n = A / (1.0 - E2 * sin_lat * sin_lat).sqrt();
+            lat = (z + E2 * n * sin_lat).atan2(p);
+        }
+
+        let sin_lat = lat.sin();
+        let cos_lat = lat.cos();
+        let n = A / (1.0 - E2 * sin_lat * sin_lat).sqrt();
+        let altitude_km = if cos_lat.abs() > 1e-10 {
+            p / cos_lat - n
+        } else {
+            z.abs() / sin_lat.abs() - n * (1.0 - E2)
+        };
+
+        GeodeticPosition {
+            latitude: lat.to_degrees(),
             longitude,
             altitude_km,
-        })
+        }
+    }
+
+    /// Convert ECI to geodetic with proper Earth rotation
+    /// This is the main entry point - accounts for GMST
+    pub fn eci_to_geodetic(x: f64, y: f64, z: f64) -> Result<GeodeticPosition> {
+        // Use current time for GMST - for more accurate results,
+        // caller should use eci_to_geodetic_at_time
+        let now = Utc::now();
+        Ok(eci_to_geodetic_at_time(x, y, z, now))
+    }
+
+    /// Convert ECI to geodetic at a specific time
+    /// More accurate than eci_to_geodetic when propagation time is known
+    pub fn eci_to_geodetic_at_time(x: f64, y: f64, z: f64, time: DateTime<Utc>) -> GeodeticPosition {
+        let (x_ecef, y_ecef, z_ecef) = eci_to_ecef(x, y, z, time);
+        ecef_to_geodetic(x_ecef, y_ecef, z_ecef)
     }
 
     pub fn geodetic_to_eci(pos: &GeodeticPosition) -> Result<(f64, f64, f64)> {
@@ -462,6 +543,39 @@ pub mod walker {
                     r,
                     sat.name
                 );
+            }
+        }
+
+        #[test]
+        fn test_geodetic_with_gmst() {
+            use crate::transforms;
+            use chrono::TimeZone;
+
+            let walker = WalkerDelta::halo_constellation();
+            let sats = walker.generate_satellites();
+            let now = chrono::Utc::now();
+
+            println!("Satellite Ground Tracks at {}:", now.format("%Y-%m-%d %H:%M:%S UTC"));
+            println!("{:<10} {:>10} {:>10} {:>10}", "Name", "Lat(°)", "Lon(°)", "Alt(km)");
+            println!("{}", "-".repeat(44));
+
+            for sat in &sats {
+                if let Ok(sv) = sat.propagate(now) {
+                    let pos = transforms::eci_to_geodetic_at_time(
+                        sv.position_x, sv.position_y, sv.position_z, now
+                    );
+
+                    println!("{:<10} {:>10.2} {:>10.2} {:>10.0}",
+                        sat.name, pos.latitude, pos.longitude, pos.altitude_km);
+
+                    // Sanity checks:
+                    // - Latitude should be within ±55° (inclination)
+                    // - Altitude should be ~10,500 km
+                    assert!(pos.latitude.abs() <= 56.0,
+                        "{} latitude {} outside ±56°", sat.name, pos.latitude);
+                    assert!(pos.altitude_km > 10000.0 && pos.altitude_km < 11000.0,
+                        "{} altitude {} outside 10-11k km", sat.name, pos.altitude_km);
+                }
             }
         }
     }

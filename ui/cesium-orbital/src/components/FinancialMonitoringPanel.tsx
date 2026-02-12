@@ -56,6 +56,7 @@ import {
   Eye,
   Settings2 as SliderIcon,
   Shield,
+  Download,
 } from 'lucide-react';
 import type { Satellite as SatelliteType, GroundNode, FsoLink } from '@/types';
 
@@ -70,7 +71,7 @@ export function FinancialMonitoringPanel({
   groundStations,
   fsoLinks,
 }: FinancialMonitoringPanelProps) {
-  const [selectedMetricView, setSelectedMetricView] = useState<'overview' | 'revenue' | 'expenses' | 'performance'>('overview');
+  const [selectedMetricView, setSelectedMetricView] = useState<'overview' | 'revenue' | 'expenses' | 'sources' | 'gaap' | 'performance'>('overview');
 
   // ── Editable Unit Prices ──
   const [bwPricePerGbps, setBwPricePerGbps] = useState(100);      // $/Gbps/day ULL TaaS
@@ -204,8 +205,24 @@ export function FinancialMonitoringPanel({
     const operatingIncome = grossProfit - totalOpex;
     const operatingMargin = totalRev > 0 ? (operatingIncome / totalRev) * 100 : 0;
 
-    return { totalRev, totalExp, totalProfit, avgMargin, totalRev1, totalRev2, totalRev3, totalExp1, totalExp2, totalExp3, byTier, bySource, arbitrageValue, avgFsoWeather, weatherCapacityLoss, totalCogs, grossProfit, grossMargin, totalOpex, operatingIncome, operatingMargin };
-  }, [stationFinancials, bwPricePerGbps]);
+    // ── Balance Sheet / CapEx ──
+    const totalSatCapex = satellites.length * satCapexM * 1_000_000;
+    const stationCapex = stationFinancials.reduce((sum, s) => {
+      const tierMult = s.tier === 1 ? 1.0 : s.tier === 2 ? 0.4 : 0.1;
+      return sum + stationCapexM * tierMult * 1_000_000;
+    }, 0);
+    const activeGroundLinks = fsoLinks.filter(l => l.active && l.link_type === 'sat-ground').length;
+    const totalFsoTerminalCapex = activeGroundLinks * fsoTerminalCapexM * 1_000_000;
+    const totalAssets = totalSatCapex + stationCapex + totalFsoTerminalCapex;
+    const annualDepreciation = depreciationYears > 0 ? totalAssets / depreciationYears : 0;
+    const dailyDepreciation = annualDepreciation / 365;
+    const netBookValue = totalAssets - dailyDepreciation; // day-1 approximation
+    const ebitda = operatingIncome + dailyDepreciation;
+    const netIncome = operatingIncome - dailyDepreciation;
+    const roa = netBookValue > 0 ? ((operatingIncome * 365) / netBookValue) * 100 : 0;
+
+    return { totalRev, totalExp, totalProfit, avgMargin, totalRev1, totalRev2, totalRev3, totalExp1, totalExp2, totalExp3, byTier, bySource, arbitrageValue, avgFsoWeather, weatherCapacityLoss, totalCogs, grossProfit, grossMargin, totalOpex, operatingIncome, operatingMargin, totalSatCapex, stationCapex, totalFsoTerminalCapex, totalAssets, annualDepreciation, dailyDepreciation, netBookValue, ebitda, netIncome, roa };
+  }, [stationFinancials, bwPricePerGbps, satellites.length, fsoLinks, satCapexM, stationCapexM, fsoTerminalCapexM, depreciationYears]);
 
   // ── Chart data ──
   const revenueBreakdown = [
@@ -239,6 +256,16 @@ export function FinancialMonitoringPanel({
     sensitivity: +(s.sensitivity * 100).toFixed(0),
   }));
 
+  const waterfallData = [
+    { name: 'Revenue', value: network.totalRev, fill: '#3B82F6' },
+    { name: 'COGS', value: -network.totalCogs, fill: '#EF4444' },
+    { name: 'Gross Profit', value: network.grossProfit, fill: '#10B981' },
+    { name: 'OpEx', value: -network.totalOpex, fill: '#F59E0B' },
+    { name: 'Op. Income', value: network.operatingIncome, fill: '#8B5CF6' },
+    { name: 'Depreciation', value: -network.dailyDepreciation, fill: '#EC4899' },
+    { name: 'Net Income', value: network.netIncome, fill: network.netIncome >= 0 ? '#10B981' : '#EF4444' },
+  ];
+
   const SOURCE_COLORS: Record<string, string> = {
     Equinix: '#8B5CF6',
     LaserLight: '#06B6D4',
@@ -258,6 +285,63 @@ export function FinancialMonitoringPanel({
     return `$${n.toFixed(0)}`;
   };
 
+  const exportCsv = () => {
+    const rows: string[][] = [
+      ['SX9 Financial Report', new Date().toISOString()],
+      [],
+      ['=== INCOME STATEMENT (Daily) ==='],
+      ['Line Item', 'Amount ($)'],
+      ['ULL TaaS Revenue (Rev 1)', network.totalRev1.toFixed(2)],
+      ['QKD Revenue (Rev 2)', network.totalRev2.toFixed(2)],
+      ['Emergency Revenue (Rev 3)', network.totalRev3.toFixed(2)],
+      ['Total Revenue', network.totalRev.toFixed(2)],
+      [],
+      ['Network Costs (COGS - Exp 3)', (-network.totalExp3).toFixed(2)],
+      ['Weather Capacity Loss', (-network.weatherCapacityLoss).toFixed(2)],
+      ['Total COGS', (-network.totalCogs).toFixed(2)],
+      ['Gross Profit', network.grossProfit.toFixed(2)],
+      ['Gross Margin %', network.grossMargin.toFixed(2)],
+      [],
+      ['Operations (Exp 1)', (-network.totalExp1).toFixed(2)],
+      ['Equipment (Exp 2)', (-network.totalExp2).toFixed(2)],
+      ['Total OpEx', (-network.totalOpex).toFixed(2)],
+      ['Operating Income', network.operatingIncome.toFixed(2)],
+      ['Operating Margin %', network.operatingMargin.toFixed(2)],
+      [],
+      ['Depreciation (daily)', (-network.dailyDepreciation).toFixed(2)],
+      ['Net Income', network.netIncome.toFixed(2)],
+      ['EBITDA', network.ebitda.toFixed(2)],
+      [],
+      ['=== BALANCE SHEET ==='],
+      ['Asset', 'Amount ($)'],
+      ['Satellite CapEx', network.totalSatCapex.toFixed(2)],
+      ['Station CapEx', network.stationCapex.toFixed(2)],
+      ['FSO Terminal CapEx', network.totalFsoTerminalCapex.toFixed(2)],
+      ['Total Assets', network.totalAssets.toFixed(2)],
+      ['Annual Depreciation', network.annualDepreciation.toFixed(2)],
+      ['Daily Depreciation', network.dailyDepreciation.toFixed(2)],
+      ['Net Book Value', network.netBookValue.toFixed(2)],
+      ['ROA %', network.roa.toFixed(2)],
+      [],
+      ['=== PER-STATION BREAKDOWN ==='],
+      ['Station', 'Code', 'Tier', 'Rev1', 'Rev2', 'Rev3', 'Total Revenue', 'Exp1', 'Exp2', 'Exp3', 'Total Expenses', 'Profit', 'Margin %'],
+      ...stationFinancials.map(s => [
+        s.name, s.code, String(s.tier),
+        s.rev1.toFixed(2), s.rev2.toFixed(2), s.rev3.toFixed(2), s.totalRevenue.toFixed(2),
+        s.exp1.toFixed(2), s.exp2.toFixed(2), s.exp3.toFixed(2), s.totalExpenses.toFixed(2),
+        s.profit.toFixed(2), s.margin.toFixed(2),
+      ]),
+    ];
+    const csv = rows.map(r => r.map(c => `"${c}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `sx9-financial-report-${new Date().toISOString().slice(0, 10)}.csv`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   return (
     <div className="min-h-screen bg-slate-900 p-4 md:p-5 space-y-5 overflow-y-auto">
       {/* Header */}
@@ -271,13 +355,22 @@ export function FinancialMonitoringPanel({
             Real station economics &middot; {groundStations.length} stations &middot; {satellites.length} satellites &middot; {fsoLinks.filter(l => l.active).length} active links
           </p>
         </div>
-        <Badge variant="outline" className="border-slate-600 text-slate-300 w-fit">
-          All numbers from live constellation data
-        </Badge>
+        <div className="flex items-center gap-2">
+          <Badge variant="outline" className="border-slate-600 text-slate-300">
+            All numbers from live constellation data
+          </Badge>
+          <button
+            onClick={exportCsv}
+            className="flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium text-slate-300 bg-slate-800 border border-slate-600 rounded-md hover:bg-slate-700 transition-colors"
+          >
+            <Download className="h-3.5 w-3.5" />
+            Export CSV
+          </button>
+        </div>
       </div>
 
       {/* KPI Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-3">
         <Card className="bg-slate-800 border-slate-700">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
             <CardTitle className="text-sm font-medium text-slate-300">Daily Revenue</CardTitle>
@@ -295,8 +388,8 @@ export function FinancialMonitoringPanel({
             <TrendingUp className="h-4 w-4 text-slate-500" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-400">{network.avgMargin.toFixed(1)}%</div>
-            <p className="text-xs text-slate-500">Profit: {fmt(network.totalProfit)}/day</p>
+            <div className="text-2xl font-bold text-blue-400">{network.grossMargin.toFixed(1)}%</div>
+            <p className="text-xs text-slate-500">Gross Profit: {fmt(network.grossProfit)}/day</p>
           </CardContent>
         </Card>
 
@@ -323,6 +416,17 @@ export function FinancialMonitoringPanel({
             </p>
           </CardContent>
         </Card>
+
+        <Card className="bg-slate-800 border-slate-700">
+          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+            <CardTitle className="text-sm font-medium text-slate-300">Operating Margin</CardTitle>
+            <Zap className="h-4 w-4 text-slate-500" />
+          </CardHeader>
+          <CardContent>
+            <div className={`text-2xl font-bold ${network.operatingMargin >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{network.operatingMargin.toFixed(1)}%</div>
+            <p className="text-xs text-slate-500">OpInc: {fmt(network.operatingIncome)}/day</p>
+          </CardContent>
+        </Card>
       </div>
 
       {/* Adjustable Unit Prices */}
@@ -335,7 +439,7 @@ export function FinancialMonitoringPanel({
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
             {/* Revenue knobs */}
             <div className="space-y-4">
               <h4 className="font-semibold text-green-400 flex items-center gap-2">
@@ -388,6 +492,20 @@ export function FinancialMonitoringPanel({
                 </div>
               </div>
             </div>
+
+            {/* CapEx knobs */}
+            <div className="space-y-4">
+              <h4 className="font-semibold text-orange-400 flex items-center gap-2">
+                <Satellite className="h-4 w-4" />
+                CapEx Assumptions
+              </h4>
+              <div className="space-y-3">
+                <KnobSlider label="Satellite CapEx ($M/sat)" value={satCapexM} onChange={setSatCapexM} min={1} max={200} step={1} color="text-orange-400" />
+                <KnobSlider label="Station CapEx ($M/T1)" value={stationCapexM} onChange={setStationCapexM} min={1} max={50} step={1} color="text-orange-400" />
+                <KnobSlider label="FSO Terminal ($M/unit)" value={fsoTerminalCapexM} onChange={setFsoTerminalCapexM} min={1} max={50} step={1} color="text-orange-400" />
+                <KnobSlider label="Depreciation (years)" value={depreciationYears} onChange={setDepreciationYears} min={1} max={30} step={1} color="text-orange-400" />
+              </div>
+            </div>
           </div>
 
           {/* Spelled-out math */}
@@ -396,17 +514,22 @@ export function FinancialMonitoringPanel({
             <div>Rev2 = {groundStations.length} stations × {qkdSessionsPerStation} sessions × ${qkdSessionPrice} × tier_mult = <span className="text-green-400">{fmt(network.totalRev2)}</span></div>
             <div>Rev3 = emergency_links × ${emergencyPremium} = <span className="text-amber-400">{fmt(network.totalRev3)}</span></div>
             <div>Exp = {groundStations.length} stations × (${baseOpexPerStation} + ${equipmentRate}) × tier_mult + links × ${linkCost} = <span className="text-red-400">{fmt(network.totalExp)}</span></div>
+            <div>SatCapEx = {satellites.length} sats × ${satCapexM}M = <span className="text-orange-400">{fmt(network.totalSatCapex)}</span></div>
+            <div>StnCapEx = Σ(station × ${stationCapexM}M × tier_mult) = <span className="text-orange-400">{fmt(network.stationCapex)}</span></div>
+            <div>FSOCapEx = {fsoLinks.filter(l => l.active && l.link_type === 'sat-ground').length} terminals × ${fsoTerminalCapexM}M = <span className="text-orange-400">{fmt(network.totalFsoTerminalCapex)}</span></div>
+            <div>Depr = {fmt(network.totalAssets)} / {depreciationYears}yr / 365 = <span className="text-orange-400">{fmt(network.dailyDepreciation)}/day</span></div>
           </div>
         </CardContent>
       </Card>
 
       {/* Charts */}
       <Tabs value={selectedMetricView} onValueChange={(v: string) => setSelectedMetricView(v as typeof selectedMetricView)}>
-        <TabsList className="grid w-full grid-cols-5 bg-slate-800">
+        <TabsList className="grid w-full grid-cols-6 bg-slate-800">
           <TabsTrigger value="overview">Overview</TabsTrigger>
           <TabsTrigger value="revenue">Revenue</TabsTrigger>
           <TabsTrigger value="expenses">Expenses</TabsTrigger>
           <TabsTrigger value="sources">Sources</TabsTrigger>
+          <TabsTrigger value="gaap">GAAP</TabsTrigger>
           <TabsTrigger value="performance">Performance</TabsTrigger>
         </TabsList>
 
@@ -570,6 +693,114 @@ export function FinancialMonitoringPanel({
           </div>
         </TabsContent>
 
+        <TabsContent value="gaap" className="space-y-4">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Income Statement */}
+            <Card className="bg-slate-800 border-slate-700">
+              <CardHeader>
+                <CardTitle className="text-slate-100">Income Statement <span className="text-xs text-slate-400 font-normal">(Daily)</span></CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-0">
+                <IncomeRow label="ULL TaaS Revenue (Rev 1)" value={network.totalRev1} color="text-blue-400" indent fmt={fmt} />
+                <IncomeRow label="QKD Revenue (Rev 2)" value={network.totalRev2} color="text-green-400" indent fmt={fmt} />
+                <IncomeRow label="Emergency Revenue (Rev 3)" value={network.totalRev3} color="text-amber-400" indent fmt={fmt} />
+                <IncomeRow label="Total Revenue" value={network.totalRev} color="text-blue-300" bold border fmt={fmt} />
+
+                <div className="h-3" />
+                <IncomeRow label="Network Costs (Exp 3)" value={-network.totalExp3} color="text-red-400" indent fmt={fmt} />
+                <IncomeRow label="Weather Capacity Loss" value={-network.weatherCapacityLoss} color="text-red-400" indent fmt={fmt} />
+                <IncomeRow label="Cost of Revenue (COGS)" value={-network.totalCogs} color="text-red-300" bold border fmt={fmt} />
+
+                <div className="h-3" />
+                <IncomeRow label="Gross Profit" value={network.grossProfit} color="text-green-300" bold border fmt={fmt} />
+
+                <div className="h-3" />
+                <IncomeRow label="Operations (Exp 1)" value={-network.totalExp1} color="text-red-400" indent fmt={fmt} />
+                <IncomeRow label="Equipment (Exp 2)" value={-network.totalExp2} color="text-purple-400" indent fmt={fmt} />
+                <IncomeRow label="Total OpEx" value={-network.totalOpex} color="text-red-300" bold border fmt={fmt} />
+
+                <div className="h-3" />
+                <IncomeRow label="Operating Income" value={network.operatingIncome} color="text-emerald-300" bold border fmt={fmt} />
+
+                <div className="h-3" />
+                <IncomeRow label="Depreciation" value={-network.dailyDepreciation} color="text-orange-400" indent fmt={fmt} />
+                <IncomeRow label="Net Income" value={network.netIncome} color={network.netIncome >= 0 ? 'text-emerald-300' : 'text-red-300'} bold border fmt={fmt} />
+
+                {/* EBITDA callout */}
+                <div className="mt-4 p-3 bg-emerald-950/30 border border-emerald-900/50 rounded-lg">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-emerald-400">EBITDA</span>
+                    <span className="text-lg font-bold font-mono text-emerald-300">{fmt(network.ebitda)}</span>
+                  </div>
+                  <div className="text-[10px] font-mono text-slate-500 mt-1">
+                    = Operating Income ({fmt(network.operatingIncome)}) + Daily Depreciation ({fmt(network.dailyDepreciation)})
+                  </div>
+                </div>
+
+                {/* Margin summary */}
+                <div className="mt-3 text-[11px] font-mono text-slate-500 space-y-0.5">
+                  <div>Gross Margin: <span className="text-blue-400">{network.grossMargin.toFixed(1)}%</span> = Gross Profit / Revenue</div>
+                  <div>Operating Margin: <span className="text-emerald-400">{network.operatingMargin.toFixed(1)}%</span> = Op. Income / Revenue</div>
+                  <div>Net Margin: <span className={network.netIncome >= 0 ? 'text-emerald-400' : 'text-red-400'}>{(network.totalRev > 0 ? (network.netIncome / network.totalRev) * 100 : 0).toFixed(1)}%</span> = Net Income / Revenue</div>
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Balance Sheet + Waterfall */}
+            <div className="space-y-4">
+              {/* Balance Sheet */}
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader>
+                  <CardTitle className="text-slate-100">Balance Sheet <span className="text-xs text-slate-400 font-normal">(Assets)</span></CardTitle>
+                </CardHeader>
+                <CardContent className="space-y-0">
+                  <IncomeRow label={`Satellites (${satellites.length} × $${satCapexM}M)`} value={network.totalSatCapex} color="text-orange-400" indent fmt={fmt} />
+                  <IncomeRow label={`Ground Stations (tier-weighted)`} value={network.stationCapex} color="text-orange-400" indent fmt={fmt} />
+                  <IncomeRow label={`FSO Terminals (${fsoLinks.filter(l => l.active && l.link_type === 'sat-ground').length} units)`} value={network.totalFsoTerminalCapex} color="text-orange-400" indent fmt={fmt} />
+                  <IncomeRow label="Total Assets (Cost Basis)" value={network.totalAssets} color="text-orange-300" bold border fmt={fmt} />
+
+                  <div className="h-3" />
+                  <IncomeRow label="Accumulated Depreciation (day 1)" value={-network.dailyDepreciation} color="text-red-400" indent fmt={fmt} />
+                  <IncomeRow label="Net Book Value" value={network.netBookValue} color="text-slate-200" bold border fmt={fmt} />
+
+                  {/* ROA callout */}
+                  <div className="mt-4 grid grid-cols-2 gap-3">
+                    <div className="p-3 bg-blue-950/30 border border-blue-900/50 rounded-lg">
+                      <div className="text-xs text-blue-400">Return on Assets</div>
+                      <div className="text-lg font-bold font-mono text-blue-300">{network.roa.toFixed(2)}%</div>
+                      <div className="text-[10px] text-slate-500">Annualized OpInc / NBV</div>
+                    </div>
+                    <div className="p-3 bg-orange-950/30 border border-orange-900/50 rounded-lg">
+                      <div className="text-xs text-orange-400">Daily Depreciation</div>
+                      <div className="text-lg font-bold font-mono text-orange-300">{fmt(network.dailyDepreciation)}</div>
+                      <div className="text-[10px] text-slate-500">{depreciationYears}yr straight-line</div>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+
+              {/* Waterfall Chart */}
+              <Card className="bg-slate-800 border-slate-700">
+                <CardHeader><CardTitle className="text-slate-100">Income Waterfall</CardTitle></CardHeader>
+                <CardContent>
+                  <ResponsiveContainer width="100%" height={250}>
+                    <BarChart data={waterfallData}>
+                      <CartesianGrid strokeDasharray="3 3" stroke="rgb(51 65 85)" />
+                      <XAxis dataKey="name" stroke="rgb(148 163 184)" fontSize={9} />
+                      <YAxis stroke="rgb(148 163 184)" fontSize={10} tickFormatter={(v) => fmt(v)} />
+                      <Tooltip formatter={(v) => fmt(v as number)}
+                        contentStyle={{ backgroundColor: 'rgb(30 41 59)', border: '1px solid rgb(51 65 85)', borderRadius: '8px', color: 'rgb(241 245 249)' }} />
+                      <Bar dataKey="value" name="Amount">
+                        {waterfallData.map((entry, i) => <Cell key={i} fill={entry.fill} />)}
+                      </Bar>
+                    </BarChart>
+                  </ResponsiveContainer>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </TabsContent>
+
         <TabsContent value="performance" className="space-y-4">
           <Card className="bg-slate-800 border-slate-700">
             <CardHeader><CardTitle className="text-slate-100">Top 10 Stations by Profit</CardTitle></CardHeader>
@@ -616,6 +847,18 @@ export function FinancialMonitoringPanel({
           </div>
         </CardContent>
       </Card>
+    </div>
+  );
+}
+
+// Income statement line item
+function IncomeRow({ label, value, color = 'text-slate-300', bold = false, border = false, indent = false, fmt: fmtFn }: {
+  label: string; value: number; color?: string; bold?: boolean; border?: boolean; indent?: boolean; fmt: (n: number) => string;
+}) {
+  return (
+    <div className={`flex items-center justify-between py-1 ${border ? 'border-t border-slate-600 mt-1 pt-2' : ''} ${indent ? 'pl-4' : ''}`}>
+      <span className={`text-sm ${bold ? 'font-semibold' : ''} ${indent ? 'text-slate-400' : 'text-slate-300'}`}>{label}</span>
+      <span className={`text-sm font-mono ${bold ? 'font-semibold' : ''} ${color}`}>{fmtFn(value)}</span>
     </div>
   );
 }

@@ -1,0 +1,1086 @@
+openapi: 3.1.0
+info:
+  title: Zoe Orbital Control API
+  version: 7.4.0
+  description: |
+    SX9 Orbital Systems Agent (Zoe) - v7.4.0
+
+    Routes through Cloudflare Tunnel with Neural Mux integration,
+    ElevenLabs voice synthesis, and Murmur3 trivariate addressing.
+
+    **Primary Endpoint (Cloudflare Tunnel):**
+    - https://zoe.sx9.dev/api/v1
+
+    **Alternative Endpoints:**
+    - Cloudflare Workers: https://zoe-orbital.sx9.workers.dev/api/v1
+    - Local Development: http://localhost:18405/api/v1
+
+    **Internal Architecture:**
+    - Gateway HTTP: localhost:18405 (Orbital Gateway)
+    - Cesium UI: localhost:18800 (cesium-orbital)
+    - Voice Bridge: localhost:18410 (ElevenLabs TTS/STT)
+    - Neural Mux CDN: localhost:18100 (Failover)
+
+    **Voice Integration (ElevenLabs):**
+    - Zoe Persona Voice ID: EXAVITQu4vr4xnSDxMaL
+    - Model: eleven_monolingual_v1
+    - Real-time STT/TTS for orbital commands
+
+    **External API Integration:**
+    - NOAA Weather: Weather-aware FSO link routing
+    - Space-Track.org: TLE data fetching
+    - Supabase: Ground station + satellite persistence
+    - ElevenLabs: Voice synthesis and recognition
+
+    **Authentication:**
+    - X-API-Key: Required for all endpoints
+    - Bearer token: OAuth2 for Custom GPT integration
+
+servers:
+  - url: https://zoe.sx9.dev/api/v1
+    description: Production - Cloudflare Tunnel (primary)
+  - url: https://zoe-orbital.sx9.workers.dev/api/v1
+    description: Cloudflare Workers Edge (fallback)
+  - url: http://localhost:18405/api/v1
+    description: Local Development
+
+security:
+  - ApiKeyAuth: []
+  - BearerAuth: []
+
+paths:
+  /health:
+    get:
+      operationId: healthCheck
+      summary: Health check for Zoe orbital agent
+      tags: [System]
+      security: []
+      responses:
+        '200':
+          description: Zoe is operational
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /voice/speak:
+    post:
+      operationId: voiceSpeak
+      summary: Text-to-speech via ElevenLabs (Zoe persona)
+      description: |
+        Synthesize speech using Zoe's voice persona via ElevenLabs.
+        Returns audio stream in MP3 format.
+
+        Uses sx9-foundation-voice with Zoe persona configuration.
+      tags: [Voice]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VoiceSpeakRequest'
+            example:
+              text: "Constellation status nominal. ISS tracking enabled."
+              voice_settings:
+                stability: 0.7
+                similarity_boost: 0.8
+      responses:
+        '200':
+          description: Audio stream
+          content:
+            audio/mpeg:
+              schema:
+                type: string
+                format: binary
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '503':
+          description: ElevenLabs API unavailable
+
+  /voice/transcribe:
+    post:
+      operationId: voiceTranscribe
+      summary: Speech-to-text transcription
+      description: |
+        Transcribe audio input for orbital command processing.
+        Supports voice activity detection for real-time interaction.
+      tags: [Voice]
+      requestBody:
+        required: true
+        content:
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+          audio/webm:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '200':
+          description: Transcription result
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  text:
+                    type: string
+                  confidence:
+                    type: number
+                  orbital_intent:
+                    type: string
+                    enum: [track, propagate, analyze, route, simulate, status]
+                  extracted_entities:
+                    type: object
+                    properties:
+                      satellite_names:
+                        type: array
+                        items:
+                          type: string
+                      norad_ids:
+                        type: array
+                        items:
+                          type: integer
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /voice/command:
+    post:
+      operationId: voiceCommand
+      summary: Voice-driven orbital command (speak response)
+      description: |
+        Execute orbital command from voice input and return spoken response.
+        Combines STT → Command Processing → TTS in single call.
+      tags: [Voice]
+      requestBody:
+        required: true
+        content:
+          audio/wav:
+            schema:
+              type: string
+              format: binary
+          application/json:
+            schema:
+              type: object
+              properties:
+                text_command:
+                  type: string
+                  description: Text command (alternative to audio)
+                respond_with_voice:
+                  type: boolean
+                  default: true
+      responses:
+        '200':
+          description: Command result with optional audio response
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  command_understood:
+                    type: string
+                  result:
+                    type: object
+                  response_text:
+                    type: string
+                  audio_response_url:
+                    type: string
+                    format: uri
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /sgp4/propagate:
+    post:
+      operationId: sgp4Propagation
+      summary: Propagate orbital position using SGP4/SDP4 models
+      description: |
+        Generate ephemeris using SGP4 propagator with TLE input.
+        Returns positions in ECI (Earth-Centered Inertial) coordinates.
+
+        Uses orbital-mechanics crate with Murmur3 trivariate hash addressing.
+      tags: [Orbital Mechanics]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SGP4Request'
+            example:
+              tle_line1: "1 25544U 98067A   26035.50000000  .00002182  00000-0  41420-4 0  9990"
+              tle_line2: "2 25544  51.6461 339.8014 0001873  85.8165 274.3190 15.48919393123456"
+              start_time: "2026-02-05T12:00:00Z"
+              duration_minutes: 90
+              step_seconds: 60
+      responses:
+        '200':
+          description: Propagated ephemeris data with trivariate hash addressing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SGP4Response'
+        '400':
+          description: Invalid TLE or time parameters
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /sgp4/tle:
+    get:
+      operationId: getTLEData
+      summary: Retrieve TLE data for satellites
+      description: |
+        Fetch Two-Line Element data from Space-Track.org cache.
+        Returns trivariate hash for entity addressing.
+      tags: [Orbital Mechanics]
+      parameters:
+        - name: norad_id
+          in: query
+          schema:
+            type: integer
+          description: NORAD catalog number
+          example: 25544
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Satellite name (e.g., "ISS", "STARLINK-1234")
+          example: "ISS"
+      responses:
+        '200':
+          description: TLE data retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TLEResponse'
+        '404':
+          description: Satellite not found
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /cesium/camera:
+    post:
+      operationId: controlCamera
+      summary: Control CesiumJS camera position and orientation
+      description: |
+        Position the Cesium viewer camera using geodetic coordinates.
+        Integrates with cesium-orbital UI on port 18800.
+      tags: [Cesium Visualization]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CesiumCameraRequest'
+            example:
+              longitude: -74.0060
+              latitude: 40.7128
+              altitude: 500000
+              heading: 0
+              pitch: -90
+              roll: 0
+              duration_seconds: 2
+      responses:
+        '200':
+          description: Camera repositioned successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CesiumCameraResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /cesium/track:
+    post:
+      operationId: trackSatellite
+      summary: Track satellite with Cesium camera
+      description: |
+        Configure Cesium camera to track a specific satellite entity.
+        Uses trivariate hash addressing for entity lookup.
+      tags: [Cesium Visualization]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TrackSatelliteRequest'
+      responses:
+        '200':
+          description: Tracking enabled
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackSatelliteResponse'
+        '404':
+          description: Satellite not found
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /routing/optimize:
+    post:
+      operationId: optimizeRouting
+      summary: Neural Mux routing optimization
+      description: |
+        Use CTAS-7 Neural Mux Smart CDN for intelligent routing decisions.
+        Supports FSO (Free Space Optical) link analysis and weather-aware routing.
+
+        Uses beam-routing and candidate-selector crates.
+      tags: [Neural Routing]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RoutingRequest'
+            example:
+              source_hash: "3kJ9mP4xQ7Nn2vKp8Lm5Qw1Zx6Bc4Df9Gh3Jk7Mp2Rs5Tv8Wx"
+              destination_hash: "9Zx4mP7kQ2Nn8vKp3Lm1Qw5Dx9Bc6Gf2Jh4Mp8Rs1Tv3Wx7Yx"
+              constraints:
+                max_latency_ms: 100
+                min_bandwidth_mbps: 1000
+                weather_aware: true
+      responses:
+        '200':
+          description: Optimized routing path via Neural Mux
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RoutingResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /laserlight/link:
+    post:
+      operationId: analyzeFSOLink
+      summary: Analyze Free Space Optical (FSO) link budget
+      description: |
+        Calculate FSO link budget for satellite-to-satellite or satellite-to-ground.
+        Includes atmospheric modeling and weather impact analysis via NOAA integration.
+
+        Uses orbital-glaf crate for GLAF algorithm integration.
+      tags: [LaserLight FSO]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/FSOLinkRequest'
+      responses:
+        '200':
+          description: FSO link analysis complete
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FSOLinkResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /simulation/whatif:
+    post:
+      operationId: runWhatIfSimulation
+      summary: Run what-if simulation with Monte Carlo analysis
+      description: |
+        Execute simulation scenarios using HFT ground station network.
+        Supports constellation changes, ground station failures, and weather scenarios.
+
+        Persists results to Supabase for historical analysis.
+      tags: [Simulation]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/WhatIfSimulationRequest'
+            example:
+              scenario: "ground_station_failure"
+              parameters:
+                failed_station_hash: "7Kp3mP9xQ4Nn5vKp1Lm8Qw2Zx3Bc7Df6Gh9Jk2Mp5Rs8Tv1Wx"
+                failure_duration_minutes: 30
+              monte_carlo_iterations: 1000
+      responses:
+        '200':
+          description: Simulation results with statistical analysis
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/WhatIfSimulationResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /constellation/status:
+    get:
+      operationId: getConstellationStatus
+      summary: Get real-time constellation status
+      description: |
+        Retrieve status of all satellites in the constellation.
+        Includes ground station connectivity and FSO link health.
+
+        Data sourced from Supabase with real-time updates.
+      tags: [Constellation Management]
+      parameters:
+        - name: include_links
+          in: query
+          schema:
+            type: boolean
+            default: true
+          description: Include active FSO link details
+        - name: include_weather
+          in: query
+          schema:
+            type: boolean
+            default: false
+          description: Include weather impact on each station
+      responses:
+        '200':
+          description: Constellation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConstellationStatusResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+  /financial/monitor:
+    get:
+      operationId: getFinancialMetrics
+      summary: Get real-time financial metrics for constellation
+      description: |
+        Retrieve GAAP-compliant financial metrics including revenue,
+        operating costs, and network economics.
+
+        Note: Full financial implementation pending FINTAS integration.
+      tags: [Financial]
+      responses:
+        '200':
+          description: Financial metrics
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FinancialMetricsResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+
+components:
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: X-API-Key
+      description: SX9 Gateway API Key
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth2 Bearer token for Custom GPT integration
+
+  responses:
+    Unauthorized:
+      description: Invalid or missing authentication
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error:
+                type: string
+                example: "Unauthorized - Invalid API Key or Bearer token"
+              required_auth:
+                type: array
+                items:
+                  type: string
+                example: ["X-API-Key", "Authorization: Bearer <token>"]
+
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [operational, degraded, maintenance]
+          example: "operational"
+        agent:
+          type: string
+          example: "Zoe"
+        version:
+          type: string
+          example: "7.4.0"
+        cloudflare_tunnel:
+          type: boolean
+        cesium_ui_connected:
+          type: boolean
+        voice_bridge_status:
+          type: string
+          enum: [connected, disconnected, degraded]
+        supabase_connected:
+          type: boolean
+        services:
+          type: object
+          properties:
+            orbital_gateway:
+              type: boolean
+            cesium_ui:
+              type: boolean
+            voice_bridge:
+              type: boolean
+            neural_mux:
+              type: boolean
+
+    VoiceSpeakRequest:
+      type: object
+      properties:
+        text:
+          type: string
+          maxLength: 5000
+          description: Text to synthesize
+        voice_settings:
+          type: object
+          properties:
+            stability:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 0.7
+            similarity_boost:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 0.8
+            style:
+              type: number
+              minimum: 0
+              maximum: 1
+              default: 0
+        output_format:
+          type: string
+          enum: [mp3_44100_128, mp3_22050_32, pcm_16000]
+          default: mp3_44100_128
+      required:
+        - text
+
+    SGP4Request:
+      type: object
+      properties:
+        tle_line1:
+          type: string
+          description: TLE line 1 (69 characters)
+          pattern: "^1 .{68}$"
+        tle_line2:
+          type: string
+          description: TLE line 2 (69 characters)
+          pattern: "^2 .{68}$"
+        start_time:
+          type: string
+          format: date-time
+          description: Propagation start time (ISO 8601)
+        duration_minutes:
+          type: integer
+          minimum: 1
+          maximum: 1440
+          description: Propagation duration in minutes
+        step_seconds:
+          type: integer
+          minimum: 1
+          maximum: 3600
+          default: 60
+          description: Ephemeris step size in seconds
+      required:
+        - tle_line1
+        - tle_line2
+        - start_time
+        - duration_minutes
+
+    SGP4Response:
+      type: object
+      properties:
+        satellite_hash:
+          type: string
+          description: Murmur3 trivariate hash (SCH-CUID-UUID, 48-position Base96)
+        norad_id:
+          type: integer
+        satellite_name:
+          type: string
+        epoch:
+          type: string
+          format: date-time
+        ephemeris:
+          type: array
+          items:
+            $ref: '#/components/schemas/EphemerisPoint'
+      required:
+        - satellite_hash
+        - ephemeris
+
+    EphemerisPoint:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        position_eci:
+          type: array
+          items:
+            type: number
+          minItems: 3
+          maxItems: 3
+          description: "[x, y, z] in ECI km"
+        velocity_eci:
+          type: array
+          items:
+            type: number
+          minItems: 3
+          maxItems: 3
+          description: "[vx, vy, vz] in km/s"
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        altitude_km:
+          type: number
+          minimum: 0
+
+    TLEResponse:
+      type: object
+      properties:
+        norad_id:
+          type: integer
+        name:
+          type: string
+        tle_line1:
+          type: string
+        tle_line2:
+          type: string
+        epoch:
+          type: string
+          format: date-time
+        trivariate_hash:
+          type: string
+          description: Murmur3 SCH-CUID-UUID (48-position Base96)
+        age_hours:
+          type: number
+          description: Hours since TLE epoch
+
+    CesiumCameraRequest:
+      type: object
+      properties:
+        longitude:
+          type: number
+          minimum: -180
+          maximum: 180
+        latitude:
+          type: number
+          minimum: -90
+          maximum: 90
+        altitude:
+          type: number
+          minimum: 0
+          description: Altitude in meters above ellipsoid
+        heading:
+          type: number
+          minimum: 0
+          maximum: 360
+          default: 0
+          description: Heading in degrees (0 = North)
+        pitch:
+          type: number
+          minimum: -90
+          maximum: 90
+          default: -90
+          description: Pitch in degrees (-90 = looking down)
+        roll:
+          type: number
+          minimum: -180
+          maximum: 180
+          default: 0
+        duration_seconds:
+          type: number
+          minimum: 0
+          default: 2
+      required:
+        - longitude
+        - latitude
+        - altitude
+
+    CesiumCameraResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          example: "camera_moved"
+        final_position:
+          $ref: '#/components/schemas/CesiumCameraRequest'
+        cesium_ui_url:
+          type: string
+          format: uri
+          example: "http://localhost:18800"
+
+    TrackSatelliteRequest:
+      type: object
+      properties:
+        satellite_hash:
+          type: string
+          description: Murmur3 trivariate hash (48-position Base96)
+        norad_id:
+          type: integer
+          description: Alternative to hash - NORAD catalog number
+        satellite_name:
+          type: string
+          description: Alternative - satellite name
+        tracking_mode:
+          type: string
+          enum: [follow, orbit_view, ground_track, inertial]
+          default: follow
+
+    TrackSatelliteResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [tracking, queued, error]
+        tracking:
+          type: object
+          properties:
+            satellite_hash:
+              type: string
+            norad_id:
+              type: integer
+            name:
+              type: string
+            mode:
+              type: string
+            current_position:
+              $ref: '#/components/schemas/EphemerisPoint'
+
+    RoutingRequest:
+      type: object
+      properties:
+        source_hash:
+          type: string
+          description: Source node trivariate hash (48-position Base96)
+        destination_hash:
+          type: string
+          description: Destination node trivariate hash (48-position Base96)
+        constraints:
+          type: object
+          properties:
+            max_latency_ms:
+              type: number
+            min_bandwidth_mbps:
+              type: number
+            weather_aware:
+              type: boolean
+              default: true
+            avoid_congested:
+              type: boolean
+              default: true
+            prefer_fso:
+              type: boolean
+              default: true
+      required:
+        - source_hash
+        - destination_hash
+
+    RoutingResponse:
+      type: object
+      properties:
+        path:
+          type: array
+          items:
+            type: string
+          description: Trivariate hash of each hop in path
+        path_details:
+          type: array
+          items:
+            type: object
+            properties:
+              node_hash:
+                type: string
+              node_type:
+                type: string
+                enum: [satellite, ground_station, relay, ixp]
+              node_name:
+                type: string
+              link_type:
+                type: string
+                enum: [fso, rf, fiber]
+              link_latency_ms:
+                type: number
+        total_latency_ms:
+          type: number
+        total_bandwidth_mbps:
+          type: number
+        weather_impact:
+          type: object
+          properties:
+            affected_links:
+              type: integer
+            degradation_percent:
+              type: number
+        neural_mux_confidence:
+          type: number
+          minimum: 0
+          maximum: 1
+
+    FSOLinkRequest:
+      type: object
+      properties:
+        transmitter_hash:
+          type: string
+          description: Source satellite/station trivariate hash
+        receiver_hash:
+          type: string
+          description: Target satellite/station hash
+        wavelength_nm:
+          type: number
+          default: 1550
+          description: Laser wavelength in nanometers
+        transmit_power_dbm:
+          type: number
+          default: 30
+        aperture_diameter_m:
+          type: number
+          default: 0.1
+        include_weather:
+          type: boolean
+          default: true
+      required:
+        - transmitter_hash
+        - receiver_hash
+
+    FSOLinkResponse:
+      type: object
+      properties:
+        link_budget_db:
+          type: number
+        link_margin_db:
+          type: number
+        free_space_loss_db:
+          type: number
+        atmospheric_loss_db:
+          type: number
+        pointing_loss_db:
+          type: number
+        weather_impact:
+          type: object
+          properties:
+            cloud_attenuation_db:
+              type: number
+            rain_attenuation_db:
+              type: number
+            scintillation_db:
+              type: number
+            total_weather_loss_db:
+              type: number
+        link_viable:
+          type: boolean
+        data_rate_achievable_mbps:
+          type: number
+        distance_km:
+          type: number
+
+    WhatIfSimulationRequest:
+      type: object
+      properties:
+        scenario:
+          type: string
+          enum:
+            - ground_station_failure
+            - satellite_failure
+            - constellation_expansion
+            - weather_degradation
+            - link_failure
+            - demand_surge
+        parameters:
+          type: object
+          additionalProperties: true
+        monte_carlo_iterations:
+          type: integer
+          minimum: 100
+          maximum: 10000
+          default: 1000
+        duration_minutes:
+          type: integer
+          minimum: 1
+          default: 60
+        persist_results:
+          type: boolean
+          default: true
+          description: Save results to Supabase
+      required:
+        - scenario
+
+    WhatIfSimulationResponse:
+      type: object
+      properties:
+        simulation_id:
+          type: string
+          format: uuid
+        scenario:
+          type: string
+        outcome:
+          type: string
+        metrics:
+          type: object
+          properties:
+            mean_latency_ms:
+              type: number
+            latency_p95_ms:
+              type: number
+            latency_p99_ms:
+              type: number
+            network_availability:
+              type: number
+            affected_satellites:
+              type: integer
+            affected_ground_stations:
+              type: integer
+            revenue_impact_usd:
+              type: number
+        monte_carlo_results:
+          type: object
+          properties:
+            iterations:
+              type: integer
+            convergence_achieved:
+              type: boolean
+            percentile_50:
+              type: object
+            percentile_95:
+              type: object
+            percentile_99:
+              type: object
+        recommendations:
+          type: array
+          items:
+            type: string
+        voice_summary:
+          type: string
+          description: Text summary suitable for TTS
+
+    ConstellationStatusResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        total_satellites:
+          type: integer
+        operational:
+          type: integer
+        degraded:
+          type: integer
+        offline:
+          type: integer
+        satellites:
+          type: array
+          items:
+            type: object
+            properties:
+              trivariate_hash:
+                type: string
+              norad_id:
+                type: integer
+              name:
+                type: string
+              status:
+                type: string
+                enum: [operational, degraded, offline]
+              position:
+                $ref: '#/components/schemas/EphemerisPoint'
+              active_links:
+                type: integer
+        ground_stations:
+          type: array
+          items:
+            type: object
+            properties:
+              trivariate_hash:
+                type: string
+              name:
+                type: string
+              latitude:
+                type: number
+              longitude:
+                type: number
+              status:
+                type: string
+                enum: [operational, degraded, offline]
+              connected_satellites:
+                type: integer
+              weather_status:
+                type: string
+                enum: [clear, degraded, blocked]
+        network_health:
+          type: object
+          properties:
+            overall_status:
+              type: string
+              enum: [healthy, degraded, critical]
+            active_fso_links:
+              type: integer
+            active_rf_links:
+              type: integer
+            average_latency_ms:
+              type: number
+
+    FinancialMetricsResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+        period:
+          type: string
+          example: "daily"
+        revenue:
+          type: object
+          properties:
+            total_usd:
+              type: number
+            per_satellite_usd:
+              type: number
+            per_station_usd:
+              type: number
+        costs:
+          type: object
+          properties:
+            network_ops_usd:
+              type: number
+            weather_capacity_loss_usd:
+              type: number
+            depreciation_usd:
+              type: number
+        margins:
+          type: object
+          properties:
+            gross_margin:
+              type: number
+            operating_margin:
+              type: number
+            ebitda:
+              type: number
+        note:
+          type: string
+          example: "Full GAAP metrics pending FINTAS integration"
+
+tags:
+  - name: System
+    description: Health checks and system status
+  - name: Voice
+    description: ElevenLabs TTS/STT integration for voice commands
+  - name: Orbital Mechanics
+    description: SGP4/SDP4 orbit propagation and ephemeris generation
+  - name: Cesium Visualization
+    description: CesiumJS camera control and satellite tracking
+  - name: Neural Routing
+    description: Neural Mux Smart CDN routing optimization
+  - name: LaserLight FSO
+    description: Free Space Optical link analysis and management
+  - name: Simulation
+    description: What-if simulations with Monte Carlo analysis
+  - name: Constellation Management
+    description: Real-time constellation monitoring and control
+  - name: Financial
+    description: Financial metrics and network economics

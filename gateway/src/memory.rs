@@ -16,6 +16,7 @@ use axum::{
 use serde::{Deserialize, Serialize};
 use std::path::Path;
 use std::sync::Arc;
+use sx9_foundation_primitives::hex;
 use tokio::sync::RwLock;
 
 use sx9_tcache::{TrivariateCache, TrivariateRecord, Hd4Phase, murmur3_128, ProbeVector};

@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  # CTAS GIS Frontend (Development)
+  ctas-gis-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: ctas-gis-dev
+    ports:
+      - "5173:5173"
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_MAPBOX_TOKEN=${VITE_MAPBOX_TOKEN}
+      - VITE_CESIUM_TOKEN=${VITE_CESIUM_TOKEN}
+    networks:
+      - ctas-network
+    restart: unless-stopped
+
+  # CTAS GIS Frontend (Production)
+  ctas-gis-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ctas-gis-prod
+    ports:
+      - "3000:3000"
+    environment:
+      - VITE_SUPABASE_URL=${VITE_SUPABASE_URL}
+      - VITE_SUPABASE_ANON_KEY=${VITE_SUPABASE_ANON_KEY}
+      - VITE_MAPBOX_TOKEN=${VITE_MAPBOX_TOKEN}
+      - VITE_CESIUM_TOKEN=${VITE_CESIUM_TOKEN}
+    networks:
+      - ctas-network
+    restart: unless-stopped
+    profiles:
+      - production
+
+networks:
+  ctas-network:
+    driver: bridge
+
+volumes:
+  node_modules:

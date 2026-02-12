@@ -124,6 +124,7 @@ pub async fn list_satellites(State(state): State<AppState>) -> Json<Vec<Satellit
 }
 
 /// Get single satellite position via real SGP4 propagation
+/// Uses GMST-corrected ECI→geodetic for accurate sub-satellite point
 pub async fn get_position(
     State(state): State<AppState>,
     Path(id): Path<String>,
@@ -144,34 +145,33 @@ pub async fn get_position(
     let now = Utc::now();
     match sat.propagate(now) {
         Ok(sv) => {
-            match orbital_mechanics::transforms::eci_to_geodetic(
+            // Use time-aware geodetic conversion for accurate ground track
+            let pos = orbital_mechanics::transforms::eci_to_geodetic_at_time(
                 sv.position_x,
                 sv.position_y,
                 sv.position_z,
-            ) {
-                Ok(pos) => {
-                    let v = (sv.velocity_x.powi(2)
-                        + sv.velocity_y.powi(2)
-                        + sv.velocity_z.powi(2))
-                    .sqrt();
-                    Json(serde_json::json!({
-                        "id": sat.id,
-                        "norad_id": sat.norad_id,
-                        "latitude": pos.latitude,
-                        "longitude": pos.longitude,
-                        "altitude_km": pos.altitude_km,
-                        "velocity_km_s": v,
-                        "timestamp": now.to_rfc3339(),
-                    }))
-                }
-                Err(e) => Json(serde_json::json!({"error": format!("{}", e)})),
-            }
+                now,
+            );
+            let v = (sv.velocity_x.powi(2)
+                + sv.velocity_y.powi(2)
+                + sv.velocity_z.powi(2))
+            .sqrt();
+            Json(serde_json::json!({
+                "id": sat.id,
+                "norad_id": sat.norad_id,
+                "latitude": pos.latitude,
+                "longitude": pos.longitude,
+                "altitude_km": pos.altitude_km,
+                "velocity_km_s": v,
+                "timestamp": now.to_rfc3339(),
+            }))
         }
         Err(e) => Json(serde_json::json!({"error": format!("{}", e)})),
     }
 }
 
 /// Bulk propagate all satellites to current time
+/// Uses GMST-corrected geodetic for accurate ground tracks
 pub async fn get_bulk_positions(State(state): State<AppState>) -> Json<BulkPositionResponse> {
     let now = Utc::now();
     let timestamp = now.to_rfc3339();
@@ -182,9 +182,10 @@ pub async fn get_bulk_positions(State(state): State<AppState>) -> Json<BulkPosit
         .iter()
         .filter_map(|sat| {
             let sv = sat.propagate(now).ok()?;
-            let pos =
-                orbital_mechanics::transforms::eci_to_geodetic(sv.position_x, sv.position_y, sv.position_z)
-                    .ok()?;
+            // Use time-aware geodetic conversion for accurate ground track
+            let pos = orbital_mechanics::transforms::eci_to_geodetic_at_time(
+                sv.position_x, sv.position_y, sv.position_z, now
+            );
             let v =
                 (sv.velocity_x.powi(2) + sv.velocity_y.powi(2) + sv.velocity_z.powi(2)).sqrt();
 

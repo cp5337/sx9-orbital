@@ -8,11 +8,10 @@
 
 use anyhow::Result;
 use async_nats::Client;
-use crossbeam_channel::{bounded, Receiver, Sender};
 use serde::{Deserialize, Serialize};
 use std::sync::Arc;
 use std::time::Duration;
-use tokio::sync::RwLock;
+use tokio::sync::{mpsc, RwLock};
 
 /// NATS configuration
 const NATS_DEFAULT_URL: &str = "nats://127.0.0.1:18020";
@@ -57,15 +56,15 @@ pub enum TelemetryEvent {
 /// NATS-based telemetry publisher
 pub struct NatsTelemetry {
     client: Option<Client>,
-    event_tx: Sender<TelemetryEvent>,
-    event_rx: Receiver<TelemetryEvent>,
+    event_tx: mpsc::Sender<TelemetryEvent>,
+    event_rx: Arc<RwLock<mpsc::Receiver<TelemetryEvent>>>,
     connected: Arc<RwLock<bool>>,
 }
 
 impl NatsTelemetry {
     /// Create a new telemetry publisher (attempts NATS connection)
     pub async fn new() -> Self {
-        let (event_tx, event_rx) = bounded(1000);
+        let (event_tx, event_rx) = mpsc::channel(1000);
         let connected = Arc::new(RwLock::new(false));
 
         let nats_url = std::env::var("NATS_URL").unwrap_or_else(|_| NATS_DEFAULT_URL.to_string());
@@ -85,13 +84,13 @@ impl NatsTelemetry {
         NatsTelemetry {
             client,
             event_tx,
-            event_rx,
+            event_rx: Arc::new(RwLock::new(event_rx)),
             connected,
         }
     }
 
     /// Get the event sender for publishing telemetry
-    pub fn sender(&self) -> Sender<TelemetryEvent> {
+    pub fn sender(&self) -> mpsc::Sender<TelemetryEvent> {
         self.event_tx.clone()
     }
 
@@ -104,9 +103,11 @@ impl NatsTelemetry {
     pub async fn run(&self) -> Result<()> {
         if let Some(ref client) = self.client {
             loop {
-                // Non-blocking receive with timeout
-                match self.event_rx.recv_timeout(Duration::from_millis(100)) {
-                    Ok(event) => {
+                // Async receive with timeout
+                let mut rx = self.event_rx.write().await;
+                match tokio::time::timeout(Duration::from_millis(100), rx.recv()).await {
+                    Ok(Some(event)) => {
+                        drop(rx); // Release lock before async publish
                         let subject = match &event {
                             TelemetryEvent::SatellitePosition { id, .. } => {
                                 format!("sx9.orbital.telemetry.{}", id)
@@ -127,12 +128,12 @@ impl NatsTelemetry {
                             tracing::error!("Failed to publish to {}: {}", subject, e);
                         }
                     }
-                    Err(crossbeam_channel::RecvTimeoutError::Timeout) => {
-                        // No events, continue
-                    }
-                    Err(crossbeam_channel::RecvTimeoutError::Disconnected) => {
+                    Ok(None) => {
                         tracing::warn!("Telemetry channel disconnected");
                         break;
+                    }
+                    Err(_) => {
+                        // Timeout, no events - continue
                     }
                 }
             }
@@ -140,11 +141,11 @@ impl NatsTelemetry {
             tracing::info!("📴 Running in offline mode (NATS not connected)");
             // Just drain the channel to prevent memory buildup
             loop {
-                match self.event_rx.recv_timeout(Duration::from_secs(1)) {
-                    Ok(_) => {} // Discard events
-                    Err(_) => {
-                        tokio::time::sleep(Duration::from_millis(100)).await;
-                    }
+                let mut rx = self.event_rx.write().await;
+                match tokio::time::timeout(Duration::from_secs(1), rx.recv()).await {
+                    Ok(Some(_)) => {} // Discard events
+                    Ok(None) => break, // Channel closed
+                    Err(_) => {} // Timeout
                 }
             }
         }
@@ -165,7 +166,7 @@ impl NatsTelemetry {
 
 /// Convenience function to publish a satellite position update
 pub fn publish_satellite_position(
-    tx: &Sender<TelemetryEvent>,
+    tx: &mpsc::Sender<TelemetryEvent>,
     id: &str,
     name: &str,
     lat: f64,
@@ -188,7 +189,7 @@ pub fn publish_satellite_position(
 
 /// Convenience function to publish a beam activation event
 pub fn publish_beam_event(
-    tx: &Sender<TelemetryEvent>,
+    tx: &mpsc::Sender<TelemetryEvent>,
     beam_id: &str,
     source_id: &str,
     target_id: &str,
@@ -207,7 +208,7 @@ pub fn publish_beam_event(
 
 /// Convenience function to publish weather update
 pub fn publish_weather(
-    tx: &Sender<TelemetryEvent>,
+    tx: &mpsc::Sender<TelemetryEvent>,
     station_id: &str,
     weather_score: f64,
     conditions: &str,

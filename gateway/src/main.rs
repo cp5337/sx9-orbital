@@ -28,9 +28,16 @@ use orbital_glaf::{
 use orbital_mechanics::walker::WalkerDelta;
 
 mod ann_routes;
+mod beam_profile;
+mod entropy_harvester;
 mod memory;
 mod nats_telemetry;
+mod realtime;
+mod realtime_routes;
 mod routes;
+mod sim_state;
+mod state_routes;
+mod tle_generator;
 mod weather_routes;
 
 use nats_telemetry::NatsTelemetry;
@@ -184,6 +191,11 @@ async fn main() -> Result<()> {
     let weather_router = weather_routes::weather_router(weather_state);
     let ann_router = ann_routes::ann_router();
 
+    // ---- Simulation state ----
+    let sim_state = state_routes::SimState::new();
+    let state_router = state_routes::state_routes(sim_state);
+    tracing::info!("   Simulation state: lock-free (Zone A/B compliant)");
+
     // Constellation API routes
     let constellation_routes = Router::new()
         .route("/satellites", get(routes::list_satellites))
@@ -203,12 +215,18 @@ async fn main() -> Result<()> {
         .nest("/ann", ann_router)
         .with_state(state.clone());
 
+    // Real-time data routes (CelesTrak TLE, collision avoidance, weather sync)
+    let realtime_router = realtime_routes::realtime_routes();
+    tracing::info!("   Real-time data: CelesTrak TLE, SOCRATES collision");
+
     // Combine all routes
     let mut api_routes = Router::new()
         .route("/health", get(health))
         .nest("/api/v1", constellation_routes)
         .nest("/api/v1", ann_routes)
-        .nest("/api/v1/weather", weather_router);
+        .nest("/api/v1/weather", weather_router)
+        .nest("/api/v1/state", state_router)
+        .nest("/api/v1/realtime", realtime_router);
 
     if let Some(mem) = memory_state {
         api_routes = api_routes.nest("/api/v1/memory", memory::memory_routes(mem));
