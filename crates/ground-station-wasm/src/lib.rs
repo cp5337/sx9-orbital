@@ -24,6 +24,8 @@ pub mod link_budget;
 pub mod stations;
 pub mod downselect;
 pub mod weather;
+pub mod fso_state_machine;
+pub mod satellite_location;
 
 #[cfg(feature = "weather-api")]
 pub mod weather_api;
@@ -45,6 +47,9 @@ pub use weather::{
     // Viability thresholds
     VIABILITY_CLOUD_MIN, VIABILITY_VISIBILITY_MIN, VIABILITY_PRECIP_MIN,
     VIABILITY_AIR_QUALITY_MIN, VIABILITY_COMPOSITE_MIN,
+};
+pub use fso_state_machine::{
+    FsoState, FsoStateMachine, FsoContext, FocalPointStatus, QkdStatus, TransmissionStats,
 };
 
 #[cfg(feature = "weather-api")]

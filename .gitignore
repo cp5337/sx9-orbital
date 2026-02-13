@@ -14,11 +14,20 @@ Cargo.lock
 .DS_Store
 Thumbs.db
 
-# Environment
+# Environment & keys – hourly WIP must never commit these
 .env
 .env.local
+.env.*.local
 *.pem
 *.key
+**/vault.json
+**/*VAULT*.json
+**/*_VAULT*.json
+**/config.env.yaml
+**/config.local.yaml
+**/secrets/
+**/*secret*
+**/api_key*
 
 # Logs
 *.log
