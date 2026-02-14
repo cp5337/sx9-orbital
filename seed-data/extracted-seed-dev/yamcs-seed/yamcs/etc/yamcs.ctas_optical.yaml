@@ -1,0 +1,18 @@
+# ctas_optical instance configuration
+dataLinks:
+  - name: tm_realtime
+    class: org.yamcs.tctm.TcpTmDataLink
+    stream: tm_realtime
+    host: 127.0.0.1
+    port: 10015
+
+mdb:
+  - type: xtce
+    spec: /opt/yamcs/etc/mops/ctas_optical.xtce.xml
+
+services: []
+
+streamConfig:
+  tm:
+    - name: tm_realtime
+      processor: realtime

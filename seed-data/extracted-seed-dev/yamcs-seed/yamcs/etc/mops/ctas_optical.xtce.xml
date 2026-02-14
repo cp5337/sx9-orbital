@@ -1,15 +1,157 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<MissionDatabase xmlns="http://www.omg.org/space/xtce" name="ctas_optical">
+<SpaceSystem xmlns="http://www.omg.org/space/xtce" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="ctas_optical">
   <TelemetryMetaData>
     <ParameterTypeSet>
-      <IntegerParameterType name="u32" sizeInBits="32" encoding="unsigned"/>
+      <!-- Integer types only - no floats for CTAS integration -->
+      <IntegerParameterType name="uint32_t" signed="false">
+        <UnitSet/>
+        <IntegerDataEncoding sizeInBits="32" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <IntegerParameterType name="uint16_t" signed="false">
+        <UnitSet/>
+        <IntegerDataEncoding sizeInBits="16" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <IntegerParameterType name="uint8_t" signed="false">
+        <UnitSet/>
+        <IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <!-- Fixed-point angles: degrees * 1000 (millidegrees) -->
+      <IntegerParameterType name="angle_mdeg_t" signed="false">
+        <UnitSet>
+          <Unit description="millidegrees">mdeg</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="32" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <!-- Fixed-point rates: (degrees/s) * 1000 -->
+      <IntegerParameterType name="rate_mdeg_s_t" signed="true">
+        <UnitSet>
+          <Unit description="millidegrees per second">mdeg/s</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="32" encoding="twosComplement"/>
+      </IntegerParameterType>
+      
+      <!-- Fixed-point signal strength: dBm * 10 (decidBm) -->
+      <IntegerParameterType name="signal_ddbm_t" signed="true">
+        <UnitSet>
+          <Unit description="decidBm">ddbm</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="16" encoding="twosComplement"/>
+      </IntegerParameterType>
+      
+      <!-- Fixed-point temperature: celsius * 10 (decicelsius) -->
+      <IntegerParameterType name="temp_dc_t" signed="true">
+        <UnitSet>
+          <Unit description="decicelsius">dC</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="16" encoding="twosComplement"/>
+      </IntegerParameterType>
+      
+      <!-- Fixed-point pixels/arcseconds: value * 100 (centipixels/centiarcseconds) -->
+      <IntegerParameterType name="position_cpx_t" signed="false">
+        <UnitSet>
+          <Unit description="centipixels">cpx</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="32" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <IntegerParameterType name="arcsec_cas_t" signed="false">
+        <UnitSet>
+          <Unit description="centiarcseconds">cas</Unit>
+        </UnitSet>
+        <IntegerDataEncoding sizeInBits="16" encoding="unsigned"/>
+      </IntegerParameterType>
+      
+      <!-- Enums -->
+      <EnumeratedParameterType name="tracking_mode_t">
+        <UnitSet/>
+        <IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+        <EnumerationList>
+          <Enumeration label="IDLE" value="0"/>
+          <Enumeration label="SLEWING" value="1"/>
+          <Enumeration label="TRACKING" value="2"/>
+          <Enumeration label="STOWED" value="3"/>
+        </EnumerationList>
+      </EnumeratedParameterType>
+      
+      <EnumeratedParameterType name="system_status_t">
+        <UnitSet/>
+        <IntegerDataEncoding sizeInBits="8" encoding="unsigned"/>
+        <EnumerationList>
+          <Enumeration label="NOMINAL" value="0"/>
+          <Enumeration label="DEGRADED" value="1"/>
+          <Enumeration label="FAULT" value="2"/>
+        </EnumerationList>
+      </EnumeratedParameterType>
     </ParameterTypeSet>
+    
     <ParameterSet>
-      <Parameter name="link.ber" parameterTypeRef="u32"/>
+      <!-- Antenna/Mount - fixed-point integers -->
+      <Parameter name="antenna_azimuth" parameterTypeRef="angle_mdeg_t"/>
+      <Parameter name="antenna_elevation" parameterTypeRef="angle_mdeg_t"/>
+      <Parameter name="antenna_azimuth_rate" parameterTypeRef="rate_mdeg_s_t"/>
+      <Parameter name="antenna_elevation_rate" parameterTypeRef="rate_mdeg_s_t"/>
+      <Parameter name="antenna_tracking_mode" parameterTypeRef="tracking_mode_t"/>
+      
+      <!-- Optical Link - integers only -->
+      <Parameter name="link_ber" parameterTypeRef="uint32_t"/>
+      <Parameter name="link_signal_strength" parameterTypeRef="signal_ddbm_t"/>
+      <Parameter name="link_lock_status" parameterTypeRef="uint8_t"/>
+      <Parameter name="link_data_rate" parameterTypeRef="uint16_t"/>
+      <Parameter name="link_packet_count" parameterTypeRef="uint32_t"/>
+      
+      <!-- Fine Tracking - fixed-point integers -->
+      <Parameter name="tracking_centroid_x" parameterTypeRef="position_cpx_t"/>
+      <Parameter name="tracking_centroid_y" parameterTypeRef="position_cpx_t"/>
+      <Parameter name="tracking_fwhm" parameterTypeRef="arcsec_cas_t"/>
+      <Parameter name="tracking_guide_error" parameterTypeRef="arcsec_cas_t"/>
+      
+      <!-- System Health - integers only -->
+      <Parameter name="system_temperature" parameterTypeRef="temp_dc_t"/>
+      <Parameter name="system_uptime" parameterTypeRef="uint32_t"/>
+      <Parameter name="system_status" parameterTypeRef="system_status_t"/>
     </ParameterSet>
-    <StreamSet>
-      <Stream name="tm" type="tm"/>
-    </StreamSet>
+    
+    <ContainerSet>
+      <SequenceContainer name="GroundStationTelemetry">
+        <EntryList>
+          <ParameterRefEntry parameterRef="antenna_azimuth"/>
+          <ParameterRefEntry parameterRef="antenna_elevation"/>
+          <ParameterRefEntry parameterRef="antenna_azimuth_rate"/>
+          <ParameterRefEntry parameterRef="antenna_elevation_rate"/>
+          <ParameterRefEntry parameterRef="antenna_tracking_mode"/>
+          <ParameterRefEntry parameterRef="link_ber"/>
+          <ParameterRefEntry parameterRef="link_signal_strength"/>
+          <ParameterRefEntry parameterRef="link_lock_status"/>
+          <ParameterRefEntry parameterRef="link_data_rate"/>
+          <ParameterRefEntry parameterRef="link_packet_count"/>
+          <ParameterRefEntry parameterRef="tracking_centroid_x"/>
+          <ParameterRefEntry parameterRef="tracking_centroid_y"/>
+          <ParameterRefEntry parameterRef="tracking_fwhm"/>
+          <ParameterRefEntry parameterRef="tracking_guide_error"/>
+          <ParameterRefEntry parameterRef="system_temperature"/>
+          <ParameterRefEntry parameterRef="system_uptime"/>
+          <ParameterRefEntry parameterRef="system_status"/>
+        </EntryList>
+      </SequenceContainer>
+    </ContainerSet>
   </TelemetryMetaData>
-  <CommandMetaData/>
-</MissionDatabase>
+  
+  <CommandMetaData>
+    <MetaCommandSet>
+      <MetaCommand name="CMD_SLEW_TO_POSITION"/>
+      <MetaCommand name="CMD_TRACK_SATELLITE"/>
+      <MetaCommand name="CMD_STOP_TRACKING"/>
+      <MetaCommand name="CMD_STOW_ANTENNA"/>
+      <MetaCommand name="CMD_ENABLE_LINK"/>
+      <MetaCommand name="CMD_DISABLE_LINK"/>
+      <MetaCommand name="CMD_SET_DATA_RATE"/>
+      <MetaCommand name="CMD_START_FINE_TRACKING"/>
+      <MetaCommand name="CMD_STOP_FINE_TRACKING"/>
+      <MetaCommand name="CMD_SET_EXPOSURE"/>
+    </MetaCommandSet>
+  </CommandMetaData>
+</SpaceSystem>

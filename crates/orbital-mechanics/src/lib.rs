@@ -310,8 +310,8 @@ pub mod walker {
             WalkerDelta {
                 total_satellites: 12,
                 planes: 3,
-                phasing: 4,
-                altitude_km: 10500.0,
+                phasing: 1,  // Walker 12/3/1 for better temporal coverage
+                altitude_km: 10500.0,  // GPS/Galileo-like MEO
                 inclination_deg: 55.0,
             }
         }
@@ -536,10 +536,10 @@ pub mod walker {
 
                 let sv = result.unwrap();
                 let r = (sv.position_x.powi(2) + sv.position_y.powi(2) + sv.position_z.powi(2)).sqrt();
-                // MEO at 10500km → radius ~16878 km
+                // MEO at 10,500 km → radius ~16,878 km
                 assert!(
                     r > 15000.0 && r < 18000.0,
-                    "Unexpected radius {:.0} km for {} (expected ~16878)",
+                    "Unexpected radius {:.0} km for {} (expected ~16,878)",
                     r,
                     sat.name
                 );

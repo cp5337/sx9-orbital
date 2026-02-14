@@ -9,6 +9,7 @@ members = [
     "crates/orbital-glaf",
     "crates/candidate-selector",
     "crates/fuzz-harness",
+    "docker/ground-station-sim",
 ]
 resolver = "2"
 
